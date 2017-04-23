@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray" >
+
+    <include
+        layout="@layout/title_project"/>
+
+    <EditText
+        android:id="@+id/me_name_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dimens_16"
+        android:layout_marginTop="15dp"
+        android:hint="请输入店铺地址"
+        android:maxLength="28" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:background="@mipmap/deepgreen_bar"
+        android:layout_alignParentRight="true"
+        android:text="保存"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimens_20" />
+
+
+
+</LinearLayout>

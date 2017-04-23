@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/head_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="5dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+        />
+    <TextView
+        android:id="@+id/name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/dark"
+        android:layout_toRightOf="@id/head_icon"
+        android:text="张小平"
+        android:textSize="14sp"
+        android:layout_alignTop="@id/head_icon"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="6dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="向你打了声招呼"
+        android:textColor="@color/light_gray"
+        android:layout_alignBottom="@id/head_icon"
+        android:layout_toRightOf="@id/head_icon"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="6dp"
+        />
+    <Button
+        android:id="@+id/accept_btn"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@mipmap/deepgreen_bar"
+        android:layout_alignParentRight="true"
+        android:text="接受"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/discover_rightarrow_marginparentright"
+
+        />
+
+
+</RelativeLayout>

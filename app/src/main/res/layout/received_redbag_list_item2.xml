@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/sent_redbag_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimens_10"
+        android:textColor="@color/dark"
+        android:textSize="@dimen/text_16"
+        android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+        android:text="李张三"
+        />
+    <TextView
+        android:id="@+id/sent_redbag_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sent_redbag_user"
+        android:layout_marginTop="@dimen/dimens_6"
+        android:layout_marginBottom="@dimen/dimens_10"
+        android:textColor="@color/deep_gray"
+        android:text="08-09"
+        android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+        />
+    <LinearLayout
+        android:id="@+id/received_redbag_item_youshang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dimens_10"
+        android:layout_marginRight="@dimen/dimens_20"
+        >
+        <TextView
+            android:id="@+id/recevied_redbag_item_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.00"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_15"
+
+            />
+        <TextView
+            android:id="@+id/sent_redbag_item_yuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/deep_gray"
+            android:text="@string/sent_bag_yuan"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

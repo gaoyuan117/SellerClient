@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/title_project"
+        ></include>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="vertical"
+        android:background="#E8E8E8"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/me_address_nameaddress_height"
+
+        >
+        <TextView
+            android:id="@+id/me_address_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="王城"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:textSize="@dimen/text_14"
+            android:layout_marginTop="10dp"
+
+            android:textColor="@color/dark"
+            />
+        <TextView
+            android:id="@+id/me_address_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_14"
+            android:layout_below="@+id/me_address_name"
+            android:text="四川省成都市南明县"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            />
+        <ImageView
+            android:id="@+id/personal_area_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/selected"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
+            />
+
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray"
+        android:layout_marginLeft="15dp"
+        />
+    <RelativeLayout
+        android:id="@+id/me_address_relative_addaddress"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:orientation="horizontal"
+        android:background="@drawable/seltor"
+        android:clickable="true"
+        >
+    <ImageView
+        android:id="@+id/discovery_buyer_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+        android:src="@mipmap/add_address" />
+
+    <TextView
+        android:id="@+id/discovery_buyer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/me_my_address_addaddress"
+        android:textColor="@color/dark"
+        android:textSize="@dimen/text_14"
+        android:layout_marginLeft="@dimen/discover_text_marginparentleft"
+
+        android:layout_centerVertical="true"
+
+        />
+    <ImageView
+        android:id="@+id/discovery_right_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/right_arrow"
+        android:layout_alignParentRight="true"
+
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/discover_rightarrow_marginparentright"
+
+        />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        ></LinearLayout>
+</LinearLayout>

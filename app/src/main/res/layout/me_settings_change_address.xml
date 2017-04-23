@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/title_project"
+        ></include>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="vertical"
+        android:background="#E8E8E8"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height">
+        <TextView
+            android:id="@+id/change_address_shou_huo_ren_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_address_shou_huo_ren"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            />
+        <EditText
+            android:id="@+id/change_address_shou_huo_ren_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/change_address_hint_name"
+            android:text="李大"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+
+            android:layout_marginLeft="100dp"
+
+            android:maxLength="7"
+            android:background="@null"
+            />
+
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E8E8E8"
+        android:layout_marginLeft="15dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_address_phone_number"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            />
+        <EditText
+            android:id="@+id/change_address_phone_number_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/change_address_hint_phone_number"
+            android:text="13908767587"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+
+            android:layout_marginLeft="100dp"
+            android:background="@null"
+            android:maxLength="18"
+            />
+
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E8E8E8"
+        android:layout_marginLeft="15dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_address_choose_area"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            />
+        <EditText
+            android:id="@+id/change_address_area_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/change_address_hint_area_infomation"
+            android:text="四川成都"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100dp"
+            android:background="@null"
+            android:maxLength="10"
+            />
+
+
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E8E8E8"
+        android:layout_marginLeft="15dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_address_detail_address"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            />
+        <EditText
+            android:id="@+id/change_address_street_gate_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/change_address_hint_street_gate_"
+            android:text="万科金品103"
+            android:textSize="@dimen/text_14"
+            android:layout_marginTop="15dp"
+
+            android:layout_marginLeft="100dp"
+            android:background="@null"
+            android:maxLength="15"
+            />
+
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E8E8E8"
+        android:layout_marginLeft="15dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_address_postcode"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            />
+        <EditText
+
+            android:id="@+id/change_address_postcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/change_address_postcode"
+            android:text="610000"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100dp"
+            android:background="@null"
+            android:maxLength="15"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e8e8e8"
+        >
+        <Button
+            android:id="@+id/add_address_btn"
+            android:layout_width="@dimen/dimens_200"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/deepgreen_bar"
+            android:layout_marginTop="@dimen/dimens_10"
+            android:text="@string/sure"
+            android:textColor="@color/white"
+            android:enabled="true"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

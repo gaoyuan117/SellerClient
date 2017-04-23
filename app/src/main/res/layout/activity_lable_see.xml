@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray08">
+
+    <include layout="@layout/title_project"
+        android:id="@+id/title"/>
+
+    <TextView
+        android:id="@+id/lable_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray03"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/title"
+        android:textSize="12sp"
+        android:text="标签名字"/>
+
+    <TextView
+        android:id="@+id/et_label"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_40"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:textColorHint="@color/black"
+        android:layout_below="@+id/lable_name"
+        android:textSize="@dimen/text_14"
+        android:padding="@dimen/dimens_8"
+        android:text="名字"
+        android:background="@color/white"/>
+
+    <TextView
+        android:id="@+id/lable_member"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_label"
+        android:paddingLeft="@dimen/dimens_8"
+        android:paddingTop="@dimen/dimens_8"
+        android:text="标签成员（0）"
+        android:textSize="12sp"
+        android:textColor="@color/dim_gray"/>
+
+    <TextView
+        android:id="@+id/tv_addLabel"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/lable_member"
+        android:layout_height="@dimen/dimens_54"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:gravity="center_vertical"
+        android:text="添加成员"
+        android:drawableLeft="@mipmap/add_label"
+        android:drawablePadding="@dimen/dimens_8"
+        android:padding="@dimen/dimens_8"
+        android:textSize="14sp"
+        android:textColor="#4CF085"/>
+
+    <ListView
+        android:id="@+id/listlabledetailitem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_addLabel"
+        android:background="@android:color/transparent"
+        android:footerDividersEnabled="false"
+        android:divider="#e1e1e1"
+        android:descendantFocusability="afterDescendants"
+        android:fastScrollEnabled="false"
+        android:layout_marginTop="@dimen/dimens_4"/>
+
+    <com.kaichaohulian.baocms.view.SidebarLable
+        android:id="@+id/sidebar"
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/listlabledetailitem"
+        android:background="@android:color/transparent"
+
+        android:clickable="true" />
+
+</RelativeLayout>

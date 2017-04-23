@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/gray"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/title_project"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimens_8"
+        android:paddingTop="@dimen/dimens_8"
+        android:text="标签名字"
+        android:textSize="12sp"
+        android:textColor="@color/dim_gray"/>
+
+    <EditText
+        android:id="@+id/et_label"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_40"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:hint="未设置标签名字"
+        android:textColorHint="@color/dark_gray"
+        android:textSize="@dimen/text_14"
+        android:padding="@dimen/dimens_8"
+        android:background="@color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimens_8"
+        android:paddingTop="@dimen/dimens_8"
+        android:text="标签成员（0）"
+        android:textSize="12sp"
+        android:textColor="@color/dim_gray"/>
+
+    <TextView
+        android:id="@+id/tv_addLabel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_54"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:gravity="center_vertical"
+        android:text="添加成员"
+        android:drawableLeft="@mipmap/add_label"
+        android:drawablePadding="@dimen/dimens_8"
+        android:padding="@dimen/dimens_8"
+        android:textSize="14sp"
+        android:textColor="#4CF085"/>
+
+    <ListView
+        android:id="@+id/addlable_activity_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:background="@color/white"/>
+
+</LinearLayout>

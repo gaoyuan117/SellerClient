@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1d2225"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/temp"
+        layout="@layout/title_project" />
+
+    <TextView
+        android:id="@+id/code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temp"
+        android:layout_marginTop="45dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="@color/green"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/code"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="这些好友也将进入群聊"
+        android:textColor="#5f6264"
+        android:textSize="13sp" />
+
+    <GridView
+        android:id="@+id/face2face_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tips"
+        android:numColumns="5"
+        android:padding="15dp" />
+
+    <TextView
+        android:id="@+id/join_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#1aad19"
+        android:gravity="center_horizontal"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:text="进入该群"
+        android:textSize="17sp" />
+</RelativeLayout>

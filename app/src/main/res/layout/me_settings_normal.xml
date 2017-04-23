@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_project"></include>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#E8E8E8"
+        android:orientation="vertical" />
+
+    <RelativeLayout
+        android:id="@+id/multi_language_linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@drawable/seltor"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/me_icon_marginparentleft"
+            android:text="@string/me_settings_multiple_language"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+            android:id="@+id/me_settings_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
+            android:src="@mipmap/right_arrow" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#E8E8E8"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/myface_linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@drawable/seltor"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/me_icon_marginparentleft"
+            android:text="简体英文"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+            android:id="@+id/personal_sex_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
+            android:src="@mipmap/right_arrow"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:layout_marginLeft="15dp"
+        android:background="@color/light_gray" />
+
+    <RelativeLayout
+        android:id="@+id/small_video_linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@drawable/seltor"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/me_icon_marginparentleft"
+            android:text="English"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+            android:id="@+id/personal_area_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
+            android:src="@mipmap/right_arrow"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:layout_marginLeft="15dp"
+        android:background="@color/light_gray" />
+
+    <RelativeLayout
+        android:id="@+id/storage_linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@drawable/seltor"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/me_icon_marginparentleft"
+            android:text="한국어"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+            android:id="@+id/personal_sign_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
+            android:src="@mipmap/right_arrow"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#E8E8E8"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/clean_talking_linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@drawable/seltor"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="140dp"
+            android:text="@string/me_settings_empty_talk_history"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e8e8e8"
+
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
+</LinearLayout>

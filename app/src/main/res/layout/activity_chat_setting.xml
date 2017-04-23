@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E4E3E3"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_project" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray" />
+
+    <RelativeLayout
+        android:id="@+id/setUplable"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:text="@string/chat_setting_remarks"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimens_16"
+            android:src="@mipmap/arrow_right" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:text="@string/chat_setting_friend_circle_forbid"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <com.kaichaohulian.baocms.view.SwitchButton
+            android:id="@+id/cant_see_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimens_16" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:layout_marginLeft="15dp"
+        android:background="@color/light_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:text="@string/chat_setting_my_friend_circle_forbid"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <com.kaichaohulian.baocms.view.SwitchButton
+            android:id="@+id/dont_see_it"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimens_16" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray" />
+
+    <RelativeLayout
+        android:id="@+id/discovery_relative_buyer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:text="@string/chat_setting_blacklist"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <com.kaichaohulian.baocms.view.SwitchButton
+            android:id="@+id/add_to_the_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimens_16" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:layout_marginLeft="15dp"
+        android:background="@color/light_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:text="@string/chat_setting_recommend"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimens_16"
+            android:src="@mipmap/arrow_right" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_complaint_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:text="@string/chat_setting_complaint"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimens_16"
+            android:src="@mipmap/arrow_right" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_remove"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/red"
+        android:paddingBottom="7dp"
+        android:paddingTop="7dp"
+        android:text="删除"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+</LinearLayout>

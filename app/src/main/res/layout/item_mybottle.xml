@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp">
+
+    <ImageView
+        android:id="@+id/iv_mybottle_avatar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="12dp"
+        android:src="@mipmap/default_useravatar"/>
+
+    <TextView
+        android:id="@+id/tv_mybottle_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/iv_mybottle_avatar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/iv_mybottle_avatar"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/tv_mybottle_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_mybottle_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="12dp"
+        android:layout_toRightOf="@id/iv_mybottle_avatar"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/sub_text_dial"
+        android:textSize="12sp"/>
+
+</RelativeLayout>

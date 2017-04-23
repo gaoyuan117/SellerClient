@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#111"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true" >
+
+        <ImageView
+            android:id="@+id/shakeBg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/shakehideimg_man2" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/shakeImgUp"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="#111">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/shake_logo_up" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/shakeImgDown"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="#111">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/shake_logo_down"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <include layout="@layout/title_project"/>
+
+    <LinearLayout
+        android:id="@+id/linear_people"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:layout_marginLeft="130dp" >
+
+        <ImageView
+            android:id="@+id/img_ren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ren" />
+        <TextView
+            android:id="@+id/tv_ren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人"
+            android:textColor="#11EE11"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_business"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="130dp"
+        android:layout_centerHorizontal="true" >
+        <ImageView
+            android:id="@+id/img_business"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ren" />
+        <TextView
+            android:id="@+id/tv_business"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商家"
+            android:textColor="#11EE11"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_10" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:riv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="300dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/redpacket_bg">
+
+        <com.kaichaohulian.baocms.widget.RoundedImageView
+            android:id="@+id/redpacket_avtar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/login_app"
+            riv:riv_corner_radius="40dp" />
+
+        <TextView
+            android:id="@+id/redpacket_sender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/redpacket_avtar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="王涛"
+            android:textColor="#ffe2b1"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/redpacket_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/redpacket_sender"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="王涛"
+            android:textColor="#ffe2b1"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/redpacket_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/redpacket_desc"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="手慢了，红包派完了"
+            android:textColor="#ffe2b1"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="20dp"
+            android:text="查看领取详情>"
+            android:textColor="#ffe2b1"
+            android:textSize="8sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

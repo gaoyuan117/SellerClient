@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/deep_dark"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_project" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="330dp"
+            android:layout_height="460dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginBottom="@dimen/dimens_10"
+            android:layout_marginTop="@dimen/dimens_10"
+            android:background="@drawable/yuanjiao_5">
+
+            <ImageView
+                android:id="@+id/head_img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                android:layout_marginTop="@dimen/dimens_20"
+            />
+
+            <TextView
+                android:id="@+id/address_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/head_img"
+                android:layout_marginBottom="@dimen/dimens_8"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="@dimen/dimens_30"
+                android:layout_toRightOf="@id/head_img"
+                android:textSize="@dimen/text_12" />
+
+            <ImageView
+                android:id="@+id/sexy_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/name_text"
+                android:layout_marginLeft="@dimen/dimens_4"
+                android:layout_marginTop="@dimen/dimens_4"
+                android:layout_toRightOf="@id/name_text"
+                android:src="@mipmap/women" />
+
+            <ImageView
+                android:id="@+id/two_code"
+                android:layout_width="@dimen/dimens_220"
+                android:layout_height="@dimen/dimens_260"
+                android:layout_below="@id/head_img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimens_10"
+                android:src="@mipmap/me_change" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/two_code"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimens_10"
+                android:text="@string/my_two_code_tip"
+                android:textSize="@dimen/text_10" />
+
+            <TextView
+                android:id="@+id/name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/head_img"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@+id/head_img"
+                android:layout_toRightOf="@+id/head_img"
+                android:text="飞鹰UI设计"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_16" />
+        </RelativeLayout>
+
+    </ScrollView>
+</LinearLayout>

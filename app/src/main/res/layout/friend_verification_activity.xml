@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/gray"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimens_8"
+        android:paddingTop="@dimen/dimens_8"
+        android:text="你需要发送验证申请，等对方通过"
+        android:textSize="12sp"
+        android:textColor="@color/dim_gray"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_40"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:hint="内容"
+        android:textColorHint="@color/dark_gray"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_14"
+        android:padding="@dimen/dimens_8"
+        android:background="@color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimens_8"
+        android:paddingTop="@dimen/dimens_8"
+        android:text="朋友圈权限（0）"
+        android:textSize="12sp"
+        android:textColor="@color/dim_gray"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_40"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:background="@color/white">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="不让他(她)看我的朋友圈"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:padding="@dimen/dimens_8"
+            android:layout_centerVertical="true"/>
+
+        <com.kaichaohulian.baocms.view.SwitchButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimens_12"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

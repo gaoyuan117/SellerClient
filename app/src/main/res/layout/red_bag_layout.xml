@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/redbag_background">
+
+    <include layout="@layout/title_project" />
+
+    <Button
+        android:id="@+id/btn_pingshouqi_redbag"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:background="@mipmap/ping_shou_qi_redbag"
+        android:text="@string/redbag_ping_shou_qi" />
+
+    <Button
+        android:id="@+id/btn_putong_redbag"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_pingshouqi_redbag"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimens_50"
+        android:background="@mipmap/normal_redbag"
+        android:text="@string/redbag_normal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="@string/redbag_tips"
+        android:textColor="#ffe2b1" />
+</RelativeLayout>

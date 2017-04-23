@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_project" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="vertical"
+        android:background="#E8E8E8" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height">
+
+        <TextView
+            android:id="@+id/add_bankcard_realname_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_bankcard_name"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft" />
+
+        <EditText
+            android:id="@+id/add_bankcard_realname_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_bankcard_please_input_username_of_card"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/add_bankcard_realname_text"
+            android:layout_marginLeft="@dimen/add_bankcard_spacing"
+            android:maxLength="7"
+            android:background="@null"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray"
+        android:layout_marginLeft="15dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height" >
+
+        <TextView
+            android:id="@+id/add_bankcard_idcard_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="身份证号"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft" />
+
+        <EditText
+            android:id="@+id/add_bankcard_real_idcard_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入身份证"
+            android:textSize="@dimen/text_14"
+            android:text=""
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/add_bankcard_idcard_text"
+            android:layout_marginLeft="@dimen/add_bankcard_spacing"
+            android:background="@null"
+            android:maxLength="18"
+            android:inputType="number"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray"
+        android:layout_marginLeft="15dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height" >
+
+        <TextView
+            android:id="@+id/add_bankcard_phone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bank_leave_phone"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft" />
+
+        <EditText
+            android:id="@+id/add_bankcard_real_phone_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/please_input_leave_phone"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/add_bankcard_phone_text"
+            android:layout_marginLeft="@dimen/add_bankcard_spacing"
+            android:background="@null"
+            android:maxLength="11"
+            android:inputType="number"/>
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray"
+        android:layout_marginLeft="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="vertical"
+        android:background="#E8E8E8" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height" >
+
+        <TextView
+            android:id="@+id/add_bankcard_banks_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_bankcard_bank_name"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft" />
+
+        <Spinner
+            android:id="@+id/add_bankcard_real_banks_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dimens_40"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/add_bankcard_banks_text"
+            android:layout_marginLeft="@dimen/add_bankcard_spacing"
+            android:background="@null"
+            android:maxLength="10" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/right_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/discover_rightarrow_marginparentright"
+            />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/light_gray"
+        android:layout_marginLeft="15dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        >
+        <TextView
+            android:id="@+id/add_bankcard_cardnumber_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_bankcard_card_number"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+
+            />
+        <EditText
+            android:id="@+id/add_bankcard_real_cardnumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_bankcard_please_input_card_number"
+            android:textSize="@dimen/text_14"
+            android:text=""
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/add_bankcard_cardnumber_text"
+            android:layout_marginLeft="@dimen/add_bankcard_spacing"
+            android:background="@null"
+            android:inputType="number"
+            android:maxLength="21"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E8E8E8"
+
+        android:orientation="vertical"
+        >
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/add_bankcard_red_tips"
+            android:text="@string/add_bankcard_tips"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/red"
+            />
+        <Button
+            android:id="@+id/add_bankcard_btn"
+            android:layout_width="330dp"
+            android:layout_height="48dp"
+            android:text="@string/add_bankcard_button_add"
+            android:textColor="@color/white"
+            android:background="@mipmap/deepgreen_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+
+            />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

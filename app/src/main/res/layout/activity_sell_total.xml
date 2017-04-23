@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/title_project" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimens_60"
+        android:text="@string/sell_total_today"
+        android:textColor="@color/dark"
+        />
+    <TextView
+        android:id="@+id/today_sell_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1250.6"
+        android:textSize="38sp"
+        android:layout_marginTop="@dimen/dimens_80"
+        android:textColor="#429056"
+        android:layout_centerHorizontal="true"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/dark"
+
+        ></View>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@color/gray"
+        android:layout_marginTop="@dimen/dimens_160"
+        android:padding="@dimen/dimens_10"
+        android:id="@+id/re_txt_sell_detail"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sell_detail"
+            />
+    </RelativeLayout>
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:background="@color/dark"
+        android:layout_below="@+id/re_txt_sell_detail"
+        ></View>
+    <ListView
+        android:id="@+id/sell_list"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/view_line"
+        android:layout_height="wrap_content"></ListView>
+
+
+</RelativeLayout>

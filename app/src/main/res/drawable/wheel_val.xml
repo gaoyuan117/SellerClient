@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="0dp" />
+    <!-- 这是半透明，还可以设置全透明，那就是白色边框的效果了 -->
+    <solid android:color="@android:color/transparent" />
+    <stroke
+        android:width="0dp"
+        android:color="#3a3a3a" />
+</shape>
+

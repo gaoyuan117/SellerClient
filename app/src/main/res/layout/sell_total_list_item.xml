@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent" android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_64"
+        android:background="@drawable/seltor"
+        android:padding="@dimen/dimens_8">
+
+        <ImageView
+            android:id="@+id/goods_icon"
+            android:layout_width="@dimen/dimens_54"
+            android:layout_height="@dimen/dimens_54"/>
+
+        <TextView
+            android:id="@+id/goods_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/goods_icon"
+            android:gravity="center_vertical"
+            android:maxLength="18"
+            android:maxLines="2"
+            android:text="2016款打款尼龙风衣羽绒腹部身裹长习"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"/>
+        <TextView
+            android:id="@+id/sell_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/goods_name"
+            android:layout_marginTop="@dimen/dimens_8"
+            android:layout_toRightOf="@+id/goods_icon"
+            android:text="11月20日 20:06"
+            android:textColor="@color/dim_gray"
+            android:textSize="@dimen/text_12"/>
+
+        <TextView
+            android:id="@+id/sell_per_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimens_10"
+            android:layout_marginTop="@dimen/dimens_16"
+            android:maxLines="2"
+            android:maxWidth="@dimen/dimens_60"
+            android:padding="@dimen/dimens_4"
+            android:text="+40.00"
+            android:textColor="#F0BC4B"
+            android:textSize="@dimen/text_14"/>
+
+    </RelativeLayout>
+</LinearLayout>

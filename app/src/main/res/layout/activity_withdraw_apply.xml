@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_project" />
+
+    <LinearLayout
+        android:layout_width="@dimen/withdraw_cash_yuanjiao_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/yuanjiao_5"
+        android:orientation="vertical"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:background="@color/gray"
+            android:orientation="vertical"
+            android:padding="@dimen/dimens_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimens_10"
+                android:text="@string/withdraw_way"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/discover_text" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dimens_10"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_wechat"
+                    android:layout_width="@dimen/dimens_80"
+                    android:layout_height="@dimen/dimens_26"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dimens_10"
+                    android:background="@mipmap/deepgreen_bar"
+                    android:text="@string/tv_wechat"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_alipay"
+                    android:layout_width="@dimen/dimens_80"
+                    android:layout_height="@dimen/dimens_26"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dimens_16"
+                    android:background="@mipmap/lightgreen_bar"
+                    android:text="@string/tv_alipay"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_bankpay"
+                    android:layout_width="@dimen/dimens_80"
+                    android:layout_height="@dimen/dimens_26"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dimens_16"
+                    android:background="@mipmap/lightgreen_bar"
+                    android:text="@string/tv_bankcard"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dimens_10">
+
+            <LinearLayout
+                android:id="@+id/ln_wechat_alipay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_wechatand_alipay_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dimens_10"
+                    android:text="@string/tv_wechat_id"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/discover_text" />
+
+                <EditText
+                    android:id="@+id/edt_we_ali_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="@null"
+                    android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:inputType="textVisiblePassword"
+                    android:paddingLeft="8dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linear_bankpay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dimens_10"
+                        android:text="@string/tv_open_bank"
+                        android:textColor="@color/dark"
+                        android:textSize="@dimen/text_14" />
+
+                    <EditText
+                        android:id="@+id/ed_kaihuyinhanag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dimens_10"
+                        android:background="@null"
+                        android:hint="请选择开户银行"
+                        android:textSize="@dimen/text_14" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="280dp"
+                    android:layout_height="@dimen/line_small"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimens_6"
+                    android:background="@color/light_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dimens_10"
+                        android:text="@string/tv_open_number"
+                        android:textColor="@color/dark"
+                        android:textSize="@dimen/text_14" />
+
+                    <EditText
+                        android:id="@+id/ed_kaihuzhanghao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dimens_10"
+                        android:background="@null"
+                        android:hint="请选择开户账号"
+                        android:textSize="@dimen/text_14" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="280dp"
+                    android:layout_height="@dimen/line_small"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimens_6"
+                    android:background="@color/light_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dimens_10"
+                        android:text="@string/tv_openname"
+                        android:textColor="@color/dark"
+                        android:textSize="@dimen/text_14" />
+
+                    <EditText
+                        android:id="@+id/ed_kaihuxingming"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dimens_10"
+                        android:background="@null"
+                        android:hint="请选择开户姓名"
+                        android:textSize="@dimen/text_14" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="280dp"
+            android:layout_height="@dimen/line_small"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/light_gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimens_10"
+            android:padding="@dimen/dimens_10"
+            android:text="@string/tv_account_withdraw"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height">
+
+            <TextView
+                android:id="@+id/tv_money_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimens_20"
+                android:text="@string/withdraw_cash_withdraw_fuhao"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_21" />
+
+            <EditText
+                android:id="@+id/edt_input_number"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimens_16"
+                android:layout_toRightOf="@+id/tv_money_icon"
+                android:background="@null"
+                android:inputType="numberDecimal" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/withdraw_cash_btn"
+        android:layout_width="@dimen/withdraw_cash_yuanjiao_width"
+        android:layout_height="@dimen/dimens_50"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimens_60"
+        android:background="@mipmap/deepgreen_bar"
+        android:text="@string/withdraw_cash_withdraw"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_14" />
+</LinearLayout>

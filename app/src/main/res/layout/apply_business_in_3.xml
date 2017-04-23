@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray" >
+
+    <include layout="@layout/title_project" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="分类"
+                android:paddingTop="@dimen/dimens_10"
+                android:paddingLeft="@dimen/discover_icon_marginparentleft"/>
+
+            <Spinner
+                android:id="@+id/apply_classification"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:textSize="@dimen/text_14"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/dimens_4"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="所在区域"
+                android:paddingTop="@dimen/dimens_10"
+                android:paddingLeft="@dimen/discover_icon_marginparentleft"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Spinner
+                    android:id="@+id/apply_address1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/discover_line_height"
+                    android:textSize="@dimen/text_14"
+                    android:background="@color/white"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/dimens_4"/>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/im_social_dig_name_bg"/>
+
+                <Spinner
+                    android:id="@+id/apply_address2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/discover_line_height"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_14"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/dimens_4"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="所在商圈"
+                android:paddingTop="@dimen/dimens_10"
+                android:paddingLeft="@dimen/discover_icon_marginparentleft"/>
+
+            <Spinner
+                android:id="@+id/apply_ShopArea"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:textSize="@dimen/text_14"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/dimens_4"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="属性"
+                android:paddingTop="@dimen/dimens_10"
+                android:paddingLeft="@dimen/discover_icon_marginparentleft"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:paddingTop="@dimen/dimens_10"
+                android:paddingBottom="@dimen/dimens_10"
+                android:paddingRight="@dimen/dimens_10"
+                android:paddingLeft="@dimen/discover_icon_marginparentleft"
+                android:textSize="@dimen/text_14"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:text="自主配送"
+                android:layout_marginTop="@dimen/dimens_4"/>
+
+            <LinearLayout
+                android:background="@color/gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_30"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/logo"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/jpg_png"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:textSize="@dimen/text_10" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_140"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="@dimen/dimens_10">
+
+                <ImageView
+                    android:clickable="true"
+                    android:id="@+id/apply_img_license"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:src="@mipmap/business_add" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:background="@color/gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_30"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/advertise_pic"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/jpg_png"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:textSize="@dimen/text_10" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_140"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="@dimen/dimens_10" >
+
+                <ImageView
+                    android:clickable="true"
+                    android:id="@+id/apply_img_logo"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:src="@mipmap/business_add" />
+
+            </RelativeLayout>
+            <LinearLayout
+                android:background="@color/gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_30"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yingyezhizhao"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/jpg_png"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:textSize="@dimen/text_10" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_140"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="@dimen/dimens_10" >
+                <ImageView
+                    android:clickable="true"
+                    android:id="@+id/apply_img_corperate_image"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:src="@mipmap/business_add" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/deepgreen_bar"
+                android:text="@string/commit_and_shenghe"
+                android:height="@dimen/dimens_40"
+                android:width="@dimen/dimens_120"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_14"
+                android:layout_marginTop="@dimen/dimens_20"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

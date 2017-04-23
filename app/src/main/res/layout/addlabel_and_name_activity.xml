@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_project" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimens_8"
+        android:paddingTop="@dimen/dimens_8"
+        android:text="标签名字"
+        android:textColor="@color/dim_gray"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/et_label"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_40"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:background="@color/white"
+        android:hint="未设置标签名字"
+        android:padding="@dimen/dimens_8"
+        android:textColorHint="@color/dark_gray"
+        android:textSize="@dimen/text_14" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimens_8"
+        android:paddingTop="@dimen/dimens_8"
+        android:text="备注名"
+        android:textColor="@color/dim_gray"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_40"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:background="@color/white"
+        android:hint="未设置备注名"
+        android:padding="@dimen/dimens_8"
+        android:textColorHint="@color/dark_gray"
+        android:textSize="@dimen/text_14" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimens_8"
+        android:paddingTop="@dimen/dimens_8"
+        android:text="手机号码"
+        android:textColor="@color/dim_gray"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/et_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_40"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:background="@color/white"
+        android:hint="未设置手机号码"
+        android:inputType="number"
+        android:padding="@dimen/dimens_8"
+        android:textColorHint="@color/dark_gray"
+        android:textSize="@dimen/text_14" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimens_8"
+        android:paddingTop="@dimen/dimens_8"
+        android:text="描述"
+        android:textColor="@color/dim_gray"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/et_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimens_4"
+        android:background="@color/white"
+        android:hint="添加更多描述信息"
+        android:padding="@dimen/dimens_8"
+        android:textColorHint="@color/dark_gray"
+        android:textSize="@dimen/text_14" />
+</LinearLayout>

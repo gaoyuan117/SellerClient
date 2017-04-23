@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/LargePadding">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加转账说明"
+        android:textColor="@color/normal_text_color"
+        android:textSize="@dimen/NormalTextSize" />
+
+    <EditText
+        android:id="@+id/transfer_tips"
+        style="@style/CCPLineEditText"
+        android:paddingRight="@dimen/LargerPadding"
+        android:textColor="@color/normal_text_color" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/btn_sure"
+        android:text="最多输入10个字"
+        android:textColor="@color/normal_text_color"
+        android:textSize="@dimen/HintTextSize" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|center"
+        android:layout_margin="4.0dip">
+
+        <TextView
+            android:id="@+id/btn_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="确定"
+            android:textColor="@color/normal_text_color"
+            android:textSize="@dimen/HintTextSize" />
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/btn_sure"
+            android:text="取消"
+            android:textColor="@color/normal_text_color"
+            android:textSize="@dimen/HintTextSize" />
+    </RelativeLayout>
+
+</LinearLayout>

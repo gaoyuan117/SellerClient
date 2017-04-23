@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_project" />
+
+    <LinearLayout
+        android:layout_width="@dimen/withdraw_cash_yuanjiao_width"
+        android:layout_height="@dimen/withdraw_cash_yuanjiao_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/yuanjiao_7"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height">
+
+            <TextView
+                android:id="@+id/temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                android:text="@string/withdraw_cash_to_bank"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/discover_text" />
+
+            <Spinner
+                android:id="@+id/withdraw_which_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimens_120"
+                android:background="@color/transparent"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/no_card"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/temp"
+                android:gravity="center_vertical"
+                android:text="您暂无银行卡，请先绑定后再提现至银行卡"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                android:text="@string/withdraw_cash_account"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/discover_text" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height"
+
+            >
+
+            <TextView
+                android:id="@+id/tv_money_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                android:text="@string/withdraw_cash_withdraw_fuhao"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_21" />
+
+            <EditText
+                android:id="@+id/edt_input_number"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimens_16"
+                android:layout_toRightOf="@+id/tv_money_icon"
+                android:background="@null"
+                android:inputType="numberDecimal" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="280dp"
+            android:layout_height="@dimen/line_small"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_13"
+            android:background="@color/light_gray" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height"
+
+            >
+
+            <LinearLayout
+                android:id="@+id/linear_withdraw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+
+                >
+
+                <TextView
+                    android:id="@+id/withdraw_cash_rest_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                    android:text="@string/withdraw_cash_rest_money"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/withdraw_cash_rest_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/withdraw_cash_rest_text" />
+
+                <TextView
+                    android:id="@+id/txt_withdraw_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dimens_4"
+                    android:layout_toRightOf="@id/withdraw_cash_rest_money"
+                    android:clickable="true"
+                    android:text="@string/withdraw_cash_withdraw_all"
+                    android:textColor="@color/blue" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_warning_withdraw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/warning_withdraw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                    android:text="@string/input_over_your_rest"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/withdraw_cash_btn"
+        android:layout_width="@dimen/withdraw_cash_yuanjiao_width"
+        android:layout_height="@dimen/dimens_50"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimens_50"
+        android:background="@mipmap/deepgreen_bar"
+        android:text="@string/withdraw_cash_withdraw"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>

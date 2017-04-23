@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bottle_night_bg">
+
+    <RelativeLayout
+        android:id="@+id/chuck_layout0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/drift_avatar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/default_useravatar" />
+
+        <TextView
+            android:id="@+id/drift_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/drift_avatar"
+            android:text="1111111111111111111111"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/drift_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/drift_name"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/drift_avatar"
+            android:text="11111111111111111111111111"
+            android:textColor="@color/sub_text_dial"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/chuck_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chuck_layout0"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:background="@drawable/bottle_stationery"
+        android:gravity="top"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/drift_confirm"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/drift_bg"
+        android:text="回应"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+</RelativeLayout>

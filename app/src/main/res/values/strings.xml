@@ -1,0 +1,1315 @@
+﻿<resources xmlns:xliff="http://schemas.android.com/tools">
+    <string name="app_name">买家网</string>
+    <!--框架SD统一项目名 路径-->
+    <string name="app_name_url">Buyers</string>
+
+    <!--图片查看器页数格式-->
+    <string name="viewpager_indicator">%1$d / %2$d</string>
+
+    <string name="cancel">取消</string>
+    <string name="add_from_gallery">上传照片</string>
+    <string name="camera">拍摄照片</string>
+    <string name="text_take_photo">拍照</string>
+    <string name="text_from_album">手机相册选择</string>
+    <string name="text_cancel">取消</string>
+
+    <!-- 主程序 -->
+    <string name="home_buyers">买家</string>
+    <string name="home_contact">通讯录</string>
+    <string name="home_find">发现</string>
+    <string name="home_my">我</string>
+
+    <!-- 下拉、上拉 -->
+    <string name="header_hint_refresh_normal">下拉可以刷新</string>
+    <string name="header_hint_refresh_ready">松开立即刷新</string>
+    <string name="header_hint_refresh_loading">正在刷新数据中&#8230;</string>
+    <string name="header_hint_refresh_time">时间：</string>
+    <string name="footer_hint_load_normal">加载更多数据</string>
+    <string name="footer_hint_load_ready">松开加载更多</string>
+    <!-- 登录 -->
+    <string name="login_login_btn">登录</string>
+    <string name="login_register_btn">注册</string>
+    <string name="login_forgetpassword_btn">忘记密码</string>
+    <string name="login_edpwd_btn">请填写密码</string>
+    <string name="login_edphone_btn">请填写手机号</string>
+    <string name="login_address_tv">国家/地区</string>
+    <string name="login_title">使用手机号登录</string>
+    <string name="login_cancel">取消</string>
+
+    <!-- 注册 -->
+    <string name="register_title">请输入您的手机号码</string>
+    <string name="register_register_btn">注册</string>
+    <string name="register2_title">短信验证码已发送，请填写验证码</string>
+    <string name="register_phone_tv">手机号</string>
+    <string name="register_code_tv">验证码</string>
+    <string name="register_pwd_tv">密码</string>
+    <string name="register_pwd_ed">请填写密码</string>
+    <string name="register_btn">注册</string>
+    <string name="register_ok_btn">完成</string>
+    <string name="register2_code_time">接收短信大约需要60秒</string>
+
+
+    <!-- 发现 界面-->
+    <string name="discovery_friends">买家圈</string>
+    <string name="discovery_scanning">扫一扫</string>
+    <string name="discovery_shaking">摇一摇</string>
+    <string name="discovery_nearby_buyer">附近的商家</string>
+    <string name="discovery_shopping">购物</string>
+    <string name="discovery_business_in">商家入驻</string>
+
+
+    <!--我  的界面   -->
+    <string name="me_buyer">买家号 :</string>
+    <string name="me_name">姓名</string>
+    <string name="me_album">相册</string>
+    <string name="me_collection">收藏</string>
+    <string name="me_pocket">钱包</string>
+    <string name="me_face">表情</string>
+    <string name="me_setting">设置</string>
+
+
+    <!-- 添加银行卡 界面-->
+    <string name="add_bankcard_tips">请确保姓名、身份证、银行卡开户人为同一人</string>
+    <string name="add_bankcard_name">真实姓名</string>
+    <string name="add_bankcard_id">身份证号</string>
+    <string name="add_bankcard_bank_name">开户银行</string>
+    <string name="add_bankcard_card_number">银行卡号</string>
+    <string name="add_bankcard_please_choose_bank">请选择开户行</string>
+    <string name="add_bankcard_please_input_username_of_card">请输入持卡人姓名</string>
+    <string name="add_bankcard_please_input_id_number">请填写身份证号</string>
+    <string name="add_bankcard_please_input_card_number">请填写银行卡号</string>
+    <string name="add_bankcard_button_add">确认添加</string>
+
+
+    <!--朋友圈自动播放小视频 设置 -->
+    <string name="small_video_tip">朋友圈自动播放小视频</string>
+    <string name="small_video_3G4G_and_wifi">3G/4G和Wi-Fi</string>
+    <string name="small_video_only_wifi">仅Wi-Fi</string>
+    <string name="small_video_close">关闭</string>
+
+
+    <!--个人信息  的界面   -->
+    <string name="personal_head">头像</string>
+    <string name="personal_name">名字</string>
+    <string name="personal_buyer_number">买家号</string>
+    <string name="personal_two_code">我的二维码</string>
+    <string name="personal_my_address">我的地址</string>
+    <string name="personal_sexy">性别</string>
+    <string name="personal_area">地区</string>
+    <string name="personal_sign">个性签名</string>
+
+    <!--红包 界面 -->
+    <string name="redbag_ping_shou_qi">拼手气红包</string>
+    <string name="redbag_normal">普通红包</string>
+    <string name="redbag_tips">对方可领取的红包金额为0.01~200元</string>
+
+
+    <!--我的 设置 界面 -->
+    <string name="me_settings_multiple_language">多语言</string>
+    <string name="me_settings_my_face">我的表情</string>
+    <string name="me_settings_friends_small_videos">朋友圈小视频</string>
+    <string name="me_settings_storage_space">存储空间</string>
+    <string name="me_settings_empty_talk_history">清空聊天记录</string>
+
+
+    <!--我的 设置->修改地址 界面 -->
+    <string name="change_address_shou_huo_ren">收货人</string>
+    <string name="change_address_hint_name">姓名</string>
+    <string name="change_address_phone_number">手机号码</string>
+    <string name="change_address_hint_phone_number">11位手机号</string>
+    <string name="change_address_choose_area">选择地区</string>
+    <string name="change_address_detail_address">详细地址</string>
+    <string name="change_address_hint_street_gate_">街道门牌信息</string>
+    <string name="change_address_postcode">邮政编码</string>
+    <string name="change_address_hint_area_infomation">地区信息</string>
+
+    <!--零钱充值 界面 -->
+    <string name="money_recharge_card">储蓄卡</string>
+    <string name="money_recharge_amount_of_money">金额(元)</string>
+    <string name="money_recharge_hint_please_input_amount">请输入金额</string>
+    <string name="money_recharge_max_account_day">单日交易限额 ￥</string>
+    <string name="money_recharge_button_text">下一步</string>
+
+    <!-- 钱包  界面-->
+    <string name="pocket_small_money">零钱</string>
+    <string name="pocket_bank_id">银行卡</string>
+    <string name="pocket_buyer_service">买家服务</string>
+    <string name="pocket_transfer">转账</string>
+    <string name="pocket_phone_recharge">手机充值</string>
+    <string name="pocket_buyer_red_bag">买家红包</string>
+
+    <!-- 12.12 增加-->
+    <string name="me_my_address_addaddress">新增地址</string>
+
+    <string name="new_message_show_detail">通知显示消息详情</string>
+    <string name="new_message_show_detail_tips">关闭后，当收到消息时，通知提示将不显示发信人和内容摘要</string>
+    <string name="new_message_audio">声音</string>
+    <string name="new_message_shake">震动</string>
+    <string name="new_message_doyouneed_audio_or_shake">运行时，你可以设置是否需要声音或者震动</string>
+
+    <string name="new_message_buyercircle_picture_update">买家圈照片更新</string>
+    <string name="new_message_buyercircle_picture_update_tips">关闭后，有朋友更新照片时，界面下面的"发现"按钮上不再出现红点提示。</string>
+    <string name="say_hi_tips">说句话打个招呼</string>
+
+    <string name="nearby_people">查看附近的商家</string>
+    <string name="nearby_people_text_1">你收到</string>
+    <string name="nearby_people_text_2">条新的招呼</string>
+
+    <string name="withdraw_cash_to_bank">到账银行卡</string>
+    <string name="withdraw_cash_account">提现金额</string>
+    <string name="withdraw_cash_rest_money">零钱余额￥</string>
+    <string name="withdraw_cash_withdraw_all">   全部提现</string>
+    <string name="withdraw_cash_withdraw">提现</string>
+    <string name="withdraw_cash_withdraw_fuhao">￥</string>
+
+    <string name="storage_wechat_have_used">微信已用空间</string>
+    <string name="storage_phone_have_used">手机已用空间</string>
+    <string name="storage_zhan_shou_ji">占据手机</string>
+    <string name="storage_cun_chu_space">存储空间</string>
+    <string name="storage_clean_wechat">清理微信</string>
+    <string name="storage_shen_yu">剩余</string>
+    <string name="storage_keyong_space">可用空间</string>
+    <string name="storage_manage_phone_space">管理手机空间</string>
+
+    <!--  12.13-->
+    <string name="add_me_way_tip">可以通过以下方式找到我：</string>
+    <string name="add_me_way_phone">手机号</string>
+    <string name="add_me_way_qq">QQ号</string>
+    <string name="add_me_way_wechat">微信号</string>
+    <string name="add_me_way_tip2">关闭后，其他用户将不能通过上述信息找到你。</string>
+    <string name="add_me_way_tip3">可以通过以下方式添加我：</string>
+    <string name="add_me_way_qunliao">群聊</string>
+    <string name="add_me_way_twocode">我的二维码</string>
+    <string name="add_me_way_namecard">名片</string>
+
+    <string name="private_settings_tip1">加我为朋友时需要验证</string>
+    <string name="private_settings_tip2">添加我的方式</string>
+    <string name="private_settings_tip3">向我推荐通讯录朋友</string>
+    <string name="private_settings_tip4">开启后，为你推荐已开通手机联系人</string>
+    <string name="private_settings_tip5">通讯录黑名单</string>
+    <string name="private_settings_tip6">不让他(她)看我的买家圈</string>
+    <string name="private_settings_tip7">不看他(她)的买家圈</string>
+    <string name="private_settings_tip8">允许陌生人查看十张照片</string>
+
+    <string name="my_two_code_tip">扫一扫上面的二维码，加我好友</string>
+
+    <string name="search_header">搜</string>
+
+    <string name="shop_name">店铺名称</string>
+    <string name="shop_address">店铺地址</string>
+    <string name="shop_phone">店铺电话</string>
+    <string name="shop_license">营业执照</string>
+    <string name="shop_coperate_image">法人图片</string>
+    <string name="shop_add_image">添加名片或相关图片</string>
+    <string name="shop_add_more">添加更多</string>
+
+    <string name="red_bag">买家红包</string>
+    <string name="sent_bag_text1">发出红包</string>
+    <string name="sent_bag_text2">个</string>
+    <string name="sent_bag_type">普通红包</string>
+    <string name="sent_bag_yuan">元</string>
+    <string name="sent_bag_ge">已领完个</string>
+    <string name="total_sent_gongfachu">共发出</string>
+    <string name="total_received_gongshoudao">共收到</string>
+
+    <string name="please_choose">请选择</string>
+    <string name="sure">确定</string>
+
+    <string name="received_redbag_shoudaohongbao">收到红包</string>
+    <string name="received_redbag_shoujizuijia">手气最佳</string>
+
+    <string name="rights_public">公开</string>
+    <string name="rights_private">私密</string>
+    <string name="rights_part_see">部分可见</string>
+    <string name="rights_no_open_to_who">不给谁看</string>
+    <string name="rights_all_see">所有朋友可见</string>
+    <string name="rights_only_me">仅自己可见</string>
+    <string name="rights_selected_see">选中的朋友可见</string>
+    <string name="rights_selected_no_see">选中的朋友不可见</string>
+    <string name="recharge_chonghuafei">充话费</string>
+    <string name="sell_price">售价</string>
+    <string name="add_bankcard_text">添加银行卡</string>
+    <string name="id_safe">帐号与安全</string>
+    <string name="new_message_notification">新消息通知</string>
+    <string name="normal">通用</string>
+
+    <string name="private_txt">隐私</string>
+    <string name="suggestion_feedback">建议反馈</string>
+    <string name="logout_txt">退出登录</string>
+    <string name="buyer_number_txt">买家号</string>
+    <string name="phone_txt">手机号</string>
+    <string name="qq_txt">QQ号</string>
+    <string name="email_txt">邮箱地址</string>
+    <string name="day_before">天前</string>
+
+    <string name="button_pushtotalk">按住说话</string>
+    <string name="button_send">发送</string>
+    <string name="attach_smile">表情</string>
+    <string name="attach_picture">图片</string>
+    <string name="attach_take_pic">拍照</string>
+    <string name="attach_location">位置</string>
+    <string name="attach_file">文件</string>
+    <string name="attach_voice_call">语音电话</string>
+    <string name="attach_video_call">视频通话</string>
+    <string name="user_card">名片</string>
+    <string name="move_up_to_cancel">手指上滑，取消发送</string>
+    <string name="release_to_cancel">松开手指，取消发送</string>
+    <string name="send_fail">发送消息失败,</string>
+    <string name="delete_message">删除消息</string>
+    <string name="copy_message">复制消息</string>
+    <string name="delete_voice">删除语音</string>
+    <string name="delete_video">删除视频</string>
+    <string name="delete">删除</string>
+    <string name="resend">重发</string>
+    <string name="confirm_resend">确认重发该信息？</string>
+    <string name="connect_failuer_toast">请检查网络或稍候重试</string>
+    <string name="network_unavailable">网络连接不可用，请检查网络</string>
+    <string name="recoding_fail">录音失败，请重试！</string>
+    <string name="text_ack_msg">已读</string>
+    <string name="text_delivered_msg">送达</string>
+    <string name="back">返回</string>
+    <string name="save">保存</string>
+    <string name="copy">复制</string>
+    <string name="forward">转发</string>
+    <string name="button_logout">退出登录</string>
+    <string name="button_uploadlog">上传运行日志</string>
+    <string name="clear_records">清空记录</string>
+    <string name="clear_all_records">是否清空所有聊天记录？</string>
+    <string name="location_recv">[%1$s的位置]</string>
+    <string name="location_message">位置信息</string>
+    <string name="recording_video">录制视频</string>
+    <string name="location_prefix">[我的位置]</string>
+    <string name="picture">[图片]</string>
+    <string name="video">[视频]</string>
+    <string name="file">[文件]</string>
+    <string name="voice_call">[语音通话]</string>
+    <string name="button_cancel">取消</string>
+    <string name="button_save">保存</string>
+    <string name="button_search">查找</string>
+    <string name="button_add">添加</string>
+    <string name="network_isnot_available">网络不可用</string>
+    <string name="select_contacts">选择联系人</string>
+    <string name="confirm_forward_to">确定转发到：%1$s ?</string>
+    <string name="logout">退出登录</string>
+    <string name="logout_hint">正在注销账号，请稍后...</string>
+    <string name="exit_group_hint">退出后，将不再接收此群聊信息</string>
+    <string name="dissolution_group_hint">退出后，此群将被解散</string>
+    <string name="exit_group">退出</string>
+    <string name="connect_conflict">同一帐号已在其他设备登录</string>
+    <string name="em_user_remove">此用户已被移除</string>
+    <string name="set">设置</string>
+    <string name="notify">新消息提醒</string>
+    <string name="newnotify">接收新消息通知</string>
+    <string name="voice">[语音]</string>
+    <string name="shake">震动</string>
+    <string name="chatset">聊天设置</string>
+    <string name="yangshengqi">使用扬声器播放语音</string>
+    <string name="book_black">通讯录黑名单</string>
+    <string name="session">会话</string>
+    <string name="address_book">通讯录</string>
+    <string name="setting">设置</string>
+    <string name="now_refresh_list">正在刷新联系人</string>
+    <string name="Application_and_notify">申请与通知</string>
+    <string name="group_chat">群聊</string>
+    <string name="add_friend">添加好友</string>
+    <string name="search">搜索</string>
+    <string name="black_item">黑名单</string>
+    <string name="diagnose">诊断</string>
+    <string name="Current_version">当前版本</string>
+    <string name="Not_Set">未设置</string>
+    <string name="Upload_the_log">上传日志中</string>
+    <string name="The_new_group_chat">新建群组</string>
+    <string name="group_name">群聊名称</string>
+    <string name="Group_chat_profile">群聊简介</string>
+    <string name="Whether_the_public">是否公开</string>
+    <string name="Open_group_members_invited">开放群成员邀请</string>
+    <string name="Open_group_chat">公开的群聊</string>
+    <string name="blacklist">黑名单列表</string>
+    <string name="Empty_the_chat_record">清空聊天记录</string>
+    <string name="Shielding_of_the_message">屏蔽群消息</string>
+    <string name="The_dissolution_of_chatting">解散群聊</string>
+    <string name="Select_the_contact">选择联系人</string>
+    <string name="Group_chat_information">群聊资料</string>
+    <string name="Group_of_Lord">群主</string>
+    <string name="Introduction">简介</string>
+    <string name="To_join_the_chat">加入群聊</string>
+    <string name="login">登陆</string>
+    <string name="user_name">用户名</string>
+    <string name="password">密码</string>
+    <string name="register">注册</string>
+    <string name="confirmpassword">确认密码</string>
+    <string name="downwaiting">正在下载文件请稍后</string>
+    <string name="mute">静音</string>
+    <string name="Hands_free">免提</string>
+    <string name="hang_up">挂断</string>
+    <string name="answer">接听</string>
+    <string name="unable_to_connect">不能连接到服务器</string>
+    <string name="newchat">新建聊天</string>
+    <string name="agree">同意</string>
+    <string name="Group_chat">群聊:</string>
+    <string name="not_download">未下载:</string>
+    <string name="Please_enter_a_username">请输入用户名</string>
+    <string name="is_down_please_wait">正在下载视频请稍候</string>
+    <string name="Exit_the_group_chat">退出群聊</string>
+
+    <string name="ok">确定</string>
+    <string name="prompt">提示</string>
+    <string name="pic_faren">法人图片</string>
+    <string name="withdraw">提现</string>
+    <string name="recharge">充值</string>
+    <string name="input_over_your_rest">您输入的金额超过了你的余额</string>
+    <string name="yinhangka">银行卡</string>
+    <string name="bank_leave_phone">预留手机</string>
+    <string name="please_input_leave_phone">请输入银行预留手机号</string>
+    <string name="tech_service">技术服务费</string>
+    <string name="tv_next">下一步</string>
+    <string name="be_business_tv">快速成为商家</string>
+    <string name="jpg_png">(请上传jpg,png格式图片)</string>
+    <string name="commit_and_shenghe">提交审核</string>
+    <string name="logo">店铺LOGO</string>
+    <string name="advertise_pic">海报图片</string>
+    <string name="yingyezhizhao">营业执照</string>
+    <string name="shop_head">店铺头像</string>
+    <string name="shop_name_tv">店铺名称</string>
+    <string name="shop_two_code">店铺二维码</string>
+    <string name="shop_contactor">店铺联系人</string>
+    <string name="time_business">营业时间</string>
+    <string name="waiting_time">配送等候时间</string>
+    <string name="transfer_detail">配送详情</string>
+    <string name="transfer_detail_tip">1.预约提醒\t无需预约，消费高峰时可能需要等位\n2.包间\t\t\t\t可免费试用包间\n3.食堂外带\t食堂外带均可，可以打包，打包费详情咨询商家\n4.温馨提示\t酒水饮料等问题，请致电商家\n5.商家服务\t提供免费wifi，免费提供20个停车位</string>
+
+    <string name="sell_total">销售统计</string>
+    <string name="sell_total_today">今日销售总额</string>
+    <string name="sell_detail">销售明细</string>
+    <string name="tv_total_sell">总销售额</string>
+    <string name="tv_tech">技术服务费</string>
+    <string name="tv_income">净收入</string>
+    <string name="withdraw_way">选择提现方式</string>
+    <string name="tv_wechat">微信</string>
+    <string name="tv_alipay">支付宝</string>
+    <string name="tv_bankcard">银行卡</string>
+    <string name="tv_wechat_id">微信账号</string>
+    <string name="tv_alipay_id">支付宝账号</string>
+    <string name="tv_account_withdraw">提现金额</string>
+    <string name="tv_openname">开户姓名</string>
+    <string name="tv_open_number">开户账号</string>
+    <string name="tv_open_bank">开户银行</string>
+
+
+    <!-- 支付订单  -->
+    <string name="text_payment_order">支付订单</string>
+    <string name="text_place_eg">八里</string>
+    <string name="text_land_number">土地编号</string>
+    <string name="text_id">LKBL0011</string>
+    <string name="text_use_date">使用期限</string>
+    <string name="text_year">一年(每年可种植3次)</string>
+    <string name="text_rent_expense">租金费用</string>
+    <string name="text_rmb">￥600.00</string>
+    <string name="text_select_pay_method">选择支付方式</string>
+    <string name="text_ali">支付宝支付</string>
+    <string name="text_install_ali_pay">推荐有支付宝账号的用户使用</string>
+    <string name="text_wx_pay">微信支付</string>
+    <string name="text_install_wx">推荐安装微信5.0及以上版本的用户使用</string>
+    <string name="text_confirm_pay">确认支付</string>
+    <string name="text_pay_success">支付成功</string>
+    <string name="text_pay_success_intent">您已成为农场主</string>
+    <string name="text_pay_success_go_to_vegetables">前去种菜</string>
+    <string name="text_pay_success_description">快来种植吧，成熟后可采摘享用，或农场回收赚钱</string>
+    <string name="text_bound_phone_number">绑定手机</string>
+    <string name="text_bound_phone_number_more">绑定手机，您将或得私人管家为您提供更多的服务</string>
+
+    <string name="action_settings">设置</string>
+
+    <string name="bottom_navigation_bar_home">首页</string>
+    <string name="bottom_navigation_bar_message">消息</string>
+    <string name="bottom_navigation_bar_mine">我的</string>
+
+    <!--  我的  -->
+    <string name="mine_my_account">我的账户</string>
+    <string name="mine_make_money">抢免费土地 领国家补贴</string>
+    <string name="mine_pig_chips">农场招商</string>
+    <string name="mine_promo_code">优惠码</string>
+    <string name="mine_comments_and_feedback">意见与反馈</string>
+    <string name="mine_about_us">关于我们</string>
+    <string name="mine_setting">设置</string>
+    <string name="mine_login_or_register">登录/注册</string>
+
+    <!-- login -->
+    <string name="enter_phone_number">请输入注册手机号</string>
+    <string name="enter_password">请输入密码</string>
+    <string name="text_login">登录</string>
+    <string name="text_forget_password">忘记密码</string>
+    <string name="text_register">注册</string>
+    <string name="text_or">或</string>
+    <string name="text_phone_number">请输入您要注册的手机号</string>
+    <string name="text_send_code">发送验证码</string>
+    <string name="text_accept">点击发送验证码，表示您已阅读并接受</string>
+    <string name="text_pig_">《小猪农场协议》</string>
+    <string name="text_code">请输入验证码</string>
+    <string name="text_next">下一步</string>
+    <string name="text_send_again">重新发送验证码</string>
+    <string name="text_user_name">请输入姓名</string>
+    <string name="text_password">请输入密码(6-12位字母或数字组成)</string>
+    <string name="text_password_again">请再次输入密码</string>
+    <string name="text_edit_information">编辑资料</string>
+    <string name="text_change_head">更换头像</string>
+    <string name="text_my_name">我的名字</string>
+    <string name="text_my_account">我的账户</string>
+    <string name="text_sex">性别</string>
+    <string name="text_area">地区</string>
+    <string name="text_account">hu9871</string>
+    <string name="text_male">男</string>
+    <string name="text_female">女</string>
+    <string name="text_not_complete">未填写</string>
+
+
+    <!-- 我的账户 -->
+    <string name="text_account_balance">账户余额(元)</string>
+    <string name="text_cash">我要提现</string>
+    <string name="text_capital">账户还没有任何资金记录</string>
+    <string name="text_balance_cash">余额提现</string>
+    <string name="text_cardholder">持卡人</string>
+    <string name="text_card_number">卡号</string>
+    <string name="text_bank">开户行</string>
+    <string name="text_withdrawn_from_cash">提现金额</string>
+    <string name="text_account_balance_money">账户余额: ￥2000.00</string>
+    <string name="text_payment_date">15个工作日到账 请耐心等候</string>
+    <string name="text_confirm_cash">确认提现</string>
+    <string name="text_balance_cash_date">您于4月1日提现100元的申请已经提交</string>
+    <string name="text_comment_feedback_description">请告诉我们你遇到的问题或者对我们的意见（必填）</string>
+    <string name="text_customer_service_phone">客服电话: 400-996-1948</string>
+    <string name="text_submit">提交</string>
+    <string name="text_company_version">成都小猪在线网络科技有限公司    版权所有</string>
+    <string name="text_version_number">版本号 V2.0.5</string>
+    <string name="text_star_evaluation">5星好评</string>
+    <string name="text_function_introduction">功能介绍</string>
+    <string name="text_guide_page">引导页</string>
+    <string name="text_service_agreement">服务协议</string>
+    <string name="text_we_chat_public_number">微信公众号</string>
+    <string name="text_official_website">官网</string>
+    <string name="text_website">www.cdxzzx.cn</string>
+
+    <!-- 修改密码 -->
+    <string name="text_modify_password">修改密码</string>
+    <string name="text_bound_phone">绑定手机</string>
+    <string name="text_address_management">地址管理</string>
+    <string name="text_exit_login">退出登录</string>
+    <string name="phone_number">手机号</string>
+    <string name="text_enter_phone_number">请输入手机号码</string>
+    <string name="text_code_tip">验证码</string>
+    <string name="text_new_password">新密码</string>
+    <string name="text_enter_new_password">请输入新的密码</string>
+    <string name="text_confirm_new_password">确认新密码</string>
+    <string name="text_please_confirm_new_password">请确认新密码</string>
+    <string name="text_confirm_modification">确认修改</string>
+    <string name="text_confirm_bound">确认绑定</string>
+
+    <!-- 提现 列表 -->
+    <string name="text_leased_land">缴纳土地租金</string>
+    <string name="text_date">4月1日 10:45</string>
+    <string name="text_plus">+</string>
+    <string name="text_reduce">-</string>
+
+    <!-- 首页 -->
+    <string name="text_land_lease">租赁土地</string>
+    <string name="text_restaurant">快速支付</string>
+    <string name="text_farm_live">农场直播</string>
+    <string name="text_farm_video">农场视频</string>
+    <string name="text_farm_style">农场风采</string>
+    <string name="text_land_lease_bg">租 赁 土 地</string>
+    <string name="text_select_plant_bg">选 择 种 子</string>
+    <string name="text_no_plant">您还没有土地，来租赁土地吧</string>
+    <string name="text_no_plant_seed">您还没有种植任何植物，赶紧种植吧</string>
+    <string name="text_no_plant_detail">本农场的蔬菜都是有机蔬菜，有专门的私人管家指导按农时播种、施肥、除虫等，种菜便可以体验田园生活的乐趣。</string>
+    <!-- 租赁土地 -->
+    <string name="text_development_date">开放时间</string>
+    <string name="text_date_time">2016年8月</string>
+    <string name="text_land_name">小猪农场</string>
+    <string name="text_total_land">土地共: 418块</string>
+    <string name="text_place">地点: 贵州省遵义市龙坑镇八里社区</string>
+    <string name="text_construction">建设中</string>
+    <string name="text_development">开放中</string>
+    <!--  选择土地  -->
+    <string name="text_select_land">选择土地</string>
+    <string name="text_per_square_meters_of_land">33m²/块</string>
+    <string name="text_per_piece_of_land">600元/块</string>
+    <string name="text_select_lan_describe">每位农场主每次可选择1块土地，最多可选3次</string>
+    <string name="text_sold">已售</string>
+    <string name="text_selected">已选</string>
+    <string name="text_optional">可选</string>
+    <string name="text_current_area">A1区</string>
+    <string name="text_already_choose">已选</string>
+    <string name="text_money">600元</string>
+    <string name="text_confirmation_selection">确认选择</string>
+
+
+    <!--  餐饮  -->
+    <string name="text_restaurant_name">小猪农场餐厅</string>
+    <string name="text_restaurant_location">当前位置:四川省成都市高新区天府三街新希望国际A座</string>
+    <string name="text_discount">在线支付满￥100减￥10，￥70/人</string>
+    <string name="text_location">遵义市海尔大道88号海尔大道88号</string>
+    <string name="text_restaurant_profile">餐 厅 简 介</string>
+    <string name="text_discount_detail1">小猪农场APP餐饮功能支持用户线上购买套餐与实体店中消费线上付款两种方式</string>
+    <string name="text_discount_detail2">通过线上浏览将所有餐厅展示给用户并能让用户随意选择就餐地点。并将不定期进行优惠活动，线上支付更优惠。</string>
+    <string name="text_discount_detail3">为满足顾客对食品安全方面的担忧，我们保证小猪餐厅与城市餐厅使用食材均为农场自行生产的有机绿色食材，让您吃的安心。</string>
+    <string name="text_discount_detail4">随着小猪农场的设施建设不断完善，我们将会推出住宿服务，特殊的农家风格建筑，让您体验真正的田园生活。</string>
+    <string name="text_check">我要买单</string>
+    <string name="text_dial_telephone">呼叫</string>
+    <string name="text_total_consumption">消费总额</string>
+    <string name="text_100">100</string>
+    <string name="text_per">每满100元减10元</string>
+    <string name="text_actual_payment_amount">实付金额</string>
+    <string name="text_10">-￥0</string>
+    <string name="text_0">￥0</string>
+    <string name="text_rmb_unit">￥</string>
+    <string name="text_rmb_reduce">-</string>
+
+    <!--  农场直播 -->
+    <string name="text_farm_live_one">农场第一块地实时直播</string>
+    <string name="text_farm_live_two">农场第二块地实时直播</string>
+    <string name="text_farm_live_three">农场第三块地实时直播</string>
+    <string name="text_farm_live_four">农场第四块地实时直播</string>
+    <string name="text_farm_live_five">农场第五块地实时直播</string>
+
+    <!--  选择种子  -->
+    <string name="text_choose_plant">每个农场主最多选择3种作物</string>
+    <string name="text_select_plant">选择种子</string>
+    <string name="text_select_plant_description">营养价值: 小葱的营养价值很高，对身体很有好处，小葱的营养价值很高，对身体很有好处，小葱的营养价值很高，对身体很有好处，小葱的营养价值很高，对身体很有好处，</string>
+    <string name="text_select">选择</string>
+    <string name="text_selected_crop">已选作物</string>
+    <string name="text_management_expenses">人工管理费用</string>
+    <string name="text_new_message">系统消息</string>
+    <string name="text_newest_message">最新系统消息提示内容最新系统消息提示内容最新系统消息提示内容最新系统消息提示内容</string>
+
+    <string name="bqmm_downloaded">&#160;%s %%</string>
+
+    <!-- 商店页面加载失败提示内容 -->
+    <string name="bqmm_shop_network_error_text">页面加载失败，请检查网络后重试</string>
+    <!-- 表情键盘初始化失败提示内容 -->
+    <string name="bqmm_keyboard_network_error_text">表情键盘初始化失败，请检查网络后重试</string>
+    <!-- 重新加载按钮的内容 -->
+    <string name="bqmm_reload_button_text">重新加载</string>
+    <!-- 点击刷新按钮的内容 -->
+    <string name="bqmm_refresh_button_text">点击刷新</string>
+    <!-- 单表情详情页表情包加载失败提示内容 -->
+    <string name="bqmm_failed_get_package_text">获取表情包信息失败</string>
+    <!-- 删除表情时提示语 -->
+    <string name="bqmm_delete_package_text">删除中...</string>
+
+
+    <!-- 商店页面加载失败提示内容 -->
+    <string name="bqmm_shop_network_error_text_en">Loading failed, please check your network and connect later</string>
+    <!-- 表情键盘初始化失败提示内容 -->
+    <string name="bqmm_keyboard_network_error_text_en">Initialize failed, please check your network and connect later</string>
+    <!-- 重新加载按钮的内容 -->
+    <string name="bqmm_reload_button_text_en">Reload</string>
+    <!-- 点击刷新按钮的内容 -->
+    <string name="bqmm_refresh_button_text_en">Try Again</string>
+    <!-- 单表情详情页表情包加载失败提示内容 -->
+    <string name="bqmm_failed_get_package_text_en">Failed to get sticker pack</string>
+    <!-- 删除表情时提示语 -->
+    <string name="bqmm_delete_package_text_en">deleting...</string>
+
+    <!-- 忘记密码 -->
+
+
+    <!-- 消息 -->
+    <string name="text_message_list_detail">详情</string>
+    <string name="text_network_error">您的信号遗失外太空，请重新加载</string>
+    <string name="text_reload">重新加载</string>
+    <string name="text_no_system_message">暂时没有系统消息</string>
+
+    <!-- 微信 -->
+    <string name="errcode_success">请求微信登录</string>
+    <string name="errcode_cancel">取消微信登录</string>
+    <string name="errcode_deny">请求被拒绝</string>
+    <string name="errcode_unknown">请求返回</string>
+
+    <!-- 服务协议 -->
+    <string name="service_agreement">本协议是您与小猪农场APP所有者成都小猪在线网络科技有限公司（以下简称为“小猪在线”）之间就小猪农场APP服务等相关事宜所订立的契约，请您仔细阅读本注册协议，您点击“同意并继续”按钮后，本协议即构成对双方有约束力的法律文件。\n\n第1条 本站服务条款的确认和接纳\n\n1.1本站的各项电子服务的所有权和运作权归小猪在线所有。用户同意所有注册协议条款并完成注册程序，才能成为本站的正式用户。用户确认：本协议条款是处理双方权利义务的契约，始终有效，法律另有强制性规定或双方另有特别约定的，依其规定。\n\n1.2用户点击同意本协议的，即视为用户确认自己具有享受本站服务、下单购物等相应的权利能力和行为能力，能够独立承担法律责任。\n\n1.3如果您在18周岁以下，您只能在父母或监护人的监护参与下才能使用本站。\n\n1.4小猪在线保留在中华人民共和国大陆地区法施行之法律允许的范围内独自决定拒绝服务、关闭用户账户、清除或编辑内容或取消订单的权利。\n\n第2条 本站服务\n\n2.1小猪在线通过互联网依法为用户提供互联网信息等服务，用户在完全同意本协议及本站规定的情况下，方有权使用本站的相关服务。\n\n2.2用户必须自行准备如下设备和承担如下开支：（1）上网设备，包括并不限于电脑或者其他上网终端、调制解调器及其他必备的上网装置；（2）上网开支，包括并不限于网络接入费、上网设备租用费、手机流量费等。\n\n第3条 用户信息\n\n3.1用户应自行诚信向本站提供注册资料，用户同意其提供的注册资料真实、准确、完整、合法有效，用户注册资料如有变动的，应及时更新其注册资料。如果用户提供的注册资料不合法、不真实、不准确、不详尽的，用户需承担因此引起的相应责任及后果，并且小猪在线保留终止用户使用小猪在线各项服务的权利。\n\n3.2用户在本站进行浏览、下单购物等活动时，涉及用户真实姓名/名称、通信地址、联系电话、电子邮箱等隐私信息的，本站将予以严格保密，除非得到用户的授权或法律另有规定，本站不会向外界披露用户隐私信息。\n\n3.3用户注册成功后，将产生用户名和密码等账户信息，您可以根据本站规定改变您的密码。用户应谨慎合理的保存、使用其用户名和密码。用户若发现任何非法使用用户账号或存在安全漏洞的情况，请立即通知本站并向公安机关报案。\n\n3.4用户同意，小猪在线拥有通过邮件、短信电话等形式，向在本站注册、购物用户、收货人发送订单信息、促销活动等告知信息的权利。\n\n3.5用户不得将在本站注册获得的账户借给他人使用，否则用户应承担由此产生的全部责任，并与实际使用人承担连带责任。\n\n3.6用户同意，小猪在线有权使用用户的注册信息、用户名、密码等信息，登录进入用户的注册账户，进行证据保全，包括但不限于公证、见证等。\n\n第4条 用户依法言行义务\n\n本协议依据国家相关法律法规规章制定，用户同意严格遵守以下义务：\n\n（1）不得传输或发表：煽动抗拒、破坏宪法和法律、行政法规实施的言论，煽动颠覆国家政权，推翻社会主义制度的言论，煽动分裂国家、破坏国家统一的的言论，煽动民族仇恨、民族歧视、破坏民族团结的言论；\n\n（2）从中国大陆向境外传输资料信息时必须符合中国有关法规；\n\n（3）不得利用本站从事洗钱、窃取商业秘密、窃取个人信息等违法犯罪活动；\n\n（4）不得干扰本站的正常运转，不得侵入本站及国家计算机信息系统；\n\n（5）不得传输或发表任何违法犯罪的、骚扰性的、中伤他人的、辱骂性的、恐吓性的、伤害性的、庸俗的，淫秽的、不文明的等信息资料；\n\n（6）不得传输或发表损害国家社会公共利益和涉及国家安全的信息资料或言论；\n\n（7）不得教唆他人从事本条所禁止的行为；\n\n（8）不得利用在本站注册的账户进行牟利性经营活动；\n\n（9）不得发布任何侵犯他人著作权、商标权等知识产权或合法权利的内容；\n\n用户应不时关注并遵守本站不时公布或修改的各类合法规则规定。\n\n本站保有删除站内各类不符合法律政策或不真实的信息内容而无须通知用户的权利。\n\n若用户未遵守以上规定的，本站有权作出独立判断并采取暂停或关闭用户帐号等措施。用户须对自己在网上的言论和行为承担法律责任。\n\n第5条 商品信息\n\n本站上的商品价格、数量、是否有货等商品信息随时都有可能发生变动，本站不作特别通知。由于网站上商品信息的数量极其庞大，虽然本站会尽最大努力保证您所浏览商品信息的准确性，但由于众所周知的互联网技术因素等客观原因存在，本站网页显示的信息可能会有一定的滞后性或差错，对此情形您知悉并理解；小猪在线欢迎纠错，并会视情况给予纠错者一定的奖励。\n\n为表述便利，商品和服务简称为“商品”或“货物”。\n\n第6条 订单\n\n6.1在您下订单时，请您仔细确认所购商品的名称、价格、数量、型号、规格、联系地址、电话、收货人等信息。收货人与用户本人不一致的，收货人的行为和意思表示视为用户的行为和意思表示，用户应对收货人的行为及意思表示的法律后果承担连带责任。\n\n6.2除法律另有强制性规定外，双方约定如下：本站上销售方展示的商品和价格等信息仅仅是交易信息的发布，您下单时须填写您希望购买的商品数量、价款及支付方式、收货人、联系方式、收货地址等内容；系统生成的订单信息是计算机信息系统根据您填写的内容自动生成的数据，仅是您向销售方发出的交易诉求；销售方收到您的订单信息后，只有在销售方将您在订单中订购的商品从仓库实际直接向您发出时（ 以商品出库为标志），方视为您与销售方之间就实际直接向您发出的商品建立了交易关系；如果您在一份订单里订购了多种商品并且销售方只给您发出了部分商品时，您与销售方之间仅就实际直接向您发出的商品建立了交易关系；只有在销售方实际直接向您发出了订单中订购的其他商品时，您和销售方之间就订单中该其他已实际直接向您发出的商品才成立交易关系。您可以随时登录您在本站注册的账户，查询您的订单状态。\n\n6.3由于市场变化及各种以合理商业努力难以控制的因素的影响，本站无法保证您提交的订单信息中希望购买的商品都会有货；如您拟购买的商品，发生缺货，您有权取消订单。\n\n第7条 配送\n\n7.1销售方将会把商品（货物）送到您所指定的收货地址，所有在本站上列出的送货时间为参考时间，参考时间的计算是根据库存状况、正常的处理过程和送货时间、送货地点的基础上估计得出的。\n\n7.2因如下情况造成订单延迟或无法配送等，销售方不承担延迟配送的责任：\n\n（1）用户提供的信息错误、地址不详细等原因导致的；\n\n（2）货物送达后无人签收，导致无法配送或延迟配送的；\n\n（3）情势变更因素导致的；\n\n（4）不可抗力因素导致的，例如：自然灾害、交通戒严、突发战争等。\n\n第8条 所有权及知识产权条款\n\n8.1用户一旦接受本协议，即表明该用户主动将其在任何时间段在本站发表的任何形式的信息内容（包括但不限于客户评价、客户咨询、各类话题文章等信息内容）的财产性权利等任何可转让的权利，如著作权财产权（包括并不限于：复制权、发行权、出租权、展览权、表演权、放映权、广播权、信息网络传播权、摄制权、改编权、翻译权、汇编权以及应当由著作权人享有的其他可转让权利），全部独家且不可撤销地转让给小猪在线所有，用户同意小猪在线有权就任何主体侵权而单独提起诉讼。\n\n8.2本协议已经构成《中华人民共和国著作权法》第二十五条（条文序号依照2011年版著作权法确定）及相关法律规定的著作财产权等权利转让书面协议，其效力及于用户在小猪在线网站上发布的任何受著作权法保护的作品内容，无论该等内容形成于本协议订立前还是本协议订立后。\n\n8.3用户同意并已充分了解本协议的条款，承诺不将已发表于本站的信息，以任何形式发布或授权其它主体以任何方式使用（包括但不限于在各类网站、媒体上使用）。\n\n8.4小猪在线是本站的制作者,拥有此网站内容及资源的著作权等合法权利,受国家法律保护,有权不时地对本协议及本站的内容进行修改，并在本站张贴，无须另行通知用户。在法律允许的最大限度范围内，小猪在线对本协议及本站内容拥有解释权。\n\n8.5除法律另有强制性规定外，未经小猪在线明确的特别书面许可,任何单位或个人不得以任何方式非法地全部或部分复制、转载、引用、链接、抓取或以其他方式使用本站的信息内容，否则，小猪在线有权追究其法律责任。\n\n8.6本站所刊登的资料信息（诸如文字、图表、标识、按钮图标、图像、声音文件片段、数字下载、数据编辑和软件），均是小猪在线或其内容提供者的财产，受中国和国际版权法的保护。本站上所有内容的汇编是小猪在线的排他财产，受中国和国际版权法的保护。本站上所有软件都是小猪在线或其关联公司或其软件供应商的财产，受中国和国际版权法的保护。\n\n第9条 责任限制及不承诺担保\n\n除非另有明确的书面说明,本站及其所包含的或以其它方式通过本站提供给您的全部信息、内容、材料、产品（包括软件）和服务，均是在“按现状”和“按现有”的基础上提供的。\n\n除非另有明确的书面说明,小猪在线不对本站的运营及其包含在本网站上的信息、内容、材料、产品（包括软件）或服务作任何形式的、明示或默示的声明或担保（根据中华人民共和国法律另有规定的以外）。\n\n小猪在线不担保本站所包含的或以其它方式通过本站提供给您的全部信息、内容、材料、产品（包括软件）和服务、其服务器或从本站发出的电子信件、信息没有病毒或其他有害成分。\n\n如因不可抗力或其它本站无法控制的原因使本站销售系统崩溃或无法正常使用导致网上交易无法完成或丢失有关的信息、记录等，小猪在线会合理地尽力协助处理善后事宜。\n\n第10条 协议更新及用户关注义务\n\n根据国家法律法规变化及网站运营需要，小猪在线有权对本协议条款不时地进行修改，修改后的协议一旦被张贴在本站上即生效，并代替原来的协议。用户可随时登录查阅最新协议；用户有义务不时关注并阅读最新版的协议及网站公告。如用户不同意更新后的协议，可以且应立即停止接受小猪在线网站依据本协议提供的服务；如用户继续使用本网站提供的服务的，即视为同意更新后的协议。小猪在线建议您在使用本站之前阅读本协议及本站的公告。 如果本协议中任何一条被视为废止、无效或因任何理由不可执行，该条应视为可分的且并不影响任何其余条款的有效性和可执行性。\n\n第11条 法律管辖和适用\n\n本协议的订立、执行和解释及争议的解决均应适用在中华人民共和国大陆地区适用之有效法律（但不包括其冲突法规则）。 如发生本协议与适用之法律相抵触时，则这些条款将完全按法律规定重新解释，而其它有效条款继续有效。 如缔约方就本协议内容或其执行发生任何争议，双方应尽力友好协商解决；协商不成时，任何一方均可向有管辖权的中华人民共和国大陆地区法院提起诉讼。\n\n第12条 其他\n\n12.1小猪在线网站所有者是指在政府部门依法许可或备案的小猪在线网站经营主体。\n\n12.2小猪在线尊重用户和消费者的合法权利，本协议及本网站上发布的各类规则、声明等其他内容，均是为了更好的、更加便利的为用户和消费者提供服务。本站欢迎用户和社会各界提出意见和建议，小猪在线将虚心接受并适时修改本协议及本站上的各类规则。\n\n12.3本协议内容中以黑体、加粗、下划线、斜体等方式显著标识的条款，请用户着重阅读。\n\n12.4您点击本协议下方的“同意并继续”按钮即视为您完全接受本协议，在点击之前请您再次确认已知悉并完全理解本协议的全部内容。</string>
+    <string name="click_open">点击展开</string>
+    <string name="click_close">点击收缩</string>
+
+    <!-- 领取免费土地 -->
+    <string name="text_free_land">领取免费土地</string>
+    <string name="text_charge">充值金额:</string>
+    <string name="text_charge_money">2000元</string>
+    <string name="text_buy_card">购买地主卡</string>
+    <string name="text_recommend_land">农场推荐土地</string>
+    <string name="text_buy_clod_select_land">精准选择土地</string>
+    <string name="text_confirm_order">确认订单</string>
+    <string name="text_express_address">邮寄地址:</string>
+    <string name="text_express_card">我们会在一周之内将地主卡邮寄给您</string>
+    <string name="text_add_address">添加邮寄地址</string>
+    <string name="text_gift_amount">赠送金额</string>
+    <string name="text_pay_amount">支付金额</string>
+
+    <!-- 地址管理 -->
+    <string name="text_have_no_receipt_address">您还没有添加收货地址</string>
+    <string name="text_add_new_address">新增地址</string>
+    <string name="text_new_consignee">新建收货人</string>
+    <string name="text_edit_consignee">编辑收货人</string>
+    <string name="text_consignee">收货人</string>
+    <string name="text_contact_information">联系方式</string>
+    <string name="text_local_area">所在区域</string>
+    <string name="text_input_withdrawal">请输入详细地址，不少于5个字</string>
+    <string name="text_finish">完成</string>
+    <string name="text_default_address">默认地址</string>
+    <string name="text_edit">编辑</string>
+    <string name="text_delete">删除</string>
+    <string name="text_is_delete">是否确认删除该地址?</string>
+    <!-- 新建地址 -->
+    <string name="text_input_consignee_name">请输入收货人姓名</string>
+    <string name="text_input_consignee_mobile">请输入收货人手机号码</string>
+    <string name="text_input_consignee_address">请选择收货区域</string>
+    <string name="text_input_consignee_address_detail">请输入详细地址，不少于5个字</string>
+    <!--  优惠码 -->
+    <string name="text_preferential_code">优惠码</string>
+    <string name="text_friend_circle">朋友圈</string>
+    <string name="text_wc_friend">微信好友</string>
+    <string name="text_qq_friend">QQ好友</string>
+    <string name="text_qq_qzone">QQ空间</string>
+    <string name="text_send_yaoqingma">发送邀请码：</string>
+    <string name="text_share">分享</string>
+    <!--  更新 -->
+    <string name="text_app_update">更新提示</string>
+    <string name="text_app_update_later">稍后更新</string>
+    <string name="text_app_update_immediately">立即更新</string>
+    <!-- 扫描 -->
+    <string name="text_scanning">二维码扫描</string>
+    <string name="text_album">相册</string>
+    <string name="text_quick_pay">快捷支付</string>
+    <string name="text_consumption_remind">消费提示</string>
+    <string name="text_remind">提示说明:</string>
+    <string name="text_remind_message_one">1、快速支付仅限到场消费后使用，请勿提前支付；</string>
+    <string name="text_remind_message_two">2、请在支付前和农场工作人员确认；消费项目信息和消费金额；</string>
+    <string name="text_remind_message_three">3、使用范围：小猪农场自营农场及小猪农场合作农场，周一至周日 09:00-21:00 均可使用。</string>
+
+    <!-- 土地详情 -->
+    <string name="text_more">查看更多</string>
+    <string name="text_buy_land">购买土地</string>
+    <string name="text_region_select_land_description">请输入您决定购买某块土地的编号</string>
+    <string name="text_show_map">农场地图</string>
+    <string name="text_more_service">配套服务</string>
+    <string name="text_more_introduction">特色简介</string>
+
+
+    <string name="app_server_view">登陆参数配置</string>
+    <string name="app_server_config_error_tips">请先进行登陆参数配置</string>
+    <string name="app_server_config">配置</string>
+    <string name="app_login_auto">一键登陆</string>
+    <string name="app_input_paras_error">请检查输入参数是否正确</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="miui_font_family">miui</string>
+    <string name="confirm_dialog_edittext_hint">说些什么</string>
+    <string name="tab_view_name">EC_TAB_NAME</string>
+    <string name="main_title">沟通</string>
+    <string name="main_contact">通讯录</string>
+    <string name="main_group">群组</string>
+    <string name="main_discussiongroup">讨论组</string>
+    <string name="unread_count_overt_100">"..."</string>
+    <string name="common_enter_activity">当前所在页面,</string>
+    <string name="logout_menu_more">更多</string>
+    <string name="main_empty_conversation">暂无聊天信息</string>
+    <string name="main_empty_search_group">暂无结果</string>
+    <string name="main_empty_notice">暂无系统通知</string>
+    <string name="main_empty_group">暂无群组列表</string>
+    <string name="main_empty_dis">暂无讨论组列表</string>
+
+    <string name="avatar_desc">头像</string>
+    <string name="media_ejected">储存卡已拔出，语音功能将暂时不可用</string>
+    <string name="media_no_memory">储存卡存储空间不足</string>
+    <string name="voice_cancel_rcd_release">松开手指，取消发送</string>
+    <string name="chatfooter_releasetofinish">松开 结束</string>
+    <string name="chatfooter_presstorcd">按住 说话</string>
+    <string name="chatting_send">发送</string>
+    <string name="chat_footer_app_btn">更多</string>
+    <string name="chat_footer_smiley_btn">表情</string>
+    <string name="chat_footer_switch_mode_btn">语音说话与键盘输入切换</string>
+    <string name="chat_footer_switch_mode_voice_btn">切换到按住说话</string>
+    <string name="chat_footer_switch_mode_keybord_btn">切换到键盘</string>
+    <string name="chatfooter_cancel_rcd">手指上滑，取消发送</string>
+    <string name="chatfooter_cancel_rcd_release">松开手指，取消发送</string>
+    <string name="chatfooter_too_short">录音时间太短</string>
+    <string name="app_new">new</string>
+    <string name="app_panel_pic">图片</string>
+    <string name="app_panel_collect">收藏</string>
+    <string name="app_panel_tackpic">拍照</string>
+    <string name="app_panel_file">文件</string>
+    <string name="app_panel_voice">语音通话</string>
+    <string name="app_panel_video">视频通话</string>
+    <string name="fmt_time_length">%d\"</string>
+    <string name="login_account_hint">请输入云通讯注册邮箱/手机</string>
+    <string name="login_password_hint">请输入密码</string>
+    <string name="str_no_choice_account">还未选择子账号，请点选</string>
+    <string name="str_start_ex">开始体验</string>
+    <string name="main_sending">正在发送中</string>
+    <string name="tips_regist_1">"登陆<font color="#1DB87F">yuntongxun.com</font>并注册"</string>
+    <string name="tips_regist_2">填写注册基本资料</string>
+    <string name="tips_regist_3">注册成功，获得8元测试体验费</string>
+    <string name="login_yuntongxun">云通讯登录</string>
+    <string name="login_regist">注册</string>
+    <string name="login_login">登 录</string>
+    <string name="login_submit">提 交</string>
+    <string name="tips_login_accountpwd_null">帐号或密码不能为空</string>
+    <string name="tab_loading">正在加载…</string>
+    <string name="app_tip">提示</string>
+    <string name="app_crash_tips">崩溃警告</string>
+    <string name="app_update">更新</string>
+    <string name="app_cancel">取消</string>
+    <string name="entrance_chat_tips">与TA沟通（IM）</string>
+    <string name="entrance_voip_chat_tips">与TA沟通（VoIP）</string>
+    <string name="contact_contactDetail">联系人详情</string>
+    <string name="contact_none">联系人不存在</string>
+    <string name="main_plus_chat">发起会话/群聊</string>
+    <string name="main_plus_groupchat">创建群组</string>
+    <string name="main_plus_querygroup">查找群组</string>
+    <string name="main_plus_mcmessage">在线客服</string>
+    <string name="main_plus_inter_phone">实时对讲</string>
+    <string name="main_plus_meeting_voice">语音会议</string>
+    <string name="main_plus_settings">设置</string>
+    <string name="main_title_select_account">选择登陆帐号</string>
+    <string name="str_group_name_hint">群组名称</string>
+    <string name="str_group_notice_hint">群公告(选填)</string>
+    <string name="app_button_create">创建</string>
+    <string name="app_title_create_new_group">建立新群组</string>
+    <string name="app_title_search_group">搜索群组</string>
+    <string name="app_title_setting_persioninfo">设置个人信息</string>
+    <string name="app_set">设置</string>
+    <string name="settings_new_msg_notify">消息免打扰</string>
+    <string name="settings_new_msg_notification_sound">新消息声音</string>
+    <string name="settings_new_msg_notification_shake">新消息震动</string>
+    <string name="settings_server_address">服务器地址</string>
+    <string name="settings_appkey">AppKey</string>
+    <string name="settings_apptoken">Token</string>
+    <string name="settings_updater">更新版本</string>
+    <string name="settings_exit_title">退出客户端</string>
+    <string name="settings_switch_title">退出当前账号</string>
+    <string name="settings_exit_warning_title">关闭后，你的朋友可能无法及时联系上你，还可能会影响到Demo使用体验</string>
+    <string name="settings_exit_warning_cb">有新消息时在通知栏提醒</string>
+    <string name="address_history_group_card">选择一个群</string>
+    <string name="address_group_card_empty_tip">暂无群聊可选</string>
+    <string name="address_select_group_card">选择群聊</string>
+    <string name="radar_ok_count" formatted="false">%s(%d)</string>
+    <string name="dialog_ok_button">确定</string>
+    <string name="dialog_ok_skip">跳过</string>
+    <string name="str_group_notice_tips">群公告</string>
+    <string name="str_group_profile_tips">群简介</string>
+    <string name="str_group_members_tips">成员个数(%d)</string>
+    <string name="str_discussion_members_tips">成员个数(%d)</string>
+    <string name="str_group_members_titletips">(%d)</string>
+    <string name="str_group_remove">踢出</string>
+    <string name="str_group_speak_enable">恢复</string>
+    <string name="str_group_speak_disenable">禁言</string>
+    <string name="plugin_file_explorer_root_tag">设备</string>
+    <string name="plugin_file_explorer_sdcard_tag">存储卡</string>
+    <string name="plugin_file_explorer_ui_title">添加附件</string>
+    <string name="clear_chat">清空聊天记录</string>
+    <string name="group_title_name">群名称</string>
+    <string name="clear_system_notice">清空系统通知</string>
+    <string name="str_group_quit">退出该群组</string>
+    <string name="str_group_dissolution">解散群组</string>
+    <string name="str_group_invite">邀请成员加入</string>
+    <string name="str_group_member_remove_tips">确定要将群组成员[%s]移除出群组吗？</string>
+    <string name="str_group_member_setas_manager">确定要将群组成员[%s]设置成管理员吗？</string>
+    <string name="str_group_member_cancel_setas_manager">确定要将群组成员[%s]取消管理员吗？</string>
+    <string name="str_group_member_speak_tips">确定要将群成员[%s]设置为禁言状态？</string>
+    <string name="videomeeting_member_publish">[%s]发布视频</string>
+    <string name="videomeeting_member_unpublish">[%s]取消发布视频</string>
+    <string name="str_group_member_unspeak_tips">确定要取消群成员[%s]禁言状态？</string>
+    <string name="group_invite_reason" formatted="false">%s邀请你加入群组[%s]</string>
+    <string name="group_apply_reason" formatted="false">%s申请加入群组</string>
+    <string name="group_apply_btn">申请加入</string>
+    <string name="app_title_notice">系统通知</string>
+    <string name="app_clear">清空</string>
+    <string name="dialog_btn_confim">确认</string>
+    <string name="dialog_btn_cancel">取消</string>
+    <string name="dialog_title_alert">提示</string>
+    <string name="loading_press">请稍候，正在提交...</string>
+    <string name="plugin_upload_attach_size_tip">文件大小为：%s，确定要上传为附件吗？</string>
+    <string name="app_title_image_preview">预览</string>
+    <string name="errormsg_server">网络请求失败，请稍后重试</string>
+    <string name="imgdownload_fail">下载图片失败</string>
+    <string name="imgdownload_fail_or_cleaned">图片已过期或已被清理</string>
+    <string name="imgdownload_hdimg_download_tip">正在加载原始图片，由于尺寸较大，可能需要较长时间</string>
+    <string name="app_pic">[图片]</string>
+    <string name="app_music">[音乐]</string>
+    <string name="app_voice">[语音]</string>
+    <string name="app_video">[视频]</string>
+    <string name="app_file">[文件]</string>
+    <string name="app_location">[位置]</string>
+    <string name="notification_fmt_one_txttype">%s发来1条消息</string>
+    <string name="notification_fmt_one_imgtype">%s发来1张图片</string>
+    <string name="notification_fmt_one_voicetype">%s发来1段语音</string>
+    <string name="notification_fmt_one_filetype">%s发来1个文件</string>
+    <string name="str_system_message_group_notice">群组通知</string>
+    <string name="login_posting">正在登录，请稍候</string>
+    <string name="login_posting_submit">正在提交，请稍候</string>
+    <string name="create_group_posting">正在创建群组，请稍候</string>
+    <string name="create_dis_posting">正在创建讨论组，请稍候</string>
+    <string name="search_group_posting">正在搜索群组，请稍候</string>
+    <string name="create_chatroom_posting">正在发起群聊</string>
+    <string name="invite_join_group_posting">正在邀请成员，请稍候</string>
+    <string name="group_exit_posting">正在退出，请稍候</string>
+    <string name="group_remove_member_posting">正在移除成员，请稍候</string>
+    <string name="settings_logout">退出</string>
+    <string name="posting_logout">正在退出，请稍后</string>
+    <string name="settings_logout_warning_tip">退出后不会删除任何历史数据，下次登录依然可以使用本帐号</string>
+    <string name="connect_server_error">无法连接到服务器</string>
+    <string name="connecting_server">正在连接服务器...</string>
+    <string name="chatting_resend_title">提示</string>
+    <string name="chatting_resend_content">确认重发该消息？</string>
+    <string name="pull_to_refresh">下拉可以刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在加载…</string>
+    <string name="not_updated_yet">暂未更新过</string>
+    <string name="updated_at">上次更新于%1$s前</string>
+    <string name="updated_just_now">刚刚更新</string>
+    <string name="time_error">时间有问题</string>
+    <string name="copyright">©Copyright 容联云通讯</string>
+    <string name="login_prompt_ip">IP</string>
+    <string name="login_prompt_port">port</string>
+    <string name="login_prompt_appkey">appkry</string>
+    <string name="login_prompt_token">token</string>
+    <string name="login_prompt_mobile">手机号码：</string>
+    <string name="login_prompt_mobile_hint">请输入手机号</string>
+    <string name="login_prompt_VoIP_account">VoIP账号</string>
+    <string name="login_prompt_VoIP_pass">VoIP密码</string>
+    <string name="login_prompt_VoIP_account_tips">请输入VoIP账号</string>
+    <string name="login_prompt_VoIP_pass_tips">请输入VoIP密码</string>
+    <string name="login_prompt_nickname">昵  称</string>
+    <string name="login_prompt_sign">签  名</string>
+    <string name="login_title_activity">login_title_activity</string>
+    <string name="mobile_contact">手机联系人</string>
+    <string name="mobile_list_empty">联系人账号为空</string>
+    <string name="title_activity_search_group">SearchGroupActivity</string>
+    <string name="title_activity_edit_configure">EditConfigureActivity</string>
+    <string name="edit_serverip">编辑服务器地址</string>
+    <string name="edit_token">编辑Token</string>
+    <string name="edit_appkey">编辑AppKey</string>
+    <string name="edit_group_name">编辑群组名称</string>
+    <string name="edit_group_notice">编辑群组公告</string>
+    <string name="edit_add_contacts">输入联系人账号</string>
+    <string name="title_activity_login_setting">LoginSettingActivity</string>
+    <string name="title_activity_setting_persion_info">SettingPersionInfoActivity</string>
+    <string name="settings_male">男</string>
+    <string name="settings_female">女</string>
+    <string name="settings_birth">生日：</string>
+    <string name="str_group_permission_spinner">设置群组权限</string>
+    <string name="str_system_come_from" formatted="false">所属群组:%1$s</string>
+    <string name="str_system_message_type_apply">群组申请</string>
+    <string name="str_system_message_type_invite">群组邀请</string>
+    <string name="str_system_message_operation_result_refuse">已拒绝</string>
+    <string name="str_system_message_operation_result_through">已接受</string>
+    <string name="str_system_apply_reason" formatted="false">申请理由:%1$s</string>
+    <string name="str_group_id_fmt" formatted="false">群组id:%s</string>
+    <string name="str_dis_id_fmt" formatted="false">讨论组id:%s</string>
+    <string name="app_copy_ok">已复制</string>
+    <string name="app_copy_menu">复制消息</string>
+    <string name="fmt_delcontactmsg_confirm_group">确定删除群的聊天记录吗？</string>
+    <string name="clear_msg_success">清除成功</string>
+    <string name="main_delete">删除该聊天</string>
+    <string name="menu_del">删除</string>
+    <string name="menu_mute_notify">设置免打扰</string>
+    <string name="menu_notify">取消免打扰</string>
+    <string name="set_top">置顶聊天</string>
+    <string name="cancel_top">取消置顶</string>
+
+    <string name="input_mobile_error">请输入合法的手机号码</string>
+    <string name="str_sear_group_id_hint">请输入群组id</string>
+    <string name="str_sear_group_name_hint">请输入群组名称</string>
+    <string name="chatting_empty_message_cant_be_sent">不能发送空白消息</string>
+    <string name="sendmsg_error_15032">您已经被禁言</string>
+    <string name="sendmsg_error_16072">您已不属于此群组成员</string>
+    <string name="sendmsg_error_170001">您发送的文本超过最大长度限制</string>
+    <string name="search_group">查询群组</string>
+    <string name="searcha_by_id_tip">按群组ID精确查询</string>
+    <string name="searcha_by_indistinct_name_tip">按群组名称模糊查询</string>
+    <string name="demo_current_version">当前版本(%s)</string>
+    <string name="new_update_version">有新版本发布啦！</string>
+    <string name="update_next">下次更新</string>
+    <string name="save_to_local">保存到手机</string>
+    <string name="save_img_waite_download">请稍候，图片正在加载中</string>
+    <string name="app_delete_tips">确认删除？</string>
+    <string name="app_test_message">"欢迎使用新版本IM，全新的通讯协议（http://www.yuntongxun.com）[云通讯]"</string>
+    <string name="conv_msg_sending">正在发送中</string>
+    <string name="edit_add_contact_chat">输入联系人</string>
+    <string name="invite_wating_replay">邀请成功，等待对方确认</string>
+    <string name="app_title_switch">切换账号</string>
+    <string name="regist_params_error">注册参数错误，请检查</string>
+    <string name="new_msg_mute_notify">已设置免打扰</string>
+    <string name="new_msg_notify">已取消免打扰</string>
+    <string name="room_my_displayname">我在本群的昵称</string>
+    <string name="room_edit_my_nick_tips">设置你在群里的昵称，这个昵称只会在这个群内显示</string>
+    <string name="room_at_someone">选择回复的人</string>
+
+    <string name="ec_voip_unknown_user">未知联系人</string>
+    <string name="ec_str_call_status" formatted="false">延迟时间%d（毫秒）丢包率:%d</string>
+    <string name="ec_call_number_error">呼叫的号码错误</string>
+    <string name="ec_voip_calling_finish">通话结束</string>
+    <string name="ec_no_support_voip">呼叫失败或者对方不在线！</string>
+    <string name="ec_voip_calling_wait">等待对方接听&#8230;</string>
+    <string name="ec_voip_calling_accepting">正在接听...</string>
+    <string name="ec_voip_calling_timeout">呼叫超时，请稍后再拨</string>
+    <string name="ec_voip_calling_no_answer">无人应答，请稍后再拨</string>
+    <string name="ec_voip_call_fail">呼叫失败，请稍后重试&#8230;</string>
+    <string name="ec_voip_calling_network_instability">对方不在线或者网络不给力,请直呼</string>
+    <string name="ec_voip_call_back_success">回拨呼叫成功，请注意接听系统来电!</string>
+    <string name="ec_voip_call_connecting_server">正在连接服务器&#8230;</string>
+    <string name="ec_voip_call_connect">正在呼叫对方，请稍后&#8230;</string>
+    <string name="ec_voip_call_back_connect">正在呼叫，请稍后&#8230;</string>
+    <string name="ec_voip_calling_refuse">对方拒绝您的呼叫请求</string>
+    <string name="ec_voip_calling_busy">对方正忙，请稍后再拨</string>
+    <string name="ec_voip_call_fail_no_cash">呼叫失败，请查询余额</string>
+    <string name="ec_voip_is_talking_tip">正在通话中, 轻击以继续</string>
+    <string name="ec_app_err_disconnect_server_tip">无法连接服务器，请稍后再试</string>
+    <string name="ec_voip_call_fail_connection_failed_auth">第三方鉴权地址连接失败</string>
+    <string name="ec_voip_call_fail_no_pay_account">第三方主账号余额不足</string>
+    <string name="ec_voip_call_fail_not_find_appid">第三方应用ID未找到</string>
+    <string name="ec_voip_call_fail_not_online_only_call">第三方未上线应用仅限呼叫已配置测试号码</string>
+    <string name="ec_voip_call_auth_failed">第三方鉴权失败，子账号余额不足</string>
+    <string name="ec_voip_calling_notfound">对方不在线，请稍后重试</string>
+    <string name="ec_meeting_not_exist">会议号已解散或不存在</string>
+    <string name="ec_meeting_pass_error">会议号密码验证失败</string>
+    <string name="ec_voip_call_error">媒体协商失败</string>
+    <string name="ec_talk_mode_select">选择呼叫方式</string>
+    <string name="ec_talk_codec_select">选择通话编码</string>
+    <string name="ec_regsetinfo_name">昵称</string>
+    <string name="ec_voip_invite_waiting_tip">正在等待对方接受邀请&#8230;</string>
+    <string name="ec_voip_invited_video_tip">邀请你进行视频聊天&#8230;</string>
+    <string name="ec_voip_invited_audio_tip">邀请你进行语音通话&#8230;</string>
+    <string name="ec_voip_shutdown_tip">对方已挂断，通话结束</string>
+    <string name="ec_voip_disconnect_tip">网络异常，通话结束</string>
+    <string name="ec_voip_no_resp">对方无响应</string>
+    <string name="ec_voip_reject_btn">拒绝</string>
+    <string name="ec_voip_audioaccpet">切到语音接听</string>
+    <string name="ec_voip_switchto_audio">切到语音通话</string>
+    <string name="ec_voip_waitting">连接中&#8230;</string>
+    <string name="ec_voip_outcalling">正在呼叫中&#8230;</string>
+    <string name="ec_voip_speaker_on">免提</string>
+    <string name="ec_voip_mute_on">静音</string>
+    <string name="ec_voip_hungup">挂断</string>
+    <string name="ec_voip_accept_call">接听</string>
+    <string name="vedio_switch">音视频切换</string>
+    <string name="str_video_call_stop">结束视频通话</string>
+    <string name="str_video_call_begin">开始视频通话</string>
+    <string name="str_video_btn_call_end">结束</string>
+    <string name="str_tips_wait_invited">正在等待对方接受邀请&#8230;</string>
+    <string name="str_call_status" formatted="false">延迟时间%d（毫秒）丢包率:%d</string>
+    <string name="str_video_bottom_time" formatted="false">与%1$s视频通话中\t</string>
+
+    <string name="camera_switch_front">切换至前置摄像头</string>
+    <string name="camera_switch_back">切换至后置摄像头</string>
+
+    <string name="ec_app_title_chatroom">语音群聊</string>
+    <string name="ec_app_title_inter_phone">实时对讲</string>
+    <string name="ec_empty_inter_phone">暂无实时对讲房间</string>
+    <string name="ec_empty_voice_meeting">暂无语音群聊房间</string>
+    <string name="ec_str_top_notice_tips_invite">已邀请<xliff:g id="COUNT">%s</xliff:g>\t人参与,等待对方加入&#8230;</string>
+    <string name="ec_str_voice_room_bottom1">长按麦克风开始抢麦</string>
+    <string name="ec_str_voice_room_bottom2">抢麦成功会有振动反馈即可开始说话</string>
+    <string name="ec_str_voice_room_bottom3">失败则需要重新抢</string>
+    <string name="ec_str_voice_room_bottom4">其实&#8230;等TA说完再按就不用抢了嘛&#8230;</string>
+    <string name="ec_str_join_speaking">已加入,正在说话中&#8230;</string>
+    <string name="str_join_wait">等待加入</string>
+    <string name="str_join_success">已加入</string>
+    <string name="str_join_speaking">已加入,正在说话中&#8230;</string>
+    <string name="str_join_quit">已退出</string>
+    <string name="str_btn_launch_talkback">发起对讲</string>
+    <string name="str_btn_launch_chatroom">发起群聊</string>
+    <string name="str_chatroom_list_join_unfull" formatted="false">%1$s人加入,由%2$s创建</string>
+    <string name="str_chatroom_list_join_full" formatted="false">%1$s人加入(已满),由%2$s创建</string>
+    <string name="meeting_voice_room_error">语音会议房间无效</string>
+    <string name="dialog_title_auth">身份验证</string>
+    <string name="dialog_message_chatroom_auth_reason">该聊天室设置了身份验证,请输入密码</string>
+    <string name="str_chatroom_name">房间名称:</string>
+    <string name="str_chatroom_pwd">房间密码:</string>
+    <string name="str_chatroom_name_input_hit">请输入群聊房间名称</string>
+    <string name="str_chatroom_pwd_input_hit">请输入群聊房间密码</string>
+    <string name="str_room_tyep_spinner">选择房间类型</string>
+    <string name="str_tone_tyep_spinner">选择声音模式</string>
+    <string name="tip_autoclose">创建人退出时自动解散</string>
+    <string name="tip_autojoin">创建人是否自动加入</string>
+    <string name="tip_auto_del">自动删除房间</string>
+    <string name="app_title_chatroom_create">创建语音群聊</string>
+    <string name="app_create">创建</string>
+    <string name="app_title_right_button_pull_down">管理</string>
+    <string name="app_title_right_button_pull_down_1">其他</string>
+    <string name="top_tips_connecting_wait">连接中,请稍候...</string>
+    <string name="str_join_chatroom_success">\t已加入语音群聊</string>
+    <string name="str_chatroom_mike_enable">可点击下方麦克风静音</string>
+    <string name="str_chatroom_mike_disenable">麦克风已关闭，可点击开启</string>
+
+    <string name="dialog_title_dissmiss_chatroom">解散确认</string>
+    <string name="dialog_message_dissmiss_chatroom">您确定要解散该房间吗，解散后不可恢复 </string>
+    <string name="dailog_button_dissmiss_chatroom">解散 </string>
+    <string name="dialog_title_be_dissmiss_chatroom">房间被解散 </string>
+    <string name="dialog_message_be_dissmiss_chatroom">抱歉，该房间已被创建者解散，点击确定以退出 </string>
+    <string name="dialog_title_be_kick_chatroom">您已被请出房间 </string>
+    <string name="dialog_message_be_kick_chatroom">抱歉,您被创建者请出房间了,点击确定以退出 </string>
+    <string name="current_meeting_voice" formatted="false">当前处于%1$s会议中</string>
+    <string name="current_meeting_tips">会议正在进行中</string>
+    <string name="str_chatroom_kick">%s被踢出房间</string>
+    <string name="str_chatroom_exit">%s退出房间</string>
+    <string name="str_chatroom_join">%s\t加入房间</string>
+    <string name="top_tips_chatroom_forbid">(%1$s)被设置为禁言模式</string>
+    <string name="top_tips_chatroom_disforbid">(%1$s)被取消禁言模式</string>
+    <string name="chatroom_forbid_speak_message">您被会议管理员设置为禁言模式，你的发言将无法被会议成员所听到</string>
+    <string name="chatroom_room_exit_room">退出会议</string>
+    <string name="chatroom_room_exit_room_tip">退出后，你将不再接收会议消息</string>
+
+    <string name="pull_invited_phone_member">邀请电话用户加入</string>
+    <string name="pull_manager_member">管理成员</string>
+    <string name="pull_dissolution_room">解散房间</string>
+    <string name="pull_mode_speaker">使用扬声器模式</string>
+    <string name="pull_mode_earpiece">使用听筒模式</string>
+    <string name="fmt_route_phone">已切换为听筒播放模式</string>
+    <string name="fmt_route_speaker">已切换为扬声器播放模式</string>
+    <string name="member_empty_meeting">暂无可管理的会议成员</string>
+    <string name="chatroom_permission_remove">移除</string>
+    <string name="chatroom_permission_mute">禁言</string>
+    <string name="chatroom_permission_mute_revert">恢复</string>
+    <string name="meeting_member_mgr_title">会议成员管理</string>
+    <string name="dialog_title_summary">请输入要邀请加入会议的号码（固号需加拨区号），接通后即可加入会议</string>
+    <string name="dialog_title_invite">邀请号码加入群聊</string>
+    <string name="app_title_right_button">邀请</string>
+    <string name="toast_confno_Illegal">会议号不合法</string>
+    <string name="regbymobile_reg_mobile_format_err_msg">你输入的不是一个有效的号码</string>
+
+
+    <string name="str_join_inter_phone_failed" formatted="false">加入实时对讲失败！(%d)</string>
+    <string name="str_join_inter_phone_success">\t已加入实时对讲</string>
+    <string name="str_quit_inter_phone">%s\t已退出实时对讲</string>
+    <string name="str_control_mic_success">您已抢麦成功，可以开始说话</string>
+    <string name="str_control_mic_failed">抢麦失败，请稍后重试！</string>
+    <string name="str_release_mic_failed">放麦失败，请稍后重试！</string>
+    <string name="str_invite_join_inter">%s\t邀请您参与对讲&#8230;</string>
+    <string name="str_speaking">%s\t正在说话&#8230;</string>
+    <string name="str_can_control_mic">现在可以开始抢麦对讲了</string>
+    <string name="talk_room_exit_room">退出实时对讲</string>
+    <string name="talk_room_exit_room_tip">退出后，你将不再接收实时对讲消息</string>
+    <string name="top_tips_intercom_ing">正在进行实时对讲</string>
+    <string name="app_exit">退出</string>
+    <string name="common_progressdialog_title">请稍后...</string>
+    <string name="video_record">视频录制</string>
+    <string name="video_send">发送</string>
+    <string name="take_title">请选择</string>
+
+
+    <string name="roometype">房间类型:</string>
+    <string name="vociemode">声音模式:</string>
+    <string name="allnoticevoice">全部提示音</string>
+    <string name="onlybgmusic">没有提示音有背景音</string>
+    <string name="nonevoice">无提示音无背景音</string>
+    <string name="donotdeleteroom">不自动删除房间</string>
+    <string name="deleteroom">自动删除房间</string>
+    <string name="chatroom_control_tip">选择</string>
+    <string name="chatroom_c_join">加入会议</string>
+    <string name="chatroom_c_dismiss">解散会议</string>
+    <string name="chatroom_c_managemenber">管理会议</string>
+    <string name="mulit_video_unjoin">未加入</string>
+    <string name="video_publish_video_frame">发布视频</string>
+    <string name="video_unpublish_video_frame">取消发布视频</string>
+
+	<string name="str_video_desc">"&lt;font color='#FFFFFF' size='16'>能力介绍：&lt;/font>\t&lt;font color='#D9D4D1' size='13'>云通讯视频会议能力提供多路交叉视频以及一对多视频（可手动切换或自动切换到发言方）并支持电话用户语音加入，同时提供丰富的会议管理能力以满足不同的应用场景&lt;/font>
+       &lt;br/>&lt;br/>&lt;font color='#CCCCCC' size='13'>Demo演示一对多视频会议，即多方查看一方视频、可手动切换，语音为多方实时参与.&lt;/font>"</string>
+
+    <string name="str_create_new_video_conference">暂无房间，请先创建一个</string>
+    <string name="str_button_new_video_conference">创建视频会议房间</string>
+    <string name="apptitle_video_conference">会议房间列表</string>
+    <string name="video_conference_name" formatted="false">%1$s的房间</string>
+    <string name="str_click_into_video_conference">点击即可加入视频会议</string>
+    <string name="str_video_chatting_tips" formatted="false">已邀请%1$s人参与，等待对方加入...</string>
+    <string name="str_create_input_name">请输入房间名称</string>
+    <string name="str_join_video_c_failed" formatted="false">加入视频会议失败(%d)</string>
+    <string name="str_join_video_c_failed_content">加入视频会议失败</string>
+    <string name="video_tips_joining" formatted="false">当前处于%1$s会议中</string>
+    <string name="str_video_conference_join">%s加入了视频会议</string>
+    <string name="str_video_conference_kick">%s被踢出了视频会议</string>
+    <string name="str_video_conference_exit">%s退出了视频会议</string>
+    <string name="dialog_title_be_dissmiss_video_conference">视频会议被解散 !</string>
+    <string name="dialog_message_be_dissmiss_video_conference">抱歉，该视频会议已被创建者解散，点击确定以退出 </string>
+    <string name="video_tips_switch" formatted="false">%1$s被切换为主屏</string>
+    <string name="toast_video_dismiss_result" formatted="false">视频会议解散失败，请稍候重试(%d)</string>
+    <string name="video_c_logout">退出视频会议</string>
+    <string name="video_c_dismiss">解散视频会议</string>
+    <string name="video_c_logout_warning_tip">真的要退出视频会议吗？退出后可以再次点击会议列表加入会议</string>
+    <string name="video_c_dismiss_warning_tip">真的要解散视频会议吗？解散后所有成员将被请出会议</string>
+    <string name="str_tips_no_video_c">暂无视频会议，快去创建一个视频会议体验吧</string>
+    <string name="str_instruction_clicktips_1">点击</string>
+    <string name="str_instruction_clicktips_2">可对会议成员进行管理</string>
+    <string name="str_instruction_clicktips_3">顶部闪动的时候会有新的通知信息，您还可以通过点击“结束”来选择是否退出或者解散视频会议</string>
+    <string name="str_video_manager_main_screen">设置为主屏</string>
+    <string name="str_video_manager_self_main_screen">设置自己为主屏</string>
+    <string name="str_video_manager_remove">移除该成员</string>
+    <string name="str_video_switch_failed" formatted="false">切换视频会议主屏失败,(%d)</string>
+    <string name="str_video_remove_failed" formatted="false">移除成员(%1$s)失败,(%2$s)</string>
+    <string name="str_system_message_remove_v_title">您被群管理员移除出会议！</string>
+    <string name="str_system_message_remove_v_message">抱歉，您被群管理员移除出会议，点击确定以退出</string>
+    <string name="str_switch_video_tips">新设置视频席位的id和当前的id相同， 会取消强制设置视频席位，变成自动切换</string>
+    <string name="str_switch_video_free">设置主屏自动切换</string>
+    <string name="str_is_need_to_agree">是否需要被邀请人确认</string>
+
+    <string name="dialog_title_input_number_transfer">请输入电话号码或选择联系人</string>
+    <string name="dialog_cancle_btn">取消</string>
+    <string name="str_dialog_message_default">处理中,请稍候...</string>
+    <string name="dialog_btn">确定</string>
+
+    <string name="voip_not_wifi_warnning_title">提示</string>
+    <string name="voip_not_wifi_warnning_message">在移动网络环境下会影响视频和音频质量，并产生手机流量。</string>
+    <string name="load_failed_network">当前网络不可用,请检查你的网络设置。</string>
+    <string name="toast_get_chatroom_list_failed" formatted="false">获取聊天室列表失败(%1$s,%2$s)</string>
+
+
+    <string name="camera_alert">Device has only one camera!</string>
+    <string name="dialog_alert_close">关闭</string>
+    <string name="main_plus_meeting_video">视频会议</string>
+
+
+    <string name="str_request_sp">请求视频</string>
+    <string name="str_quxiao_sp">取消视频</string>
+    <string name="str_da">放大</string>
+    <string name="str_xiao">缩小</string>
+    <string name="SDK_INIT_FAILED">请先初始化sdk</string>
+    <string name="app_server_switch">切换环境</string>
+    <string name="app_server_switchto_sandbox">已切换到沙盒</string>
+    <string name="app_server_switchto_Production">已切换到生产</string>
+    <string name="videomeeting_create">创建会议</string>
+    <string name="videomeeting_list">视频会议列表</string>
+    <string name="videomeeting_chatting">视频会议聊天</string>
+    <string name="videomeeting_invite_voip">邀请voip</string>
+    <string name="videomeeting_invite_phone">邀请电话</string>
+    <string name="videomeeting_invite_member">请输入需要邀请的号码</string>
+    <string name="meeting_invite_reject">抱歉，[%s]拒绝了你的请求</string>
+    <string name="create_discussion">创建讨论组</string>
+    <string name="query_discussion">获取讨论组</string>
+    <string name="discussion_name">讨论组名称</string>
+    <string name="discussion_notice">公告(选填)</string>
+    <string name="discussion_create">创建讨论组</string>
+    <string name="quit_discussion">退出群聊</string>
+    <string name="dis_name">讨论组名称</string>
+    <string name="dis_notice">讨论组公告</string>
+    <string name="downloading">正在下载中...请稍后</string>
+    <string name="edit_discussion_name">编辑讨论组名称</string>
+    <string name="edit_discussion_notice">编辑讨论组公告</string>
+    <string name="str_group_notice_card">群聊名片</string>
+    <string name="group_card">编辑群聊名片</string>
+
+
+    <string name="group_card_id">群组id</string>
+    <string name="group_card_userid">用户id</string>
+    <string name="group_card_gender">性别</string>
+    <string name="group_card_name">昵称</string>
+    <string name="group_card_tel">电话</string>
+    <string name="group_card_email">邮箱</string>
+    <string name="group_card_remark">备注</string>
+    <string name="group_card_edit">请输入要修改的内容</string>
+    <string name="progress_common">请稍后...</string>
+    <string name="str_group_notice_provice">省份(选填)</string>
+    <string name="str_group_notice_city">城市(选填)</string>
+    <string name="str_group_permission_type">选择所属类型</string>
+    <string name="settings_group_show_nickname">是否匿名聊天</string>
+    <string name="modify_success">修改成功</string>
+    <string name="app_panel_read_after_fire">阅后即焚</string>
+
+
+    <string name="setup_connect">connect地址</string>
+    <string name="setup_connect_port">connect端口</string>
+    <string name="setup_lvs">LVS地址</string>
+    <string name="setup_lvs_port">LVS端口</string>
+    <string name="setup_File">FileServer地址</string>
+    <string name="setup_File_port">FileServer端口</string>
+    <string name="setup_appid">appId</string>
+    <string name="setup_apptoken">appToken</string>
+    <string name="setup_server">配置服务器地址</string>
+    <string name="setup_server_error">请输入完整的服务器地址配置</string>
+    <string name="create_meetingName_Null">请输入会议房间名称</string>
+
+    <string name="app_panel_location">位置</string>
+    <string name="setting_about">关于</string>
+    <string name="app_company">云通讯</string>
+    <string name="setup_name">配置名称</string>
+    <string name="ec_group_controller_mode_select">选择操作方式</string>
+    <string name="group_controller_transfer">确认将群组转让给%s吗？</string>
+    <string name="meeting_incoming_accept">确认加入会议%s吗？</string>
+    <string name="conversation_at"><Data>&lt;font color=#A20000>[有人@我]&lt;/font>%s</Data></string>
+
+
+    <string name="picker_title">选择图片</string>
+    <string name="picker_photos_num">%1$d张</string>
+    <string name="picker_msg_no_camera">没找到摄像头</string>
+    <string name="picker_msg_maxi_capacity">已达到照片选择上限</string>
+    <string name="picker_commit">确定</string>
+    <string name="picker_commit_num">确定(%1$d/%2$d)</string>
+    <string name="picker_all_image">所有图片</string>
+    <string name="app_read_unread">已读未读</string>
+    <string name="setting_ratio">设置分辨率</string>
+    <string name="app_save_ratio">保存</string>
+    <string name="app_set_ratio">设置分辨率</string>
+    <string name="main_plus_money">零钱</string>
+    <string name="setting_suggest">意见反馈</string>
+    <string name="app_suggest">意见反馈</string>
+    <string name="huawei_push">华为推送</string>
+
+    <string name="name">姓名:</string>
+    <string name="age">年龄:</string>
+    <string name="pinlv">位置信息上报周期(min):</string>
+    <string name="setTag">设置标签</string>
+    <string name="delTag">删除标签</string>
+    <string name="location">位置上报</string>
+    <string name="setInterval">设置周期(秒)</string>
+    <string name="openLBS">开启位置定时上报</string>
+    <string name="closeLBS">关闭位置定时上报</string>
+
+
+    <string name="tag1">标签1：</string>
+    <string name="tag2">标签2：</string>
+    <string name="tag_key">请输入标签名(空则不设置)</string>
+    <string name="tag_value">请输入标签值</string>
+    <string name="tag_delete_key">请输入待删标签名</string>
+
+    <string name="getTag">获取标签</string>
+
+    <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_GET_ACCOUNTS</string>
+    <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_PHONE_STATE</string>
+    <string name="permission_call_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CALL_PHONE</string>
+    <string name="permission_camera_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CAMERA</string>
+    <string name="permission_access_fine_location_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_FINE_LOCATION</string>
+    <string name="permission_access_coarse_location_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_COARSE_LOCATION</string>
+    <string name="permission_read_external_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_EXTERNAL_STORAGE</string>
+    <string name="permission_white_external_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_WRITE_EXTERNAL_STORAGE</string>
+    <string name="permission_recode_audio_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_RECORD_AUDIO</string>
+
+    <string name="money_msg_take_money">你领取了自己的红包</string>
+    <string name="money_msg_take_someone_money">你领取了%1$s的红包</string>
+    <string name="money_msg_someone_take_money">%1$s领取了你的红包</string>
+    <string name="ytx_luckymoney">容联云红包</string>
+    <string name="attach_red_packet">红包</string>
+    <string name="attach_red_video">小视频</string>
+    <string name="attach_personinfo">个人名片</string>
+    <string name="attach_storage">收藏</string>
+    <string name="attach_turncash">转账</string>
+    <string name="change">零钱</string>
+    <string name="exclusive_red_packet">专属红包</string>
+    <string name="tv_withdraw">提现</string>
+    <string name="shop_contact">联系人</string>
+    <string name="title_activity_sales_statistics">SalesStatisticsActivity</string>
+    <string name="title_activity_check_sales_statistics">CheckSalesStatistics</string>
+    <string name="title_activity_shop_info">ShopInfoActivity</string>
+    <string name="title_activity_sending_red_bag">SendingRedBagActivity</string>
+
+    <string name="friend_discard_bottle">扔一个</string>
+    <string name="friend_collect_bottle">捡一个</string>
+    <string name="friend_my_bottle">我的瓶子</string>
+    <string name="nothing">无</string>
+
+    <string name="chat_setting_remarks">设置备注及标签</string>
+    <string name="chat_setting_recommend">把他推荐个朋友</string>
+    <string name="chat_setting_friend_circle_forbid">不让他看我的朋友圈</string>
+    <string name="chat_setting_my_friend_circle_forbid">不看他的朋友圈</string>
+    <string name="chat_setting_blacklist">加入黑名单</string>
+    <string name="chat_setting_complaint">投诉</string>
+    <string name="chat_setting_title">资料设置</string>
+
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:orientation="horizontal"
+        android:background="#4D4D4D"
+
+        android:id="@+id/discovery_relative_buyer"
+        >
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:src="@mipmap/add"
+            />
+        <TextView
+            android:id="@+id/discovery_buyer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_bankcard_text"
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/discover_text"
+            android:layout_marginLeft="@dimen/discover_text_marginparentleft"
+            android:layout_centerVertical="true"
+
+            />
+        <ImageView
+            android:id="@+id/discovery_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/right_arrow"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/discover_rightarrow_marginparentright"
+
+            />
+
+    </RelativeLayout>
+</LinearLayout>

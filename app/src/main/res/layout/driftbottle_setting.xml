@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@drawable/friends_layout_bg"
+    >
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+    	android:layout_height="55dip" 
+    	android:background="@drawable/webviewtab_bg"
+    	android:id="@+id/seting_ad"
+        >
+        <Button 
+            android:id="@+id/driftbottle_set_back"
+            android:layout_width="70dip"
+    		android:layout_height="wrap_content" 
+    		android:layout_centerVertical="true"
+    		android:layout_marginLeft="5dip"
+    		android:text="返回"
+    		android:textColor="#fff"
+    		android:textSize="14sp"
+    		android:background="@drawable/title_btn_back"
+            />
+        
+        <TextView 
+            android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="设置"
+    		android:layout_centerVertical="true"
+    		android:layout_centerHorizontal="true"
+    		android:textSize="20sp"
+    		android:textColor="#fff"
+            />
+        
+    </RelativeLayout>
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content" 
+    	android:layout_below="@id/seting_ad"
+    	android:layout_marginTop="15dip"
+        >
+        <TableLayout 
+                    android:id="@+id/setting_"
+                    android:layout_width="fill_parent"
+    				android:layout_height="wrap_content"
+    				android:shrinkColumns="0"
+                    android:stretchColumns="0" 
+                    >
+                    <TableRow 
+                        android:id="@+id/bottle_page_row0"
+                        android:layout_width="fill_parent"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginRight="5.0dip"
+                        android:background="@drawable/friend_itme_pressed"
+                        android:paddingBottom="16.0dip"
+                        android:paddingTop="8.0dip"
+                        >
+                        
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:drawablePadding="10.0dip"
+                            android:includeFontPadding="false"
+                            android:gravity="center_vertical"
+                            android:drawableLeft="@drawable/tou"
+                            android:paddingLeft="17.0dip"
+                            android:text="设置我的漂流瓶头像"
+                            android:textColor="#ff333333"
+                            android:textSize="16.0sp" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="right"
+                            android:gravity="center_vertical"
+                            android:paddingRight="20.0dip"
+                            android:src="@drawable/ic_arrow" />
+                        
+                        </TableRow>
+                        
+                    <TableRow 
+                        android:id="@+id/bottle_page_row1"
+                        android:layout_width="fill_parent"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginRight="5.0dip"
+                        android:paddingBottom="16.0dip"
+                        android:paddingTop="8.0dip"
+                        >
+                        
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:drawablePadding="10.0dip"
+                            android:includeFontPadding="false"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="17.0dip"
+                            android:text="为你的漂流瓶设置专用的头像"
+                            android:textColor="#ff333333"
+                            android:textSize="16.0sp" />
+                        
+                        
+                        </TableRow>
+                        
+                    <TableRow 
+                        android:id="@+id/bottle_page_row2"
+                        android:layout_width="fill_parent"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginRight="5.0dip"
+                        android:background="@drawable/friend_itme_pressed"
+                        android:paddingBottom="16.0dip"
+                        android:paddingTop="8.0dip"
+                        >
+                        
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:drawablePadding="10.0dip"
+                            android:includeFontPadding="false"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="17.0dip"
+                            android:text="聊天列表显示收到的瓶子"
+                            android:textColor="#ff333333"
+                            android:textSize="16.0sp" />
+                        <ImageView
+                            android:id="@+id/show_bottle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="right"
+                            android:gravity="center_vertical"
+                            android:paddingRight="20.0dip"
+                            android:src="@drawable/btn_check_off_normal" />
+                        
+                        </TableRow>
+                        
+                    <TableRow 
+                        android:id="@+id/bottle_page_row3"
+                        android:layout_width="fill_parent"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginRight="5.0dip"
+                        android:background="@drawable/friend_itme_pressed"
+                        android:paddingBottom="16.0dip"
+                        android:paddingTop="8.0dip"
+                        android:layout_marginTop="16dip"
+                        >
+                        
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:drawablePadding="10.0dip"
+                            android:includeFontPadding="false"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="17.0dip"
+                            android:text="清空此功能消息记录"
+                            android:textColor="#ff333333"
+                            android:textSize="16.0sp" />
+                     
+                        
+                        </TableRow>
+             </TableLayout>
+        
+    </RelativeLayout>
+
+</RelativeLayout>

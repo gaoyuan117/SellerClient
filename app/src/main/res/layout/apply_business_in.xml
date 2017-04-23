@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_30"
+                android:background="@color/gray">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:text="@string/shop_name" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:orientation="horizontal"
+
+                >
+
+                <EditText
+                    android:id="@+id/apply_edt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                    android:background="@null"
+                    android:textSize="@dimen/text_15" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_30"
+                android:background="@color/gray">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:text="@string/shop_address"
+
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:orientation="horizontal"
+
+                >
+
+                <EditText
+                    android:id="@+id/apply_edt_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                    android:background="@null"
+                    android:textSize="@dimen/text_15" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_30"
+                android:background="@color/gray">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:inputType="phone"
+                    android:text="@string/shop_phone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:orientation="horizontal"
+
+                >
+
+                <EditText
+                    android:id="@+id/apply_edt_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                    android:background="@null"
+                    android:textSize="@dimen/text_15" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_30"
+                android:background="@color/gray">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:text="@string/shop_license"
+
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_150"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/apply_img_license"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+
+                    android:src="@mipmap/add_523" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_30"
+                android:background="@color/gray">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:text="@string/pic_faren"
+
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_150"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:id="@+id/apply_img_corperate_image"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:src="@mipmap/add_523" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/title_project" />
+
+</LinearLayout>

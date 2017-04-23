@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/title_project" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@mipmap/me_change"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="66dp"
+            android:id="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/my_change_txt"
+            android:text="我的钱包"
+            android:textColor="#323232"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/imageView2"
+             />
+
+        <RelativeLayout
+            android:layout_below="@+id/my_change_txt"
+
+            android:textColor="#323232"
+            android:textSize="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:id="@+id/my_change_number_linear"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="#323232"
+                android:textSize="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                android:id="@+id/tv_rmb"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:textColor="#323232"
+                android:textSize="30dp"
+                android:id="@+id/my_change_number"
+                android:layout_gravity="center_vertical"
+                android:layout_toRightOf="@+id/tv_rmb"
+                android:layout_alignBaseline="@+id/tv_rmb"
+                />
+
+        </RelativeLayout>
+        <Button
+            android:id="@+id/btn_chongzhi"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_register_bg"
+            android:layout_below="@id/my_change_number_linear"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:text="@string/recharge"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_withdraw"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/btn_chongzhi"
+            android:background="@color/action_bar_tittle_color"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:text="@string/withdraw"
+            android:textColor="#323232"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</LinearLayout>

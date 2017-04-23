@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#429056"
+    >
+    <include
+        layout="@layout/title_project" />
+    <RelativeLayout
+        android:layout_width="340dp"
+        android:layout_height="360dp"
+        android:background="@drawable/seltor"
+        android:layout_marginTop="59dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:id="@+id/code_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1303 8907 9846 476389587"
+            android:lineSpacingMultiplier="1.2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimens_10"
+            android:textScaleX="1.4"
+            android:textSize="@dimen/text_14"
+            android:textColor="@color/dark"
+            />
+        <ImageView
+            android:id="@+id/img_onecode"
+            android:layout_width="@dimen/dimens_289"
+            android:layout_height="@dimen/dimens_100"
+            android:src="@mipmap/onecode"
+            android:layout_below="@+id/code_number"
+            android:layout_centerHorizontal="true"
+            />
+        <ImageView
+            android:id="@+id/img_twocode"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/two"
+            android:layout_below="@id/img_onecode"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimens_10"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height"
+            android:background="#F7F7F7"
+            android:layout_alignParentBottom="true"
+            >
+            <TextView
+                android:id="@+id/tv_whichBank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="工商银行储蓄卡（7864）"
+                android:textColor="@color/dark"
+                android:layout_marginLeft="@dimen/dimens_60"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#63758D"
+                android:text="@string/change"
+                android:layout_toRightOf="@+id/tv_whichBank"
+                android:layout_alignBaseline="@+id/tv_whichBank"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/pay_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="每分钟自动更新，用于向商家付款时出示使用"
+        android:textColor="#c4c4c4"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimens_140"
+        />
+
+</RelativeLayout>

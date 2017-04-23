@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kaichaohulian.baocms">
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!--  SDK 权限申明, 第三方 APP 接入时，请将 com.kaichaohulian.baocmscom.kaichaohulian.baocms 替换为自己的包名 -->
+    <!--  和下面的 uses-permission 一起加入到你的 AndroidManifest 文件中。 -->
+    <permission
+        android:name="com.kaichaohulian.baocms.permission.RECEIVE_MSG"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="com.kaichaohulian.baocms.permission.INCOMING_CALL"
+        android:protectionLevel="signature" />
+    <!--  接收 SDK 消息广播权限， 第三方 APP 接入时，请将 com.kaichaohulian.baocmscom.kaichaohulian.baocms 替换为自己的包名 -->
+    <uses-permission android:name="com.kaichaohulian.baocms.permission.RECEIVE_MSG" />
+    <!--  如果没有VOIP功能可以忽略 -->
+    <uses-permission android:name="com.kaichaohulian.baocms.permission.INCOMING_CALL" />
+
+    <!-- 允许程序打开网络sockets(必选配置) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 允许程序访问有关的网络信息(必选配置) -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许程序访问Wi-Fi网络状态信息(必选配置) -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许应用写（非读）用户的外部存储器(必选配置) -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!--add-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 允许读取电话的状态(必选配置) -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 允许一个程序获取信息有关当前或最近运行的任务，一个缩略的任务状态，是否活动等等(必选配置) -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 允许程序录制音频(必选配置) -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 允许应用程序修改全局声音设置的权限 (必选配置)-->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- 允许使用PowerManager的WakeLocks保持进程在休眠时从屏幕消失(必选配置) -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 允许请求访问使用照相设备(如果使用视频通话则必选配置) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!--  允许程序连接到已配对的蓝牙设备(非必选,由应用选择是否需要) -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!-- 允许程序发现和配对蓝牙设备(非必选,由应用选择是否需要)-->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--  GPS定位权限(非必选，由应用选择是否需要)-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!--  允许一个程序访问CellID或WiFi热点来获取粗略的位置-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--  允许一个程序访问精良位置(如GPS)-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--  允许程序读取用户联系人数据(非必选，由应用选择是否需要)-->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <!-- 允许访问振动设备(非必选,由应用选择是否需要)-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <!--  允许程序禁用键盘锁(非必选,由应用选择是否需要)-->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- 允许一个程序接收到 ACTION_BOOT_COMPLETED广播在系统完成启动-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <!--以下2项是sharedsdk的配置-->
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+    <uses-permission android:name="android.permission.ACCES_MOCK_LOCATION" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <!-- 来电消音 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+
+    <!-- 允许一个程序接收到 ACTION_BOOT_COMPLETED广播在系统完成启动 -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <!-- 允许请求访问使用照相设备(如果使用视频通话则必选配置) -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- 拨号权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 读短信权限 -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <!-- 微信摇一摇 -->
+    <uses-permission android:name="android.hardware.sensor.accelerometer" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:name="com.kaichaohulian.baocms.app.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="DlIgauUDuaxmaDEvnksGEEzwMbqRA5GW" />
+
+        <activity android:name="com.kaichaohulian.baocms.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 引导页 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.GuideActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 主界面界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <!-- 图片浏览界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ImagePagerActivity"
+            android:screenOrientation="portrait" />
+        <!-- 二维码扫描界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.view.zxing.activity.CaptureActivity"
+            android:screenOrientation="portrait" />
+        <!-- 二维码扫描结果界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.view.zxing.activity.ResultActivity"
+            android:screenOrientation="portrait" />
+        <!-- 登录界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ReloginActivity"
+            android:screenOrientation="portrait" />
+        <!-- 注册-发送验证码界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <!-- 注册-输入验证码界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.RegisterActivity2"
+            android:screenOrientation="portrait" />
+        <!-- 注册-完成界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.RegisterActivity3"
+            android:screenOrientation="portrait" />
+        <!-- 忘记密码界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ForgetPwdActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 姓名编辑界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MeNameEditActivity"
+            android:screenOrientation="portrait" />
+        <!-- 拆红包 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.RedRevPacketActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Transparent" />
+        <!-- 钱包主界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.PocketActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我的设置界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MeSettingsNormalActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我的位置 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MyCurrentLocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/notitlebar" />
+        <!-- 添加银行卡界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.AddBankCardActivity"
+            android:screenOrientation="portrait" />
+        <!-- 红包界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.RedBagActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 个人信息界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.PersonalActivity"
+            android:screenOrientation="portrait" />
+        <!-- 零钱充值界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MoneyRechargeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 添加联系人界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MeAddAddressActivity"
+            android:screenOrientation="portrait" />
+        <!-- 路径规划 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.map.RoutePlanDemo"
+            android:screenOrientation="portrait" />
+        <!-- ta的资料界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.FriendDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 申请与通知界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.NewFriendsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 添加朋友界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.AddFriendsOneActivity"
+            android:screenOrientation="portrait" />
+        <!-- 面对面建群 -->
+        <activity
+            android:name=".activity.RelativeMMGroupActivity"
+            android:screenOrientation="portrait" />
+        <!-- 面对面建群 -->
+        <activity
+            android:name=".activity.RelativeMMGroupActivity2"
+            android:screenOrientation="portrait" />
+        <!-- 添加朋友界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.AddFriendsTwoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.NewMessageNotificationActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 通讯录搜索界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MyFriendsSearchActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 添加我的方式界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.AddMeWayActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 私人设置界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.PrivateSettingActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我的二维码界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MyTwoCode"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.GroupCodeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我的地址列表界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MeAddressListActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 标签界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.LabelActivity"
+            android:configChanges="orientation|keyboardHidden" />
+
+        <!-- 添加标签界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.AddLabelActivity"
+            android:configChanges="orientation|keyboardHidden" />
+
+        <!-- 添加标签和备注界面 -->
+        <activity
+            android:name=".activity.AddLabelAndNameActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <!-- 群聊界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.GroupChatActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 商家界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.BusinessActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 信息列表界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.InformationListActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 通讯录朋友界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.DirectoriesFriendActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 群聊信息界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.GroupChatDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 创建群聊 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.CreatChatRoomActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.SayHiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.WithdrawActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.StorageSpaceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.NearByActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.SayHiToMeActivity"
+            android:screenOrientation="portrait" />
+        <!--图片选择界面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.photopicker.PhotoPickerActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ApplyBusinessInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.SmallMoneyDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.SalesStatisticsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.SendRedBagActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.PersonalSignActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.NearByPeopleListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.UpdateAddressActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 发布说说界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ReleaseTalkActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 买家圈界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.circledemo.ShoppingCircleActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 相册界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MyAlbumActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 聊天界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ChatActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 添加成员界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.AddMemberActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+
+        <!-- 朋友验证界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.AddFriendsFinalActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.DistrictActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ReceviedRedBagListActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 选择定位 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.BaiduMapActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 雷达加好友 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.RadarActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 转账选择好友界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.TransferSelectContactActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.AddressListActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 添加群组好友 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.addGroupFriendsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 小视频 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ImageGridActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 录制视频 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.RecorderVideoActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 图片选择界面 -->
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.WhoCanSeeMeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.RechargeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.SayHelloToNearPeopleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MyBankCardListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.SetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.VerifyPasswordActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.BNDemoGuideActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.BNDemoMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MeSettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.AboutBuyerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.SmallVideoNetChooseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.IdAndSafeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.CollectionListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ShakeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MyChangeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ShoppingWebView"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.RechargeSuccedActicity"
+            android:screenOrientation="portrait">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ShopInfoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.PaymentPicActivity"
+            android:screenOrientation="portrait" />
+        <!-- 自定义的contextmenu -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ContextMenu"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyDialogStyle" />
+        <!-- 自定义的alertdialog -->
+        <activity
+            android:name="com.kaichaohulian.baocms.view.FXAlertDialog"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyDialogStyle" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.WithdrawDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.BusinessApplyOneActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ScanOrderActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.WithdrawApplyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.WithDrawalsHistoryActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.BusinessApplyTwoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.BusinessApplyThressActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.WithdrawSuccessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ChangeRechargeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.DriftBottleActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.chuckAnimationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.PickupBottleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.MyBottleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.DriftbottleSettingActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 云通讯配置清单 ↓ -->
+        <!-- UI -->
+        <!-- 登陆界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.account.LoginActivity"
+            android:label="@string/login_title_activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!--私有云设置页面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.account.ECSetUpServerActivity"
+            android:label="@string/login_title_activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!-- 会话消息聊天主界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 联系人详情选项卡 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.contact.ContactDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 手机系统联系人 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.contact.MobileContactActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 发送预览图片 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.chatting.ImagePreviewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:process=":tools"
+            android:screenOrientation="portrait"
+            android:theme="@style/CCPTheme.Holo.Transparent" />
+        <!--录制视频页面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.chatting.VideoRecordActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/CCPTheme.Holo.Transparent" />
+        <!-- 查看聊天图片 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.chatting.ImageGalleryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/CCPTheme.Holo.Transparent"
+            android:windowSoftInputMode="stateHidden" />
+        <!--图片左右滑动页面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.chatting.ImageGralleryPagerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 文件浏览器 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.plugin.FileExplorerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <!-- 群组 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.group.CreateGroupActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <!-- 联系人选择 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.contact.ContactSelectListActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 手机联系人选择 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.contact.MobileContactSelectActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.contact.SelectContactUI"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 设置页面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.settings.SettingsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!--讨论组页面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.group.ECDiscussionActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!--群组选择联系人页面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.contact.GroupCardSelectUI"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!--群组信息页面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.group.GroupInfoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- 群组搜索 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.group.SearchGroupActivity"
+            android:label="@string/title_activity_search_group"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.group.BaseSearch"
+            android:label="@string/title_activity_search_group"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.settings.EditConfigureActivity"
+            android:label="@string/title_activity_edit_configure"
+            android:screenOrientation="portrait"></activity>
+        <!--群组成员名片页面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.group.GroupMemberCardActivity"
+            android:screenOrientation="portrait"></activity>
+        <!-- 申请加入群组 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.group.ApplyWithGroupPermissionActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!--通知页面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.group.GroupNoticeActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!--登录设置页面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.settings.LoginSettingActivity"
+            android:label="@string/title_activity_login_setting"
+            android:screenOrientation="portrait" />
+        <!--设置个人信息-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.settings.SettingPersionInfoActivity"
+            android:label="@string/title_activity_setting_persion_info"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+        <!-- 选择联系人呼叫界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.contact.AtSomeoneUI"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+
+        <!--红包相关界面-->
+        <activity
+            android:name="com.yunzhanghu.redpacketui.ui.activity.RPRedPacketActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateVisible" />
+        <activity
+
+            android:name="com.yunzhanghu.redpacketui.ui.activity.RPDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.yunzhanghu.redpacketui.ui.activity.RPRecordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.yunzhanghu.redpacketui.ui.activity.RPWebViewActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.yunzhanghu.redpacketui.ui.activity.RPChangeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.yunzhanghu.redpacketui.ui.activity.RPBankCardActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name="com.yunzhanghu.redpacketui.ui.activity.RPGroupMemberActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+
+        <!--红包相关界面end-->
+
+        <!-- VoIP 呼叫界面 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.voip.VoIPCallActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="con.yuntongxun.ecdemo.intent.ACTION_VOICE_CALL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.voip.VideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="con.yuntongxun.ecdemo.intent.ACTION_VIDEO_CALL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- 实时对讲列表 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.interphone.InterPhoneListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 实时对讲房间 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.interphone.InterPhoneChatActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 会议列表 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.meeting.MeetingListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 语音会议 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.meeting.VoiceMeetingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 创建语音群聊 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.meeting.CreateVoiceMeetingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 单聊设置 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.ChatSettingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 会议成员的管理 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.meeting.VoiceMeetingMemberManager"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 外呼邀请会议成员 -->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.meeting.InviteByPhoneCall"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+
+        <!--视频会议列表界面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.videomeeting.VideoconferenceConversation"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!--创建视频会议界面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.videomeeting.CreateVideoConference"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!--视频会议界面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.videomeeting.MultiVideoconference"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <!--IM定位界面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.LocationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <!--显示百度地图界面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.ShowBaiDuMapActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <!--关于界面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.settings.AboutActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <!--服务器自定义配置界面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.account.ECServerConfigListUI"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <!--webview下载选择界面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.settings.WebAboutActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <!--查看消息已读未读界面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.chatting.ECMessageFeedUI"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.huawei.PustDemoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.settings.SetRatioActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.settings.SuggestActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <!--开红包-->
+        <activity
+            android:name="com.kaichaohulian.baocms.activity.RedpacketOpenActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--微信分享页面-->
+        <activity
+            android:name="com.kaichaohulian.baocms.ecdemo.ui.settings.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="wxe2c54efaeeae4ccb" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+            <intent-filter>
+                <data android:scheme="tencent103425b1e7dc5" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- 调用新浪原生SDK，需要注册的回调activity -->
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- *****************************ECSDK核心服务类 （必须配置）Start******************************************** -->
+        <!--SDK核心服务配置(必选配置) -->
+        <service
+            android:name="com.yuntongxun.ecsdk.ECClientService"
+            android:enabled="true"
+            android:process=":push" />
+        <service
+            android:name="com.yuntongxun.ecsdk.ECClientService$InnerService"
+            android:enabled="true"
+            android:process=":push" />
+        <!--以下两项为SDK事件提醒广播(必选配置) -->
+        <receiver
+            android:name="com.yuntongxun.ecsdk.booter.CCPReceivers$AlarmReceiver"
+            android:process=":push" />
+        <!--v5.1.9r增加配置选项(必选配置) -->
+        <receiver
+            android:name="com.yuntongxun.ecsdk.booter.Alarm"
+            android:exported="false"
+            android:process=":push" />
+        <!--SDK网络改变广播(必选配置) -->
+        <receiver
+            android:name="com.yuntongxun.ecsdk.booter.CCPReceivers$ConnectionReceiver"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <!--SDK广播通知配置（开机广播） -->
+        <!--可选广播、如果应用想做开机重启，可以实现该广播通知即可 -->
+        <receiver
+            android:name="com.yuntongxun.ecsdk.booter.CCPReceivers$BootReceiver"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!--	配置SDK消息通知广播 ,SDK通知会分三种提醒方式 -->
+        <!-- 1、直接通过设置的回调接口（OnChatReceiveListener）Push给应用 -->
+        <!--2、如果应用没有设置回调接口则采用（BroadcastReceiver）广播通知（v5.1.8版本）此时如果应用处于未运行状态则会直接唤醒应用处理 -->
+        <!--3、如果应用未处于运行状态并且不想被唤醒应用运行则采用状态栏通知处理（SDK直接提醒，不会通知应用）,比如调用 -->
+        <!--ECDevice#logout(ECDevice.NotifyMode, ECDevice.OnLogoutListener)退出接口传入后台接收消息才会有提醒 -->
+
+        <!--注意：以上在a和b的场景下，SDK都会将消息直接给应用处理，只有在c的情况SDK才会直接处理消息提醒，所以应用需要处理a和b两种情况 -->
+        <!-- 声明自定义通知的广播接收器，第三方 APP 集成时，action 中的 com.kaichaohulian.baocms 请替换为自己的包名 -->
+        <!-- 需要权限声明 <uses-permission android:name="com.kaichaohulian.baocms.permission.RECEIVE_MSG"/> -->
+        <!-- 如果没有VOIP功能可以忽略 -->
+        <!-- 需要权限声明 <uses-permission android:name="com.kaichaohulian.baocms.permission.INCOMING_CALL"/> -->
+        <receiver
+            android:name="com.kaichaohulian.baocms.ecdemo.service.YuntxNotifyReceiver"
+            android:exported="false">
+            <intent-filter>
+                <!-- 接收push消息-->
+                <!-- action匹配规则{packageName + ".action" + "功能"}-->
+                <action android:name="com.kaichaohulian.baocms.action.VOIP_CALL" />
+                <action android:name="com.kaichaohulian.baocms.action.MESSAGE" />
+                <action android:name="com.kaichaohulian.baocms.action.NOTIFICATION_CLICK" />
+                <action android:name="com.kaichaohulian.baocms.action.PERSON_VERSION" />
+
+                <!--这个配置是容联IM专有的配置，其他应用集成的时候可以忽略-->
+                <action android:name="com.kaichaohulian.baocms.action.SOFT_UPDATER" />
+            </intent-filter>
+        </receiver>
+
+        <!-- *****************************ECSDK核心服务类 End******************************************* -->
+        <!--应用处理程序逻辑服务 -->
+        <service android:name="com.kaichaohulian.baocms.ecdemo.service.YuntxNotifyReceiver$NotifyService" />
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+
+        <!--BQMM集成-->
+        <!--以下是BQMM包含的Activity-->
+        <activity
+            android:name="com.melink.bqmmsdk.ui.store.EmojiPackageList"
+            android:screenOrientation="portrait"
+            android:theme="@style/bqmm_horizontal_slide" />
+        <activity
+            android:name="com.melink.bqmmsdk.ui.store.EmojiPackageDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/bqmm_horizontal_slide" />
+        <activity
+            android:name="com.melink.bqmmsdk.ui.store.ServiceDeclaration"
+            android:screenOrientation="portrait"
+            android:theme="@style/bqmm_horizontal_slide" />
+
+        <activity
+            android:name="com.melink.bqmmsdk.ui.store.EmojiPackageSetting"
+            android:screenOrientation="portrait"
+            android:theme="@style/bqmm_horizontal_slide" />
+        <activity
+            android:name="com.melink.bqmmsdk.ui.store.EmojiDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/bqmm_horizontal_slide" />
+        <activity
+            android:name="com.melink.bqmmsdk.ui.store.EmojiPackageSort"
+            android:screenOrientation="portrait"
+            android:theme="@style/bqmm_horizontal_slide" />
+        <!--BQMM集成-->
+        <!--以下两条metadata的值都是占位符，具体的值是在build.gradle中设置的。如果项目没有使用Android Studio，请把占位符改成实际的ID和Secret-->
+        <meta-data
+            android:name="bqmm_app_id"
+            android:value="a5a8ae16d6734c0190d3c7d73605ea11" />
+        <meta-data
+            android:name="bqmm_app_secret"
+            android:value="54945f511d2d44a8985ee71b92b24afa" />
+
+        <meta-data
+            android:name="BUGLY_APPID"
+            android:value="03f4416f2f" />
+        <meta-data
+            android:name="BUGLY_APP_VERSION"
+            android:value="1.6.1" />
+        <meta-data
+            android:name="BUGLY_APP_CHANNEL"
+            android:value="alpha" />
+        <meta-data
+            android:name="BUGLY_ENABLE_DEBUG"
+            android:value="false" />
+
+        <!--红包相关界面-->
+
+
+        <!-- 以下是华为的 -->
+        <!-- 第三方相关 :接收Push消息（注册、Push消息、Push连接状态、标签，LBS上报结果）广播 -->
+        <receiver android:name="com.kaichaohulian.baocms.ecdemo.ui.huawei.MyReceiver">
+            <intent-filter>
+                <!-- 必须,用于接收token-->
+                <action android:name="com.huawei.android.push.intent.REGISTRATION" />
+                <!-- 必须，用于接收消息-->
+                <action android:name="com.huawei.android.push.intent.RECEIVE" />
+                <!-- 可选，用于点击通知栏或通知栏上的按钮后触发onEvent回调-->
+                <action android:name="com.huawei.android.push.intent.CLICK" />
+                <!-- 可选，查看push通道是否连接，不查看则不需要-->
+                <action android:name="com.huawei.intent.action.PUSH_STATE" />
+                <!-- 可选，标签、地理位置上报回应，不上报则不需要 -->
+                <action android:name="com.huawei.android.push.plugin.RESPONSE" />
+            </intent-filter>
+            <meta-data
+                android:name="CS_cloud_ablitity"
+                android:value="云通讯" />
+        </receiver>
+
+        <!-- 备注：Push相关的android组件需要添加到业务的AndroidManifest.xml,
+        	 Push相关android组件运行在另外一个进程是为了防止Push服务异常而影响主业务 -->
+
+        <!-- PushSDK:PushSDK接收外部请求事件入口 -->
+        <receiver
+            android:name="com.huawei.android.pushagent.PushEventReceiver"
+            android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REFRESH_PUSH_CHANNEL" />
+                <action android:name="com.huawei.intent.action.PUSH" />
+                <action android:name="com.huawei.intent.action.PUSH_ON" />
+                <action android:name="com.huawei.android.push.PLUGIN" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.huawei.android.pushagent.PushBootReceiver"
+            android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTER" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <meta-data
+                android:name="CS_cloud_version"
+                android:value="\u0032\u0037\u0030\u0035" />
+        </receiver>
+
+        <!-- PushSDK:Push服务 -->
+        <service
+            android:name="com.huawei.android.pushagent.PushService"
+            android:process=":pushservice" />
+
+        <activity android:name=".activity.SendingRedBagActivity" />
+        <activity android:name=".activity.ShopManageActivity" />
+        <activity android:name=".activity.ShopDetailActivity" />
+        <activity android:name=".activity.SendingRedBagNextActivity" />
+        <activity android:name=".activity.SelectContactActionActivity" />
+        <activity android:name=".activity.WithDrawToFriendActivity" />
+        <activity android:name=".activity.ReleaseTalkWhoCanSeeActivity" />
+        <activity android:name=".activity.RemindFriendsSeeActivity" />
+        <activity android:name=".activity.LabelSeeActivity" />
+        <activity android:name=".activity.BusinessQrCode" />
+        <activity android:name=".activity.TransferDetailActivity" />
+        <activity android:name=".activity.TransferSuccessActivity" />
+        <activity android:name=".activity.FeedbackActivity" />
+        <activity android:name=".activity.BlackListActivity" />
+        <activity android:name=".activity.AdvancedRadarActivity" />
+        <activity android:name=".activity.ShopAddressEditActivity" />
+        <activity android:name=".activity.ShopContractEditActivity" />
+        <activity android:name=".activity.ShopDetailEditActivity" />
+        <activity android:name=".activity.ShopDurationEditActivity" />
+        <activity android:name=".activity.ShopNameEditActivity" />
+        <activity android:name=".activity.ShopWaittingTimeEditActivity" />
+        <activity android:name=".activity.ShopCodeActivity" />
+        <activity android:name=".circledemo.FriendCircleActivity" />
+        <activity android:name=".activity.DriftBottleRevActivity" />
+        <activity android:name=".activity.BonusHistoryActivity" />
+        <activity android:name=".activity.OrderHistoryActivity" />
+        <activity android:name=".activity.WithdrawalsDetailActivity" />
+        <activity android:name=".activity.PhoneMsgDetailActivity" />
+
+    </application>
+
+</manifest>

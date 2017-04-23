@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/title_project"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/finish"/>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_26"
+        android:layout_below="@+id/image"
+        android:layout_centerHorizontal="true"
+        android:text="成功"
+        android:layout_marginTop="@dimen/dimens_12"
+        android:textColor="@color/dark" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sure"
+        android:layout_width="@dimen/dimens_300"
+        android:layout_height="@dimen/dimens_50"
+        android:background="@mipmap/deepgreen_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimens_70"
+        android:text="@string/sure"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

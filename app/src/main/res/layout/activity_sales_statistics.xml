@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/title_project" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/white"
+        >
+        <TextView
+            android:id="@+id/tv_sale_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark"
+            android:paddingTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:text="今日销售总额"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/tv_sale_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_sale_tip"
+            android:layout_marginTop="16dp"
+            android:textSize="36sp"
+            android:textColor="@color/green"
+            />
+        <TextView
+            android:id="@+id/tv_sale_num_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元"
+            android:layout_toRightOf="@+id/tv_sale_num"
+            android:layout_alignBottom="@id/tv_sale_num"
+            android:layout_below="@+id/tv_date"
+            android:layout_marginBottom="5dp"
+            android:layout_alignBaseline="@+id/tv_tixian"
+            android:textSize="16sp"
+            />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@color/gray08"
+        android:text="销售明细"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:textSize="14sp"
+        ></TextView>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
+</LinearLayout>

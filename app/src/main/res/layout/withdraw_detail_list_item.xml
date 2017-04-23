@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimens_16"
+        >
+        <ImageView
+            android:id="@+id/img_bank_icon"
+            android:layout_width="@dimen/dimens_48"
+            android:layout_height="@dimen/dimens_48"
+            android:src="@mipmap/icbc2"
+            />
+        <TextView
+            android:id="@+id/tv_tixian_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img_bank_icon"
+            android:text="提现-尾号"
+            android:textSize="@dimen/text_15"
+            android:textColor="@color/dark"
+            android:layout_marginLeft="@dimen/dimens_10"
+            android:layout_marginTop="@dimen/dimens_4"
+            />
+        <TextView
+            android:id="@+id/tv_tixian_weihao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7800工商银行"
+            android:layout_toRightOf="@id/tv_tixian_title"
+            android:layout_alignBaseline="@+id/tv_tixian_title"
+            android:textColor="@color/dark"
+            />
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11月30日 17:26"
+            android:layout_toRightOf="@+id/img_bank_icon"
+            android:layout_below="@+id/tv_tixian_title"
+            android:layout_marginTop="@dimen/dimens_6"
+            android:layout_marginLeft="@dimen/dimens_10"
+            android:textColor="@color/dark"
+            />
+        <TextView
+            android:id="@+id/tv_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="250.80"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/dark"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

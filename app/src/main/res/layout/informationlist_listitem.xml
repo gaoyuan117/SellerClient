@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="@dimen/dimens_50"
+    android:padding="@dimen/dimens_8">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_14"
+        android:textColor="@color/black"
+        android:maxLines="2"
+        android:text="什么？！成都两名妇女竟然在火车站车道被发现了。。。。。。。。。。"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/text_12"
+        android:textColor="@color/dark_gray"
+        android:text="2016-02-03"/>
+
+</RelativeLayout>

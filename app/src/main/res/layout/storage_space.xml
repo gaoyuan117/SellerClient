@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical"
+
+    >
+
+    <include layout="@layout/title_project"></include>
+
+    <LinearLayout
+        android:layout_width="@dimen/storage_space_width"
+        android:layout_height="@dimen/storage_space_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/yuanjiao_5"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_16"
+            android:text="@string/storage_wechat_have_used"
+
+            />
+
+        <View
+            android:layout_width="@dimen/dimens_40"
+            android:layout_height="@dimen/line_small"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_10"
+            android:background="@color/light_gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="158.5MB"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_48" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <TextView
+                android:id="@+id/storage_zhan_shou_ji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimens_110"
+                android:text="@string/storage_zhan_shou_ji" />
+
+            <TextView
+                android:id="@+id/storage_zhan_shou_ji_numbers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/storage_zhan_shou_ji"
+                android:text="1%" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/storage_zhan_shou_ji_numbers"
+                android:text="@string/storage_cun_chu_space" />
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="@dimen/dimens_200"
+            android:layout_height="@dimen/dimens_40"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_10"
+            android:background="@mipmap/deepgreen_bar"
+            android:text="@string/storage_clean_wechat"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/storage_space_width"
+        android:layout_height="@dimen/storage_space_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="@dimen/dimens_16"
+        android:background="@drawable/yuanjiao_5"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_16"
+            android:text="@string/storage_phone_have_used" />
+
+        <View
+            android:layout_width="@dimen/dimens_40"
+            android:layout_height="@dimen/line_small"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_10"
+            android:background="@color/light_gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="10.2GB"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_48" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/storage_shenyu_keyong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/storage_shen_yu"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/storage_shenyu_numbers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/storage_shenyu_keyong"
+                android:text="1%"
+                android:textColor="@color/red" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/storage_shenyu_numbers"
+                android:text="@string/storage_keyong_space"
+                android:textColor="@color/red" />
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="@dimen/dimens_200"
+            android:layout_height="@dimen/dimens_40"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_10"
+            android:background="@mipmap/deepgreen_bar"
+            android:text="@string/storage_manage_phone_space"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</LinearLayout>

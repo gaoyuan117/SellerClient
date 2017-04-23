@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/title_project" />
+
+    <ImageView
+        android:id="@+id/pocket_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@mipmap/finish" />
+
+    <TextView
+        android:id="@+id/recharge_finish_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pocket_right"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimens_20"
+        android:text="充值成功"
+        android:textColor="@color/dark"
+        android:textSize="@dimen/text_26" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:layout_below="@id/recharge_finish_text"
+        android:layout_marginTop="@dimen/dimens_30"
+        android:background="#E8E8E8" />
+
+    <RelativeLayout
+        android:id="@+id/relative_txt"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/recharge_finish_text"
+        android:layout_marginTop="@dimen/dimens_40"
+        android:padding="@dimen/dimens_10"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yinhangka"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="金额"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/bank_name_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimens_10"
+            android:layout_toLeftOf="@+id/last_four_number_txt"
+            android:text="工商银行"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14"
+
+            />
+
+        <TextView
+            android:id="@+id/last_four_number_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="尾号1954"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/pocket_business_account"
+            android:layout_toLeftOf="@+id/pocket_business_account"
+            android:text="￥"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/pocket_business_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="56.70"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:layout_below="@+id/relative_txt"
+        android:layout_marginTop="@dimen/dimens_6"
+        android:background="#E8E8E8" />
+
+    <Button
+        android:id="@+id/btn_sure"
+        android:layout_width="@dimen/dimens_300"
+        android:layout_height="@dimen/dimens_50"
+        android:layout_below="@+id/relative_txt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimens_20"
+        android:background="@mipmap/deepgreen_bar"
+        android:text="@string/sure"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

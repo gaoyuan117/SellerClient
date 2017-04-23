@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_project" />
+
+    <RelativeLayout
+        android:id="@+id/advertisement_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="充话费点亮冬日好礼"
+            android:textColor="@color/yellow" />
+
+        <ImageView
+            android:id="@+id/close_relative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimens_25"
+            android:clickable="true"
+            android:src="@mipmap/close" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#E8E8E8"
+        android:orientation="vertical" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_70"
+        android:padding="@dimen/dimens_10">
+
+        <ImageView
+            android:layout_width="400dp"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/light_gray" />
+
+        <EditText
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimens_48"
+            android:background="@color/transparent"
+            android:hint="请输入手机号码"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_26" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimens_10"
+            android:layout_marginTop="@dimen/dimens_10"
+            android:src="@mipmap/recharge_head_icon"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/recharge_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone_number"
+            android:layout_marginLeft="@dimen/dimens_6"
+            android:layout_marginTop="@dimen/dimens_10"
+            android:text="王涛"
+            android:textColor="@color/dark"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/phone_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/recharge_user_name"
+            android:layout_toRightOf="@+id/recharge_user_name"
+            android:text="(河北移动)"
+            android:textColor="@color/dark"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimens_16"
+        android:text="@string/recharge_chonghuafei" />
+
+    <GridView
+        android:id="@+id/rechage_gridview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimens_16"
+        android:numColumns="3"
+        android:verticalSpacing="@dimen/dimens_10" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimens_16"
+        android:background="#E8E8E8" />
+
+</LinearLayout>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E4E3E3"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/title_linLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_50"
+        android:background="#e70012"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimens_50">
+
+            <LinearLayout
+                android:id="@+id/exit_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:onClick="back"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/top_bar_back" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimens_13"
+                android:layout_toRightOf="@+id/exit_layout"
+                android:text="拼手气红包"
+                android:textColor="#ffe2b1"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/tv_right_text"
+                android:layout_width="@dimen/dimens_60"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/dimens_12"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_14" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/iv_image"
+                    android:layout_width="@dimen/dimens_50"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dimens_10"
+                    android:scaleType="centerInside" />
+
+                <ImageView
+                    android:id="@+id/iv_image1"
+                    android:layout_width="@dimen/dimens_50"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dimens_10"
+                    android:scaleType="centerInside" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimens_line" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/withdraw_cash_yuanjiao_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_num"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height"
+            android:background="@color/white"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/title_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                android:text="红包个数"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/num_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                android:text="个"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_16" />
+
+            <EditText
+                android:id="@+id/num_redbag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/num_tip"
+                android:layout_toRightOf="@id/title_tip"
+                android:background="@color/transparent"
+                android:gravity="right"
+                android:hint="填写个数"
+                android:inputType="number"
+                android:text=""
+                android:textColor="@color/blue" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height"
+            android:layout_marginTop="20dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/account_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                android:text="总金额"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_16" />
+
+            <ImageView
+                android:id="@+id/type"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignBottom="@id/account_tip"
+                android:layout_toRightOf="@id/account_tip"
+                android:background="@drawable/icon_pin" />
+
+            <TextView
+                android:id="@+id/num1_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                android:text="元"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_16" />
+
+            <EditText
+                android:id="@+id/all_redbag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/num1_tip"
+                android:layout_toRightOf="@id/account_tip"
+                android:background="@color/transparent"
+                android:gravity="right"
+                android:hint="填写金额"
+                android:inputType="numberDecimal"
+                android:textColor="@color/blue" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tishi_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="5dp"
+            android:text="每人可领1个，金额随机且不超过200"
+            android:textColor="@color/dim_gray"
+            android:textSize="@dimen/text_12" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height"
+            android:layout_marginTop="15dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/message_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                android:text="留言"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_16"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/message_redbag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/transparent"
+                android:hint="恭喜发财，大吉大利!"
+                android:text=""
+                android:textColor="@color/blue"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/acount_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:text="¥0.00"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/send_redbag"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimens_50"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/dimens_30"
+            android:background="#e70012"
+            android:text="塞钱进红包"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/acount_all_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="可直接使用收到的零钱发红包"
+            android:textColor="@color/dim_gray"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+
+</LinearLayout>
