@@ -29,9 +29,10 @@ import java.util.TimerTask;
 public class ForgetPwdActivity extends BaseActivity {
     private EditText et_usertel, et_code, et_pwd, et_newPwd;
     private TextView iv_back;
-    private Button btn_register, get_code;
+    private Button btn_register;
     private Timer mTimer = null;
     private int mTime = 60;
+    private TextView get_code;
 
     @Override
     public void setContent() {
@@ -87,8 +88,12 @@ public class ForgetPwdActivity extends BaseActivity {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         try {
+
                             DBLog.e("修改密码：", response.toString());
                             showToastMsg(response.getString("errorDescription"));
+                            if(response.getString("code").equals("0")){
+                                finish();
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
@@ -116,7 +121,7 @@ public class ForgetPwdActivity extends BaseActivity {
                 if (mTimer == null) {
                     mTimer = new Timer();
                     mTime = 60;
-                    get_code.setText(mTime + "");
+                    get_code.setText(mTime + "s后重新获取");
                     get_code.setEnabled(false);
                 } else {
                     return;
@@ -127,7 +132,7 @@ public class ForgetPwdActivity extends BaseActivity {
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 mTime--;
-                                get_code.setText(mTime + "");
+                                get_code.setText(mTime + "s后重新获取");
                                 if (mTime == 0) {
                                     mTimer.cancel();
                                     mTimer = null;

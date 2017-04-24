@@ -140,6 +140,7 @@
                 android:background="@mipmap/yanzhengma"
                 android:gravity="center"
                 android:text="获取验证码"
+                android:padding="2dp"
                 android:textColor="#fd903d"
                 android:textSize="12sp" />
 
@@ -164,6 +165,7 @@
                 android:hint="请输入密码"
                 android:maxLength="12"
                 android:singleLine="true"
+                android:inputType="textPassword"
                 android:textColor="@color/zy_text_color"
                 android:textColorHint="#AAAAAA"
                 android:textSize="16sp" />

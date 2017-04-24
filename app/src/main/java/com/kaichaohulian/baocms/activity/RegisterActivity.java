@@ -25,6 +25,9 @@ import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * 注册页
  */
@@ -34,6 +37,8 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
     private TextView iv_back;
     private TextView mTvGetCode;
     private String phone;
+    private Timer mTimer;
+    private int mTime = 60;
 
 
     @Override
@@ -133,6 +138,31 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
     }
 
     private void getCode() {
+        if (mTimer == null) {
+            mTimer = new Timer();
+            mTime = 60;
+            mTvGetCode.setText(mTime + "s后重新获取");
+            mTvGetCode.setEnabled(false);
+        } else {
+            return;
+        }
+        mTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        mTime--;
+                        mTvGetCode.setText(mTime + "s后重新获取");
+                        if (mTime == 0) {
+                            mTimer.cancel();
+                            mTimer = null;
+                            mTvGetCode.setText("重新验证");
+                            mTvGetCode.setEnabled(true);
+                        }
+                    }
+                });
+            }
+        }, 0, 1000);
         ShowDialog.showDialog(getActivity(), "发送中...", false, null);
         phone = et_usertel.getText().toString().trim();
         if (TextUtils.isEmpty(phone)) {
