@@ -29,11 +29,11 @@
     <!-- 登录 -->
     <string name="login_login_btn">登录</string>
     <string name="login_register_btn">注册</string>
-    <string name="login_forgetpassword_btn">忘记密码</string>
-    <string name="login_edpwd_btn">请填写密码</string>
-    <string name="login_edphone_btn">请填写手机号</string>
+    <string name="login_forgetpassword_btn">忘记密码？</string>
+    <string name="login_edpwd_btn">请输入密码</string>
+    <string name="login_edphone_btn">手机号码</string>
     <string name="login_address_tv">国家/地区</string>
-    <string name="login_title">使用手机号登录</string>
+    <string name="login_title">手机号登录</string>
     <string name="login_cancel">取消</string>
 
     <!-- 注册 -->
@@ -1311,5 +1311,7 @@
     <string name="chat_setting_blacklist">加入黑名单</string>
     <string name="chat_setting_complaint">投诉</string>
     <string name="chat_setting_title">资料设置</string>
+
+
 
 </resources>

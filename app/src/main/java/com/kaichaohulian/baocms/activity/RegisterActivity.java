@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.activity;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
+import com.kaichaohulian.baocms.app.AppManager;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.utils.DBLog;
@@ -25,10 +28,13 @@ import org.json.JSONObject;
 /**
  * 注册页
  */
-public class RegisterActivity extends BaseActivity {
-    private EditText et_usertel;
+public class RegisterActivity extends BaseActivity implements OnClickListener {
+    private EditText et_usertel, et_code, et_pwd;
     private Button btn_register;
     private TextView iv_back;
+    private TextView mTvGetCode;
+    private String phone;
+
 
     @Override
     public void setContent() {
@@ -42,12 +48,17 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public void initView() {
         et_usertel = (EditText) findViewById(R.id.et_usertel);
+        et_code = (EditText) findViewById(R.id.et_register_code);
+        et_pwd = (EditText) findViewById(R.id.et_register_pwd);
         btn_register = (Button) findViewById(R.id.btn_register);
         iv_back = (TextView) findViewById(R.id.iv_back);
+        mTvGetCode = (TextView) findViewById(R.id.tv_register_code);
+
     }
 
     @Override
     public void initEvent() {
+        mTvGetCode.setOnClickListener(this);
         iv_back.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,41 +70,106 @@ public class RegisterActivity extends BaseActivity {
         btn_register.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowDialog.showDialog(getActivity(), "发送中...", false, null);
-                final String phone = et_usertel.getText().toString().trim();
-                RequestParams params = new RequestParams();
-                params.put("phoneNumber", phone);
-                HttpUtil.post(Url.sendMessage, params, new JsonHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        try {
-                            DBLog.e("验证码", response.toString());
-                            if (response.getInt("code") == 0) {
-                                Bundle Bundle = new Bundle();
-                                Bundle.putString("phoneNumber", phone);
-                                ActivityUtil.next(getActivity(), RegisterActivity2.class, Bundle);
-                            }
-                            showToastMsg(response.getString("errorDescription"));
-                        } catch (Exception e) {
-                            showToastMsg("发送失败");
-                            e.printStackTrace();
-                        } finally {
-                            ShowDialog.dissmiss();
-                        }
-                    }
+                register();
+            }
+        });
+    }
 
-                    @Override
-                    public void onFinish() {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_register_code:
+                getCode();
+                break;
+        }
+    }
 
+    private void register() {
+        String code = et_code.getText().toString();
+        String pwd = et_pwd.getText().toString();
+        if (TextUtils.isEmpty(code)) {
+            ToastUtil.showMessage("请输入验证码");
+            return;
+        }
+        if (TextUtils.isEmpty(pwd)) {
+            ToastUtil.showMessage("请输入密码");
+            return;
+        }
+        ShowDialog.showDialog(getActivity(), "注册中...", false, null);
+        RequestParams params = new RequestParams();
+        params.put("phoneNumber", phone);
+        params.put("password", pwd);
+        params.put("code", code);
+        HttpUtil.post(Url.signUp, params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    DBLog.e("注册:", response.toString());
+                    if (response.getInt("code") == 0) {
+                        AppManager.getAppManager().finishAllActivity();
+                        ActivityUtil.next(getActivity(), LoginActivity.class);
                     }
+                    showToastMsg(response.getString("errorDescription"));
+                } catch (Exception e) {
+                    showToastMsg("注册失败");
+                    e.printStackTrace();
+                } finally {
+                    ShowDialog.dissmiss();
+                }
+            }
 
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                        showToastMsg("请求服务器失败");
-                        DBLog.e("tag", statusCode + ":" + responseString);
-                        ShowDialog.dissmiss();
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                showToastMsg("请求服务器失败");
+                DBLog.e("tag", statusCode + ":" + responseString);
+                ShowDialog.dissmiss();
+            }
+        });
+    }
+
+    private void getCode() {
+        ShowDialog.showDialog(getActivity(), "发送中...", false, null);
+        phone = et_usertel.getText().toString().trim();
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtil.showMessage("请输入手机号");
+            return;
+        }
+        RequestParams params = new RequestParams();
+        params.put("phoneNumber", phone);
+        HttpUtil.post(Url.sendMessage, params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    DBLog.e("验证码", response.toString());
+                    if (response.getInt("code") == 0) {
+//                        Bundle Bundle = new Bundle();
+//                        Bundle.putString("phoneNumber", phone);
+//                        ActivityUtil.next(getActivity(), RegisterActivity2.class, Bundle);
                     }
-                });
+                    showToastMsg(response.getString("errorDescription"));
+                } catch (Exception e) {
+                    showToastMsg("发送失败");
+                    e.printStackTrace();
+                } finally {
+                    ShowDialog.dissmiss();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                showToastMsg("请求服务器失败");
+                DBLog.e("tag", statusCode + ":" + responseString);
+                ShowDialog.dissmiss();
             }
         });
     }
