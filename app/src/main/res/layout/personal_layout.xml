@@ -36,7 +36,7 @@
             android:layout_width="@dimen/dimens_64"
             android:layout_height="@dimen/dimens_64"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/personal_head_arrow"
             android:scaleType="fitXY"
             android:src="@mipmap/default_useravatar" />
@@ -68,22 +68,15 @@
             android:id="@+id/personal_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/personal_name_arrow"
             android:text="李九杂"
             android:textColor="@color/tv_text"
             android:textSize="@dimen/text_14" />
 
-        <ImageView
-            android:id="@+id/personal_name_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
-            android:src="@mipmap/right_arrow" />
-
     </RelativeLayout>
 
 
@@ -93,77 +86,37 @@
         android:layout_marginLeft="15dp"
         android:background="@color/line" />
 
-
     <RelativeLayout
-        android:id="@+id/buyerNumber_linear"
+        android:id="@+id/sexy_linear"
         android:layout_width="match_parent"
         android:layout_height="@dimen/discover_line_height"
         android:background="@drawable/seltor"
         android:clickable="true">
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/me_icon_marginparentleft"
-            android:text="@string/personal_buyer_number"
+            android:text="@string/personal_sexy"
             android:textColor="@color/dark"
             android:textSize="@dimen/text_14" />
 
         <TextView
-            android:id="@+id/personal_buyer_number"
+            android:id="@+id/personal_sex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView"
-            android:layout_alignBottom="@+id/textView"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="25dp"
-            android:layout_marginRight="25dp"
-            android:text="5109878"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+
+            android:layout_toLeftOf="@+id/personal_sex_arrow"
+            android:text="女"
             android:textColor="@color/tv_text"
             android:textSize="@dimen/text_14" />
 
     </RelativeLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:background="@color/line" />
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true">
-
-        <TextView
-            android:id="@+id/textView_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/me_icon_marginparentleft"
-            android:text="手机号"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <TextView
-            android:id="@+id/personal_buyer_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView_phone"
-            android:layout_alignBottom="@+id/textView_phone"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="25dp"
-            android:layout_marginRight="25dp"
-            android:textColor="@color/tv_text"
-            android:textSize="@dimen/text_14" />
-
-    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
@@ -189,21 +142,90 @@
 
         <ImageView
             android:id="@+id/im_QrCode"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/personal_twocode_arrow"
-            android:src="@mipmap/me_settings" />
+            android:src="@mipmap/qrcode" />
 
-        <ImageView
-            android:id="@+id/personal_twocode_arrow"
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#E8E8E8"
+        android:orientation="vertical" />
+
+
+    <RelativeLayout
+        android:id="@+id/personal_age_linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@drawable/seltor"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/me_icon_marginparentleft"
+            android:text="@string/personal_age"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/personal_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
-            android:src="@mipmap/right_arrow" />
+            android:layout_marginRight="10dp"
+            android:maxLength="20"
+            android:text="23"
+            android:textColor="@color/tv_text"
+            android:textSize="@dimen/text_14" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_small"
+        android:layout_marginLeft="15dp"
+        android:background="@color/line" />
+
+
+    <RelativeLayout
+        android:id="@+id/personal_job_linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@drawable/seltor"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/me_icon_marginparentleft"
+            android:text="@string/personal_job"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/personal_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+
+            android:maxLength="20"
+            android:text="视觉设计"
+            android:textColor="@color/tv_text"
+            android:textSize="@dimen/text_14" />
+
 
     </RelativeLayout>
 
@@ -214,7 +236,7 @@
         android:background="@color/line" />
 
     <RelativeLayout
-        android:id="@+id/my_address_linear"
+        android:id="@+id/personal_hobby_linear"
         android:layout_width="match_parent"
         android:layout_height="@dimen/discover_line_height"
         android:background="@drawable/seltor"
@@ -225,65 +247,25 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/me_icon_marginparentleft"
-            android:text="@string/personal_my_address"
+            android:text="@string/personal_hobby"
             android:textColor="@color/dark"
             android:textSize="@dimen/text_14" />
 
-        <ImageView
-            android:id="@+id/personal_address_arrow"
+        <TextView
+            android:id="@+id/personal_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
-            android:src="@mipmap/right_arrow" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="#E8E8E8"
-        android:orientation="vertical" />
-
-    <RelativeLayout
-        android:id="@+id/sexy_linear"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/me_icon_marginparentleft"
-            android:text="@string/personal_sexy"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <TextView
-            android:id="@+id/personal_sex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/personal_sex_arrow"
-            android:text="女"
+
+            android:maxLength="20"
+            android:text="打球、看书"
             android:textColor="@color/tv_text"
             android:textSize="@dimen/text_14" />
 
-        <ImageView
-            android:id="@+id/personal_sex_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
-            android:src="@mipmap/right_arrow" />
 
     </RelativeLayout>
-
 
     <View
         android:layout_width="match_parent"
@@ -312,11 +294,10 @@
             android:id="@+id/personal_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/personal_area_arrow"
-            android:layout_toRightOf="@id/label_personal_area"
             android:ellipsize="end"
             android:gravity="center_vertical|right"
             android:singleLine="true"
@@ -324,62 +305,9 @@
             android:textColor="@color/tv_text"
             android:textSize="@dimen/text_14" />
 
-        <ImageView
-            android:id="@+id/personal_area_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
-            android:src="@mipmap/right_arrow" />
 
     </RelativeLayout>
 
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:background="@color/line" />
-
-    <RelativeLayout
-        android:id="@+id/personal_sign_linear"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/me_icon_marginparentleft"
-            android:text="@string/personal_sign"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <TextView
-            android:id="@+id/personal_sign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/personal_sign_arrow"
-            android:maxLength="20"
-            android:text="未填写"
-            android:textColor="@color/tv_text"
-            android:textSize="@dimen/text_14" />
-
-        <ImageView
-            android:id="@+id/personal_sign_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/me_rightarrow_marginparentright"
-            android:src="@mipmap/right_arrow" />
-
-    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
