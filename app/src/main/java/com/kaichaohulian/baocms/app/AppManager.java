@@ -10,7 +10,7 @@ import java.util.Stack;
  * 应用程序Activity管理类：用于Activity管理和应用程序退出
  * Created by ljl on 2016/12/11.
  */
-public class    AppManager {
+public class AppManager {
 
     private static Stack<Activity> activityStack;
     //private static AppManager instance = null; // 懒汉式 有缺陷
@@ -25,18 +25,18 @@ public class    AppManager {
      * 单一实例
      */
     public static AppManager getAppManager() {
-		// (懒汉式)
+        // (懒汉式)
         //if (instance == null) {
         //    instance = new AppManager();
         //}
-		
-		// 锁 多线程 (面试 考 懒汉式)
-		//if (instance == null) {
+
+        // 锁 多线程 (面试 考 懒汉式)
+        //if (instance == null) {
         //    synchronized(AppManager.class){
-		//		if(instance == null){
-		//			instance = new AppManager();
-		//		}
-		//	}
+        //		if(instance == null){
+        //			instance = new AppManager();
+        //		}
+        //	}
         //}
         return instance;
     }
@@ -61,19 +61,6 @@ public class    AppManager {
         activityList.add(activity);
     }
 
-    /**
-     * 结束所有Activity
-     */
-    public void AfinishListActivity() {
-        if (activityList != null && activityList.size() > 0) {
-            for (int i = 0, size = activityList.size(); i < size; i++) {
-                if (null != activityList.get(i)) {
-                    activityList.get(i).finish();
-                }
-            }
-            activityList.clear();
-        }
-    }
 
     /**
      * 获取当前Activity（堆栈中最后一个压入的）
@@ -128,6 +115,20 @@ public class    AppManager {
                 }
             }
             activityStack.clear();
+        }
+    }
+
+    /**
+     * 结束所有Activity
+     */
+    public void AfinishListActivity() {
+        if (activityList != null && activityList.size() > 0) {
+            for (int i = 0, size = activityList.size(); i < size; i++) {
+                if (null != activityList.get(i)) {
+                    activityList.get(i).finish();
+                }
+            }
+            activityList.clear();
         }
     }
 }
