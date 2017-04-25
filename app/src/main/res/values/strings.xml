@@ -66,7 +66,7 @@
     <string name="me_pocket">钱包</string>
     <string name="me_about">关于</string>
     <string name="me_setting">设置</string>
-
+    <string name="me_face">表情</string>
 
     <!-- 添加银行卡 界面-->
     <string name="add_bankcard_tips">请确保姓名、身份证、银行卡开户人为同一人</string>

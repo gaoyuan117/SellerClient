@@ -3,9 +3,12 @@ package com.kaichaohulian.baocms.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.UserInfoManager;
+import com.kaichaohulian.baocms.activity.CollectionListActivity;
 import com.kaichaohulian.baocms.activity.MeSettingsActivity;
 import com.kaichaohulian.baocms.activity.MyAlbumActivity;
 import com.kaichaohulian.baocms.activity.PersonalActivity;
@@ -22,6 +26,10 @@ import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
 import com.kaichaohulian.baocms.utils.SharedPrefsUtil;
+import com.melink.bqmmsdk.ui.store.EmojiPackageList;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 我的
@@ -35,6 +43,8 @@ public class ProFileFragment extends BaseFragment {
     private RelativeLayout mSettings;
     private RelativeLayout mAlbum;
     private RelativeLayout mAbout;
+    private RelativeLayout mCollection;
+    private RelativeLayout mFace;
 
     private TextView me_head_name;
     private TextView me_buyer_number;
@@ -64,9 +74,9 @@ public class ProFileFragment extends BaseFragment {
         mPocket = getId(R.id.me_relativelayout_pocket);
         mSettings = getId(R.id.me_relativelayout_settings);
         mAlbum = getId(R.id.me_relativelayout_album);
-        mAbout=getId(R.id.me_relativelayout_about);
-//        mCollection = getId(R.id.me_relativelayout_collection);
-//        mFace = getId(R.id.me_relativelayout_face);
+        mAbout = getId(R.id.me_relativelayout_about);
+        mCollection = getId(R.id.me_relativelayout_collection);
+        mFace = getId(R.id.me_relativelayout_face);
 
         me_head_icon = getId(R.id.me_head_icon);
         me_buyer_number = getId(R.id.me_buyer_number);
@@ -84,7 +94,7 @@ public class ProFileFragment extends BaseFragment {
         } else {
             me_buyer_number.setText("暂未获取到账号");
         }
-        Glide.with(MyApplication.getInstance()).load("http://115.29.99.167:8081/SellerNet/" + MyApplication.getInstance().UserInfo.getQrCode()).diskCacheStrategy(DiskCacheStrategy.ALL).into(im_QrCode);
+        Glide.with(MyApplication.getInstance()).load("http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode()).diskCacheStrategy(DiskCacheStrategy.ALL).into(im_QrCode);
     }
 
     @Override
@@ -102,34 +112,34 @@ public class ProFileFragment extends BaseFragment {
 
     @Override
     public void initEvent() {
-        mPersonal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityUtil.next(getActivity(), PersonalActivity.class);
-            }
-        });
-
-        mPocket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UserInfoManager.getInstance().updateUserCache(getActivity());
-                ActivityUtil.next(getActivity(), PocketActivity.class);
-            }
-        });
-
-        mSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityUtil.next(getActivity(), MeSettingsActivity.class);
-            }
-        });
-        mAlbum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityUtil.next(getActivity(), MyAlbumActivity.class);
-            }
-        });
-//        mCollection.setOnClickListener(new View.OnClickListener() {
+//        mPersonal.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ActivityUtil.next(getActivity(), PersonalActivity.class);
+//            }
+//        });
+//
+//        mPocket.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                UserInfoManager.getInstance().updateUserCache(getActivity());
+//                ActivityUtil.next(getActivity(), PocketActivity.class);
+//            }
+//        });
+//
+//        mSettings.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ActivityUtil.next(getActivity(), MeSettingsActivity.class);
+//            }
+//        });
+//        mAlbum.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ActivityUtil.next(getActivity(), MyAlbumActivity.class);
+//            }
+//        });
+//        mAbout.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                ActivityUtil.next(getActivity(), CollectionListActivity.class);
@@ -144,4 +154,39 @@ public class ProFileFragment extends BaseFragment {
 //        });
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @OnClick({R.id.me_name, R.id.me_relativelayout_album, R.id.me_relativelayout_collection, R.id.me_relativelayout_pocket, R.id.me_relativelayout_face, R.id.me_relativelayout_about, R.id.me_relativelayout_settings})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.me_name:
+                ActivityUtil.next(getActivity(), PersonalActivity.class);
+                break;
+            case R.id.me_relativelayout_album:
+                ActivityUtil.next(getActivity(), MyAlbumActivity.class);
+                break;
+            case R.id.me_relativelayout_collection:
+                ActivityUtil.next(getActivity(), CollectionListActivity.class);
+                break;
+            case R.id.me_relativelayout_pocket:
+                UserInfoManager.getInstance().updateUserCache(getActivity());
+                ActivityUtil.next(getActivity(), PocketActivity.class);
+                break;
+            case R.id.me_relativelayout_face:
+                startActivity(new Intent(getActivity(), EmojiPackageList.class));
+                break;
+            case R.id.me_relativelayout_about:
+                //TODO 设置关于页面
+//                ActivityUtil.next(getActivity(),);
+                break;
+            case R.id.me_relativelayout_settings:
+                ActivityUtil.next(getActivity(), MeSettingsActivity.class);
+                break;
+        }
+    }
 }

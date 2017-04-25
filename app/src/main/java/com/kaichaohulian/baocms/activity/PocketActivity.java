@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -7,13 +8,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.app.ActivityUtil;
+import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.BankCardEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 钱包界面
@@ -33,9 +38,12 @@ public class PocketActivity extends BaseActivity {
     RelativeLayout RechargeLinear;
     @BindView(R.id.transfer_money)
     RelativeLayout TransferLinear;
+
+
     private List<BankCardEntity> data;
     public static final int SET_PASSWORD_REQUEST_CODE = 6;
     public static final int NextAddMember = 998;
+
     @Override
     public void setContent() {
         setContentView(R.layout.pocket);
@@ -44,13 +52,13 @@ public class PocketActivity extends BaseActivity {
     @Override
     public void initData() {
         setCenterTitle("钱包");
-
     }
 
     @Override
     public void initView() {
 
     }
+
 
     @Override
     public void initEvent() {
@@ -86,16 +94,17 @@ public class PocketActivity extends BaseActivity {
 //            }
 //        });
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         //TODO 获取余额和银行卡数
-//        if (MyApplication.getInstance().UserInfo != null) {
-//            BigDecimal bd = new BigDecimal(MyApplication.getInstance().UserInfo.getBalance());
-//            bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
-//            SmallMoneyAccout.setText(bd.toString());
-//            BankcardNumber.setText(data.size() + "张");
-//        }
+        if (MyApplication.getInstance().UserInfo != null) {
+            BigDecimal bd = new BigDecimal(MyApplication.getInstance().UserInfo.getBalance());
+            bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+            SmallMoneyAccout.setText(bd.toString());
+            BankcardNumber.setText(data.size() + "张");
+        }
     }
 
     public void back(View view) {
@@ -106,6 +115,29 @@ public class PocketActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
+    }
+
+
+
+    @OnClick({R.id.small_money_recharge, R.id.bank_card, R.id.phone_recharge, R.id.transfer_money})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.small_money_recharge:
+                ActivityUtil.next(PocketActivity.this, MyChangeActivity.class);
+                break;
+            case R.id.bank_card:
+                ActivityUtil.next(PocketActivity.this, MyBankCardListActivity.class);
+                break;
+            case R.id.phone_recharge:
+                Intent intent = new Intent();
+                intent.setClass(PocketActivity.this, RechargeActivity.class);
+                startActivityForResult(intent, SET_PASSWORD_REQUEST_CODE);
+                break;
+            case R.id.transfer_money:
+                Bundle bundle = new Bundle();
+                ActivityUtil.next(PocketActivity.this, TransferSelectContactActivity.class, bundle, 2);
+                break;
+        }
     }
 
 //    public void getBindBankCard() {
