@@ -47,11 +47,13 @@ import java.util.Date;
 public class PersonalActivity extends BaseActivity {
 
     private RelativeLayout mNameEdit, mTwoCode, mArea, mSexy, mSign, mAddress;
-    private RelativeLayout mBuyerNumer, mHeadIcon;
+    private RelativeLayout
+//            mBuyerNumer,
+            mHeadIcon;
     private ImageView imgHead;
     private ImageView qrCode;
     private TextView personName;
-    private TextView personSign;
+//    private TextView personSign;
     private TextView perdonSexy;
     private String edtName = new String("");
     private String sign = new String("");
@@ -61,8 +63,8 @@ public class PersonalActivity extends BaseActivity {
     private String imageName;
     private UploadManager uploadManager;
     private TextView mPersonalArea;
-    private TextView personal_buyer_number;
-    private TextView personal_buyer_phone;
+//    private TextView personal_buyer_number;
+//    private TextView personal_buyer_phone;
 
     //性别选择网络请求Code
     public static final int SEXY_CHOOSE_RESULTCODE = 3;
@@ -95,21 +97,22 @@ public class PersonalActivity extends BaseActivity {
     public void initView() {
         setCenterTitle("我");
 
+        //TODO
         mNameEdit = getId(R.id.name_linear);
         mTwoCode = getId(R.id.twocode_linear);
         mAddress = getId(R.id.my_address_linear);
-        mBuyerNumer = getId(R.id.buyerNumber_linear);
+//        mBuyerNumer = getId(R.id.buyerNumber_linear);
         mHeadIcon = getId(R.id.head_icon_linear);
         personName = getId(R.id.personal_name);
         mSign = getId(R.id.personal_sign_linear);
-        personSign = getId(R.id.personal_sign);
+//        personSign = getId(R.id.personal_sign);
         mSexy = getId(R.id.sexy_linear);
         imgHead = getId(R.id.imgHead);
         mArea = getId(R.id.area_linear);
         perdonSexy = getId(R.id.personal_sex);
         qrCode = getId(R.id.im_QrCode);
-        personal_buyer_number = getId(R.id.personal_buyer_number);
-        personal_buyer_phone = getId(R.id.personal_buyer_phone);
+//        personal_buyer_number = getId(R.id.personal_buyer_number);
+//        personal_buyer_phone = getId(R.id.personal_buyer_phone);
         mPersonalArea = getId(R.id.personal_area);
         Glide.with(getActivity()).load("http://115.29.99.167:8081/SellerNet/" + MyApplication.getInstance().UserInfo.getQrCode()).diskCacheStrategy(DiskCacheStrategy.ALL).into(qrCode);
 
@@ -128,29 +131,30 @@ public class PersonalActivity extends BaseActivity {
                 perdonSexy.setText("女");
             }
         }
-        if (MyApplication.getInstance().UserInfo.getThermalSignatrue() == null || MyApplication.getInstance().UserInfo.getThermalSignatrue().equals("null")) {
-            personSign.setText("");
-        } else {
-            personSign.setText(MyApplication.getInstance().UserInfo.getThermalSignatrue());
-        }
-        if (MyApplication.getInstance().UserInfo.getAvatar() != null) {
-            showUserAvator(imgHead, MyApplication.getInstance().UserInfo.getAvatar());
-        }
-        if (MyApplication.getInstance().UserInfo.getAccountNumber() == null || MyApplication.getInstance().UserInfo.getAccountNumber().equals("null")) {
-            personal_buyer_number.setText("");
-        } else {
-            personal_buyer_number.setText(MyApplication.getInstance().UserInfo.getAccountNumber());
-        }
-        if (MyApplication.getInstance().UserInfo.getPhoneNumber() == null || MyApplication.getInstance().UserInfo.getPhoneNumber().equals("null")) {
-            personal_buyer_phone.setText("暂未获取到手机号");
-        } else {
-            personal_buyer_phone.setText(MyApplication.getInstance().UserInfo.getPhoneNumber());
-        }
-        if (MyApplication.getInstance().UserInfo.getDistrictId() == null || MyApplication.getInstance().UserInfo.getDistrictId().equals("null")) {
-            mPersonalArea.setText("暂未获取到地区");
-        } else {
-            mPersonalArea.setText(MyApplication.getInstance().UserInfo.getDistrictId());
-        }
+        //TODO
+//        if (MyApplication.getInstance().UserInfo.getThermalSignatrue() == null || MyApplication.getInstance().UserInfo.getThermalSignatrue().equals("null")) {
+//            personSign.setText("");
+//        } else {
+//            personSign.setText(MyApplication.getInstance().UserInfo.getThermalSignatrue());
+//        }
+//        if (MyApplication.getInstance().UserInfo.getAvatar() != null) {
+//            showUserAvator(imgHead, MyApplication.getInstance().UserInfo.getAvatar());
+//        }
+//        if (MyApplication.getInstance().UserInfo.getAccountNumber() == null || MyApplication.getInstance().UserInfo.getAccountNumber().equals("null")) {
+//            personal_buyer_number.setText("");
+//        } else {
+//            personal_buyer_number.setText(MyApplication.getInstance().UserInfo.getAccountNumber());
+//        }
+//        if (MyApplication.getInstance().UserInfo.getPhoneNumber() == null || MyApplication.getInstance().UserInfo.getPhoneNumber().equals("null")) {
+//            personal_buyer_phone.setText("暂未获取到手机号");
+//        } else {
+//            personal_buyer_phone.setText(MyApplication.getInstance().UserInfo.getPhoneNumber());
+//        }
+//        if (MyApplication.getInstance().UserInfo.getDistrictId() == null || MyApplication.getInstance().UserInfo.getDistrictId().equals("null")) {
+//            mPersonalArea.setText("暂未获取到地区");
+//        } else {
+//            mPersonalArea.setText(MyApplication.getInstance().UserInfo.getDistrictId());
+//        }
     }
 
     @Override
@@ -176,12 +180,13 @@ public class PersonalActivity extends BaseActivity {
 
             }
         });
-        mBuyerNumer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        //TODO
+//        mBuyerNumer.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 
         mHeadIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -250,7 +255,8 @@ public class PersonalActivity extends BaseActivity {
                         return;
                     }
                     sign = data.getStringExtra("sign");
-                    personSign.setText(sign);
+                    //TODO
+//                    personSign.setText(sign);
                     updateMyUser();
                     break;
 
@@ -319,7 +325,8 @@ public class PersonalActivity extends BaseActivity {
         RequestParams params = new RequestParams();
         params.put("id", MyApplication.getInstance().UserInfo.getUserId());
         params.put("username", personName.getText().toString().trim());
-        params.put("thermalSignatrue", personSign.getText().toString().trim());
+        //TODO
+//        params.put("thermalSignatrue", personSign.getText().toString().trim());
         params.put("avatar", avatar);
         params.put("districtName", "成都市");
         params.put("sex", perdonSexy.getText().toString().equals("男") ? "0" : "1");
@@ -330,7 +337,8 @@ public class PersonalActivity extends BaseActivity {
                     DBLog.e("修改个人资料：", response.toString());
                     if (response.getInt("code") == 0) {
                         MyApplication.getInstance().UserInfo.setUsername(personName.getText().toString());
-                        MyApplication.getInstance().UserInfo.setThermalSignatrue(personSign.getText().toString());
+                        //TODO
+//                        MyApplication.getInstance().UserInfo.setThermalSignatrue(personSign.getText().toString());
                         MyApplication.getInstance().UserInfo.setAvatar(avatar);
                         MyApplication.getInstance().UserInfo.setDistrictId("成都市");
                         MyApplication.getInstance().UserInfo.setSex(perdonSexy.getText().toString());

@@ -38,7 +38,7 @@
 
     <!-- 注册 -->
     <string name="register_title">请输入您的手机号码</string>
-    <string name="register_register_btn">注册</string>
+    <string name="register_register_btn">登录</string>
     <string name="register2_title">短信验证码已发送，请填写验证码</string>
     <string name="register_phone_tv">手机号</string>
     <string name="register_code_tv">验证码</string>
@@ -97,6 +97,9 @@
     <string name="personal_sexy">性别</string>
     <string name="personal_area">地区</string>
     <string name="personal_sign">个性签名</string>
+    <string name="personal_hobby">爱好</string>
+    <string name="personal_job">职业</string>
+    <string name="personal_age">年龄</string>
 
     <!--红包 界面 -->
     <string name="redbag_ping_shou_qi">拼手气红包</string>
@@ -135,8 +138,10 @@
     <string name="pocket_bank_id">银行卡</string>
     <string name="pocket_buyer_service">买家服务</string>
     <string name="pocket_transfer">转账</string>
-    <string name="pocket_phone_recharge">手机充值</string>
+    <string name="pocket_phone_recharge">充值</string>
     <string name="pocket_buyer_red_bag">买家红包</string>
+    <string name="pocket_phone_withdrawals">提现</string>
+
 
     <!-- 12.12 增加-->
     <string name="me_my_address_addaddress">新增地址</string>

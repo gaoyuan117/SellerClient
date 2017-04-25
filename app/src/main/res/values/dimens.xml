@@ -105,7 +105,7 @@
     <dimen name="me_line_height">55dp</dimen>
     <dimen name="me_text_marginparentleft">55dp</dimen>
     <dimen name="me_icon_marginparentleft">20dp</dimen>
-    <dimen name="me_rightarrow_marginparentright">25dp</dimen>
+    <dimen name="me_rightarrow_marginparentright">15dp</dimen>
     <dimen name="me_head_name">18sp</dimen>
     <dimen name="me_buyer">15sp</dimen>
 
@@ -117,6 +117,8 @@
     <dimen name="add_bankcard_red_tips">14sp</dimen>
 
     <!--零钱充值  界面 -->
+    <dimen name="money_rightarrow_marginparentright">15dp</dimen>
+    <dimen name="money_image_marginparentleft">15dp</dimen>
     <dimen name="money_recharge_edit_marginleft">100dp</dimen>
     <dimen name="money_recharge_button_width">350dp</dimen>
 
@@ -299,4 +301,8 @@
 
     <dimen name="common_riv_corner">8dp</dimen>
     <dimen name="viewpager_margin">2dp</dimen>
+
+
+
+
 </resources>

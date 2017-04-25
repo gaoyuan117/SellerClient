@@ -100,131 +100,92 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <RelativeLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-
-        android:background="#E8E8E8">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:text="@string/pocket_buyer_service"
-
-            />
-    </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="5dp"
+        android:background="@color/gray" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/transfer_money"
-            android:layout_width="1dp"
-            android:layout_height="90dp"
-            android:layout_weight="1"
-            android:background="@drawable/seltor"
-            android:clickable="true">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="25dp"
-                    android:src="@mipmap/transfer_money" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="55dp"
-                    android:text="@string/pocket_transfer"
-                    android:textColor="@color/dark" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="1dp"
-            android:layout_height="110dp"
-            android:background="@color/gray" />
-
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/phone_recharge"
-            android:layout_width="1dp"
-            android:layout_height="90dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height"
             android:background="@drawable/seltor"
             android:clickable="true">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/pocket_phone_recharge_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/money_image_marginparentleft"
+                android:src="@mipmap/pocket_phone_recharge" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="25dp"
-                    android:src="@mipmap/phone_recharge" />
+            <TextView
+                android:layout_toRightOf="@+id/pocket_phone_recharge_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/me_icon_marginparentleft"
+                android:text="@string/pocket_phone_recharge"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_14" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="55dp"
-                    android:text="@string/pocket_phone_recharge"
-                    android:textColor="@color/dark" />
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/pocket_phone_recharge_arr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/money_rightarrow_marginparentright"
+                android:src="@mipmap/right_arrow" />
 
-        </LinearLayout>
-
+        </RelativeLayout>
         <LinearLayout
-            android:layout_width="1dp"
-            android:layout_height="110dp"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
             android:background="@color/gray" />
 
-        <LinearLayout
-            android:id="@+id/buyer_red_bag"
-            android:layout_width="1dp"
-            android:layout_height="90dp"
-            android:layout_weight="1"
+        <RelativeLayout
+            android:id="@+id/transfer_money"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_line_height"
             android:background="@drawable/seltor"
             android:clickable="true">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/pocket_phone_withdrawals_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/money_image_marginparentleft"
+                android:src="@mipmap/pocket_phone_withdrawals" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="25dp"
-                    android:src="@mipmap/buyer_red_bag" />
+            <TextView
+                android:layout_toRightOf="@+id/pocket_phone_withdrawals_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/me_icon_marginparentleft"
+                android:text="@string/pocket_phone_withdrawals"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_14" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="55dp"
-                    android:text="@string/pocket_buyer_red_bag"
-                    android:textColor="@color/dark" />
+            <ImageView
+                android:id="@+id/pocket_phone_withdrawals_arr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/money_rightarrow_marginparentright"
+                android:src="@mipmap/right_arrow" />
 
-            </RelativeLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
