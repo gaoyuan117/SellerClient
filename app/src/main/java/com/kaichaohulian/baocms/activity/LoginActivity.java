@@ -221,7 +221,7 @@ public class LoginActivity extends BaseEcActivity {
                         UserInfo.setBackAvatar(response.getString("backAvatar"));
                         UserInfo.setLoginFailedCount(0);
                         UserInfo.setPayPassword(response.getString("paypassword"));
-                        UserInfo.setAge(response.getInt("age"));
+//                        UserInfo.setAge(response.getInt("age"));
                         UserInfo.setJob(response.getString("job"));
                         UserInfo.setHobby(response.getString("hobby"));
 
