@@ -32,7 +32,9 @@ public class UserInfo implements Serializable {
     public static final String BACKAVATAR = "backAvatar";
     public static final String LOGINFAILEDCOUNT = "loginFailedCount";
     public static final String PAYPASSWORD = "payPassword";
-
+    public static final String HOBBY="hobby";
+    public static final String AGE="age";
+    public static final String JOB="job";
     private int id;
     private int userId;
     private String createdTime;
@@ -60,6 +62,33 @@ public class UserInfo implements Serializable {
     private String token;
     private String labelName;
     private String payPassword; //支付密码
+    private int age;
+    private String job;
+    private String hobby;
+
+    public String getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
 
     public String getToken() {
         return token;
@@ -296,16 +325,20 @@ public class UserInfo implements Serializable {
                 ", thermalSignatrue='" + thermalSignatrue + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", userEmail='" + userEmail + '\'' +
-                ", balance=" + balance +
+                ", balance='" + balance + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", backAvatar='" + backAvatar + '\'' +
+                ", industry='" + industry + '\'' +
                 ", loginFailedCount=" + loginFailedCount +
                 ", isfriend=" + isfriend +
                 ", images=" + images +
                 ", header='" + header + '\'' +
+                ", token='" + token + '\'' +
+                ", labelName='" + labelName + '\'' +
                 ", payPassword='" + payPassword + '\'' +
+                ", age='" + age + '\'' +
+                ", job='" + job + '\'' +
+                ", hobby='" + hobby + '\'' +
                 '}';
     }
-
-
 }

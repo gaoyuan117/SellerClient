@@ -5,7 +5,7 @@ package com.kaichaohulian.baocms.http;
  * Created by ljl on 2016/12/11.
  */
 public class Url {
-    public static final String BASE_URL = "http://115.29.99.167:8081/SellerNet/api/"; // 服务器地址
+    public static final String BASE_URL = "http://www.52yeli.com/api/"; // 服务器地址
 
     public static final String WX_APP_ID = "wxe2c54efaeeae4ccb";
     public static final String WX_APP_SECRET = "902f4bebd104ed977fee542a10377f2e";

@@ -5,7 +5,11 @@
     android:orientation="vertical">
 
     <include layout="@layout/title_project" />
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="#E8E8E8"
+        android:orientation="vertical" />
     <RelativeLayout
         android:id="@+id/head_icon_linear"
         android:layout_width="match_parent"
@@ -252,7 +256,7 @@
             android:textSize="@dimen/text_14" />
 
         <TextView
-            android:id="@+id/personal_favorite"
+            android:id="@+id/personal_hobby"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -274,14 +278,14 @@
         android:background="@color/line" />
 
     <RelativeLayout
-        android:id="@+id/area_linear"
+        android:id="@+id/address_linear"
         android:layout_width="match_parent"
         android:layout_height="@dimen/discover_line_height"
         android:background="@drawable/seltor"
         android:clickable="true">
 
         <TextView
-            android:id="@+id/label_personal_area"
+            android:id="@+id/label_personal_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -291,7 +295,7 @@
             android:textSize="@dimen/text_14" />
 
         <TextView
-            android:id="@+id/personal_area"
+            android:id="@+id/personal_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

@@ -9,7 +9,7 @@
         android:id="@+id/navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimens_50"
-        android:background="@color/common_top_bar_blue">
+        android:background="@color/zy_orange">
 
         <LinearLayout
             android:id="@+id/exit_layout"

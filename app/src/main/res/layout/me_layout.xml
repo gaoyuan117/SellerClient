@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
-            android:src="@mipmap/me_album" />
+            android:src="@mipmap/me_album_part" />
 
         <TextView
             android:id="@+id/me_album_text"
@@ -124,50 +124,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:background="@color/light_gray" />
-
-    <RelativeLayout
-        android:id="@+id/me_relativelayout_collection"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/me_colletion_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
-            android:src="@mipmap/me_collection" />
-
-        <TextView
-            android:id="@+id/me_colletion_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/discover_text_marginparentleft"
-            android:text="@string/me_collection"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/discover_rightarrow_marginparentright"
-            android:src="@mipmap/right_arrow" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:background="@color/light_gray" />
+        android:layout_height="@dimen/dimens_25"
+        android:orientation="vertical" />
 
     <RelativeLayout
         android:id="@+id/me_relativelayout_pocket"
@@ -183,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
-            android:src="@mipmap/me_pocket" />
+            android:src="@mipmap/me_pocket_part" />
 
         <TextView
             android:id="@+id/me_pocket_text"
@@ -211,7 +169,7 @@
         android:orientation="vertical" />
 
     <RelativeLayout
-        android:id="@+id/me_relativelayout_face"
+        android:id="@+id/me_relativelayout_about"
         android:layout_width="match_parent"
         android:layout_height="@dimen/discover_line_height"
         android:background="@drawable/seltor"
@@ -219,20 +177,20 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/me_face_icon"
+            android:id="@+id/me_about_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
-            android:src="@mipmap/me_face" />
+            android:src="@mipmap/me_about" />
 
         <TextView
-            android:id="@+id/me_face_text"
+            android:id="@+id/me_about_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/discover_text_marginparentleft"
-            android:text="@string/me_face"
+            android:text="@string/me_about"
             android:textColor="@color/dark"
             android:textSize="@dimen/text_14" />
 

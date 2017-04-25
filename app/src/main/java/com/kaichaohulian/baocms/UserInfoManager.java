@@ -4,9 +4,8 @@ import android.content.Context;
 
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.db.DataHelper;
-import com.kaichaohulian.baocms.ecdemo.common.utils.ECPreferenceSettings;
 import com.kaichaohulian.baocms.ecdemo.common.utils.LogUtil;
-import com.kaichaohulian.baocms.ecdemo.core.ClientUser;
+import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.manager.SPContent;
@@ -15,7 +14,6 @@ import com.kaichaohulian.baocms.utils.SPUtils;
 import com.kaichaohulian.baocms.view.ShowDialog;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.kaichaohulian.baocms.entity.UserInfo;
 
 import org.apache.http.Header;
 import org.json.JSONObject;
@@ -64,6 +62,9 @@ public class UserInfoManager {
                         UserInfo.setBackAvatar(response.getString("backAvatar"));
                         UserInfo.setLoginFailedCount(0);
                         UserInfo.setPayPassword(response.getString("paypassword"));
+                        UserInfo.setHobby(response.optString("hobby"));
+                        UserInfo.setJob(response.optString("job"));
+                        UserInfo.setAge(response.optInt("age"));
 //                      UserInfo.setImages(response.getString("images"));
                         MyApplication.getInstance().UserInfo = UserInfo;
                         DataHelper mDataHelper = new DataHelper(context);

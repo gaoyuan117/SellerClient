@@ -3,7 +3,6 @@ package com.kaichaohulian.baocms.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.UserInfoManager;
-import com.kaichaohulian.baocms.activity.CollectionListActivity;
 import com.kaichaohulian.baocms.activity.MeSettingsActivity;
 import com.kaichaohulian.baocms.activity.MyAlbumActivity;
 import com.kaichaohulian.baocms.activity.PersonalActivity;
@@ -24,7 +22,6 @@ import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
 import com.kaichaohulian.baocms.utils.SharedPrefsUtil;
-import com.melink.bqmmsdk.ui.store.EmojiPackageList;
 
 /**
  * 我的
@@ -37,8 +34,7 @@ public class ProFileFragment extends BaseFragment {
     private RelativeLayout mPocket;
     private RelativeLayout mSettings;
     private RelativeLayout mAlbum;
-    private RelativeLayout mCollection;
-    private RelativeLayout mFace;
+    private RelativeLayout mAbout;
 
     private TextView me_head_name;
     private TextView me_buyer_number;
@@ -68,8 +64,9 @@ public class ProFileFragment extends BaseFragment {
         mPocket = getId(R.id.me_relativelayout_pocket);
         mSettings = getId(R.id.me_relativelayout_settings);
         mAlbum = getId(R.id.me_relativelayout_album);
-        mCollection = getId(R.id.me_relativelayout_collection);
-        mFace = getId(R.id.me_relativelayout_face);
+        mAbout=getId(R.id.me_relativelayout_about);
+//        mCollection = getId(R.id.me_relativelayout_collection);
+//        mFace = getId(R.id.me_relativelayout_face);
 
         me_head_icon = getId(R.id.me_head_icon);
         me_buyer_number = getId(R.id.me_buyer_number);
@@ -132,19 +129,19 @@ public class ProFileFragment extends BaseFragment {
                 ActivityUtil.next(getActivity(), MyAlbumActivity.class);
             }
         });
-        mCollection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityUtil.next(getActivity(), CollectionListActivity.class);
-            }
-        });
-        mFace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                ActivityUtil.next(getActivity(), SetPasswordActivity.class);
-                startActivity(new Intent(getActivity(), EmojiPackageList.class));
-            }
-        });
+//        mCollection.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ActivityUtil.next(getActivity(), CollectionListActivity.class);
+//            }
+//        });
+//        mFace.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                ActivityUtil.next(getActivity(), SetPasswordActivity.class);
+//                startActivity(new Intent(getActivity(), EmojiPackageList.class));
+//            }
+//        });
     }
 
 }

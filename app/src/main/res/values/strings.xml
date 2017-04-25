@@ -64,7 +64,7 @@
     <string name="me_album">相册</string>
     <string name="me_collection">收藏</string>
     <string name="me_pocket">钱包</string>
-    <string name="me_face">表情</string>
+    <string name="me_about">关于</string>
     <string name="me_setting">设置</string>
 
 
@@ -134,8 +134,8 @@
     <string name="money_recharge_button_text">下一步</string>
 
     <!-- 钱包  界面-->
-    <string name="pocket_small_money">零钱</string>
-    <string name="pocket_bank_id">银行卡</string>
+    <string name="pocket_small_money">金额(元)</string>
+    <string name="pocket_bank_id">银行卡(张)</string>
     <string name="pocket_buyer_service">买家服务</string>
     <string name="pocket_transfer">转账</string>
     <string name="pocket_phone_recharge">充值</string>
