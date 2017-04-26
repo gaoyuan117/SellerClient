@@ -18,6 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.UserInfoManager;
 import com.kaichaohulian.baocms.activity.CollectionListActivity;
+import com.kaichaohulian.baocms.activity.MeAboutActivity;
 import com.kaichaohulian.baocms.activity.MeSettingsActivity;
 import com.kaichaohulian.baocms.activity.MyAlbumActivity;
 import com.kaichaohulian.baocms.activity.PersonalActivity;
@@ -183,6 +184,7 @@ public class ProFileFragment extends BaseFragment {
             case R.id.me_relativelayout_about:
                 //TODO 设置关于页面
 //                ActivityUtil.next(getActivity(),);
+                ActivityUtil.next(getActivity(),MeAboutActivity.class);
                 break;
             case R.id.me_relativelayout_settings:
                 ActivityUtil.next(getActivity(), MeSettingsActivity.class);

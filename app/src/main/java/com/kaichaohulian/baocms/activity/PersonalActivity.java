@@ -1,6 +1,7 @@
 package com.kaichaohulian.baocms.activity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -157,12 +158,12 @@ public class PersonalActivity extends BaseActivity {
                 personalSex.setText("女");
             }
         }
-        if (MyApplication.getInstance().UserInfo.getHobby() != null) {
+        if (MyApplication.getInstance().UserInfo.getHobby() != null&&!MyApplication.getInstance().UserInfo.getHobby().equals("null")) {
             personalHobby.setText(MyApplication.getInstance().UserInfo.getHobby());
         }else{
             personalHobby.setText("无");
         }
-        if (MyApplication.getInstance().UserInfo.getJob() != null) {
+        if (MyApplication.getInstance().UserInfo.getJob() != null&&!MyApplication.getInstance().UserInfo.getJob().equals("null")) {
             personalJob.setText(MyApplication.getInstance().UserInfo.getJob());
         }else{
             personalJob.setText("未知");
@@ -214,17 +215,17 @@ public class PersonalActivity extends BaseActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PersonalActivity.this);
                 builder.setTitle(getResources().getString(R.string.please_choose));
                 //TODO 选择男女
-//                builder.setSingleChoiceItems(sexy, sexyWhich, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        sexyWhich = which;
-//                        sexyChosen = sexy[sexyWhich];
-//                        personalSex.setText(sexyChosen);
-//                        dialog.dismiss();
-//                        updateMyUser();
-//                    }
-//                });
-//                builder.show();
+                builder.setSingleChoiceItems(sexy, sexyWhich, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sexyWhich = which;
+                        sexyChosen = sexy[sexyWhich];
+                        personalSex.setText(sexyChosen);
+                        dialog.dismiss();
+                        updateMyUser();
+                    }
+                });
+                builder.show();
             }
         });
         AgeLinear.setOnClickListener(new View.OnClickListener() {
