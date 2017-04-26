@@ -343,6 +343,8 @@
 
     <color name="zy_orange">#fb7b12</color>
     <color name="zy_text_color">#646464</color>
+    <color name="zy_text_black">#323232</color>
+    <color name="zy_text_gray">#909090</color>
 
 
 </resources>

@@ -27,7 +27,7 @@
             android:layout_marginTop="14dp"
             android:layout_toRightOf="@id/iv_avatar"
             android:text="黄方意"
-            android:textColor="#353535"
+            android:textColor="#323232"
             android:textSize="16sp" />
 
         <TextView
@@ -35,11 +35,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="14dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="12dp"
             android:layout_toRightOf="@id/iv_avatar"
             android:text="请求加你为好友"
-            android:textColor="#aaaaaa"
+            android:textColor="#909090"
             android:textSize="14sp" />
 
         <LinearLayout
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="已添加"
-                android:textColor="#AAAAAA"
+                android:textColor="@color/zy_text_color"
                 android:textSize="12sp" />
 
             <Button

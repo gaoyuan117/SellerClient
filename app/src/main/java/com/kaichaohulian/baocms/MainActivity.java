@@ -210,7 +210,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
     public void initView() {
         setCenterTitle("买家");
         visibilityExit();
-        final ImageView iv_add = setIm1_view(R.mipmap.icon_topbar_add_pressed);
+        final ImageView iv_add = setIm1_view(R.mipmap.add_friend);
         iv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -240,7 +240,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
         textviews[1] = (TextView) findViewById(R.id.tv_contact_list);
         textviews[2] = (TextView) findViewById(R.id.tv_find);
         textviews[3] = (TextView) findViewById(R.id.tv_profile);
-        textviews[0].setTextColor(0xFF45C01A);
+        textviews[0].setTextColor(0xFFfb7b12);
         // 添加显示第一个fragment
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, homefragment)
@@ -260,7 +260,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
         switch (view.getId()) {
             case R.id.re_weixin:
                 index = 0;
-                setCenterTitle("买家");
+                setCenterTitle("消息");
                 break;
             case R.id.re_contact_list:
                 index = 1;
@@ -287,8 +287,8 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
         imagebuttons[currentTabIndex].setSelected(false);
         // 把当前tab设为选中状态
         imagebuttons[index].setSelected(true);
-        textviews[currentTabIndex].setTextColor(0xFF999999);
-        textviews[index].setTextColor(0xFF45C01A);
+        textviews[currentTabIndex].setTextColor(0xFF646464);
+        textviews[index].setTextColor(0xFFfb7b12);
         currentTabIndex = index;
     }
 

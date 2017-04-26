@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ebebeb">
+            android:background="@color/gray">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimens_48"
-            android:background="@color/common_top_bar_blue">
+            android:background="@color/zy_orange">
 
             <ImageView
                 android:id="@+id/iv_back"
@@ -30,6 +30,7 @@
                 android:src="@drawable/top_bar_back"/>
 
             <View
+                android:visibility="gone"
                 android:id="@+id/view_temp"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
@@ -43,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/view_temp"
+                android:layout_centerInParent="true"
                 android:text="添加朋友"
                 android:textColor="#ffffff"
                 android:textSize="18sp"/>
@@ -61,29 +62,29 @@
                 android:id="@+id/tv_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:background="@mipmap/wo"
                 android:gravity="bottom"
-                android:paddingBottom="10dp"
-                android:paddingLeft="46dp"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@mipmap/search"
+                android:drawablePadding="8dp"
+                android:layout_marginLeft="16dp"
                 android:singleLine="true"
-                android:text="手机号"
-                android:textColor="#C5C5C5"
+                android:text="手机号/ID号"
+                android:textColor="#909090"
                 android:textSize="14sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_below="@+id/tv_search"
+                android:background="@color/zy_orange"/>
 
-            <ImageView
-                android:layout_width="21dp"
-                android:layout_height="22dp"
-                android:layout_alignBottom="@id/tv_search"
-                android:layout_alignLeft="@id/tv_search"
-                android:layout_margin="6dp"
-                android:src="@mipmap/a_b"/>
+
         </RelativeLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="10dp"
@@ -107,6 +108,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
@@ -119,7 +121,50 @@
                 android:layout_alignParentBottom="true"
                 android:background="#DBDBDB"/>
 
+
             <RelativeLayout
+                android:id="@+id/Relative_code"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true"
+                android:paddingBottom="14dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="14dp">
+
+                <ImageView
+                    android:id="@+id/iv_code"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:scaleType="centerCrop"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/my_code"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_toRightOf="@id/iv_code"
+                    android:text="我的二维码"
+                    android:textColor="@color/zy_text_black"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_toRightOf="@id/iv_code"
+                    android:text="扫我的二维码加我好友"
+                    android:textColor="#909090"
+                    android:textSize="12sp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/Relative_LdAdd"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
@@ -161,11 +206,12 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0.1dp"
+                android:layout_height="16dp"
                 android:layout_alignParentBottom="true"
-                android:background="#DBDBDB"/>
+                android:background="@color/gray"/>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/Relative_mmGroup"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
@@ -206,6 +252,7 @@
             </RelativeLayout>
 
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_alignParentBottom="true"
@@ -228,7 +275,8 @@
                     android:layout_height="36dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/a8"/>
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/scan"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -237,7 +285,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_toRightOf="@id/iv_saoyisao"
                     android:text="扫一扫"
-                    android:textColor="#353535"
+                    android:textColor="@color/zy_text_black"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -247,7 +295,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_toRightOf="@id/iv_saoyisao"
                     android:text="扫面二维码图片"
-                    android:textColor="#BBBBBB"
+                    android:textColor="@color/zy_text_gray"
                     android:textSize="12sp"/>
             </RelativeLayout>
 
@@ -258,6 +306,7 @@
                 android:background="#DBDBDB"/>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/phoneContact"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
@@ -298,12 +347,14 @@
             </RelativeLayout>
 
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_alignParentBottom="true"
                 android:background="#DBDBDB"/>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/shopping"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
@@ -344,6 +395,7 @@
             </RelativeLayout>
 
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_alignParentBottom="true"
