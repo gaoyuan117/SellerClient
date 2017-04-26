@@ -1,7 +1,5 @@
 package com.kaichaohulian.baocms.activity;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -9,11 +7,9 @@ import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
-import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.BankCardEntity;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,7 +34,7 @@ public class PocketActivity extends BaseActivity {
     RelativeLayout RechargeLinear;
     @BindView(R.id.transfer_money)
     RelativeLayout TransferLinear;
-
+//    private LinearLayout transfer, phoneRecharge, buyerRedbag, smallMoney, mAddBankCard;
 
     private List<BankCardEntity> data;
     public static final int SET_PASSWORD_REQUEST_CODE = 6;
@@ -47,6 +43,7 @@ public class PocketActivity extends BaseActivity {
     @Override
     public void setContent() {
         setContentView(R.layout.pocket);
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -56,66 +53,70 @@ public class PocketActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
+//        transfer = getId(R.id.transfer_money);
+//        phoneRecharge = getId(R.id.phone_recharge);
+//        smallMoney = getId(R.id.small_money_recharge);
+//        mAddBankCard = getId(R.id.bank_card);
+//        myChange = getId(R.id.pocket_small_money_accout);
+//        bankCardNumber = getId(R.id.pocket_bankcard_number);
     }
 
 
     @Override
     public void initEvent() {
-        //提现
-//        TransferLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Bundle bundle = new Bundle();
-//                ActivityUtil.next(PocketActivity.this, TransferSelectContactActivity.class, bundle, 2);
-//            }
-//        });
-//        //充值
-//        RechargeLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.setClass(PocketActivity.this, RechargeActivity.class);
-//                startActivityForResult(intent, SET_PASSWORD_REQUEST_CODE);
-//            }
-//        });
-        //查看余额
-//        smallMoneyLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ActivityUtil.next(PocketActivity.this, MyChangeActivity.class);
-//            }
-//        });
-//        //银行卡
-//        BankCardLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ActivityUtil.next(PocketActivity.this, MyBankCardListActivity.class);
-//            }
-//        });
+//        transfer.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Bundle bundle = new Bundle();
+//            ActivityUtil.next(PocketActivity.this, TransferSelectContactActivity.class, bundle, 2);
+//        }
+//    });
+//    phoneRecharge.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Intent intent = new Intent();
+//            intent.setClass(PocketActivity.this, RechargeActivity.class);
+//            startActivityForResult(intent, SET_PASSWORD_REQUEST_CODE);
+//        }
+//    });
+//    buyerRedbag.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            ActivityUtil.next(PocketActivity.this, RedBagActivity.class);
+//        }
+//    });
+//    smallMoney.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            ActivityUtil.next(PocketActivity.this, MyChangeActivity.class);
+//        }
+//    });
+//    mAddBankCard.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            ActivityUtil.next(PocketActivity.this, MyBankCardListActivity.class);
+//        }
+//    });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         //TODO 获取余额和银行卡数
-        if (MyApplication.getInstance().UserInfo != null) {
-            BigDecimal bd = new BigDecimal(MyApplication.getInstance().UserInfo.getBalance());
-            bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
-            SmallMoneyAccout.setText(bd.toString());
-            BankcardNumber.setText(data.size() + "张");
-        }
+//      transfer.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Bundle bundle = new Bundle();
+//            ActivityUtil.next(PocketActivity.this, TransferSelectContactActivity.class, bundle, 2);
+//        }
+//    });
     }
 
     public void back(View view) {
         finish();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-    }
+
 
 
 
@@ -129,13 +130,18 @@ public class PocketActivity extends BaseActivity {
                 ActivityUtil.next(PocketActivity.this, MyBankCardListActivity.class);
                 break;
             case R.id.phone_recharge:
-                Intent intent = new Intent();
-                intent.setClass(PocketActivity.this, RechargeActivity.class);
-                startActivityForResult(intent, SET_PASSWORD_REQUEST_CODE);
+                //为手机充值
+//                Intent intent = new Intent();
+//                intent.setClass(PocketActivity.this, RechargeActivity.class);
+//                startActivityForResult(intent, SET_PASSWORD_REQUEST_CODE);
+                //充值
+                ActivityUtil.next(getActivity(), ChangeRechargeActivity.class);
                 break;
             case R.id.transfer_money:
-                Bundle bundle = new Bundle();
-                ActivityUtil.next(PocketActivity.this, TransferSelectContactActivity.class, bundle, 2);
+//                Bundle bundle = new Bundle();
+//                ActivityUtil.next(PocketActivity.this, TransferSelectContactActivity.class, bundle, 2);
+                //提现
+                ActivityUtil.next(getActivity(), WithdrawApplyActivity.class);
                 break;
         }
     }

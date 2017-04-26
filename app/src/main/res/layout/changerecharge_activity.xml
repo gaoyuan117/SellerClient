@@ -41,6 +41,7 @@
         android:layout_marginTop="@dimen/dimens_12"
         android:background="@color/white"
         android:gravity="center_vertical"
+        android:visibility="gone"
         android:padding="@dimen/dimens_8">
 
         <ImageView
@@ -98,13 +99,14 @@
         android:layout_height="@dimen/dimens_60"
         android:background="@color/white"
         android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dimens_12"
         android:padding="@dimen/dimens_8">
 
         <ImageView
             android:layout_width="@dimen/dimens_50"
             android:layout_height="@dimen/dimens_50"
             android:padding="@dimen/dimens_12"
-            android:src="@mipmap/weixin_logo" />
+            android:src="@mipmap/wechat_logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -126,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/dimens_6"
-                android:text="微信版本6.23以上"
+                android:text="微信安全支付"
                 android:textColor="@color/form_hint_text_color"
                 android:textSize="14sp" />
 
@@ -149,9 +151,9 @@
         android:layout_width="@dimen/money_recharge_button_width"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@mipmap/deepgreen_bar"
+        android:background="@mipmap/deeporange_bar_normal"
         android:enabled="true"
         android:text="立即支付"
         android:textColor="@color/white" />

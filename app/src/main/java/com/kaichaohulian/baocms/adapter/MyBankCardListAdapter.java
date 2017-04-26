@@ -47,7 +47,7 @@ public class MyBankCardListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return data.size() + 1;
+        return data.size() ;
     }
 
     @Override
@@ -109,9 +109,9 @@ public class MyBankCardListAdapter extends BaseAdapter {
                     e.printStackTrace();
                 }
                 break;
-            case ADD_BANKCARD_TYPE:
-                convertView = inflater.inflate(R.layout.my_bankcard_list_item2, null);
-                break;
+//            case ADD_BANKCARD_TYPE:
+//                convertView = inflater.inflate(R.layout.my_bankcard_list_item2, null);
+//                break;
         }
         return convertView;
     }

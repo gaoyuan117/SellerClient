@@ -1,5 +1,7 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -65,6 +67,7 @@ public class ChangeRechargeActivity extends BaseActivity {
     @Override
     public void initEvent() {
         Linear_weixin.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
                 typeTitle = "微信充值";
@@ -73,6 +76,7 @@ public class ChangeRechargeActivity extends BaseActivity {
             }
         });
         Linear_zhifubao.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
                 typeTitle = "支付宝充值";

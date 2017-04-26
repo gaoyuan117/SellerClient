@@ -3,7 +3,6 @@ package com.kaichaohulian.baocms.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -50,20 +49,27 @@ public class MyBankCardListActivity extends BaseActivity {
     public void initView() {
         listView = getId(R.id.my_bankcard_list);
         setCenterTitle("我的银行卡");
+        setIm1_view(R.mipmap.add_part).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyBankCardListActivity.this, AddBankCardActivity.class);
+                startActivityForResult(intent, ADD_BANKCARD_REQUEST);
+            }
+        });
     }
 
     @Override
     public void initEvent() {
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (data.size() == position) {
-                    Intent intent = new Intent(MyBankCardListActivity.this, AddBankCardActivity.class);
-                    startActivityForResult(intent, ADD_BANKCARD_REQUEST);
-                }
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                if (data.size() == position) {
+//                    Intent intent = new Intent(MyBankCardListActivity.this, AddBankCardActivity.class);
+//                    startActivityForResult(intent, ADD_BANKCARD_REQUEST);
+//                }
+//            }
+//        });
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {

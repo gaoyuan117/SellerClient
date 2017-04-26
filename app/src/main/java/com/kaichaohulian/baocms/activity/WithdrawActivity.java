@@ -95,7 +95,6 @@ public class WithdrawActivity extends BaseActivity {
             public void onClick(View v) {
                 String cashAll = cashRestAll.getText().toString();
                 edtInput.setText(cashAll);
-
             }
         });
         btnWithdraw.setOnClickListener(new View.OnClickListener() {

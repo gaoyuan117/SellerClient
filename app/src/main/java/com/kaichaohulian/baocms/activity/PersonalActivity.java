@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -104,6 +103,7 @@ public class PersonalActivity extends BaseActivity {
     @Override
     public void setContent() {
         setContentView(R.layout.personal_layout);
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -453,11 +453,7 @@ public class PersonalActivity extends BaseActivity {
         });
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-    }
+
 
     public void nameEdit(String URL, RequestParams params) {
         AsyncHttpClient client = HttpUtil.getClient();

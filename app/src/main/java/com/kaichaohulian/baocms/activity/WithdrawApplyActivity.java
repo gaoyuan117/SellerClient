@@ -1,6 +1,5 @@
 package com.kaichaohulian.baocms.activity;
 
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,31 +23,49 @@ import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class WithdrawApplyActivity extends BaseActivity {
 
-    Button btnWechat, btnAlipay, btnBank, btnNext;
-    LinearLayout linear_bankpay;
-    LinearLayout linear_wechatAndAlipay;
-    TextView tvWechatAlipay;
+    @BindView(R.id.tv_withdrawApply_zhanghao)
+    TextView Apply_Id;
+    @BindView(R.id.ed_kaihuyinhanag)
+    EditText edKaihuyinhanag;
+    @BindView(R.id.ed_kaihuzhanghao)
+    EditText edKaihuzhanghao;
+    @BindView(R.id.ed_kaihuxingming)
+    EditText edKaihuxingming;
+    @BindView(R.id.edt_input_number)
     EditText edtInputNumber;
-    EditText edtWechatId;
-    EditText ed_kaihuyinhanag;
-    EditText ed_kaihuzhanghao;
-    EditText ed_kaihuxingming;
-
-    private DataHelper mDataHelper;
-
-    BtnListener listener;
+    @BindView(R.id.withdraw_cash_rest_money)
+    TextView withdrawCashRestMoney;
+    @BindView(R.id.ln_wechat_alipay)
+    LinearLayout WechatAlipay;
+    @BindView(R.id.linear_bankpay)
+    LinearLayout Bankpay;
+    @BindView(R.id.btn_wechat)
+    Button btnWechat;
+    @BindView(R.id.btn_alipay)
+    Button btnAlipay;
+    @BindView(R.id.btn_bankpay)
+    Button btnBankpay;
+    @BindView(R.id.tv_wechatand_alipay_id)
+    TextView tv_aliorwechat;
+    @BindView(R.id.withdraw_cash_btn)
+    Button btnNext;
+    private final int WECHAT=0,ALIPAY=1,BANKPAY=2;
+    private String str_apply_id;
 
     @Override
     public void setContent() {
         setContentView(R.layout.activity_withdraw_apply);
+        ButterKnife.bind(this);
     }
 
     @Override
     public void initData() {
-        mDataHelper = new DataHelper(getActivity());
-        listener = new BtnListener();
     }
 
     @Override
@@ -60,38 +77,137 @@ public class WithdrawApplyActivity extends BaseActivity {
                 ActivityUtil.next(getActivity(), WithDrawalsHistoryActivity.class);
             }
         });
-        linear_bankpay = getId(R.id.linear_bankpay);
-        linear_wechatAndAlipay = getId(R.id.ln_wechat_alipay);
-        tvWechatAlipay = getId(R.id.tv_wechatand_alipay_id);
-        btnWechat = getId(R.id.btn_wechat);
-        btnAlipay = getId(R.id.btn_alipay);
-        btnBank = getId(R.id.btn_bankpay);
-        btnNext = getId(R.id.withdraw_cash_btn);
-        edtInputNumber = getId(R.id.edt_input_number);
-        edtWechatId = getId(R.id.edt_we_ali_id);
-        ed_kaihuyinhanag = getId(R.id.ed_kaihuyinhanag);
-        ed_kaihuzhanghao = getId(R.id.ed_kaihuzhanghao);
-        ed_kaihuxingming = getId(R.id.ed_kaihuxingming);
-
-        linear_bankpay.setVisibility(View.GONE);
-        linear_wechatAndAlipay.setVisibility(View.VISIBLE);
-
-
-        btnBank.setTextColor(getResources().getColor(R.color.gray));
-        btnAlipay.setTextColor(getResources().getColor(R.color.gray));
-        btnWechat.setTextColor(getResources().getColor(R.color.white));
+        btnAlipay.setSelected(false);
+        btnWechat.setSelected(true);
+        btnBankpay.setSelected(false);
+        WechatAlipay.setVisibility(View.VISIBLE);
+        Bankpay.setVisibility(View.GONE);
 
     }
 
     @Override
     public void initEvent() {
-        btnAlipay.setOnClickListener(listener);
-        btnBank.setOnClickListener(listener);
-        btnWechat.setOnClickListener(listener);
-        btnNext.setOnClickListener(listener);
+
     }
 
+
+
     private String typeTitle = "微信提现";
+
+    @OnClick({R.id.btn_wechat, R.id.btn_alipay, R.id.btn_bankpay, R.id.txt_withdraw_all, R.id.withdraw_cash_btn})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_wechat:
+                typeTitle = "微信提现";
+                tv_aliorwechat.setText("微信账号");
+//                if (WechatAlipay.getVisibility() == View.GONE && Bankpay.getVisibility() == View.VISIBLE) {
+//                    WechatAlipay.setVisibility(View.VISIBLE);
+//                    Bankpay.setVisibility(View.GONE);
+//                }
+                btnAlipay.setSelected(false);
+                btnWechat.setSelected(true);
+                btnBankpay.setSelected(false);
+                btnBankpay.setTextColor(getResources().getColor(R.color.gray));
+                btnWechat.setTextColor(getResources().getColor(R.color.white));
+                btnAlipay.setTextColor(getResources().getColor(R.color.gray));
+
+
+                Apply_Id.setText(getApply_Id());
+                break;
+            case R.id.btn_alipay:
+                typeTitle = "支付宝提现";
+                tv_aliorwechat.setText("支付宝号");
+//                if (WechatAlipay.getVisibility() == View.GONE && Bankpay.getVisibility() == View.VISIBLE) {
+//                    WechatAlipay.setVisibility(View.VISIBLE);
+//                    Bankpay.setVisibility(View.GONE);
+//                }
+                btnAlipay.setSelected(true);
+                btnWechat.setSelected(false);
+                btnBankpay.setSelected(false);
+                btnBankpay.setTextColor(getResources().getColor(R.color.gray));
+                btnWechat.setTextColor(getResources().getColor(R.color.gray));
+                btnAlipay.setTextColor(getResources().getColor(R.color.white));
+                Apply_Id.setText(getApply_Id());
+                break;
+            case R.id.btn_bankpay:
+//                ActivityUtil.next(WithdrawApplyActivity.this, WithdrawActivity.class);
+//                if (WechatAlipay.getVisibility() == View.VISIBLE && Bankpay.getVisibility() == View.GONE) {
+//                    WechatAlipay.setVisibility(View.GONE);
+//                    Bankpay.setVisibility(View.VISIBLE);
+//                }
+                typeTitle = "银行卡提现";
+                tv_aliorwechat.setText("银行卡号");
+                btnAlipay.setSelected(false);
+                btnWechat.setSelected(false);
+                btnBankpay.setSelected(true);
+                btnBankpay.setTextColor(getResources().getColor(R.color.white));
+                btnWechat.setTextColor(getResources().getColor(R.color.gray));
+                btnAlipay.setTextColor(getResources().getColor(R.color.gray));
+                Apply_Id.setText(getApply_Id());
+                break;
+            case R.id.txt_withdraw_all:
+                edtInputNumber.setText(withdrawCashRestMoney.getText());
+                break;
+            case R.id.withdraw_cash_btn:
+
+
+//                RequestParams params = new RequestParams();
+//                switch (typeTitle) {
+//                    case "支付宝提现":
+//                        if (!TextUtils.isEmpty(Apply_Id.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
+//                            params.put("zfbAccount", Apply_Id.getText().toString());
+//                            tiXian(params);
+//                        } else {
+//                            showToastMsg("请输入完整！");
+//                        }
+//                        break;
+//                    case "微信提现":
+//                        if (!TextUtils.isEmpty(Apply_Id.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
+//                            params.put("weixinAccount", Apply_Id.getText().toString());
+//                            tiXian(params);
+//                        } else {
+//                            showToastMsg("请输入完整！");
+//                        }
+//                        break;
+//                    case "银行卡提现":
+//                        if (!TextUtils.isEmpty(edKaihuyinhanag.getText().toString().trim()) && !TextUtils.isEmpty(edKaihuzhanghao.getText().toString().trim()) && !TextUtils.isEmpty(edKaihuxingming.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
+//                            params.put("bankName", edKaihuyinhanag.getText().toString());
+//                            params.put("bankNum", edKaihuzhanghao.getText().toString());
+//                            params.put("bankRealname", edKaihuxingming.getText().toString());
+//                            tiXian(params);
+//                        } else {
+//                            showToastMsg("请输入完整！");
+//                        }
+//                        break;
+//                }
+//                break;
+        }
+    }
+
+    private String getApply_Id(){
+        str_apply_id = "";
+        switch (typeTitle){
+            case "支付宝提现":
+                //TODO 获取支付宝帐号
+                break;
+            case "微信提现":
+                //TODO 获取微信帐号
+                break;
+            case "银行卡提现":
+                //TODO 获取银行卡帐号
+                break;
+        }
+        if(str_apply_id.equals("")){
+            str_apply_id ="尚未绑定";
+        }
+        return str_apply_id;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        withdrawCashRestMoney.setText(MyApplication.getInstance().UserInfo.getBalance() + "");
+    }
 
     class BtnListener implements View.OnClickListener {
 
@@ -99,35 +215,30 @@ public class WithdrawApplyActivity extends BaseActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_alipay:
-                    typeTitle = "支付宝提现";
-                    btnAlipay.setBackgroundResource(R.mipmap.deepgreen_bar);
-                    btnBank.setBackgroundResource(R.mipmap.lightgreen_bar);
-                    btnWechat.setBackgroundResource(R.mipmap.lightgreen_bar);
 
-                    btnBank.setTextColor(getResources().getColor(R.color.gray));
-                    btnWechat.setTextColor(getResources().getColor(R.color.gray));
-                    btnAlipay.setTextColor(getResources().getColor(R.color.white));
+//                    btnAlipay.setBackgroundResource(R.mipmap.deepblue_bar);
+//                    btnBank.setBackgroundResource(R.mipmap.deepwhite_bar);
+//                    btnWechat.setBackgroundResource(R.mipmap.deepwhite_bar);
+//
+//                    btnBank.setTextColor(getResources().getColor(R.color.gray));
+//                    btnWechat.setTextColor(getResources().getColor(R.color.gray));
+//                    btnAlipay.setTextColor(getResources().getColor(R.color.white));
 
-                    linear_bankpay.setVisibility(View.GONE);
-                    linear_wechatAndAlipay.setVisibility(View.VISIBLE);
-                    tvWechatAlipay.setText("支付宝号");
+
                     break;
                 case R.id.btn_wechat:
-                    typeTitle = "微信提现";
-                    btnWechat.setBackgroundResource(R.mipmap.deepgreen_bar);
-                    btnAlipay.setBackgroundResource(R.mipmap.lightgreen_bar);
-                    btnBank.setBackgroundResource(R.mipmap.lightgreen_bar);
 
-                    btnBank.setTextColor(getResources().getColor(R.color.gray));
-                    btnAlipay.setTextColor(getResources().getColor(R.color.gray));
-                    btnWechat.setTextColor(getResources().getColor(R.color.white));
+//                    btnWechat.setBackgroundResource(R.mipmap.deepblue_bar);
+//                    btnAlipay.setBackgroundResource(R.mipmap.deepwhite_bar);
+//                    btnBank.setBackgroundResource(R.mipmap.deepwhite_bar);
+//                    btnBank.setTextColor(getResources().getColor(R.color.gray));
+//                    btnAlipay.setTextColor(getResources().getColor(R.color.gray));
+//                    btnWechat.setTextColor(getResources().getColor(R.color.white));
 
-                    linear_bankpay.setVisibility(View.GONE);
-                    linear_wechatAndAlipay.setVisibility(View.VISIBLE);
-                    tvWechatAlipay.setText("微信账号");
+
                     break;
                 case R.id.btn_bankpay:
-                    ActivityUtil.next(WithdrawApplyActivity.this, WithdrawActivity.class);
+
 //                    typeTitle = "银行卡提现";
 //                    btnWechat.setBackgroundResource(R.mipmap.lightgreen_bar);
 //                    btnAlipay.setBackgroundResource(R.mipmap.lightgreen_bar);
@@ -142,40 +253,13 @@ public class WithdrawApplyActivity extends BaseActivity {
                     break;
                 case R.id.withdraw_cash_btn:
 
-                    RequestParams params = new RequestParams();
-                    switch (typeTitle) {
-                        case "支付宝提现":
-                            if (!TextUtils.isEmpty(edtWechatId.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
-                                params.put("zfbAccount", edtWechatId.getText().toString());
-                                tiXian(params);
-                            } else {
-                                showToastMsg("请输入完整！");
-                            }
-                            break;
-                        case "微信提现":
-                            if (!TextUtils.isEmpty(edtWechatId.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
-                                params.put("weixinAccount", edtWechatId.getText().toString());
-                                tiXian(params);
-                            } else {
-                                showToastMsg("请输入完整！");
-                            }
-                            break;
-                        case "银行卡提现":
-                            if (!TextUtils.isEmpty(ed_kaihuyinhanag.getText().toString().trim()) && !TextUtils.isEmpty(ed_kaihuzhanghao.getText().toString().trim()) && !TextUtils.isEmpty(ed_kaihuxingming.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
-                                params.put("bankName", ed_kaihuyinhanag.getText().toString());
-                                params.put("bankNum", ed_kaihuzhanghao.getText().toString());
-                                params.put("bankRealname", ed_kaihuxingming.getText().toString());
-                                tiXian(params);
-                            } else {
-                                showToastMsg("请输入完整！");
-                            }
-                            break;
-                    }
 
                     break;
             }
         }
     }
+
+    private DataHelper mDataHelper;
 
     public void tiXian(RequestParams params) {
         ShowDialog.showDialog(getActivity(), "提现申请中...", false, null);
@@ -226,5 +310,4 @@ public class WithdrawApplyActivity extends BaseActivity {
     public void back(View view) {
         finish();
     }
-
 }

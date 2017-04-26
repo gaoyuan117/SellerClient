@@ -162,7 +162,7 @@
 
     <string name="withdraw_cash_to_bank">到账银行卡</string>
     <string name="withdraw_cash_account">提现金额</string>
-    <string name="withdraw_cash_rest_money">零钱余额￥</string>
+    <string name="withdraw_cash_rest_money">当前余额</string>
     <string name="withdraw_cash_withdraw_all">   全部提现</string>
     <string name="withdraw_cash_withdraw">提现</string>
     <string name="withdraw_cash_withdraw_fuhao">￥</string>
@@ -389,7 +389,7 @@
     <string name="tv_total_sell">总销售额</string>
     <string name="tv_tech">技术服务费</string>
     <string name="tv_income">净收入</string>
-    <string name="withdraw_way">选择提现方式</string>
+    <string name="withdraw_way">到账方式</string>
     <string name="tv_wechat">微信</string>
     <string name="tv_alipay">支付宝</string>
     <string name="tv_bankcard">银行卡</string>

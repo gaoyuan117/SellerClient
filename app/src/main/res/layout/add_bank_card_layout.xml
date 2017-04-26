@@ -84,7 +84,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height" >
+        android:layout_height="@dimen/discover_line_height"
+        android:visibility="gone"
+        >
 
         <TextView
             android:id="@+id/add_bankcard_phone_text"
@@ -220,7 +222,7 @@
             android:layout_height="48dp"
             android:text="@string/add_bankcard_button_add"
             android:textColor="@color/white"
-            android:background="@mipmap/deepgreen_bar"
+            android:background="@mipmap/deeporange_bar_normal"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp"
 

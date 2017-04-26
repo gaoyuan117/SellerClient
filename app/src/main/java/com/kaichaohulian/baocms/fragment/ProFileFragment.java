@@ -161,7 +161,7 @@ public class ProFileFragment extends BaseFragment {
         return rootView;
     }
 
-    @OnClick({R.id.me_name, R.id.me_relativelayout_album, R.id.me_relativelayout_collection, R.id.me_relativelayout_pocket, R.id.me_relativelayout_face, R.id.me_relativelayout_about, R.id.me_relativelayout_settings})
+    @OnClick({R.id.me_name, R.id.me_relativelayout_album, R.id.me_relativelayout_pocket,/* R.id.me_relativelayout_collection, R.id.me_relativelayout_face，*/ R.id.me_relativelayout_about, R.id.me_relativelayout_settings})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.me_name:

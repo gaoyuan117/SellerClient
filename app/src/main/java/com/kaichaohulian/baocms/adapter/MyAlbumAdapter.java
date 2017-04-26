@@ -15,7 +15,6 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.activity.ImagePagerActivity;
 import com.kaichaohulian.baocms.activity.ReleaseTalkActivity;
 import com.kaichaohulian.baocms.app.ActivityUtil;
-import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.circledemo.bean.HeadInfo;
 import com.kaichaohulian.baocms.circledemo.widgets.MultiImageView;
 import com.kaichaohulian.baocms.entity.MyAlbumEntity;
@@ -90,8 +89,8 @@ public class MyAlbumAdapter extends BaseAdapter {
                         ActivityUtil.next((Activity) mContext, ReleaseTalkActivity.class);
                     }
                 });
-                Glide.with(parent.getContext()).load(mHeadInfo.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.def_shop_bg).into(holder.head);
-                Glide.with(parent.getContext()).load(mHeadInfo.bg).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.def_shop_bg).into(bg);
+                Glide.with(parent.getContext()).load(mHeadInfo.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(holder.head);
+                Glide.with(parent.getContext()).load(mHeadInfo.bg).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(bg);
             }
         } else {
             ViewHolder holder;
