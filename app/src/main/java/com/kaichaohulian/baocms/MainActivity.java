@@ -6,9 +6,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import com.kaichaohulian.baocms.activity.ChatActivity;
 import com.kaichaohulian.baocms.activity.LoginActivity;
+import com.kaichaohulian.baocms.activity.OrderHistoryActivity;
 import com.kaichaohulian.baocms.app.AppManager;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseEcActivity;
@@ -51,6 +54,7 @@ import com.kaichaohulian.baocms.fragment.ProFileFragment;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.utils.DBLog;
+import com.kaichaohulian.baocms.utils.SPUtils;
 import com.kaichaohulian.baocms.utils.SharedPrefsUtil;
 import com.kaichaohulian.baocms.view.AddPopWindow;
 import com.kaichaohulian.baocms.view.ShowDialog;
@@ -81,6 +85,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -116,6 +121,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
     private DataHelper mDataHelper;
     private boolean sync = false;
 
+//  on
 
     @Override
     public void initData() {
@@ -204,7 +210,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
     public void initView() {
         setCenterTitle("买家");
         visibilityExit();
-        final ImageView iv_add = setIm1_view(R.mipmap.icon_topbar_add_pressed);
+        final ImageView iv_add = setIm1_view(R.mipmap.add_friend);
         iv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -234,7 +240,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
         textviews[1] = (TextView) findViewById(R.id.tv_contact_list);
         textviews[2] = (TextView) findViewById(R.id.tv_find);
         textviews[3] = (TextView) findViewById(R.id.tv_profile);
-        textviews[0].setTextColor(0xFFFB7B12);
+        textviews[0].setTextColor(0xFFfb7b12);
         // 添加显示第一个fragment
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, homefragment)
@@ -254,7 +260,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
         switch (view.getId()) {
             case R.id.re_weixin:
                 index = 0;
-                setCenterTitle("买家");
+                setCenterTitle("消息");
                 break;
             case R.id.re_contact_list:
                 index = 1;
@@ -281,8 +287,8 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
         imagebuttons[currentTabIndex].setSelected(false);
         // 把当前tab设为选中状态
         imagebuttons[index].setSelected(true);
-        textviews[currentTabIndex].setTextColor(0xFF999999);
-        textviews[index].setTextColor(0xFFFB7B12);
+        textviews[currentTabIndex].setTextColor(0xFF646464);
+        textviews[index].setTextColor(0xFFfb7b12);
         currentTabIndex = index;
     }
 

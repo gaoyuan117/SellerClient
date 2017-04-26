@@ -355,6 +355,7 @@ public class LoginActivity extends BaseEcActivity {
         ArrayList<ECContacts> objects = ContactLogic.initContacts();
         objects = ContactLogic.converContacts(objects);
         ContactSqlManager.insertContacts(objects);
+
     }
 
     /**

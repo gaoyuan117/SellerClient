@@ -2,14 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
+    android:background="@color/gray"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/dimens_10"
+        android:background="@mipmap/search_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawableLeft="@mipmap/search"
+            android:text="搜索"
+            android:padding="4dp"
+            android:textColor="#909090"
+            android:drawablePadding="4dp"
+            />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#d9d9d9" />
 
     <RelativeLayout
         android:id="@+id/re_newfriends"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@drawable/btn_list_item_bg"
+        android:background="@color/white"
         android:clickable="true">
 
         <ImageView
@@ -19,7 +47,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
-            android:src="@mipmap/default_fmessage" />
+            android:src="@mipmap/new_friend" />
 
         <TextView
             android:id="@+id/tv_newfriends"
@@ -28,7 +56,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
             android:layout_toRightOf="@id/iv_avatar"
-            android:text="新的买家"
+            android:text="新的朋友"
             android:textColor="#353535"
             android:textSize="16sp" />
 
@@ -46,7 +74,6 @@
             android:textSize="12sp"
             android:visibility="gone" />
     </RelativeLayout>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
@@ -58,7 +85,7 @@
         android:id="@+id/GroupChat"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@drawable/btn_list_item_bg"
+        android:background="@color/white"
         android:clickable="true">
 
         <ImageView
@@ -68,7 +95,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
-            android:src="@mipmap/default_chatroom" />
+            android:src="@mipmap/chat_group" />
 
         <TextView
             android:id="@+id/tv_chatroom"
@@ -83,6 +110,7 @@
     </RelativeLayout>
 
     <View
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginLeft="12dp"
@@ -90,6 +118,7 @@
         android:background="#d9d9d9" />
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/Label"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -118,6 +147,7 @@
     </RelativeLayout>
 
     <View
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginLeft="12dp"
@@ -125,6 +155,7 @@
         android:background="#d9d9d9" />
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/Shopping"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -153,6 +184,7 @@
     </RelativeLayout>
 
     <View
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginLeft="12dp"
