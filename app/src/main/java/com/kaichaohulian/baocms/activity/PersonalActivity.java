@@ -1,12 +1,13 @@
 package com.kaichaohulian.baocms.activity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -20,16 +21,19 @@ import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.db.DataHelper;
+import com.kaichaohulian.baocms.entity.UserInfo;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
-import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.qiniu.Auth;
 import com.kaichaohulian.baocms.qiniu.QiNiuConfig;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.DBLog;
 import com.kaichaohulian.baocms.view.ShowDialog;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
 
@@ -39,9 +43,13 @@ import org.json.JSONObject;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * 个人信息界面
@@ -88,19 +96,26 @@ public class PersonalActivity extends BaseActivity {
     private String imageName;
     private UploadManager uploadManager;
 
-    public static final int SEXY_CHOOSE_RESULTCODE = 3;
 
     private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
-    private static final int PHOTO_REQUEST_CUT = 4;// 结果
-    public static final int PERSONAL_SIGN_CODE = 10;//修改签名
-    public static final int ME_NAME_EDIT_CODE = 5;//修改姓名
+    private static final int PHOTO_REQUEST_CUT = 3;// 结果
+    public static final int SET_SEX = 4;
+    public static final int SET_NAME = 5;//修改姓名
     public static final int SET_PASSWORD_CODE = 6; //设置密码
-    public static final int SET_LOC = 7; //设置地域
+    public static final int SET_LOC = 7; //修改地址
+    public static final int SET_HOBBY = 8;//修改爱好
+    public static final int SET_JOB = 9;//修改职业
+    public static final int SET_AGE = 10;//修改年龄
+    public static final int SET_HEADIMG = 11;//修改头像
+    public static final int SET_SIGN = 12;//修改签名
+
 
     private String avatar;
-
+    private String[] sexs = {"男", "女"};
     private DataHelper mDataHelper;
+    private UserInfo userinfo;
+
     @Override
     public void setContent() {
         setContentView(R.layout.personal_layout);
@@ -112,141 +127,140 @@ public class PersonalActivity extends BaseActivity {
         mDataHelper = new DataHelper(getActivity());
         sexy = getResources().getStringArray(R.array.sexy);
         avatar = MyApplication.getInstance().UserInfo.getAvatar();
+        userinfo = MyApplication.getInstance().UserInfo;
     }
 
     @Override
     public void initView() {
         setCenterTitle("个人信息");
-        //头像
-        headIconLinear = getId(R.id.head_icon_linear);
-        imgHead = getId(R.id.imgHead);
-        //名字
-        nameLinear = getId(R.id.name_linear);
-        personalName = getId(R.id.personal_name);
-        //性别
-        sexyLinear = getId(R.id.sexy_linear);
-        personalSex = getId(R.id.personal_sex);
-        //二维码
-        twocodeLinear = getId(R.id.twocode_linear);
-        imQrCode = getId(R.id.im_QrCode);
-        //年龄
-        AgeLinear=getId(R.id.personal_age_linear);
-        personalAge=getId(R.id.personal_age);
-        //职业
-        JobLinear=getId(R.id.personal_job_linear);
-        personalJob=getId(R.id.personal_job);
-        //爱好
-        HobbyLinear=getId(R.id.personal_hobby_linear);
-        personalHobby=getId(R.id.personal_hobby);
-        //地址
-        addressLinear = getId(R.id.address_linear);
-        personalAddress=getId(R.id.personal_address);
-        Glide.with(getActivity()).load("http://115.29.99.167:8081/SellerNet/" + MyApplication.getInstance().UserInfo.getQrCode()).diskCacheStrategy(DiskCacheStrategy.ALL).into(imQrCode);
-        Glide.with(MyApplication.getInstance()).load(MyApplication.getInstance().UserInfo.getAvatar()).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgHead);
-        showText();
+//        //头像
+//        imgHead = getId(R.id.imgHead);
+//        //名字
+//        nameLinear = getId(R.id.name_linear);
+//        personalName = getId(R.id.personal_name);
+//        //性别
+//        sexyLinear = getId(R.id.sexy_linear);
+//        personalSex = getId(R.id.personal_sex);
+//        //二维码
+//        twocodeLinear = getId(R.id.twocode_linear);
+//        imQrCode = getId(R.id.im_QrCode);
+//        //年龄
+//        AgeLinear = getId(R.id.personal_age_linear);
+//        personalAge = getId(R.id.personal_age);
+//        //职业
+//        JobLinear = getId(R.id.personal_job_linear);
+//        personalJob = getId(R.id.personal_job);
+//        //爱好
+//        HobbyLinear = getId(R.id.personal_hobby_linear);
+//        personalHobby = getId(R.id.personal_hobby);
+//        //地址
+//        addressLinear = getId(R.id.address_linear);
+//        personalAddress = getId(R.id.personal_address);
+        SetData();
     }
 
-    private void showText() {
-        if (MyApplication.getInstance().UserInfo.getUsername() != null) {
-            personalName.setText(MyApplication.getInstance().UserInfo.getUsername());
+    private void SetData() {
+        //设置姓名
+        if (userinfo.getUsername() != null
+                && !personalName.getText().equals(userinfo.getUsername())) {
+            personalName.setText(userinfo.getUsername());
         }
-        if (MyApplication.getInstance().UserInfo.getSex() != null) {
-            String sexT = MyApplication.getInstance().UserInfo.getSex();
-            if (sexT.equals("0")) {
+        //设置性别
+        if (userinfo.getSex() != null) {
+            String sexT = userinfo.getSex();
+            if (sexT.equals("0")||sexT.equals("男")) {
                 personalSex.setText("男");
             } else {
                 personalSex.setText("女");
             }
         }
-        if (MyApplication.getInstance().UserInfo.getHobby() != null&&!MyApplication.getInstance().UserInfo.getHobby().equals("null")) {
-            personalHobby.setText(MyApplication.getInstance().UserInfo.getHobby());
-        }else{
+        //设置爱好
+        if (userinfo.getHobby() != null&& !userinfo.getHobby().equals("null")) {
+            //如果已经设置切值不变时不做操作
+            if (!personalHobby.getText().equals(userinfo.getHobby()))
+                personalHobby.setText(userinfo.getHobby());
+
+        } else {
             personalHobby.setText("无");
         }
-        if (MyApplication.getInstance().UserInfo.getJob() != null&&!MyApplication.getInstance().UserInfo.getJob().equals("null")) {
-            personalJob.setText(MyApplication.getInstance().UserInfo.getJob());
-        }else{
+        //设置职业
+        if (userinfo.getJob() != null&& !userinfo.getJob().equals("null")) {
+            if(personalJob.getText().equals(userinfo.getJob()))
+            personalJob.setText(userinfo.getJob());
+        } else {
             personalJob.setText("未知");
         }
-        if (MyApplication.getInstance().UserInfo.getAge() != 0) {
-            personalAge.setText(MyApplication.getInstance().UserInfo.getAge()+"");
-        }else{
+        //设置年龄
+        if (userinfo.getAge() != 0 ) {
+            if(Integer.parseInt(personalAge.getText().toString()) != userinfo.getAge())
+            personalAge.setText(userinfo.getAge() + "");
+        } else {
             personalAge.setText("未知");
 
         }
-        if (MyApplication.getInstance().UserInfo.getDistrictId() == null || MyApplication.getInstance().UserInfo.getDistrictId().equals("null")) {
+        //设置地区
+        if (userinfo.getDistrictId() == null || userinfo.getDistrictId().equals("null")) {
             personalAddress.setText("暂未获取到地区");
         } else {
-            personalAddress.setText(MyApplication.getInstance().UserInfo.getDistrictId());
+            personalAddress.setText(userinfo.getDistrictId());
         }
+        String l="http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode();
+//        Log.e(TAG, "initView: "+l );
+////        Glide.with(getActivity()).load(l).error(R.mipmap.qrcode).diskCacheStrategy(DiskCacheStrategy.ALL).into(imQrCode);
+        showUserAvator(imQrCode,l,R.mipmap.qrcode);
+//        Glide.with(MyApplication.getInstance()).load(MyApplication.getInstance().UserInfo.getAvatar()).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgHead);
+        showUserAvator(imgHead, userinfo.getAvatar(), R.mipmap.default_useravatar);
     }
 
     @Override
     public void initEvent() {
-        nameLinear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PersonalActivity.this, MeNameEditActivity.class);
-                startActivityForResult(intent, ME_NAME_EDIT_CODE);
-            }
-        });
-        twocodeLinear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityUtil.next(PersonalActivity.this, MyTwoCode.class);
-            }
-        });
-        addressLinear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityUtil.next(PersonalActivity.this, MeAddressListActivity.class);
-            }
-        });
-        imgHead.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPhotoDialog();
-            }
-        });
-        sexyLinear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(PersonalActivity.this);
-                builder.setTitle(getResources().getString(R.string.please_choose));
-                //TODO 选择男女
-                builder.setSingleChoiceItems(sexy, sexyWhich, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        sexyWhich = which;
-                        sexyChosen = sexy[sexyWhich];
-                        personalSex.setText(sexyChosen);
-                        dialog.dismiss();
-                        updateMyUser();
-                    }
-                });
-                builder.show();
-            }
-        });
-        AgeLinear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO 年龄选择
-            }
-        });
-        JobLinear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO 职业选择
-            }
-        });
-        HobbyLinear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO 爱好选择
-            }
-        });
+//        nameLinear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        twocodeLinear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
+//        addressLinear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
+//        imgHead.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
+//        sexyLinear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        AgeLinear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //TODO 年龄选择
+//            }
+//        });
+//        JobLinear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //TODO 职业选择
+//            }
+//        });
+//        HobbyLinear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //TODO 爱好选择
+//            }
+//        });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
@@ -258,22 +272,22 @@ public class PersonalActivity extends BaseActivity {
                     MyApplication.getInstance().UserInfo.setDistrictId(data.getStringExtra("loc"));
                     break;
 
-                case ME_NAME_EDIT_CODE:
+                case SET_NAME:
                     if (data == null) {
                         return;
                     }
                     edtName = data.getStringExtra("name");
                     personalName.setText(edtName);
-                    updateMyUser();
+                    updateMyUser(SET_NAME);
                     break;
 
-                case PERSONAL_SIGN_CODE:
+                case SET_SIGN:
                     if (data == null) {
                         return;
                     }
                     sign = data.getStringExtra("sign");
 //                    personSign.setText(sign);
-                    updateMyUser();
+                    updateMyUser(SET_SIGN);
                     break;
 
                 case PHOTO_REQUEST_TAKEPHOTO:
@@ -319,48 +333,84 @@ public class PersonalActivity extends BaseActivity {
         startActivityForResult(intent, PHOTO_REQUEST_CUT);
     }
 
-    public void updateMyUser() {
-        RequestParams params = new RequestParams();
-        params.put("id", MyApplication.getInstance().UserInfo.getUserId());
-        params.put("username", personalName.getText().toString().trim());
-        //TODO
-//        params.put("thermalSignatrue", personSign.getText().toString().trim());
-        params.put("avatar", avatar);
-        params.put("districtName", "成都市");
-        params.put("sex", personalSex.getText().toString().equals("男") ? "0" : "1");
-        HttpUtil.get(Url.changePersonalInformation, params, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                try {
-                    DBLog.e("修改个人资料：", response.toString());
-                    if (response.getInt("code") == 0) {
-                        MyApplication.getInstance().UserInfo.setUsername(personalName.getText().toString());
-                        //TODO
-//                        MyApplication.getInstance().UserInfo.setThermalSignatrue(personSign.getText().toString());
-                        MyApplication.getInstance().UserInfo.setAvatar(avatar);
-                        MyApplication.getInstance().UserInfo.setDistrictId("成都市");
-                        MyApplication.getInstance().UserInfo.setSex(personalSex.getText().toString());
-                        mDataHelper.UpdateUserInfo(MyApplication.getInstance().UserInfo);
+    public void updateMyUser(int type) {
+//        RequestParams params = new RequestParams();
+//        params.put("id", MyApplication.getInstance().UserInfo.getUserId());
+//        params.put("username", personalName.getText().toString().trim());
+//        //TODO
+////        params.put("thermalSignatrue", personSign.getText().toString().trim());
+//        params.put("avatar", avatar);
+//        params.put("districtName", "成都市");
+//        params.put("sex", personalSex.getText().toString().equals("男") ? "0" : "1");
+
+        HashMap<String, Object> map = new HashMap<>();
+        String cache = "";
+        map.put("id", MyApplication.getInstance().UserInfo.getUserId());
+        switch (type) {
+            case SET_NAME:
+                map.put("username", personalName.getText().toString().trim());
+                break;
+            case SET_SEX:
+                map.put("sex", personalSex.getText().toString().equals("男") ? "0" : "1");
+                break;
+            case SET_AGE:
+                map.put("age", personalAge.getText().toString().trim());
+                break;
+            case SET_JOB:
+
+                break;
+            case SET_HOBBY:
+
+                break;
+            case SET_LOC:
+
+                break;
+            case SET_HEADIMG:
+                map.put("avatar", avatar);
+                break;
+        }
+
+        RetrofitClient.getInstance().createApi().ChangeInfo(map)
+                .compose(RxUtils.<HttpResult>io_main())
+                .subscribe(new Observer<HttpResult>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
-//                    showToastMsg(response.getString("errorDescription"));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    ShowDialog.dissmiss();
-                }
-            }
 
-            @Override
-            public void onFinish() {
-            }
+                    @Override
+                    public void onNext(HttpResult value) {
+                        Log.e(TAG, "onNext: " + value.errorDescription);
+                        ShowDialog.dissmiss();
+                        UpdateInfo();
+                    }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                showToastMsg("请求服务器失败");
-                DBLog.e("tag", statusCode + ":" + responseString);
-                avatar = MyApplication.getInstance().UserInfo.getAvatar();
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void UpdateInfo() {
+        userinfo.setAvatar(avatar);
+        userinfo.setUsername(personalName.getText().toString().trim());
+        userinfo.setSex(personalSex.getText().toString());
+        userinfo.setHobby(personalHobby.getText().toString().trim());
+        userinfo.setJob(personalJob.getText().toString().trim());
+        if (personalAge.getText().toString().trim().equals("未知")) {
+            userinfo.setAge(0);
+        } else {
+            userinfo.setAge(Integer.parseInt(personalAge.getText().toString().trim()));
+        }
+        userinfo.setDistrictId("");
+        SetData();
+        Log.e(TAG, userinfo.toString() );
     }
 
     private void updateAvatarInServer(final String image) {
@@ -374,6 +424,7 @@ public class PersonalActivity extends BaseActivity {
         }
     }
 
+    //获取当前事件
     @SuppressLint("SimpleDateFormat")
     private String getNowTime() {
         Date date = new Date(System.currentTimeMillis());
@@ -381,11 +432,13 @@ public class PersonalActivity extends BaseActivity {
         return dateFormat.format(date);
     }
 
+    //获取TOKEN
     private String getToken() {
         Auth auth = Auth.create(QiNiuConfig.QINIU_AK, QiNiuConfig.QINIU_SK);
         return auth.uploadToken("yxin");
     }
 
+    //上传图片
     private void upload(String uploadToken, File uploadFile) {
         if (uploadManager == null) {
             uploadManager = new UploadManager();
@@ -393,13 +446,13 @@ public class PersonalActivity extends BaseActivity {
         uploadManager.put(uploadFile, null, uploadToken,
                 new UpCompletionHandler() {
                     @Override
-                    public void complete(String key, final com.qiniu.android.http.ResponseInfo respInfo, org.json.JSONObject jsonData) {
+                    public void complete(String key, final ResponseInfo respInfo, JSONObject jsonData) {
                         if (respInfo.isOK()) {
                             try {
                                 String fileKey = jsonData.getString("key");
                                 final String url = "http://oez2a4f3v.bkt.clouddn.com/" + fileKey;
                                 avatar = url;
-                                updateMyUser();
+                                updateMyUser(SET_HEADIMG);
                             } catch (Exception e) {
                                 ShowDialog.dissmiss();
                                 showToastMsg("上传图片失败");
@@ -412,15 +465,28 @@ public class PersonalActivity extends BaseActivity {
                 }, null);
     }
 
-    public void showUserAvator(ImageView imgHead, String avatorUrl) {
-        Glide.with(getActivity())
-                .load(avatorUrl)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imgHead);
+    //刷新头像
+    public void showUserAvator(ImageView imgHead, String avatorUrl, int resId) {
+        if (resId == -500) {
+            Glide.with(getActivity())
+                    .load(avatorUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imgHead);
+        } else {
+            Glide.with(getActivity())
+                    .load(avatorUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .error(resId)
+                    .into(imgHead);
+        }
+
+        //        Glide.with(MyApplication.getInstance()).load(MyApplication.getInstance().UserInfo.getAvatar()).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgHead);
+
     }
 
+    //拍照或相册
     private void showPhotoDialog() {
-        final android.app.AlertDialog dlg = new android.app.AlertDialog.Builder(this).create();
+        final AlertDialog dlg = new AlertDialog.Builder(this).create();
         dlg.show();
         Window window = dlg.getWindow();
         // *** 主要就是在这里实现这种效果的.
@@ -454,9 +520,26 @@ public class PersonalActivity extends BaseActivity {
         });
     }
 
+    //性别选项
+    private void showSexDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(getResources().getString(R.string.please_choose));
+        builder.setSingleChoiceItems(sexy, sexyWhich, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                sexyWhich = which;
+                sexyChosen = sexy[sexyWhich];
+                personalSex.setText(sexyChosen);
+                dialog.dismiss();
+                updateMyUser(SET_SEX);
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
-
-    public void nameEdit(String URL, RequestParams params) {
+    //签名编辑
+    public void SignEdit(String URL, RequestParams params) {
         AsyncHttpClient client = HttpUtil.getClient();
         client.post(URL, params, new AsyncHttpResponseHandler() {
             @Override
@@ -474,5 +557,34 @@ public class PersonalActivity extends BaseActivity {
 
     }
 
-
+    @OnClick({R.id.imgHead, R.id.name_linear, R.id.sexy_linear, R.id.twocode_linear, R.id.personal_age_linear, R.id.personal_job_linear, R.id.personal_hobby_linear, R.id.address_linear})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.imgHead:
+                showPhotoDialog();
+                break;
+            case R.id.name_linear:
+                Intent intent = new Intent();
+                intent.setClass(PersonalActivity.this, MeNameEditActivity.class);
+                startActivityForResult(intent, SET_NAME);
+                break;
+            case R.id.sexy_linear:
+                showSexDialog();
+                break;
+            case R.id.twocode_linear:
+                ActivityUtil.next(PersonalActivity.this, MyTwoCode.class);
+                break;
+            case R.id.personal_age_linear:
+                break;
+            case R.id.personal_job_linear:
+                break;
+            case R.id.personal_hobby_linear:
+                break;
+            case R.id.address_linear:
+                ActivityUtil.next(PersonalActivity.this, MeAddressListActivity.class);
+                break;
+        }
+    }
 }
+
+

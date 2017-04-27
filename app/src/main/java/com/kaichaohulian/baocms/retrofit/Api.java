@@ -1,7 +1,7 @@
 package com.kaichaohulian.baocms.retrofit;
 
-import com.kaichaohulian.baocms.entity.BaseEntity;
 import com.kaichaohulian.baocms.http.HttpResult;
+import com.kaichaohulian.baocms.http.Url;
 
 import java.util.Map;
 
@@ -21,6 +21,6 @@ public interface Api {
 //    @POST("api/User/login")
 //    Observable<HttpResult<LoginBean>> login(@FieldMap Map<String, String> map);
     @FormUrlEncoded
-    @POST("api/User/login")
-    Observable<HttpResult<BaseEntity>> login(@FieldMap Map<String,String> map);
+    @POST(Url.changePersonalInformation)
+    Observable<HttpResult> ChangeInfo(@FieldMap Map<String,Object> map);
 }

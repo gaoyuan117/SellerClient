@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/name_selector_color"
-    android:orientation="vertical">
+    android:background="@color/bg_color_gray">
 
-    <include layout="@layout/title_project" />
+    <include
+        android:id="@+id/title_changerecharge"
+        layout="@layout/title_project"
+        />
 
     <LinearLayout
+        android:id="@+id/chargerecharge_ll"
+        android:layout_below="@+id/title_changerecharge"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimens_50"
         android:layout_marginTop="@dimen/dimens_12"
@@ -94,6 +98,7 @@
         android:background="@color/light_text_color" />
 
     <LinearLayout
+        android:layout_below="@+id/chargerecharge_ll"
         android:id="@+id/Linear_weixin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimens_60"
@@ -151,11 +156,13 @@
         android:layout_width="@dimen/money_recharge_button_width"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@mipmap/deeporange_bar_normal"
         android:enabled="true"
         android:text="立即支付"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        />
 
-</LinearLayout>
+</RelativeLayout>

@@ -345,6 +345,6 @@
     <color name="zy_text_color">#646464</color>
     <color name="zy_text_black">#323232</color>
     <color name="zy_text_gray">#909090</color>
-
+    <color name="bg_color_gray">#f5f5f5</color>
 
 </resources>

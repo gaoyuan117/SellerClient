@@ -54,7 +54,7 @@ public abstract class BaseListObserver<T> implements Observer<HttpArray<T>> {
 
     @Override
     public void onNext(HttpArray<T> value) {
-        if (value.code == 200) {
+        if (value.code == 0) {
             List<T> t = value.data;
             onHandleSuccess(t);
         } else {

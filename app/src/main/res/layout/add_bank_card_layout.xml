@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_color_gray"
     android:orientation="vertical" >
 
     <include layout="@layout/title_project" />
@@ -14,7 +15,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height">
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@color/white"
+        >
 
         <TextView
             android:id="@+id/add_bankcard_realname_text"
@@ -48,6 +51,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="@dimen/discover_line_height" >
 
         <TextView
@@ -128,7 +132,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height" >
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@color/white"
+        >
 
         <TextView
             android:id="@+id/add_bankcard_banks_text"
@@ -171,6 +177,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/discover_line_height"
+        android:background="@color/white"
+
         >
         <TextView
             android:id="@+id/add_bankcard_cardnumber_text"

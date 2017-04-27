@@ -4,6 +4,7 @@
     android:id="@+id/activity_me_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_color_gray"
     tools:context="com.kaichaohulian.baocms.activity.MeAboutActivity">
     <include layout="@layout/title_project" />
 </RelativeLayout>

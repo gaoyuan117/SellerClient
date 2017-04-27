@@ -61,7 +61,7 @@ public abstract class BaseObjObserver<T> implements Observer<HttpResult<T>> {
             T t = value.data;
             onHandleSuccess(t);
         } else {
-            onHandleError(value.code, value.message);
+            onHandleError(value.code, value.errorDescription);
         }
     }
 
