@@ -5,7 +5,39 @@
     android:background="@android:color/transparent"
     android:orientation="vertical" >
 
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="16dp"
+        android:background="#000"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/m_finish"
+            android:layout_width="80dp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/zy_back" />
+
+        <TextView
+            android:id="@+id/m_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="二维码"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
     <SurfaceView
+        android:layout_below="@+id/title"
         android:id="@+id/capture_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -18,14 +50,16 @@
         <ImageView
             android:id="@+id/capture_mask_top"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
+            android:background="@mipmap/shadow"
             android:layout_alignParentTop="true"
-            android:background="@mipmap/shadow" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <RelativeLayout
             android:id="@+id/capture_crop_view"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
             android:layout_below="@id/capture_mask_top"
             android:layout_centerHorizontal="true"
             android:background="@mipmap/qr_code_bg" >
@@ -39,6 +73,16 @@
                 android:layout_marginTop="5dp"
                 android:src="@mipmap/scan_line" />
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="将二维码放入框内，即可自动扫描"
+            android:layout_below="@+id/capture_crop_view"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dimens_16"
+            />
 
         <ImageView
             android:id="@+id/capture_mask_bottom"

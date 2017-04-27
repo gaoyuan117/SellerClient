@@ -1,9 +1,11 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
@@ -18,6 +20,7 @@ public class AddFriendsOneActivity extends BaseActivity {
     private TextView tv_search, WeChatID;
     private View scannerCode, showCode, phoneContact, shopping, Relative_LdAdd, Relative_mmGroup;
     private String id ="我的买家号:" + MyApplication.getInstance().UserInfo.getAccountNumber();
+    private RelativeLayout rlCode;
 
     @Override
     public void setContent() {
@@ -39,6 +42,7 @@ public class AddFriendsOneActivity extends BaseActivity {
         WeChatID = getId(R.id.WeChatID);
         Relative_LdAdd = getId(R.id.Relative_LdAdd);
         Relative_mmGroup = getId(R.id.Relative_mmGroup);
+        rlCode = getId(R.id.Relative_code);
     }
 
     @Override
@@ -90,6 +94,25 @@ public class AddFriendsOneActivity extends BaseActivity {
                 ActivityUtil.next(getActivity(), RelativeMMGroupActivity.class);
             }
         });
+        rlCode.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                codeDialog();
+            }
+        });
+    }
+
+    /**
+     * 二维码对话框
+     */
+    private void codeDialog(){
+        //TODO 实例化对话框控件
+        View dialogView = View.inflate(this,R.layout.dialog_code,null);
+        Dialog dialog = new Dialog(this,R.style.MyDialogStyle);
+        dialog.setContentView(dialogView);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+
     }
 
     @Override

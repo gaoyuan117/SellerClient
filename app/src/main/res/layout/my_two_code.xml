@@ -13,8 +13,8 @@
         android:scrollbars="none">
 
         <RelativeLayout
-            android:layout_width="330dp"
-            android:layout_height="460dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_marginBottom="@dimen/dimens_10"
             android:layout_marginTop="@dimen/dimens_10"
@@ -36,6 +36,7 @@
                 android:layout_marginBottom="@dimen/dimens_8"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="@dimen/dimens_30"
+                android:textColor="@color/zy_text_gray"
                 android:layout_toRightOf="@id/head_img"
                 android:textSize="@dimen/text_12" />
 
@@ -63,9 +64,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/two_code"
                 android:layout_centerHorizontal="true"
+                android:textColor="@color/zy_text_color"
                 android:layout_marginTop="@dimen/dimens_10"
+                android:layout_marginBottom="10dp"
                 android:text="@string/my_two_code_tip"
-                android:textSize="@dimen/text_10" />
+                android:textSize="@dimen/text_12" />
 
             <TextView
                 android:id="@+id/name_text"
@@ -75,7 +78,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@+id/head_img"
                 android:layout_toRightOf="@+id/head_img"
-                android:text="飞鹰UI设计"
+                android:text="用户名"
                 android:textColor="@color/dark"
                 android:textSize="@dimen/text_16" />
         </RelativeLayout>

@@ -28,6 +28,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -43,15 +44,6 @@ import com.kaichaohulian.baocms.view.zxing.utils.CaptureActivityHandler;
 import com.kaichaohulian.baocms.view.zxing.utils.InactivityTimer;
 import com.google.zxing.Result;
 
-/**
- * This activity opens the camera and does the actual scanning on a background
- * thread. It draws a viewfinder to help the user place the barcode correctly,
- * shows feedback as the image processing is happening, and then overlays the
- * results when a scan is successful.
- *
- * @author dswitkin@google.com (Daniel Switkin)
- * @author Sean Owen
- */
 public final class CaptureActivity extends Activity implements SurfaceHolder.Callback {
 
     public static final String RESULT_TYPE = "result_type";
@@ -69,7 +61,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     private SurfaceView scanPreview = null;
     private RelativeLayout scanContainer;
     private RelativeLayout scanCropView;
-    private ImageView scanLine;
+    private ImageView scanLine,back;
 
     private Rect mCropRect = null;
 
@@ -95,6 +87,13 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         scanContainer = (RelativeLayout) findViewById(R.id.capture_container);
         scanCropView = (RelativeLayout) findViewById(R.id.capture_crop_view);
         scanLine = (ImageView) findViewById(R.id.capture_scan_line);
+        back = (ImageView) findViewById(R.id.m_finish);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         inactivityTimer = new InactivityTimer(this);
         beepManager = new BeepManager(this);
