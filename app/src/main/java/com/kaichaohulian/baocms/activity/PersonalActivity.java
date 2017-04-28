@@ -21,6 +21,7 @@ import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.db.DataHelper;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
@@ -343,11 +344,12 @@ public class PersonalActivity extends BaseActivity {
 //        params.put("districtName", "成都市");
 //        params.put("sex", personalSex.getText().toString().equals("男") ? "0" : "1");
 
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         String cache = "";
-        map.put("id", MyApplication.getInstance().UserInfo.getUserId());
+        map.put("id", MyApplication.getInstance().UserInfo.getUserId()+"");
         switch (type) {
             case SET_NAME:
+                ToastUtil.showMessage(personalName.getText().toString().trim());
                 map.put("username", personalName.getText().toString().trim());
                 break;
             case SET_SEX:
