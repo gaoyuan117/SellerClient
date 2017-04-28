@@ -24,6 +24,6 @@ public interface Api {
 //    @POST("api/User/login")
 //    Observable<HttpResult<LoginBean>> login(@FieldMap Map<String, String> map);
 //    @FormUrlEncoded
-    @GET("users/updateUser.do")
+    @GET(Url.changePersonalInformation)
     Observable<HttpResult> ChangeInfo(@QueryMap Map<String,String> map);
 }

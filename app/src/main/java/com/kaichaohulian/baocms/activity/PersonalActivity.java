@@ -389,7 +389,7 @@ public class PersonalActivity extends BaseActivity {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.e("gy",e.toString());
                     }
 
                     @Override
