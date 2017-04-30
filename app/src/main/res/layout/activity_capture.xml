@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:text="二维码"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
@@ -62,7 +62,7 @@
             android:layout_height="240dp"
             android:layout_below="@id/capture_mask_top"
             android:layout_centerHorizontal="true"
-            android:background="@mipmap/qr_code_bg" >
+            android:background="@mipmap/qr_code_bg2" >
 
             <ImageView
                 android:id="@+id/capture_scan_line"

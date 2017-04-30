@@ -10,10 +10,15 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.entity.ContactStatusEntity;
 import com.kaichaohulian.baocms.entity.UserInfo;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.DBLog;
 import com.kaichaohulian.baocms.view.ShowDialog;
 import com.kaichaohulian.baocms.view.SwitchButton;
@@ -113,7 +118,8 @@ public class ChatSettingActivity extends BaseActivity implements View.OnClickLis
             }
         });
 //        TextView back = (TextView) findViewById(R.id.iv_back);
-//        TextView removeBtn = (TextView) findViewById(R.id.btn_remove);
+        TextView removeBtn = (TextView) findViewById(R.id.btn_remove);
+        removeBtn.setOnClickListener(this);
 //        removeBtn.setOnClickListener(this);
 //        back.setOnClickListener(this);
     }
@@ -132,10 +138,25 @@ public class ChatSettingActivity extends BaseActivity implements View.OnClickLis
 
             case R.id.btn_remove:
 //                startActivity(new Intent(this, MainActivity.class));
+                deleteFriend();
                 break;
 
         }
     }
+    private void deleteFriend(){
+        map.put("id",MyApplication.getInstance().UserInfo.getId());
+        map.put("friendId",cUId);
+        RetrofitClient.getInstance().createApi().deleteFriend(map)
+                .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                .subscribe(new BaseObjObserver<CommonEntity>(this) {
+                    @Override
+                    protected void onHandleSuccess(CommonEntity commonEntity) {
+
+                    }
+                });
+
+    }
+
 
     public void setStatus(String flag, long cUId) {
         RequestParams params = new RequestParams();

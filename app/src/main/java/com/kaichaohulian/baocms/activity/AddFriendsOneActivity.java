@@ -3,16 +3,20 @@ package com.kaichaohulian.baocms.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.ecdemo.ui.contact.ContactSelectListActivity;
+import com.kaichaohulian.baocms.util.GlideUtils;
 import com.kaichaohulian.baocms.view.zxing.activity.CaptureActivity;
 
 public class AddFriendsOneActivity extends BaseActivity {
@@ -108,6 +112,22 @@ public class AddFriendsOneActivity extends BaseActivity {
     private void codeDialog(){
         //TODO 实例化对话框控件
         View dialogView = View.inflate(this,R.layout.dialog_code,null);
+        ImageView avatar = (ImageView) dialogView.findViewById(R.id.img_code_avatar);
+        ImageView codeImg = (ImageView) dialogView.findViewById(R.id.img_code);
+        TextView name = (TextView) dialogView.findViewById(R.id.tv_code_name);
+        TextView address = (TextView) dialogView.findViewById(R.id.tv_code_adress);
+        name.setText(MyApplication.getInstance().UserInfo.getUsername());
+        address.setText(MyApplication.getInstance().UserInfo.getDistrictId());
+        Glide.with(MyApplication.getInstance())
+                .load(MyApplication.getInstance().UserInfo.getAvatar())
+                .error(R.mipmap.default_useravatar)
+                .crossFade()
+                .into(avatar);
+        Glide.with(MyApplication.getInstance())
+                .load(MyApplication.getInstance().UserInfo.getQrCode())
+                .error(R.mipmap.default_image)
+                .crossFade()
+                .into(codeImg);
         Dialog dialog = new Dialog(this,R.style.MyDialogStyle);
         dialog.setContentView(dialogView);
         dialog.setCanceledOnTouchOutside(true);

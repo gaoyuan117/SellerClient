@@ -23,6 +23,9 @@ import com.kaichaohulian.baocms.app.AppManager;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.utils.DBLog;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 应用程序Activity的基类
  * Created by ljl on 2016/12/11.
@@ -39,6 +42,7 @@ public abstract class BaseActivity extends FragmentActivity {
     public double mStartLatitude, mStartLontitude;
     private static final int UPDATE_TIME = 5000;
     private boolean alreadyLocation = false;
+    public Map<String,Object> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public abstract class BaseActivity extends FragmentActivity {
         if (FEATURE_NO_TITLE) {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
         }
+
         locationClient = new LocationClient(this);
         //设置定位条件
         LocationClientOption option = new LocationClientOption();
@@ -83,6 +88,8 @@ public abstract class BaseActivity extends FragmentActivity {
         initData();
         initView();
         initEvent();
+
+        map = new HashMap<>();
 
     }
 

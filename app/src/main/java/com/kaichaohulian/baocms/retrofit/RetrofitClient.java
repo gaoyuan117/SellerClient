@@ -73,6 +73,7 @@ public class RetrofitClient {
             url = baseUrl;
         }
 
+
         okHttpClient = new OkHttpClient.Builder()
                 .addNetworkInterceptor(
                         new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
