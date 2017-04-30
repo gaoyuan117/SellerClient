@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.retrofit;
 
+import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.Url;
 
@@ -26,4 +27,7 @@ public interface Api {
 //    @FormUrlEncoded
     @GET(Url.changePersonalInformation)
     Observable<HttpResult> ChangeInfo(@QueryMap Map<String,String> map);
+
+    @GET(Url.delete)
+    Observable<HttpResult<CommonEntity>> deleteFriend(@QueryMap Map<String,Object> map);
 }

@@ -22,7 +22,7 @@ public class GlideUtils {
      */
     public static void glideImg(String imgPath, ImageView imageView) {
         Glide.with(MyApplication.getInstance())
-                .load(Url.BASE_URL + imgPath)
+                .load("http://www.52yeli.com/" + imgPath)
                 .error(R.mipmap.default_image)
                 .crossFade()
                 .into(imageView);
@@ -35,7 +35,7 @@ public class GlideUtils {
      */
     public static void glideAvatar(String imgPath, ImageView imageView) {
         Glide.with(MyApplication.getInstance())
-                .load(Url.BASE_URL + imgPath)
+                .load("http://www.52yeli.com/" + imgPath)
                 .error(R.mipmap.default_useravatar)
                 .crossFade()
                 .into(imageView);
