@@ -3,21 +3,16 @@ package com.kaichaohulian.baocms.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.UserInfoManager;
-import com.kaichaohulian.baocms.activity.CollectionListActivity;
 import com.kaichaohulian.baocms.activity.MeAboutActivity;
 import com.kaichaohulian.baocms.activity.MeSettingsActivity;
 import com.kaichaohulian.baocms.activity.MyAlbumActivity;
@@ -26,8 +21,8 @@ import com.kaichaohulian.baocms.activity.PocketActivity;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
+import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.utils.SharedPrefsUtil;
-import com.melink.bqmmsdk.ui.store.EmojiPackageList;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,13 +34,7 @@ import butterknife.OnClick;
 @SuppressLint("ValidFragment")
 public class ProFileFragment extends BaseFragment {
 
-    private RelativeLayout mPersonal;
-    private RelativeLayout mPocket;
-    private RelativeLayout mSettings;
-    private RelativeLayout mAlbum;
-    private RelativeLayout mAbout;
-    private RelativeLayout mCollection;
-    private RelativeLayout mFace;
+
 
     private TextView me_head_name;
     private TextView me_buyer_number;
@@ -60,6 +49,7 @@ public class ProFileFragment extends BaseFragment {
     @Override
     public void setContent() {
         mView = LayoutInflater.from(getContext()).inflate(R.layout.me_layout, null);
+        ButterKnife.bind(this,mView);
     }
 
     @Override
@@ -71,31 +61,21 @@ public class ProFileFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        mPersonal = getId(R.id.me_name);
-        mPocket = getId(R.id.me_relativelayout_pocket);
-        mSettings = getId(R.id.me_relativelayout_settings);
-        mAlbum = getId(R.id.me_relativelayout_album);
-        mAbout = getId(R.id.me_relativelayout_about);
-        mCollection = getId(R.id.me_relativelayout_collection);
-        mFace = getId(R.id.me_relativelayout_face);
-
         me_head_icon = getId(R.id.me_head_icon);
         me_buyer_number = getId(R.id.me_buyer_number);
         me_head_name = getId(R.id.me_head_name);
         im_QrCode = getId(R.id.im_QrCode);
-
-
         Glide.with(MyApplication.getInstance()).load(MyApplication.getInstance().UserInfo.getAvatar()).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(me_head_icon);
         me_head_name.setText(MyApplication.getInstance().UserInfo.getUsername());
-//        me_buyer_number.setText(MyApplication.getInstance().UserInfo.getUsername()+MyApplication.getInstance().UserInfo.getPhoneNumber());
-        String accountNumber = MyApplication.getInstance().UserInfo.getPhoneNumber();
+        String userid = String.valueOf(MyApplication.getInstance().UserInfo.getUserId());
 
-        if (!TextUtils.isEmpty(accountNumber) && !"null".equals(accountNumber)) {
-            me_buyer_number.setText(accountNumber);
+        if (!TextUtils.isEmpty(userid) && !"null".equals(userid)) {
+            me_buyer_number.setText("ID:"+userid);
         } else {
             me_buyer_number.setText("暂未获取到账号");
         }
-        Glide.with(MyApplication.getInstance()).load("http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode()).diskCacheStrategy(DiskCacheStrategy.ALL).into(im_QrCode);
+
+        Glide.with(MyApplication.getInstance()).load(Url.BASE_URL + MyApplication.getInstance().UserInfo.getQrCode()).diskCacheStrategy(DiskCacheStrategy.ALL).into(im_QrCode);
     }
 
     @Override
@@ -155,36 +135,37 @@ public class ProFileFragment extends BaseFragment {
 //        });
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 
-    @OnClick({R.id.me_name, R.id.me_relativelayout_album, R.id.me_relativelayout_pocket,/* R.id.me_relativelayout_collection, R.id.me_relativelayout_face，*/ R.id.me_relativelayout_about, R.id.me_relativelayout_settings})
+    @OnClick({R.id.me_name, R.id.me_relativelayout_MassAdvertising, R.id.me_relativelayout_Advertising_manager, R.id.me_relativelayout_SendInvitation, R.id.me_relativelayout_invitationManager, R.id.me_relativelayout_album, R.id.me_relativelayout_pocket, R.id.me_relativelayout_about, R.id.me_relativelayout_OnlineService, R.id.me_relativelayout_settings})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.me_name:
                 ActivityUtil.next(getActivity(), PersonalActivity.class);
                 break;
+            case R.id.me_relativelayout_MassAdvertising:
+                ActivityUtil.next(getActivity(), PersonalActivity.class);
+                break;
+            case R.id.me_relativelayout_Advertising_manager:
+                ActivityUtil.next(getActivity(), PersonalActivity.class);
+                break;
+            case R.id.me_relativelayout_SendInvitation:
+                ActivityUtil.next(getActivity(), PersonalActivity.class);
+                break;
+            case R.id.me_relativelayout_invitationManager:
+                ActivityUtil.next(getActivity(), PersonalActivity.class);
+                break;
             case R.id.me_relativelayout_album:
                 ActivityUtil.next(getActivity(), MyAlbumActivity.class);
-                break;
-            case R.id.me_relativelayout_collection:
-                ActivityUtil.next(getActivity(), CollectionListActivity.class);
                 break;
             case R.id.me_relativelayout_pocket:
                 UserInfoManager.getInstance().updateUserCache(getActivity());
                 ActivityUtil.next(getActivity(), PocketActivity.class);
                 break;
-            case R.id.me_relativelayout_face:
-                startActivity(new Intent(getActivity(), EmojiPackageList.class));
-                break;
             case R.id.me_relativelayout_about:
-                //TODO 设置关于页面
-//                ActivityUtil.next(getActivity(),);
-                ActivityUtil.next(getActivity(),MeAboutActivity.class);
+                ActivityUtil.next(getActivity(), MeAboutActivity.class);
+                break;
+            case R.id.me_relativelayout_OnlineService:
+                ActivityUtil.next(getActivity(), PersonalActivity.class);
                 break;
             case R.id.me_relativelayout_settings:
                 ActivityUtil.next(getActivity(), MeSettingsActivity.class);

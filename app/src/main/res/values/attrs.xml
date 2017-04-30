@@ -3,28 +3,19 @@
     <declare-styleable name="roundedimageview">
         <attr name="border_thickness" format="dimension" />
         <attr name="border_inside_color" format="color" />
-        <attr name="border_outside_color" format="color"/>
+        <attr name="border_outside_color" format="color" />
     </declare-styleable>
 
 
-        <declare-styleable name="PasswordEditText">
-            <!-- 密码的个数 -->
-            <attr name="passwordNumber" format="integer"/>
-            <!-- 密码圆点的半径 -->
-            <attr name="passwordRadius" format="dimension" />
-            <!-- 密码圆点的颜色 -->
-            <attr name="passwordColor" format="color" />
-            <!-- 分割线的颜色 -->
-            <attr name="divisionLineColor" format="color" />
-            <!-- 分割线的大小 -->
-            <attr name="divisionLineSize" format="color" />
-            <!-- 背景边框的颜色 -->
-            <attr name="bgColor" format="color" />
-            <!-- 背景边框的大小 -->
-            <attr name="bgSize" format="dimension" />
-            <!-- 背景边框的圆角大小 -->
-            <attr name="bgCorner" format="dimension"/>
-        </declare-styleable>
+    <declare-styleable name="PasswordInputView">
+        <attr name="pivBorderColor" format="color" />
+        <attr name="pivBorderWidth" format="dimension" />
+        <attr name="pivBorderRadius" format="dimension" />
+        <attr name="pivPasswordColor" format="color" />
+        <attr name="pivPasswordWidth" format="dimension" />
+        <attr name="pivPasswordRadius" format="dimension" />
+        <attr name="pivPasswordLength" format="integer" />
+    </declare-styleable>
 
 
     <declare-styleable name="BGABanner">
@@ -74,27 +65,27 @@
         <attr name="banner_tipTextSize" format="dimension" />
     </declare-styleable>
     <declare-styleable name="SwitchButton">
-        <attr name="kswThumbDrawable" format="reference"/>
-        <attr name="kswThumbColor" format="color|reference"/>
-        <attr name="kswThumbMargin" format="dimension|reference"/>
-        <attr name="kswThumbMarginTop" format="dimension|reference"/>
-        <attr name="kswThumbMarginBottom" format="dimension|reference"/>
-        <attr name="kswThumbMarginLeft" format="dimension|reference"/>
-        <attr name="kswThumbMarginRight" format="dimension|reference"/>
-        <attr name="kswThumbWidth" format="dimension|reference"/>
-        <attr name="kswThumbHeight" format="dimension|reference"/>
-        <attr name="kswThumbRadius" format="dimension|reference"/>
-        <attr name="kswBackRadius" format="dimension|reference"/>
-        <attr name="kswBackDrawable" format="reference"/>
-        <attr name="kswBackColor" format="color|reference"/>
-        <attr name="kswFadeBack" format="boolean"/>
-        <attr name="kswBackMeasureRatio" format="float"/>
-        <attr name="kswAnimationDuration" format="integer"/>
-        <attr name="kswTintColor" format="color|reference"/>
-        <attr name="kswTextOn" format="string"/>
-        <attr name="kswTextOff" format="string"/>
-        <attr name="kswTextMarginH" format="dimension"/>
-        <attr name="kswAutoAdjustTextPosition" format="boolean"/>
+        <attr name="kswThumbDrawable" format="reference" />
+        <attr name="kswThumbColor" format="color|reference" />
+        <attr name="kswThumbMargin" format="dimension|reference" />
+        <attr name="kswThumbMarginTop" format="dimension|reference" />
+        <attr name="kswThumbMarginBottom" format="dimension|reference" />
+        <attr name="kswThumbMarginLeft" format="dimension|reference" />
+        <attr name="kswThumbMarginRight" format="dimension|reference" />
+        <attr name="kswThumbWidth" format="dimension|reference" />
+        <attr name="kswThumbHeight" format="dimension|reference" />
+        <attr name="kswThumbRadius" format="dimension|reference" />
+        <attr name="kswBackRadius" format="dimension|reference" />
+        <attr name="kswBackDrawable" format="reference" />
+        <attr name="kswBackColor" format="color|reference" />
+        <attr name="kswFadeBack" format="boolean" />
+        <attr name="kswBackMeasureRatio" format="float" />
+        <attr name="kswAnimationDuration" format="integer" />
+        <attr name="kswTintColor" format="color|reference" />
+        <attr name="kswTextOn" format="string" />
+        <attr name="kswTextOff" format="string" />
+        <attr name="kswTextMarginH" format="dimension" />
+        <attr name="kswAutoAdjustTextPosition" format="boolean" />
     </declare-styleable>
 
     <attr name="attrIconCall" format="reference" />
@@ -185,30 +176,30 @@
     </declare-styleable>
 
     <declare-styleable name="Emojicon">
-        <attr name="emojiconSize" format="dimension"/>
-        <attr name="emojiconTextStart" format="integer"/>
-        <attr name="emojiconTextLength" format="integer"/>
-        <attr name="emojiconUseSystemDefault" format="boolean"/>
+        <attr name="emojiconSize" format="dimension" />
+        <attr name="emojiconTextStart" format="integer" />
+        <attr name="emojiconTextLength" format="integer" />
+        <attr name="emojiconUseSystemDefault" format="boolean" />
     </declare-styleable>
     <declare-styleable name="SwipeBackLayout">
-        <attr name="edge_size" format="dimension"/>
+        <attr name="edge_size" format="dimension" />
         <attr name="edge_flag">
             <enum name="left" value="0" />
             <enum name="right" value="1" />
             <enum name="bottom" value="2" />
             <enum name="all" value="3" />
         </attr>
-        <attr name="shadow_left" format="reference"/>
-        <attr name="shadow_right" format="reference"/>
-        <attr name="shadow_bottom" format="reference"/>
+        <attr name="shadow_left" format="reference" />
+        <attr name="shadow_right" format="reference" />
+        <attr name="shadow_bottom" format="reference" />
     </declare-styleable>
 
-    <attr name="SwipeBackLayoutStyle" format="reference"/>
+    <attr name="SwipeBackLayoutStyle" format="reference" />
     <declare-styleable name="call_control">
         <attr name="call_direct">
             <enum name="incoming" value="0" />
             <enum name="outgoing" value="1" />
-            <enum name="inCall" value="2"/>
+            <enum name="inCall" value="2" />
         </attr>
     </declare-styleable>
     <declare-styleable name="SpinnerView">

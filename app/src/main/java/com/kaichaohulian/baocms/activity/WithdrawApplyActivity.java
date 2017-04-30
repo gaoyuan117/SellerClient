@@ -1,21 +1,35 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.db.DataHelper;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.manager.UIHelper;
 import com.kaichaohulian.baocms.manager.Validator;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.DBLog;
+import com.kaichaohulian.baocms.view.PasswordEdittext;
 import com.kaichaohulian.baocms.view.ShowDialog;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -23,14 +37,18 @@ import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class WithdrawApplyActivity extends BaseActivity {
 
     @BindView(R.id.tv_withdrawApply_zhanghao)
-    TextView Apply_Id;
+    EditText Apply_Id;
     @BindView(R.id.ed_kaihuyinhanag)
     EditText edKaihuyinhanag;
     @BindView(R.id.ed_kaihuzhanghao)
@@ -56,7 +74,10 @@ public class WithdrawApplyActivity extends BaseActivity {
     @BindView(R.id.withdraw_cash_btn)
     Button btnNext;
     private final int WECHAT=0,ALIPAY=1,BANKPAY=2;
-    private String str_apply_id;
+    private View SignPassword;
+    private PasswordEdittext paywordEdt;
+    private PopupWindow PopSignPassword;
+    private HashMap<String,String> params=new HashMap<>();
 
     @Override
     public void setContent() {
@@ -66,6 +87,7 @@ public class WithdrawApplyActivity extends BaseActivity {
 
     @Override
     public void initData() {
+
     }
 
     @Override
@@ -87,7 +109,57 @@ public class WithdrawApplyActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
+//        Apply_Id.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                if(!Apply_Id.getText().toString().trim().equals(""))
+//                {
+//                    int i=0;
+//                    if((i= Integer.parseInt(edtInputNumber.getText().toString().trim()))!=0){
+//                        btnNext.setBackgroundResource(R.mipmap.deeporange_bar_part);
+//                    }
+//                }else{
+//                    btnNext.setBackgroundResource(R.mipmap.deeporange_bar_normal);
+//                }
+//            }
+//        });
+        edtInputNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(!Apply_Id.getText().toString().trim().equals(""))
+                {
+                    int i=0;
+                    if((i= Integer.parseInt(edtInputNumber.getText().toString().trim()))>=0){
+                        btnNext.setBackgroundResource(R.mipmap.deeporange_bar_part);
+                        btnNext.setClickable(true);
+
+                    }
+                }else{
+                    btnNext.setBackgroundResource(R.mipmap.deeporange_bar_normal);
+                    btnNext.setClickable(false);
+                }
+            }
+        });
     }
 
 
@@ -100,41 +172,25 @@ public class WithdrawApplyActivity extends BaseActivity {
             case R.id.btn_wechat:
                 typeTitle = "微信提现";
                 tv_aliorwechat.setText("微信账号");
-//                if (WechatAlipay.getVisibility() == View.GONE && Bankpay.getVisibility() == View.VISIBLE) {
-//                    WechatAlipay.setVisibility(View.VISIBLE);
-//                    Bankpay.setVisibility(View.GONE);
-//                }
                 btnAlipay.setSelected(false);
                 btnWechat.setSelected(true);
                 btnBankpay.setSelected(false);
                 btnBankpay.setTextColor(getResources().getColor(R.color.gray));
                 btnWechat.setTextColor(getResources().getColor(R.color.white));
                 btnAlipay.setTextColor(getResources().getColor(R.color.gray));
-
-
-                Apply_Id.setText(getApply_Id());
                 break;
             case R.id.btn_alipay:
                 typeTitle = "支付宝提现";
                 tv_aliorwechat.setText("支付宝号");
-//                if (WechatAlipay.getVisibility() == View.GONE && Bankpay.getVisibility() == View.VISIBLE) {
-//                    WechatAlipay.setVisibility(View.VISIBLE);
-//                    Bankpay.setVisibility(View.GONE);
-//                }
                 btnAlipay.setSelected(true);
                 btnWechat.setSelected(false);
                 btnBankpay.setSelected(false);
                 btnBankpay.setTextColor(getResources().getColor(R.color.gray));
                 btnWechat.setTextColor(getResources().getColor(R.color.gray));
                 btnAlipay.setTextColor(getResources().getColor(R.color.white));
-                Apply_Id.setText(getApply_Id());
                 break;
             case R.id.btn_bankpay:
-//                ActivityUtil.next(WithdrawApplyActivity.this, WithdrawActivity.class);
-//                if (WechatAlipay.getVisibility() == View.VISIBLE && Bankpay.getVisibility() == View.GONE) {
-//                    WechatAlipay.setVisibility(View.GONE);
-//                    Bankpay.setVisibility(View.VISIBLE);
-//                }
+
                 typeTitle = "银行卡提现";
                 tv_aliorwechat.setText("银行卡号");
                 btnAlipay.setSelected(false);
@@ -143,13 +199,12 @@ public class WithdrawApplyActivity extends BaseActivity {
                 btnBankpay.setTextColor(getResources().getColor(R.color.white));
                 btnWechat.setTextColor(getResources().getColor(R.color.gray));
                 btnAlipay.setTextColor(getResources().getColor(R.color.gray));
-                Apply_Id.setText(getApply_Id());
                 break;
             case R.id.txt_withdraw_all:
                 edtInputNumber.setText(withdrawCashRestMoney.getText());
                 break;
             case R.id.withdraw_cash_btn:
-
+                ShowPayWord();
 
 //                RequestParams params = new RequestParams();
 //                switch (typeTitle) {
@@ -183,25 +238,93 @@ public class WithdrawApplyActivity extends BaseActivity {
 //                break;
         }
     }
+    //显示支付密码的验证框
+    private void ShowPayWord(){
+        if(SignPassword==null){
+            SignPassword=View.inflate(this,R.layout.sign_paypassword,null);
+            paywordEdt= (PasswordEdittext) SignPassword.findViewById(R.id.paypassword_edt);
+            ImageView iv= (ImageView) SignPassword.findViewById(R.id.img_exit_signpassword);
+            iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PopSignPassword.dismiss();
+                }
+            });
+            paywordEdt.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-    private String getApply_Id(){
-        str_apply_id = "";
-        switch (typeTitle){
-            case "支付宝提现":
-                //TODO 获取支付宝帐号
-                break;
-            case "微信提现":
-                //TODO 获取微信帐号
-                break;
-            case "银行卡提现":
-                //TODO 获取银行卡帐号
-                break;
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if(editable.length()==6){
+                        SignPayPassWord(editable.toString().trim());
+                    }
+                }
+            });
         }
-        if(str_apply_id.equals("")){
-            str_apply_id ="尚未绑定";
+        if(PopSignPassword==null){
+            int H;
+            H = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            SignPassword.measure(0, H);
+            H = SignPassword.getMeasuredHeight();
+            PopSignPassword=new PopupWindow(SignPassword, ViewGroup.LayoutParams.MATCH_PARENT,H);
+            PopSignPassword.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+            PopSignPassword.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+            PopSignPassword.setTouchable(true); // 设置popupwindow可点击
+            PopSignPassword.setFocusable(true); // 获取焦点
+            ColorDrawable dw = new ColorDrawable(Color.WHITE);
+            //设置SelectPicPopupWindow弹出窗体的背景
+            PopSignPassword.setBackgroundDrawable(dw);
+            PopSignPassword.setAnimationStyle(R.style.popPassword_animation);
+            PopSignPassword.showAtLocation(findViewById(R.id.main_activity_withdraw_apply),
+                    Gravity.BOTTOM| Gravity.CENTER_HORIZONTAL, 0, 0);
+            paywordEdt.setFocusable(true);
+        }else{
+            PopSignPassword.showAtLocation(findViewById(R.id.main_activity_withdraw_apply),
+                    Gravity.BOTTOM| Gravity.CENTER_HORIZONTAL, 0, 0);
+            paywordEdt.setFocusable(true);
+
         }
-        return str_apply_id;
     }
+    //网络请求验证支付密码
+    private void SignPayPassWord(String payword){
+        params.clear();
+        params.put("id", String.valueOf(MyApplication.getInstance().UserInfo.getUserId()));
+        params.put("password",payword);
+        RetrofitClient.getInstance().createApi().verificatPassword(params)
+                .compose(RxUtils.<HttpResult>io_main())
+                .subscribe(new Observer<HttpResult>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(HttpResult value) {
+                        if(value.errorDescription.contains("重新输入")){
+                            Toast.makeText(WithdrawApplyActivity.this, "密码错误请重新输入", Toast.LENGTH_SHORT).show();
+                            paywordEdt.getText().clear();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    };
 
     @Override
     protected void onResume() {

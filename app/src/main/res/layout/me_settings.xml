@@ -2,18 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/bg_color_gray"
     android:orientation="vertical">
 
     <include layout="@layout/title_project" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="15dp"
         android:background="#E8E8E8"
         android:orientation="vertical" />
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/settings_relative_id"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -47,6 +48,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:visibility="gone"
 
         android:layout_width="match_parent"
         android:layout_height="20dp"
@@ -54,6 +56,8 @@
         android:orientation="vertical"></LinearLayout>
 
     <RelativeLayout
+        android:visibility="gone"
+
         android:id="@+id/setting_relative_new_message"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -82,12 +86,16 @@
     </RelativeLayout>
 
     <ImageView
+        android:visibility="gone"
+
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_small"
         android:layout_marginLeft="15dp"
         android:background="@color/light_gray" />
 
     <RelativeLayout
+        android:visibility="gone"
+
         android:id="@+id/settings_relative_private"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -118,12 +126,16 @@
     </RelativeLayout>
 
     <ImageView
+        android:visibility="gone"
+
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_small"
         android:layout_marginLeft="15dp"
         android:background="@color/light_gray" />
 
     <RelativeLayout
+        android:visibility="gone"
+
         android:id="@+id/settings_relative_normal"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -152,12 +164,16 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:visibility="gone"
+
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:background="#E8E8E8"
         android:orientation="vertical" />
 
     <RelativeLayout
+        android:visibility="gone"
+
         android:id="@+id/settings_relative_advice"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -192,6 +208,7 @@
         android:background="@color/light_gray" />
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/settings_relative_about"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -219,9 +236,72 @@
             android:src="@mipmap/right_arrow" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/setting_change_paypassword"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/seltor"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/settings_change_paypassword_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:text="修改支付密码"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/discover_rightarrow_marginparentright"
+            android:src="@mipmap/right_arrow" />
+    </RelativeLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="15dp"
+        android:background="#E8E8E8"
+        android:orientation="vertical" />
+
+    <RelativeLayout
+        android:id="@+id/setting_change_password"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/seltor"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/settings_change_password_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:text="修改密码"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/discover_rightarrow_marginparentright"
+            android:src="@mipmap/right_arrow" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
         android:background="#E8E8E8"
         android:orientation="vertical" />
 
@@ -240,7 +320,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/logout_txt"
-            android:textColor="@color/dark"
+            android:textColor="@color/red"
             android:textSize="@dimen/text_14" />
 
     </RelativeLayout>

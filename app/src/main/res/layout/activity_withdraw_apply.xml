@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_activity_withdraw_apply"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color_gray"
@@ -95,7 +96,7 @@
                     android:textColor="@color/dark"
                     android:textSize="@dimen/discover_text" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_withdrawApply_zhanghao"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

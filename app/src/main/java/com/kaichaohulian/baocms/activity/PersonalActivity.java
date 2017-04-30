@@ -2,8 +2,10 @@ package com.kaichaohulian.baocms.activity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -13,7 +15,9 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
@@ -24,6 +28,7 @@ import com.kaichaohulian.baocms.db.DataHelper;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
+import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.qiniu.Auth;
 import com.kaichaohulian.baocms.qiniu.QiNiuConfig;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
@@ -38,12 +43,19 @@ import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,32 +74,30 @@ public class PersonalActivity extends BaseActivity {
     RelativeLayout headIconLinear;
     @BindView(R.id.personal_name)
     TextView personalName;
-    @BindView(R.id.name_linear)
-    RelativeLayout nameLinear;
     @BindView(R.id.personal_sex)
     TextView personalSex;
-    @BindView(R.id.sexy_linear)
-    RelativeLayout sexyLinear;
     @BindView(R.id.im_QrCode)
     ImageView imQrCode;
-    @BindView(R.id.twocode_linear)
-    RelativeLayout twocodeLinear;
     @BindView(R.id.personal_age)
     TextView personalAge;
-    @BindView(R.id.personal_age_linear)
-    RelativeLayout AgeLinear;
     @BindView(R.id.personal_job)
     TextView personalJob;
-    @BindView(R.id.personal_job_linear)
-    RelativeLayout JobLinear;
     @BindView(R.id.personal_hobby)
     TextView personalHobby;
-    @BindView(R.id.personal_hobby_linear)
-    RelativeLayout HobbyLinear;
     @BindView(R.id.personal_address)
     TextView personalAddress;
-    @BindView(R.id.address_linear)
-    RelativeLayout addressLinear;
+    @BindView(R.id.tv_EarnestMoney)
+    TextView tvEarnestMoney;
+    @BindView(R.id.tv_GetMoney)
+    TextView tvGetMoney;
+    @BindView(R.id.tv_BeAddFriend)
+    TextView tvBeAddFriend;
+    @BindView(R.id.tv_BeInvite)
+    TextView tvBeInvite;
+    @BindView(R.id.tv_appointment)
+    TextView tvAppointment;
+    @BindView(R.id.tv_BeMiss)
+    TextView tvBeMiss;
     private String edtName = new String("");
     private String sign = new String("");
     private String sexyChosen = new String("");
@@ -96,6 +106,21 @@ public class PersonalActivity extends BaseActivity {
     private String imageName;
     private UploadManager uploadManager;
 
+    //选择器
+    private OptionsPickerView addRessPickerView;
+    private OptionsPickerView AgePickView;
+
+
+    private ArrayList<String> provinceList;//创建存放省份实体类的集合
+
+    private ArrayList<String> cities;//创建存放城市名称集合
+    private ArrayList<List<String>> citiesList;//创建存放城市名称集合的集合
+
+    private ArrayList<String> areas;//创建存放区县名称的集合
+    private ArrayList<List<String>> areasList;//创建存放区县名称集合的集合
+    private ArrayList<List<List<String>>> areasListsList;//创建存放区县集合的集合的集合
+
+    private ArrayList<String> ages;
 
     private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
@@ -133,29 +158,6 @@ public class PersonalActivity extends BaseActivity {
     @Override
     public void initView() {
         setCenterTitle("个人信息");
-//        //头像
-//        imgHead = getId(R.id.imgHead);
-//        //名字
-//        nameLinear = getId(R.id.name_linear);
-//        personalName = getId(R.id.personal_name);
-//        //性别
-//        sexyLinear = getId(R.id.sexy_linear);
-//        personalSex = getId(R.id.personal_sex);
-//        //二维码
-//        twocodeLinear = getId(R.id.twocode_linear);
-//        imQrCode = getId(R.id.im_QrCode);
-//        //年龄
-//        AgeLinear = getId(R.id.personal_age_linear);
-//        personalAge = getId(R.id.personal_age);
-//        //职业
-//        JobLinear = getId(R.id.personal_job_linear);
-//        personalJob = getId(R.id.personal_job);
-//        //爱好
-//        HobbyLinear = getId(R.id.personal_hobby_linear);
-//        personalHobby = getId(R.id.personal_hobby);
-//        //地址
-//        addressLinear = getId(R.id.address_linear);
-//        personalAddress = getId(R.id.personal_address);
         SetData();
     }
 
@@ -168,14 +170,14 @@ public class PersonalActivity extends BaseActivity {
         //设置性别
         if (userinfo.getSex() != null) {
             String sexT = userinfo.getSex();
-            if (sexT.equals("0")||sexT.equals("男")) {
+            if (sexT.equals("0") || sexT.equals("男")) {
                 personalSex.setText("男");
             } else {
                 personalSex.setText("女");
             }
         }
         //设置爱好
-        if (userinfo.getHobby() != null&& !userinfo.getHobby().equals("null")) {
+        if (userinfo.getHobby() != null && !userinfo.getHobby().equals("null")) {
             //如果已经设置切值不变时不做操作
             if (!personalHobby.getText().equals(userinfo.getHobby()))
                 personalHobby.setText(userinfo.getHobby());
@@ -184,16 +186,16 @@ public class PersonalActivity extends BaseActivity {
             personalHobby.setText("无");
         }
         //设置职业
-        if (userinfo.getJob() != null&& !userinfo.getJob().equals("null")) {
-            if(personalJob.getText().equals(userinfo.getJob()))
-            personalJob.setText(userinfo.getJob());
+        if (userinfo.getJob() != null && !userinfo.getJob().equals("null")) {
+            if (personalJob.getText().equals(userinfo.getJob()))
+                personalJob.setText(userinfo.getJob());
         } else {
             personalJob.setText("未知");
         }
         //设置年龄
-        if (userinfo.getAge() != 0 ) {
-            if(Integer.parseInt(personalAge.getText().toString()) != userinfo.getAge())
-            personalAge.setText(userinfo.getAge() + "");
+        if (userinfo.getAge() != 0) {
+            if (Integer.parseInt(personalAge.getText().toString()) != userinfo.getAge())
+                personalAge.setText(userinfo.getAge() + "");
         } else {
             personalAge.setText("未知");
 
@@ -204,61 +206,16 @@ public class PersonalActivity extends BaseActivity {
         } else {
             personalAddress.setText(userinfo.getDistrictId());
         }
-        String l="http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode();
-//        Log.e(TAG, "initView: "+l );
+        String l = Url.BASE_URL + MyApplication.getInstance().UserInfo.getQrCode();
+        Log.e(TAG, "initView: " + l);
 ////        Glide.with(getActivity()).load(l).error(R.mipmap.qrcode).diskCacheStrategy(DiskCacheStrategy.ALL).into(imQrCode);
-        showUserAvator(imQrCode,l,R.mipmap.qrcode);
+        showUserAvator(imQrCode, l, R.mipmap.qrcode);
 //        Glide.with(MyApplication.getInstance()).load(MyApplication.getInstance().UserInfo.getAvatar()).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgHead);
         showUserAvator(imgHead, userinfo.getAvatar(), R.mipmap.default_useravatar);
     }
 
     @Override
     public void initEvent() {
-//        nameLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        twocodeLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//            }
-//        });
-//        addressLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//            }
-//        });
-//        imgHead.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//            }
-//        });
-//        sexyLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        AgeLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //TODO 年龄选择
-//            }
-//        });
-//        JobLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //TODO 职业选择
-//            }
-//        });
-//        HobbyLinear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //TODO 爱好选择
-//            }
-//        });
     }
 
     @Override
@@ -334,21 +291,13 @@ public class PersonalActivity extends BaseActivity {
     }
 
     public void updateMyUser(int type) {
-//        RequestParams params = new RequestParams();
-//        params.put("id", MyApplication.getInstance().UserInfo.getUserId());
-//        params.put("username", personalName.getText().toString().trim());
-//        //TODO
-////        params.put("thermalSignatrue", personSign.getText().toString().trim());
-//        params.put("avatar", avatar);
-//        params.put("districtName", "成都市");
-//        params.put("sex", personalSex.getText().toString().equals("男") ? "0" : "1");
-
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         String cache = "";
-        map.put("id", MyApplication.getInstance().UserInfo.getUserId());
+        map.put("id", MyApplication.getInstance().UserInfo.getUserId() + "");
         switch (type) {
             case SET_NAME:
-                map.put("username", personalName.getText().toString().trim());
+                String s = personalName.getText().toString().trim();
+                map.put("username", s);
                 break;
             case SET_SEX:
                 map.put("sex", personalSex.getText().toString().equals("男") ? "0" : "1");
@@ -363,7 +312,7 @@ public class PersonalActivity extends BaseActivity {
 
                 break;
             case SET_LOC:
-
+                map.put("districtName", personalAddress.getText().toString());
                 break;
             case SET_HEADIMG:
                 map.put("avatar", avatar);
@@ -395,12 +344,13 @@ public class PersonalActivity extends BaseActivity {
 
                     }
                 });
+
     }
 
     private void UpdateInfo() {
         userinfo.setAvatar(avatar);
         userinfo.setUsername(personalName.getText().toString().trim());
-        userinfo.setSex(personalSex.getText().toString());
+        userinfo.setSex(personalSex.getText().toString().trim());
         userinfo.setHobby(personalHobby.getText().toString().trim());
         userinfo.setJob(personalJob.getText().toString().trim());
         if (personalAge.getText().toString().trim().equals("未知")) {
@@ -408,9 +358,9 @@ public class PersonalActivity extends BaseActivity {
         } else {
             userinfo.setAge(Integer.parseInt(personalAge.getText().toString().trim()));
         }
-        userinfo.setDistrictId("");
+        userinfo.setDistrictId(personalAddress.getText().toString().trim());
         SetData();
-        Log.e(TAG, userinfo.toString() );
+        Log.e(TAG, userinfo.toString());
     }
 
     private void updateAvatarInServer(final String image) {
@@ -424,7 +374,7 @@ public class PersonalActivity extends BaseActivity {
         }
     }
 
-    //获取当前事件
+    //获取当前时间
     @SuppressLint("SimpleDateFormat")
     private String getNowTime() {
         Date date = new Date(System.currentTimeMillis());
@@ -557,8 +507,81 @@ public class PersonalActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.imgHead, R.id.name_linear, R.id.sexy_linear, R.id.twocode_linear, R.id.personal_age_linear, R.id.personal_job_linear, R.id.personal_hobby_linear, R.id.address_linear})
+    //初始化三级联动的数据源
+
+    /**
+     * @param fileName 本地assets中的文件名
+     * @param context  用来打开manager的context对象
+     * @return 返回数据源中的数据
+     */
+    public static String getJson(String fileName, Context context) {
+        //将json数据变成字符串
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            //获取assets资源管理器
+            AssetManager assetManager = context.getAssets();
+            //通过管理器打开文件并读取
+            BufferedReader bf = new BufferedReader(new InputStreamReader(
+                    assetManager.open(fileName)));
+            String line;
+            while ((line = bf.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
+     * @param json 解析json数据
+     */
+    private void parseJson(String json) {
+        try {
+            //得到一个数组类型的json对象
+            JSONArray jsonArray = new JSONArray(json);
+            for (int i = 0; i < jsonArray.length(); i++) {//对数组进行遍历得到每一个jsonobject对象
+                JSONObject provinceObject = (JSONObject) jsonArray.get(i);
+                String provinceName = provinceObject.optString("areaName");//得到省份的名字
+                provinceList.add(provinceName);//向集合里面添加元素
+
+                JSONArray cityArray = provinceObject.optJSONArray("cities");
+                cities = new ArrayList<>();//创建存放城市名称集合
+                areasList = new ArrayList<>();//创建存放区县名称的集合的集合
+                for (int j = 0; j < cityArray.length(); j++) {//遍历每个省份集合下的城市列表
+                    JSONObject cityObject = (JSONObject) cityArray.get(j);
+                    String cityName = cityObject.getString("areaName");
+                    cities.add(cityName);//向集合里面添加元素
+                    JSONArray areaArray = cityObject.optJSONArray("counties");
+                    areas = new ArrayList<>();//创建存放区县名称的集合
+                    for (int k = 0; k < areaArray.length(); k++) {
+                        String areaName = areaArray.getJSONObject(k).optString("areaName");
+                        areas.add(areaName);
+                    }
+                    areasList.add(areas);
+                }
+                citiesList.add(cities);
+                areasListsList.add(areasList);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @OnClick({R.id.imgHead, R.id.name_linear, R.id.sexy_linear, R.id.twocode_linear, R.id.personal_age_linear, R.id.personal_job_linear, R.id.personal_hobby_linear, R.id.address_linear, R.id.address_label})
     public void onClick(View view) {
+        if (areasListsList == null) {
+            provinceList = new ArrayList<>();//创建存放省份实体类的集合
+            citiesList = new ArrayList<>();//创建存放城市名称集合的集合
+            areasListsList = new ArrayList<>();//创建存放区县集合的集合的集合
+            parseJson(getJson("city.json", this));
+        }
+        if (ages == null) {
+            ages = new ArrayList<>();
+            for (int i = 15; i <= 60; i++) {
+                ages.add(i + "");
+            }
+        }
         switch (view.getId()) {
             case R.id.imgHead:
                 showPhotoDialog();
@@ -575,16 +598,59 @@ public class PersonalActivity extends BaseActivity {
                 ActivityUtil.next(PersonalActivity.this, MyTwoCode.class);
                 break;
             case R.id.personal_age_linear:
+                if (AgePickView == null) {
+                    AgePickView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+                        @Override
+                        public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                            Toast.makeText(PersonalActivity.this, ages.get(options1), Toast.LENGTH_SHORT).show();
+                            personalAge.setText(ages.get(options1));
+                            updateMyUser(SET_AGE);
+                        }
+                    }).build();
+                    AgePickView.setPicker(ages);
+                    AgePickView.show();
+                } else {
+                    AgePickView.show();
+                }
                 break;
             case R.id.personal_job_linear:
                 break;
             case R.id.personal_hobby_linear:
                 break;
             case R.id.address_linear:
-                ActivityUtil.next(PersonalActivity.this, MeAddressListActivity.class);
+//                ActivityUtil.next(PersonalActivity.this, MeAddressListActivity.class);
+                if (addRessPickerView == null) {
+                    addRessPickerView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+                        @Override
+                        public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                            String city = provinceList.get(options1);
+                            String address;
+                            //  如果是直辖市或者特别行政区只设置市和区/县
+                            if ("北京市".equals(city) || "上海市".equals(city) || "天津市".equals(city) || "重庆市".equals(city) || "澳门".equals(city) || "香港".equals(city)) {
+                                address = provinceList.get(options1)
+                                        + " " + areasListsList.get(options1).get(options2).get(options3);
+                            } else {
+                                address = provinceList.get(options1)
+                                        + " " + citiesList.get(options1).get(options2)
+                                        + " " + areasListsList.get(options1).get(options2).get(options3);
+                            }
+                            personalAddress.setText(address);
+                            updateMyUser(SET_LOC);
+                        }
+                    }).build();
+                    addRessPickerView.setSelectOptions(0, 0, 0);
+                    addRessPickerView.setPicker(provinceList, citiesList, areasListsList);
+                    addRessPickerView.show();
+                } else {
+                    addRessPickerView.show();
+                }
+                break;
+            case R.id.personal_label:
+
                 break;
         }
     }
+
 }
 
 

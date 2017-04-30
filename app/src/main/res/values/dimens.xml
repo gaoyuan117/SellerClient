@@ -94,19 +94,19 @@
 
     <!-- 发现   界面的界面参数   -->
     <dimen name="discover_text">16sp</dimen>
-    <dimen name="discover_line_height">48dp</dimen>
-    <dimen name="discover_text_marginparentleft">55dp</dimen>
+    <dimen name="discover_line_height">35dp</dimen>
+    <dimen name="discover_text_marginparentleft">45dp</dimen>
     <dimen name="discover_icon_marginparentleft">10dp</dimen>
     <dimen name="discover_rightarrow_marginparentright">18dp</dimen>
-
+    <dimen name="discover_marginRight">15dp</dimen>
 
     <!-- 我  界面的界面参数   -->
     <dimen name="me_text">16sp</dimen>
     <dimen name="me_line_height">55dp</dimen>
     <dimen name="me_text_marginparentleft">55dp</dimen>
-    <dimen name="me_icon_marginparentleft">20dp</dimen>
+    <dimen name="me_icon_marginparentleft">10dp</dimen>
     <dimen name="me_rightarrow_marginparentright">15dp</dimen>
-    <dimen name="me_head_name">18sp</dimen>
+    <dimen name="me_head_name">14sp</dimen>
     <dimen name="me_buyer">15sp</dimen>
 
     <!-- 个人信息 -->
@@ -302,5 +302,7 @@
     <dimen name="common_riv_corner">8dp</dimen>
     <dimen name="viewpager_margin">2dp</dimen>
 
+    <dimen name="ProFileFragment_BigLine">10dp</dimen>
+    <dimen name="ProFileFragment_SmallLine">0.5dp</dimen>
 
 </resources>

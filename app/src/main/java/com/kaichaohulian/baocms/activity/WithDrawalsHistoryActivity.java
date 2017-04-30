@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,11 +35,41 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
     private ListView mWithdrawList;
     private Adapter mAdapter;
     private List<WithDrawalsBean> data = new ArrayList<WithDrawalsBean>();
-
+    private Dialog timeselect;
+    private View timeSelectView;
+    private TextView tv_starttime,tv_stoptime;
     @Override
     public void setContent() {
         setContentView(R.layout.activity_draw_history);
         setCenterTitle("提现记录");
+        setIm1_view(R.mipmap.ic_action_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(timeselect==null){
+
+
+                    timeSelectView=View.inflate(WithDrawalsHistoryActivity.this,R.layout.alert_timeselect,null);
+                    tv_starttime= (TextView) timeSelectView.findViewById(R.id.tv_timeselect_start);
+                    tv_stoptime= (TextView) timeSelectView.findViewById(R.id.tv_timeselect_stop);
+                    timeSelectView.findViewById(R.id.rl_timeselect_start).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                    });
+                    timeSelectView.findViewById(R.id.rl_timeselect_stop).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                    });
+                    timeselect=new Dialog(getActivity(),R.style.Theme_Light_CustomDialog_Blue);
+                    timeselect.setCancelable(true);
+                    timeselect.setContentView(timeSelectView);
+                    timeselect.show();
+                }else{
+                    timeselect.show();
+                }
+            }
+        });
     }
 
     @Override

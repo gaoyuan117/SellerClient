@@ -67,7 +67,13 @@
     <string name="me_about">关于</string>
     <string name="me_setting">设置</string>
     <string name="me_face">表情</string>
+    <string name="me_MassAdvertising">群发广告</string>
+    <string name="me_Advertising_manager">广告管理</string>
+    <string name="me_SendInvitation">发送邀请</string>
+    <string name="me_invitationManager">邀请管理</string>
+    <string name="me_OnlineService">在线客服</string>
 
+    SendInvitation
     <!-- 添加银行卡 界面-->
     <string name="add_bankcard_tips">请确保姓名、身份证、银行卡开户人为同一人</string>
     <string name="add_bankcard_name">真实姓名</string>
@@ -95,11 +101,13 @@
     <string name="personal_two_code">我的二维码</string>
     <string name="personal_my_address">我的地址</string>
     <string name="personal_sexy">性别</string>
-    <string name="personal_area">地区</string>
+    <string name="personal_area">地址</string>
     <string name="personal_sign">个性签名</string>
     <string name="personal_hobby">爱好</string>
     <string name="personal_job">职业</string>
     <string name="personal_age">年龄</string>
+    <string name="personal_label">标签</string>
+
 
     <!--红包 界面 -->
     <string name="redbag_ping_shou_qi">拼手气红包</string>
@@ -240,7 +248,7 @@
 
     <string name="private_txt">隐私</string>
     <string name="suggestion_feedback">建议反馈</string>
-    <string name="logout_txt">退出登录</string>
+    <string name="logout_txt">退   出</string>
     <string name="buyer_number_txt">买家号</string>
     <string name="phone_txt">手机号</string>
     <string name="qq_txt">QQ号</string>

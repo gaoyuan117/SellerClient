@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/discover_marginRight"
+        android:text="日期区间"
+        android:textSize="@dimen/sp_14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/discover_marginRight"
+        android:layout_marginRight="@dimen/discover_marginRight"
+        android:background="@color/line" />
+
+    <RelativeLayout
+        android:id="@+id/rl_timeselect_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/discover_marginRight"
+
+        >
+
+        <TextView
+            android:id="@+id/tv_timeselect_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="起始日期"
+            android:textColor="@color/zy_text_color"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="选择日期"
+            android:textColor="@color/zy_orange" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/discover_marginRight"
+        android:layout_marginRight="@dimen/discover_marginRight"
+        android:background="@color/line" />
+
+    <RelativeLayout
+        android:id="@+id/rl_timeselect_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/discover_marginRight"
+        >
+
+        <TextView
+            android:id="@+id/tv_timeselect_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="截止日期"
+            android:textColor="@color/zy_text_color"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="选择日期"
+            android:textColor="@color/zy_orange" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/discover_marginRight"
+        android:layout_marginRight="@dimen/discover_marginRight"
+        android:background="@color/line" />
+    <Button
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确  定"
+        android:textColor="@color/white"
+        android:background="@mipmap/deeporange_bar_part"
+        />
+</LinearLayout>
