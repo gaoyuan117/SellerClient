@@ -29,5 +29,13 @@ public interface Api {
     Observable<HttpResult> ChangeInfo(@QueryMap Map<String,String> map);
 
     @GET(Url.delete)
-    Observable<HttpResult<CommonEntity>> deleteFriend(@QueryMap Map<String,Object> map);
+    Observable<HttpResult<CommonEntity>> deleteFriend(@QueryMap Map<String,String> map);
+
+    @GET(Url.verificatPassword)
+    Observable<HttpResult> verificatPassword(@QueryMap Map<String,String> map);
+
+
+    /*********************************gy**********************************************/
+    @GET("users/addNeedPay.do")
+    Observable<HttpResult> getPayMoney(@QueryMap Map<String,String> map);
 }

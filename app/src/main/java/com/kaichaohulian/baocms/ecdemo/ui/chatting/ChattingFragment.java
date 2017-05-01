@@ -51,6 +51,7 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.RedpacketManager;
 import com.kaichaohulian.baocms.activity.CollectionListActivity;
 import com.kaichaohulian.baocms.activity.FriendDetailActivity;
+import com.kaichaohulian.baocms.activity.FriendInfoActivity;
 import com.kaichaohulian.baocms.activity.GroupChatDetailActivity;
 import com.kaichaohulian.baocms.activity.RedpacketOpenActivity;
 import com.kaichaohulian.baocms.activity.SendingRedBagActivity;
@@ -2606,7 +2607,9 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
 //                    intent.putExtra(ContactDetailActivity.RAW_ID, contact.getId());
 //					startActivityForResult(intent, REQUEST_VIEW_CARD);
 //                    startActivity(new Intent(getActivity(), ChatSingleSettingActivity.class).putExtra("userId", mRecipients));
-                        getUserInfo(contact.getContactid());
+//                        getUserInfo(contact.getContactid());
+                        Intent intent = new Intent(getActivity(),FriendInfoActivity.class);
+                        startActivity(intent);
 //                    searchUser(contact.getContactid());
                         return;
                     }
@@ -3238,7 +3241,10 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
 //                        UserInfo.setImages(jsonObject.getString("images"));
                         Bundle Bundle = new Bundle();
                         Bundle.putSerializable("data", UserInfo);
-                        ActivityUtil.next(getActivity(), FriendDetailActivity.class, Bundle);
+                        //TODO 修改
+//                        ActivityUtil.next(getActivity(), FriendDetailActivity.class, Bundle);
+//                        ActivityUtil.next(getActivity(), FriendInfoActivity.class, Bundle);
+                        startActivity(new Intent(getActivity(),FriendInfoActivity.class));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -3307,7 +3313,6 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
                         intent.putExtra("mRecipients", jsonObject.getString("phoneNumber"));
                         intent.putExtra("contact_user", jsonObject.getString("username"));
                         intent.putExtra("contact_id", "" + jsonObject.getInt("id"));
-
                         startActivity(intent);
                     }
                 } catch (Exception e) {
