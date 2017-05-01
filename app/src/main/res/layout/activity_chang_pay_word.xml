@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_chang_pay_word"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_gray"
+    tools:context="com.kaichaohulian.baocms.activity.changPayWordActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/title_project" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:text="请输入您的原支付密码"
+            android:textColor="@color/zy_text_color"
+            android:textSize="@dimen/sp_14" />
+
+        <com.kaichaohulian.baocms.view.PasswordEdittext
+            android:id="@+id/edt_paypassword_changpayword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edt_password_height"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:cursorVisible="false"
+            android:inputType="numberPassword"
+            android:maxLength="6"
+            app:pivBorderColor="@color/bg_color_gray"
+            app:pivBorderRadius="1dp"
+            app:pivBorderWidth="0.5px"
+            app:pivPasswordColor="@color/black"
+            app:pivPasswordLength="6"
+            app:pivPasswordWidth="5dp"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:text="请输入您的支付密码"
+            android:textColor="@color/zy_text_color"
+            android:textSize="@dimen/sp_14" />
+
+        <com.kaichaohulian.baocms.view.PasswordEdittext
+            android:id="@+id/edt_newpaypassword_changpayword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edt_password_height"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:cursorVisible="false"
+            android:inputType="numberPassword"
+            android:maxLength="6"
+            app:pivBorderColor="@color/bg_color_gray"
+            app:pivBorderRadius="1dp"
+            app:pivBorderWidth="0.5px"
+            app:pivPasswordColor="@color/black"
+            app:pivPasswordLength="6"
+            app:pivPasswordWidth="5dp"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:text="请输入您的支付密码"
+            android:textColor="@color/zy_text_color"
+            android:textSize="@dimen/sp_14" />
+
+        <com.kaichaohulian.baocms.view.PasswordEdittext
+            android:id="@+id/edt_againpaypassword_changpayword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edt_password_height"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:cursorVisible="false"
+            android:inputType="numberPassword"
+            android:maxLength="6"
+            app:pivBorderColor="@color/bg_color_gray"
+            app:pivBorderRadius="1dp"
+            app:pivBorderWidth="0.5px"
+            app:pivPasswordColor="@color/black"
+            app:pivPasswordLength="6"
+            app:pivPasswordWidth="5dp"
+
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/changpayword_cash_btn"
+        android:layout_width="@dimen/withdraw_cash_yuanjiao_width"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@mipmap/deeporange_bar_normal"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_14" />
+</RelativeLayout>

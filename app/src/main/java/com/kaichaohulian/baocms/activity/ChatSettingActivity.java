@@ -7,12 +7,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
-import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.entity.ContactStatusEntity;
-import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;

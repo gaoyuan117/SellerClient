@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@mipmap/rounded_rectangle"
+    >
+
+
+        <TextView
+            android:id="@+id/title_advertmass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img_advertmass"
+            android:text="生活在左 真丝连衣裙"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/time_advertmass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_advertmass"
+            android:layout_marginTop="5dp"
+            android:text="4月12日 下午17:53"
+            android:textColor="@color/zy_text_color"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:id="@+id/img_advertmass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/default_advertmass" />
+
+        <TextView
+            android:id="@+id/content_advertmass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img_advertmass"
+            android:text="阅读数 88   已领取红包 50元"
+            android:textColor="@color/zy_text_color"
+            android:textSize="10sp" />
+
+        <View
+            android:id="@+id/line_advertmass"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/img_advertmass"
+            android:layout_marginTop="20dp"
+            android:background="@color/line" />
+
+        <RelativeLayout
+            android:id="@+id/rl_details_advertmass"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@id/line_advertmass"
+            android:layout_marginTop="5dp"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="查看详情"
+                android:textColor="@color/zy_orange"
+                android:textSize="10sp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/right_arrow" />
+        </RelativeLayout>
+
+</RelativeLayout>

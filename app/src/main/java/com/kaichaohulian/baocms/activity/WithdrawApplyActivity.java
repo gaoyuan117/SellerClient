@@ -304,7 +304,7 @@ public class WithdrawApplyActivity extends BaseActivity {
         params.clear();
         params.put("id", String.valueOf(MyApplication.getInstance().UserInfo.getUserId()));
         params.put("password",payword);
-        RetrofitClient.getInstance().createApi().verificatPassword(params)
+        RetrofitClient.getInstance().createApi().verificatPayword(params)
                 .compose(RxUtils.<HttpResult>io_main())
                 .subscribe(new Observer<HttpResult>() {
                     @Override

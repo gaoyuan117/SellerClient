@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,587 +8,600 @@
 
     <include layout="@layout/title_project" />
 
-    <RelativeLayout
-        android:id="@+id/head_icon_linear"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/seltor"
-        android:clickable="true"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/personal_head"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <ImageView
-            android:id="@+id/personal_head_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/right_arrow" />
-
-        <ImageView
-            android:id="@+id/imgHead"
-            android:layout_width="@dimen/dimens_50"
-            android:layout_height="@dimen/dimens_50"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/personal_head_arrow"
-            android:scaleType="fitXY"
-            android:src="@mipmap/default_useravatar" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/line" />
-
-    <RelativeLayout
-        android:id="@+id/name_linear"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/personal_name"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <TextView
-            android:id="@+id/personal_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/personal_name_arrow"
-            android:text="李九杂"
-            android:textColor="@color/tv_text"
-            android:textSize="@dimen/text_14" />
-
-    </RelativeLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/line" />
-
-    <RelativeLayout
-        android:id="@+id/sexy_linear"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/personal_sexy"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <TextView
-            android:id="@+id/personal_sex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-
-            android:layout_toLeftOf="@+id/personal_sex_arrow"
-            android:text="女"
-            android:textColor="@color/tv_text"
-            android:textSize="@dimen/text_14" />
-
-    </RelativeLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/line" />
-
-    <RelativeLayout
-        android:id="@+id/twocode_linear"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/personal_two_code"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <ImageView
-            android:id="@+id/im_QrCode"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/personal_twocode_arrow"
-            android:src="@mipmap/qrcode" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="#E8E8E8"
-        android:orientation="vertical" />
-
-
-    <RelativeLayout
-        android:id="@+id/personal_age_linear"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/personal_age"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <TextView
-            android:id="@+id/personal_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:maxLength="20"
-            android:text="23"
-            android:textColor="@color/tv_text"
-            android:textSize="@dimen/text_14" />
-
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/line" />
-
-
-    <RelativeLayout
-        android:id="@+id/personal_job_linear"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/personal_job"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <TextView
-            android:id="@+id/personal_job"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-
-            android:maxLength="20"
-            android:text="视觉设计"
-            android:textColor="@color/tv_text"
-            android:textSize="@dimen/text_14" />
-
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/line" />
-
-    <RelativeLayout
-        android:id="@+id/personal_hobby_linear"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/personal_hobby"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <TextView
-            android:id="@+id/personal_hobby"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-
-            android:maxLength="20"
-            android:text="打球、看书"
-            android:textColor="@color/tv_text"
-            android:textSize="@dimen/text_14" />
-
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/line" />
-
-    <RelativeLayout
-        android:id="@+id/address_linear"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/personal_area"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <TextView
-            android:id="@+id/personal_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:ellipsize="end"
-            android:gravity="center_vertical|right"
-            android:singleLine="true"
-            android:text="河北 唐山"
-            android:textColor="@color/tv_text"
-            android:textSize="@dimen/text_14" />
-
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/line" />
-
-    <RelativeLayout
-        android:id="@+id/address_label"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@drawable/seltor"
-        android:clickable="true"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/personal_label"
-            android:textColor="@color/dark"
-            android:textSize="@dimen/text_14" />
-
-        <TextView
-            android:id="@+id/personal_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:ellipsize="end"
-            android:gravity="center_vertical|right"
-            android:text="话痨   帅"
-            android:textColor="#E5C09B"
-            android:textSize="@dimen/text_14" />
-
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="#E8E8E8"
-        android:orientation="vertical" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight"
-        android:text="诚意金"
-        android:textColor="@color/dark"
-        android:textSize="@dimen/text_14" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/line" />
-    <!--诚意金-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/seltor"
-        android:orientation="horizontal"
->
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/tv_EarnestMoney"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="＄500"
-                android:textColor="#9CD79A"
-                android:textSize="@dimen/sp_14"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="付出诚意金"
-                android:textColor="@color/zy_text_color"
-                android:textSize="@dimen/sp_12"
-
-                />
-        </LinearLayout>
-        <View
-            android:background="@color/line"
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/tv_GetMoney"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="＄500"
-                android:textColor="#E08285"
-                android:textSize="@dimen/sp_14"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="得到诚意金"
-                android:textColor="@color/zy_text_color"
-                android:textSize="@dimen/sp_12"
-
-                />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="#E8E8E8"
-        android:orientation="vertical" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/discover_line_height"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/discover_marginRight"
-        android:paddingRight="@dimen/discover_marginRight"
-        android:text="活跃次数"
-        android:textColor="@color/dark"
-        android:textSize="@dimen/text_14" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_small"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/line" />
-    <!--活跃次数-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/seltor"
-        android:orientation="horizontal"
-        >
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/tv_BeAddFriend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="40"
-                android:textColor="#A5D8E9"
-                android:textSize="@dimen/sp_14"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="被加好友"
-                android:textColor="@color/zy_text_color"
-                android:textSize="@dimen/sp_12"
-
-                />
-        </LinearLayout>
-        <View
-            android:background="@color/line"
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/tv_BeInvite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20"
-                android:textColor="#A5D8E9"
-                android:textSize="@dimen/sp_14"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="被邀请"
-                android:textColor="@color/zy_text_color"
-                android:textSize="@dimen/sp_12"
-
-                />
-        </LinearLayout>
-        <View
-            android:background="@color/line"
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/tv_appointment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="＄500"
-                android:textColor="#A5D8E9"
-                android:textSize="@dimen/sp_14"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="被邀请"
-                android:textColor="@color/zy_text_color"
-                android:textSize="@dimen/sp_12"
-
-                />
-        </LinearLayout>
-        <View
-            android:background="@color/line"
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/tv_BeMiss"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4"
-                android:textColor="#E08285"
-                android:textSize="@dimen/sp_14"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="被邀请"
-                android:textColor="@color/zy_text_color"
-                android:textSize="@dimen/sp_12"
-
-                />
-        </LinearLayout>
-    </LinearLayout>
-    <View
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E8E8E8"
-        android:orientation="vertical" />
+        android:scrollbars="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:id="@+id/head_icon_linear"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/seltor"
+                android:clickable="true"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/personal_head"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/text_14" />
+
+                <ImageView
+                    android:id="@+id/personal_head_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/right_arrow" />
+
+                <ImageView
+                    android:id="@+id/imgHead"
+                    android:layout_width="@dimen/dimens_50"
+                    android:layout_height="@dimen/dimens_50"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@+id/personal_head_arrow"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/default_useravatar" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_small"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line" />
+
+            <RelativeLayout
+                android:id="@+id/name_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:background="@drawable/seltor"
+                android:clickable="true"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/personal_name"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/personal_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/personal_name_arrow"
+                    android:text="李九杂"
+                    android:textColor="@color/tv_text"
+                    android:textSize="@dimen/text_14" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_small"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line" />
+
+            <RelativeLayout
+                android:id="@+id/sexy_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:background="@drawable/seltor"
+                android:clickable="true"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/personal_sexy"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/personal_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+
+                    android:layout_toLeftOf="@+id/personal_sex_arrow"
+                    android:text="女"
+                    android:textColor="@color/tv_text"
+                    android:textSize="@dimen/text_14" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_small"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line" />
+
+            <RelativeLayout
+                android:id="@+id/twocode_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:background="@drawable/seltor"
+                android:clickable="true"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/personal_two_code"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/text_14" />
+
+                <ImageView
+                    android:id="@+id/im_QrCode"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/personal_twocode_arrow"
+                    android:src="@mipmap/qrcode" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#E8E8E8"
+                android:orientation="vertical" />
+
+
+            <RelativeLayout
+                android:id="@+id/personal_age_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:background="@drawable/seltor"
+                android:clickable="true"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/personal_age"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/personal_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:maxLength="20"
+                    android:text="23"
+                    android:textColor="@color/tv_text"
+                    android:textSize="@dimen/text_14" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_small"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line" />
+
+
+            <RelativeLayout
+                android:id="@+id/personal_job_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:background="@drawable/seltor"
+                android:clickable="true"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/personal_job"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/personal_job"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+
+                    android:maxLength="20"
+                    android:text="视觉设计"
+                    android:textColor="@color/tv_text"
+                    android:textSize="@dimen/text_14" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_small"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line" />
+
+            <RelativeLayout
+                android:id="@+id/personal_hobby_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:background="@drawable/seltor"
+                android:clickable="true"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/personal_hobby"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/personal_hobby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+
+                    android:maxLength="20"
+                    android:text="打球、看书"
+                    android:textColor="@color/tv_text"
+                    android:textSize="@dimen/text_14" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_small"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line" />
+
+            <RelativeLayout
+                android:id="@+id/address_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:background="@drawable/seltor"
+                android:clickable="true"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/personal_area"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/personal_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical|right"
+                    android:singleLine="true"
+                    android:text="河北 唐山"
+                    android:textColor="@color/tv_text"
+                    android:textSize="@dimen/text_14" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_small"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line" />
+
+            <RelativeLayout
+                android:id="@+id/address_label"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:background="@drawable/seltor"
+                android:clickable="true"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/personal_label"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/personal_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical|right"
+                    android:text="话痨   帅"
+                    android:textColor="#E5C09B"
+                    android:textSize="@dimen/text_14" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#E8E8E8"
+                android:orientation="vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight"
+                android:text="诚意金"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_small"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line" />
+            <!--诚意金-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/seltor"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/tv_EarnestMoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="＄500"
+                        android:textColor="#9CD79A"
+                        android:textSize="@dimen/sp_14"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="付出诚意金"
+                        android:textColor="@color/zy_text_color"
+                        android:textSize="@dimen/sp_12"
+
+                        />
+                </LinearLayout>
+                <View
+                    android:background="@color/line"
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/tv_GetMoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="＄500"
+                        android:textColor="#E08285"
+                        android:textSize="@dimen/sp_14"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="得到诚意金"
+                        android:textColor="@color/zy_text_color"
+                        android:textSize="@dimen/sp_12"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#E8E8E8"
+                android:orientation="vertical" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_line_height"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/discover_marginRight"
+                android:paddingRight="@dimen/discover_marginRight"
+                android:text="活跃次数"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/text_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_small"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line" />
+            <!--活跃次数-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/seltor"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/tv_BeAddFriend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="40"
+                        android:textColor="#A5D8E9"
+                        android:textSize="@dimen/sp_14"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="被加好友"
+                        android:textColor="@color/zy_text_color"
+                        android:textSize="@dimen/sp_12"
+
+                        />
+                </LinearLayout>
+                <View
+                    android:background="@color/line"
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/tv_BeInvite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20"
+                        android:textColor="#A5D8E9"
+                        android:textSize="@dimen/sp_14"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="被邀请"
+                        android:textColor="@color/zy_text_color"
+                        android:textSize="@dimen/sp_12"
+
+                        />
+                </LinearLayout>
+                <View
+                    android:background="@color/line"
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/tv_appointment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="＄500"
+                        android:textColor="#A5D8E9"
+                        android:textSize="@dimen/sp_14"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="被邀请"
+                        android:textColor="@color/zy_text_color"
+                        android:textSize="@dimen/sp_12"
+
+                        />
+                </LinearLayout>
+                <View
+                    android:background="@color/line"
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/tv_BeMiss"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4"
+                        android:textColor="#E08285"
+                        android:textSize="@dimen/sp_14"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="被邀请"
+                        android:textColor="@color/zy_text_color"
+                        android:textSize="@dimen/sp_12"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#E8E8E8"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>
