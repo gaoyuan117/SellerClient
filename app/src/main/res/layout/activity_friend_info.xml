@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_gray"
+    tools:context="com.kaichaohulian.baocms.activity.FriendInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color_gray"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_title" />
+
+        <RelativeLayout
+            android:id="@+id/rl_friend_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:padding="@dimen/dimens_16">
+
+            <ImageView
+                android:id="@+id/img_friend_info_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="16dp"
+                android:src="@color/blue" />
+
+            <TextView
+                android:id="@+id/tv_friend_info_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@+id/img_friend_info_avatar"
+                android:text="高原"
+                android:textColor="@color/zy_text_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_friend_info_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/img_friend_info_avatar"
+                android:layout_marginBottom="4dp"
+                android:layout_toRightOf="@+id/img_friend_info_avatar"
+                android:text="2013"
+                android:textColor="@color/zy_text_gray" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tv_friend_info_name"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@+id/tv_friend_info_name"
+                android:src="@mipmap/boy" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_friend_info_bz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:text="备注"
+                android:textColor="@color/zy_text_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46dp"
+                android:layout_weight="1"
+                android:text="哈哈"
+                android:textColor="@color/zy_text_gray"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="16dp"
+                android:src="@mipmap/arrow_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:text="年龄"
+                android:textColor="@color/zy_text_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_friend_info_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46dp"
+                android:text="23"
+                android:textColor="@color/zy_text_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <include layout="@layout/friend_info_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:text="职业"
+                android:textColor="@color/zy_text_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_friend_info_professional"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46dp"
+                android:text="程序员"
+                android:textColor="@color/zy_text_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <include layout="@layout/friend_info_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:text="爱好"
+                android:textColor="@color/zy_text_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_friend_info_hobby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46dp"
+                android:text="敲代码"
+                android:textColor="@color/zy_text_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <include layout="@layout/friend_info_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:text="地址"
+                android:textColor="@color/zy_text_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_friend_info_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46dp"
+                android:text="山东 济宁"
+                android:textColor="@color/zy_text_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <include layout="@layout/friend_info_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:text="标签"
+                android:textColor="@color/zy_text_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_friend_info_bq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46dp"
+                android:text="搞笑"
+                android:textColor="@color/zy_orange"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:paddingBottom="6dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="6dp"
+            android:text="诚意金"
+            android:textSize="14sp" />
+
+        <include layout="@layout/gray_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_friend_info_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¥ 500"
+                    android:textColor="@color/green"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="付出诚意金"
+                    android:textColor="@color/zy_text_gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_friend_info_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¥ 500"
+                    android:textColor="@color/red"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="获得诚意金"
+                    android:textColor="@color/zy_text_gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:paddingBottom="6dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="6dp"
+            android:text="活跃次数"
+            android:textSize="14sp" />
+
+        <include layout="@layout/gray_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_friend_info_beijia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:textColor="@color/zy_text_blue"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="被加好友"
+                    android:textColor="@color/zy_text_gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_friend_info_beiyao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:textColor="@color/zy_text_blue"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="被邀请"
+                    android:textColor="@color/zy_text_gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_friend_info_fuyue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:textColor="@color/zy_text_blue"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="赴约"
+                    android:textColor="@color/zy_text_gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_friend_info_shaungyue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:textColor="@color/red"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="爽约"
+                    android:textColor="@color/zy_text_gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:paddingLeft="8dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="个人相册" />
+
+            <ImageView
+                android:id="@+id/img_friend_info_img1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="4dp"
+                android:src="@color/blue"/>
+            <ImageView
+                android:id="@+id/img_friend_info_img2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="4dp"
+                android:src="@color/blue"/>
+            <ImageView
+                android:id="@+id/img_friend_info_img3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="4dp"
+                android:src="@color/blue"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right"
+                android:layout_gravity="center"
+                android:layout_marginRight="16dp"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_friend_info_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/zy_orange"
+            android:text="加为好友"
+            android:textColor="@color/white"
+            android:padding="12dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+</ScrollView>

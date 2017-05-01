@@ -144,8 +144,8 @@ public class ChatSettingActivity extends BaseActivity implements View.OnClickLis
         }
     }
     private void deleteFriend(){
-        map.put("id",MyApplication.getInstance().UserInfo.getId());
-        map.put("friendId",cUId);
+        map.put("id",MyApplication.getInstance().UserInfo.getId()+"");
+        map.put("friendId",cUId+"");
         RetrofitClient.getInstance().createApi().deleteFriend(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
                 .subscribe(new BaseObjObserver<CommonEntity>(this) {

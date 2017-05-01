@@ -1156,7 +1156,9 @@
         <activity android:name=".activity.OrderHistoryActivity" />
         <activity android:name=".activity.WithdrawalsDetailActivity" />
         <activity android:name=".activity.PhoneMsgDetailActivity" />
-        <activity android:name=".activity.MeAboutActivity"></activity>
+        <activity android:name=".activity.MeAboutActivity" />
+        <activity android:name=".activity.FriendInfoActivity" />
+        <activity android:name=".activity.PayActivity"></activity>
     </application>
 
 </manifest>

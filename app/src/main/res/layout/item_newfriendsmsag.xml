@@ -61,12 +61,12 @@
 
             <Button
                 android:id="@+id/btn_add"
-                android:layout_width="48dp"
-                android:layout_height="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/btn_register_bg"
+                android:background="@mipmap/add_friends"
                 android:text="接受"
-                android:textColor="#fff"
+                android:textColor="@color/zy_text_blue"
                 android:textSize="12sp" />
         </LinearLayout>
     </RelativeLayout>
