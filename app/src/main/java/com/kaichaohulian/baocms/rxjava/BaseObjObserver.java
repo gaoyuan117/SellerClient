@@ -57,7 +57,7 @@ public abstract class BaseObjObserver<T> implements Observer<HttpResult<T>> {
 
     @Override
     public void onNext(HttpResult<T> value) {
-        if (value.code == 200) {
+        if (value.code == 0) {
             T t = value.data;
             onHandleSuccess(t);
         } else {

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_gray"
+    tools:context="com.kaichaohulian.baocms.activity.forgetPayWordActivity">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/title_project" />
+
+        <EditText
+            android:id="@+id/edt_phoneNum_forgetpayword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edt_forgetpassword_height"
+            android:layout_below="@id/title_changpwd"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/rounded_rectangle"
+            android:hint="请输入手机号"
+            android:inputType="phone"
+            android:paddingLeft="5dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edt_forgetpassword_height"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/edt_num_forgetpayword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edt_forgetpassword_height"
+                android:layout_below="@id/edt_original_password"
+                android:background="@mipmap/rounded_rectangle"
+                android:hint="请输入验证码"
+                android:inputType="number"
+                android:maxLength="6"
+                android:paddingLeft="5dp" />
+
+            <TextView
+                android:id="@+id/tv_getcode_forgetpayword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:background="@mipmap/yanzhengma"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="获取验证码"
+                android:textColor="#fd903d"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/edt_new_forgetpayword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edt_forgetpassword_height"
+            android:layout_below="@id/edt_new_password"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/rounded_rectangle"
+            android:hint="请设置支付密码"
+            android:inputType="numberPassword"
+            android:maxLength="6"
+            android:paddingLeft="5dp" />
+
+        <EditText
+            android:id="@+id/edt_againnew_forgetpayword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edt_forgetpassword_height"
+            android:layout_below="@id/edt_new_password"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/rounded_rectangle"
+            android:hint="请再次输入支付密码"
+            android:inputType="numberPassword"
+            android:maxLength="6"
+            android:paddingLeft="5dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/changpayword_cash_btn"
+        android:layout_width="@dimen/withdraw_cash_yuanjiao_width"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@mipmap/deeporange_bar_normal"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_14" />
+</RelativeLayout>

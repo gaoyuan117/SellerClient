@@ -23,43 +23,43 @@ public class Url {
 
     public static final String PIC_ROOT = "http://www.maijia01.com/";
 
+
+    /*用户注册登录密码*/
     //发送验证码
     public static final String sendMessage = BASE_URL + "users/sendMessage.do";
-
     //注册账号
     public static final String signUp = BASE_URL + "users/signUp.do";
-
     //登录
     public static final String signIn = BASE_URL + "users/signIn.do";
-
     //忘记密码
     public static final String forgetPassword = BASE_URL + "users/forgetPassword.do";
 
+
+    /*我的*/
+    //获取客服列表
+    public static final String onlineService_list = BASE_URL + "customerService/searchAll.do";
+    //获取城市列表
+    public static final String GetCityList = BASE_URL + "area/getCity.do";
+
+
+
+    //个人信息
     //修改个人信息
     public static final String changePersonalInformation = BASE_URL + "users/updateUser.do";
-
     //根据手机号获取用户信息
     public static final String dependPhoneGetUserInfo = BASE_URL + "users/byPhoneNumber.do";
-
     //根据用户id获取用户信息
     public static final String dependIDGetUserInfo = BASE_URL + "users/getUserInfo.do";
-
     //删除银行卡
     public static final String deleteCard = BASE_URL + "users/banks/deleteCard.do";
-
     //设置支付密码
     public static final String setPayPassword = BASE_URL + "users/paypassword.do";
-
     //验证支付密码
     public static final String verificatPassword = BASE_URL + "users/verificationpassword.do";
-
     // 获取我的商家和好友商家
     public static final String business_all = BASE_URL + "business/all.do";
-
     // 获取好友列表
     public static final String getFriends = BASE_URL + "im/friend/getFriends.do";
-
-
     // 搜索好友（添加好友时候用到）
     public static final String addfriend_search = BASE_URL + "im/friend/addfriend/search.do";
 

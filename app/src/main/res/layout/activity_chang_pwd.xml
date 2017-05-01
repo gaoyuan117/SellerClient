@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_chang_pwd"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_gray"
+    tools:context="com.kaichaohulian.baocms.activity.changPwdActivity">
+
+    <include
+        android:id="@+id/title_changpwd"
+        layout="@layout/title_project" />
+
+    <EditText
+        android:id="@+id/edt_original_password"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@id/title_changpwd"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/rounded_rectangle"
+        android:hint="请输入您的原密码"
+        android:inputType="textPassword"
+        android:paddingLeft="5dp" />
+
+    <EditText
+        android:id="@+id/edt_new_password"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@id/edt_original_password"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/rounded_rectangle"
+        android:hint="请设置您的密码"
+        android:inputType="textPassword"
+        android:paddingLeft="5dp" />
+
+    <EditText
+        android:id="@+id/edt_againnew_password"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@id/edt_new_password"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/rounded_rectangle"
+        android:hint="请设置您的密码"
+        android:inputType="textPassword"
+        android:paddingLeft="5dp" />
+
+    <Button
+        android:id="@+id/btn_changePwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="15dp"
+        android:background="@mipmap/deeporange_bar_part"
+        android:text="确定"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

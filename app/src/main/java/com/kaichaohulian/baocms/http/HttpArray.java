@@ -10,5 +10,5 @@ import java.util.List;
 public class HttpArray<T> {
     public int code;
     public String message;
-    public List<T> data;
+    public List<T> dataObject;
 }

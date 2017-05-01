@@ -94,7 +94,7 @@
 
     <!-- 发现   界面的界面参数   -->
     <dimen name="discover_text">16sp</dimen>
-    <dimen name="discover_line_height">35dp</dimen>
+    <dimen name="discover_line_height">45dp</dimen>
     <dimen name="discover_text_marginparentleft">45dp</dimen>
     <dimen name="discover_icon_marginparentleft">10dp</dimen>
     <dimen name="discover_rightarrow_marginparentright">18dp</dimen>
@@ -304,5 +304,9 @@
 
     <dimen name="ProFileFragment_BigLine">10dp</dimen>
     <dimen name="ProFileFragment_SmallLine">0.5dp</dimen>
+
+    <!--//5.1增加-->
+    <dimen name="edt_password_height">38dp</dimen>
+    <dimen name="edt_forgetpassword_height">35dp</dimen>
 
 </resources>
