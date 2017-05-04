@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.util.Log;
 import android.widget.ListView;
 
 import com.kaichaohulian.baocms.R;
@@ -22,6 +23,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * 相册
  * Created by ljl on 2016/12/1 0001.
@@ -29,9 +33,10 @@ import java.util.List;
 public class MyAlbumActivity extends BaseActivity {
     public static final String IS_FRIEND = "IS_FRIEND";
     public static final String FRIEND_ID = "FRIEND_ID";
+    @BindView(R.id.listView)
+    ListView listView;
 
     private List<MyAlbumEntity> List;
-    private ListView listView;
     private MyAlbumAdapter adapter;
 
     private boolean mIsFriend;
@@ -40,33 +45,33 @@ public class MyAlbumActivity extends BaseActivity {
     @Override
     public void setContent() {
         setContentView(R.layout.myalbum_activity);
+        ButterKnife.bind(this);
     }
 
     @Override
     public void initData() {
-        List = new ArrayList<>();
+        addHttpData();
     }
+
 
     @Override
     public void initView() {
         setCenterTitle("相册");
-
         mIsFriend = getIntent().getBooleanExtra(IS_FRIEND, false);
         mFriendId = getIntent().getStringExtra(FRIEND_ID);
 
-        listView = getId(R.id.listView);
-        adapter = new MyAlbumAdapter(getActivity(), List);
-        listView.setAdapter(adapter);
     }
 
     @Override
     public void initEvent() {
-        addHttpData();
     }
 
     private int limit = 1;
 
     public void addHttpData() {
+        List=new ArrayList<>();
+        adapter=new MyAlbumAdapter(getActivity(),List);
+        listView.setAdapter(adapter);
         RequestParams params = new RequestParams();
         if (mIsFriend) {
             params.put("id", mFriendId);
@@ -77,8 +82,8 @@ public class MyAlbumActivity extends BaseActivity {
         HttpUtil.post(Url.MyAlbum, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, org.json.JSONObject response) {
+
                 try {
-                    DBLog.i("tag", response.toString());
                     if (response.getInt("code") == 0) {
                         response = response.getJSONObject("dataObject");
                         String avatar = response.getString("avatar");
@@ -89,8 +94,7 @@ public class MyAlbumActivity extends BaseActivity {
                         headInfo.nickname = nickName;
                         headInfo.avatar = avatar;
                         headInfo.bg = backAvatar;
-                        adapter.setHeadInfo(headInfo);
-
+                        adapter.SetHeadInfo(headInfo);
                         JSONArray JSONArray = response.getJSONArray("experiences");
                         for (int i = 0; i < JSONArray.length(); i++) {
                             JSONObject JSONObject = JSONArray.getJSONObject(i);
@@ -108,6 +112,7 @@ public class MyAlbumActivity extends BaseActivity {
                                 }
                             }
                             MyAlbumEntity.setList(list);
+                            Log.e(TAG, "onSuccess: "+MyAlbumEntity.toString() );
                             List.add(MyAlbumEntity);
                         }
 

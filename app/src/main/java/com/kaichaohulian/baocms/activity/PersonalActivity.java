@@ -28,7 +28,6 @@ import com.kaichaohulian.baocms.db.DataHelper;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
-import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.qiniu.Auth;
 import com.kaichaohulian.baocms.qiniu.QiNiuConfig;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
@@ -206,7 +205,7 @@ public class PersonalActivity extends BaseActivity {
         } else {
             personalAddress.setText(userinfo.getDistrictId());
         }
-        String l = Url.BASE_URL + MyApplication.getInstance().UserInfo.getQrCode();
+        String l =  "http://www.52yeli.com/"+ MyApplication.getInstance().UserInfo.getQrCode();
         Log.e(TAG, "initView: " + l);
 ////        Glide.with(getActivity()).load(l).error(R.mipmap.qrcode).diskCacheStrategy(DiskCacheStrategy.ALL).into(imQrCode);
         showUserAvator(imQrCode, l, R.mipmap.qrcode);

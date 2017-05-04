@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.adapter.AdvertMassSelectAdapter;
 import com.kaichaohulian.baocms.adapter.ConactAdapter;
 import com.kaichaohulian.baocms.utils.DensityUtils;
 
@@ -36,11 +37,10 @@ public class Sidebar extends View {
 	private float height;
 	private ListView mListView;
 	private Context context;
-	
 	public void setListView(ListView listView){
 		mListView = listView;
 	}
-	
+
 
 	public Sidebar(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -56,8 +56,8 @@ public class Sidebar extends View {
 		paint.setTextAlign(Align.CENTER);
 		paint.setTextSize(DensityUtils.sp2px(context, 10));
 	}
-	
-	
+
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -67,7 +67,7 @@ public class Sidebar extends View {
 			canvas.drawText(sections[i], center, height * (i+1), paint);
 		}
 	}
-	
+
 	private int sectionForPoint(float y) {
 		int index = (int) (y / height);
 		if(index < 0) {
@@ -78,7 +78,7 @@ public class Sidebar extends View {
 		}
 		return index;
 	}
-	
+
 	private void setHeaderTextAndscroll(MotionEvent event){
 		 if (mListView == null) {
 		        //check the mListView to avoid NPE. but the mListView shouldn't be null
@@ -87,8 +87,16 @@ public class Sidebar extends View {
 		    }
 		String headerString = sections[sectionForPoint(event.getY())];
 		header.setText(headerString);
-		  HeaderViewListAdapter ha = (HeaderViewListAdapter) mListView.getAdapter();
-		  ConactAdapter adapter = (ConactAdapter) ha.getWrappedAdapter();
+		ConactAdapter adapter=null;
+		  try{
+			  HeaderViewListAdapter ha = (HeaderViewListAdapter) mListView.getAdapter();
+			  adapter = (ConactAdapter) ha.getWrappedAdapter();
+		  }catch (ClassCastException e){
+			  adapter= (AdvertMassSelectAdapter) mListView.getAdapter();
+
+		  }
+
+
 //		ContactAdapter adapter = (ContactAdapter) mListView.getAdapter();
 		String[] adapterSections = (String[]) adapter.getSections();
 		try {
@@ -101,15 +109,17 @@ public class Sidebar extends View {
 		} catch (Exception e) {
 			Log.e("setHeaderTextAndscroll", e.getMessage());
 		}
-		
+
 	}
-	
+
+
+
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:{
 			if(header == null){
-				header = (TextView) ((View)getParent()).findViewById(R.id.floating_header);
+					header = (TextView) ((View)getParent()).findViewById(R.id.floating_header);
 			}
 			setHeaderTextAndscroll(event);
 			header.setVisibility(View.VISIBLE);

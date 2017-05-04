@@ -175,6 +175,7 @@ public class ProFileFragment extends BaseFragment {
                 break;
             //关于
             case R.id.me_relativelayout_about:
+
                 ActivityUtil.next(getActivity(), MeAboutActivity.class);
                 break;
             //在线客服

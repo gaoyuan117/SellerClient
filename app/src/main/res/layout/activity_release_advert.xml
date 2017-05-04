@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_release_advert"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.kaichaohulian.baocms.activity.ReleaseAdvertActivity">
+
+    <include layout="@layout/title_project" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:background="@color/white"
+            android:text="标题"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/title_releaseadvert"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:background="@color/white"
+            android:gravity="center_vertical|left"
+            android:hint="请输入标题"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/white"
+            android:gravity="left"
+            android:hint="请输入广告内容..."
+            android:padding="12dp"
+            android:textSize="14sp" />
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:background="@color/white"
+            android:horizontalSpacing="3dp"
+            android:listSelector="@color/transparent"
+            android:numColumns="4"
+            android:padding="12dp"
+            android:verticalSpacing="3dp"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/ib_addphoto_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_margin="15dp"
+            android:background="#00000000"
+            android:src="@mipmap/release_advert_img" />
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15px"
+        android:background="#CCCCCC" />
+
+    <RelativeLayout
+        android:id="@+id/current_address_rlt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/seltor"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/release_time" />
+
+        <TextView
+            android:id="@+id/tv_current_loc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:text="发布时间"
+            android:textSize="14sp" />
+        <ImageView
+            android:id="@+id/discovery_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:src="@mipmap/right_arrow" />
+        <TextView
+            android:id="@+id/tv_time_releaseadvert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/discovery_right_arrow"
+            android:text="2017-5-4"
+            android:textColor="@color/zy_text_gray"
+            android:textSize="12sp" />
+
+
+    </RelativeLayout>
+</LinearLayout>

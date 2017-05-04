@@ -1,57 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="horizontal">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/time"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="right|bottom"
-        android:text="12"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:gravity="right"
+        android:text="今天"
         android:textColor="#333333"
-        android:textSize="30sp" />
-    <TextView
-        android:id="@+id/time2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="right|bottom"
-        android:text="七月"
-        android:textColor="#333333"
-        android:textSize="15sp" />
+        android:textSize="25sp" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/time">
 
-        <com.kaichaohulian.baocms.circledemo.widgets.MultiImageView
+        <ImageView
             android:id="@+id/multiImagView"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:minWidth="80dp"
-            android:minHeight="80dp"
-            android:gravity="center"/>
+            android:scaleType="fitXY"
+            android:src="@mipmap/camera_myalbum"
+
+            />
 
         <TextView
             android:id="@+id/text_context"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_alignTop="@+id/multiImagView"
             android:layout_marginLeft="5dp"
-            android:layout_toEndOf="@+id/multiImagView"
             android:layout_toRightOf="@+id/multiImagView"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="3"
             android:text="TextVieTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextVieww"
             android:textSize="15sp" />
     </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

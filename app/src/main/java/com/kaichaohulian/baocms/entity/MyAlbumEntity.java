@@ -36,4 +36,17 @@ public class MyAlbumEntity {
     public String getContent() {
         return content;
     }
+
+    @Override
+    public String toString() {
+        StringBuffer buffer=new StringBuffer();
+        for (String s : List) {
+            buffer.append(s+"**");
+        }
+        return "MyAlbumEntity{" +
+                "createTime='" + createTime + '\'' +
+                ", content='" + content + '\'' +
+                ", List=" + buffer.toString() +
+                '}';
+    }
 }

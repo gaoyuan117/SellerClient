@@ -44,12 +44,17 @@ import com.kaichaohulian.baocms.ecdemo.ui.group.GroupService;
 import com.kaichaohulian.baocms.ecdemo.ui.settings.SettingPersionInfoActivity;
 import com.kaichaohulian.baocms.entity.GroupEntity;
 import com.kaichaohulian.baocms.entity.MessageEntity;
+import com.kaichaohulian.baocms.entity.QiNiuConfigEntity;
 import com.kaichaohulian.baocms.fragment.ContactListFragment;
 import com.kaichaohulian.baocms.fragment.FindFragment;
 import com.kaichaohulian.baocms.fragment.HomeFragment;
 import com.kaichaohulian.baocms.fragment.ProFileFragment;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.DBLog;
 import com.kaichaohulian.baocms.utils.SharedPrefsUtil;
 import com.kaichaohulian.baocms.view.AddPopWindow;
@@ -160,6 +165,17 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
+        RetrofitClient.getInstance().createApi().GetQiNiuConfig().compose(RxUtils.<HttpResult<QiNiuConfigEntity>>io_main())
+                .subscribe(new BaseObjObserver<QiNiuConfigEntity>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(QiNiuConfigEntity qiNiuConfigEntity) {
+//                        Log.e(TAG, "onHandleSuccess: "+qiNiuConfigEntity.toString() );
+//                            QiNiuConfig.QINIU_DOMAIN=qiNiuConfigEntity.domain;
+//                            QiNiuConfig.QINIU_BUCKET=qiNiuConfigEntity.bucket;
+
+                    }
+                });
+
 
     }
 

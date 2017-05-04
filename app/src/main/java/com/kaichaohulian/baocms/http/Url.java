@@ -40,7 +40,16 @@ public class Url {
     public static final String onlineService_list = BASE_URL + "customerService/searchAll.do";
     //获取城市列表
     public static final String GetCityList = BASE_URL + "area/getCity.do";
-
+    //广告群发
+    public static final String Sendadviertisement=BASE_URL+"adviertisement/release.do";
+    //我发送的广告
+    public static final String GetMyadviertisement=BASE_URL+"adviertisement/getMyAdvert.do";
+    //用户个人收到的广告
+    public static final String Getadviertisement=BASE_URL+"adviertisement/getAdvert.do";
+    //广告详情
+    public static final String GetadvertDetail=BASE_URL+"adviertisement/getAdvertDetail.do";
+    //获取七牛配置
+    public static final String GetQiNiuConFig=BASE_URL+"qiniu/getQiniu.do";
 
 
     //个人信息

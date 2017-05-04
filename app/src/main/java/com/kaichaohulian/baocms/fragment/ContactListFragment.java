@@ -25,8 +25,8 @@ import com.kaichaohulian.baocms.ecdemo.common.CCPAppManager;
 import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
+import com.kaichaohulian.baocms.utils.ChineseToEnglish;
 import com.kaichaohulian.baocms.utils.DBLog;
-import com.kaichaohulian.baocms.utils.HanziToPinyin;
 import com.kaichaohulian.baocms.utils.SharedPrefsUtil;
 import com.kaichaohulian.baocms.view.Sidebar;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -222,12 +222,12 @@ public class ContactListFragment extends BaseFragment {
                             if (Character.isDigit(contract.getUsername().charAt(0))) {
                                 contract.setHeader("#");
                             } else {
-                                contract.setHeader(HanziToPinyin.getInstance().get(contract.getUsername().substring(0, 1))
-                                        .get(0).target.substring(0, 1).toUpperCase());
+                                contract.setHeader(ChineseToEnglish.getInstance().getSelling(contract.getUsername()).trim().substring(0,1));
                                 char header = contract.getHeader().toLowerCase().charAt(0);
                                 if (header < 'a' || header > 'z') {
                                     contract.setHeader("#");
                                 }
+
                             }
                             boolean flag = false;
                             for (ContactFriendsEntity tempContact : contactList) {
@@ -246,6 +246,7 @@ public class ContactListFragment extends BaseFragment {
                         // 对list进行排序
                         Collections.sort(contactList, new PinyinComparator() {
                         });
+                        adapter.notifyDataSetChanged();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -27,7 +27,7 @@ public abstract class BaseListAdapter<T> extends BaseAdapter {
         if(data==null){
             return 0;
         }else{
-            return data.size()==0?1:data.size();
+            return data.size()==0?0:data.size();
         }
     }
 

@@ -2,6 +2,10 @@ package com.kaichaohulian.baocms.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +16,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
-import com.kaichaohulian.baocms.activity.ImagePagerActivity;
 import com.kaichaohulian.baocms.activity.ReleaseTalkActivity;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.circledemo.bean.HeadInfo;
-import com.kaichaohulian.baocms.circledemo.widgets.MultiImageView;
 import com.kaichaohulian.baocms.entity.MyAlbumEntity;
 
 import java.text.ParseException;
@@ -39,22 +41,10 @@ public class MyAlbumAdapter extends BaseAdapter {
         this.List = List;
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (position == 0) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        return 2;
-    }
 
     @Override
     public int getCount() {
-        return List.size() + 1;
+        return List.size() + 2;
     }
 
     @Override
@@ -64,13 +54,12 @@ public class MyAlbumAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-
-        if (getItemViewType(position) == 0) {
+        if (position == 0) {
             HeaderViewHolder holder;
             if (convertView == null) {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.head_circle, null);
@@ -89,8 +78,8 @@ public class MyAlbumAdapter extends BaseAdapter {
                         ActivityUtil.next((Activity) mContext, ReleaseTalkActivity.class);
                     }
                 });
-                Glide.with(parent.getContext()).load(mHeadInfo.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(holder.head);
-                Glide.with(parent.getContext()).load(mHeadInfo.bg).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(bg);
+                Glide.with(parent.getContext()).load(mHeadInfo.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.def_shop_bg).into(holder.head);
+                Glide.with(parent.getContext()).load(mHeadInfo.bg).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.def_shop_bg).into(bg);
             }
         } else {
             ViewHolder holder;
@@ -101,77 +90,93 @@ public class MyAlbumAdapter extends BaseAdapter {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            try {
-                MyAlbumEntity Item = getItem(position - 1);
+            if (position == 1) {
+                holder.text_context.setText("");
+                holder.time.setText("今天");
+                holder.multiImageView.setImageResource(R.mipmap.camera_myalbum);
+                holder.multiImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+//                    ActivityUtil.next(mContext, ReleaseTalkActivity.class);
+                        mContext.startActivity(new Intent(mContext, ReleaseTalkActivity.class));
+                    }
+                });
+            } else {
+                MyAlbumEntity Item = getItem(position - 2);
                 if (Item != null) {
                     String Time = Item.getCreateTime();
                     if (formatDateTime(Time)) {
                         holder.time.setText("今天");
                     } else {
-                        Date date = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(Time);
-                        int mDay = date.getDay();//年
+                        Date date = null;
+                        try {
+                            date = new SimpleDateFormat("yyyy-MM-dd").parse(Time);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        int mDay = date.getDay();//日
                         int mMonth = date.getMonth() + 1;//月
-                        holder.time.setText(mDay + "");
-                        holder.time2.setText(getMonth(mMonth));
+                        Spannable sp = new SpannableString(mDay + " " + getMonth(mMonth));
+                        int length = 2;
+                        if (mDay < 10) {
+                            length = 1;
+                        }
+                        sp.setSpan(new AbsoluteSizeSpan(32, true), 0, length, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                        sp.setSpan(new AbsoluteSizeSpan(12, true), length, sp.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                        holder.time.setText(sp);
                     }
                     holder.text_context.setText(Item.getContent());
                     final List<String> photos = Item.getList();
-                    if (photos != null && photos.size() > 0) {
-                        holder.multiImageView.setVisibility(View.VISIBLE);
-                        holder.multiImageView.setList(photos);
-                        holder.multiImageView.setOnItemClickListener(new MultiImageView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-                                //imagesize是作为loading时的图片size
-                                ImagePagerActivity.ImageSize imageSize = new ImagePagerActivity.ImageSize(view.getMeasuredWidth(), view.getMeasuredHeight());
-                                ImagePagerActivity.startImagePagerActivity(mContext, photos, position, imageSize);
+                    if (photos != null) {
+                        for (int i = 0; i < photos.size(); i++) {
+                            if (photos.get(i) != null) {
+                                Glide.with(mContext).load(photos.get(i)).into(holder.multiImageView);
+                                break;
                             }
-                        });
-                    } else {
-                        holder.multiImageView.setVisibility(View.GONE);
+                        }
                     }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+
             }
         }
         return convertView;
+
     }
 
     public String getMonth(int month) {
         switch (month) {
             case 1:
-                return "一月";
+                return " 1月";
             case 2:
-                return "二月";
+                return " 2月";
             case 3:
-                return "三月";
+                return " 3月";
             case 4:
-                return "四月";
+                return " 4月";
             case 5:
-                return "五月";
+                return " 5月";
             case 6:
-                return "六月";
+                return " 6月";
             case 7:
-                return "七月";
+                return " 7月";
             case 8:
-                return "八月";
+                return " 8月";
             case 9:
-                return "九月";
+                return " 9月";
             case 10:
-                return "十月";
+                return " 10月";
             case 11:
-                return "十一月";
+                return " 11月";
             case 12:
-                return "十二月";
+                return " 12月";
         }
         return "";
     }
 
     HeadInfo mHeadInfo;
 
-    public void setHeadInfo(HeadInfo headInfo) {
-        mHeadInfo = headInfo;
+    public void SetHeadInfo(HeadInfo headInfo) {
+        this.mHeadInfo = headInfo;
     }
 
     public class HeaderViewHolder {
@@ -187,13 +192,12 @@ public class MyAlbumAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public MultiImageView multiImageView;
-        public TextView time, text_context, time2;
+        public ImageView multiImageView;
+        public TextView time, text_context;
 
         public ViewHolder(View itemView) {
-            multiImageView = (MultiImageView) itemView.findViewById(R.id.multiImagView);
+            multiImageView = (ImageView) itemView.findViewById(R.id.multiImagView);
             time = (TextView) itemView.findViewById(R.id.time);
-            time2 = (TextView) itemView.findViewById(R.id.time2);
             text_context = (TextView) itemView.findViewById(R.id.text_context);
         }
     }

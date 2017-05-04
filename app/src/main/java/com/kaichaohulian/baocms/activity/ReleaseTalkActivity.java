@@ -51,8 +51,8 @@ public class ReleaseTalkActivity extends BaseActivity implements View.OnClickLis
     private TextView status_tv;
 
     private GridView GridView;
-
     private List<String> list;
+
     private ImageBaseAdapter ImageBaseAdapter;
     int index = 0;
 
