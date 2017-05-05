@@ -1,9 +1,7 @@
 package com.kaichaohulian.baocms.activity;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -103,7 +101,7 @@ public class FriendInfoActivity extends BaseActivity {
     private void showPopWindow() {
         View popView = View.inflate(this, R.layout.pop_friend_info, null);
         TextView addBlack = (TextView) popView.findViewById(R.id.tv_pop_addblack);
-        final TextView deleteFriend = (TextView) popView.findViewById(R.id.tv_pop_delete);
+        TextView deleteFriend = (TextView) popView.findViewById(R.id.tv_pop_delete);
         PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setTouchable(true);
         popupWindow.setOutsideTouchable(true);
@@ -144,18 +142,22 @@ public class FriendInfoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FriendInfoActivity.this, PayActivity.class);
-                intent.putExtra("pay_money", "20");
+                intent.putExtra("pay_money", "2");
                 startActivity(intent);
             }
         }).showDialog();
     }
 
     private void addFriendBlack() {
-        ToastUtil.showMessage("加入黑名单");
+        Intent intent = new Intent(this,BlackActivity.class);
+        intent.putExtra("type","1");
+        startActivity(intent);
     }
 
     private void deleteFriend() {
-        ToastUtil.showMessage("删除好友");
+        Intent intent = new Intent(this,BlackActivity.class);
+        intent.putExtra("type","2");
+        startActivity(intent);
     }
 
     /**

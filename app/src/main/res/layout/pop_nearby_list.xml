@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_pop_near_out"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#b0000000"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/ll_pop_near_girl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="只看女生"
+            android:textSize="16sp"
+            android:gravity="center"
+            />
+        <include layout="@layout/gray_line"/>
+
+        <TextView
+            android:id="@+id/ll_pop_near_boy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="只看男生"
+            android:textSize="16sp"
+            android:gravity="center"
+            />
+        <include layout="@layout/gray_line"/>
+
+        <TextView
+            android:id="@+id/ll_pop_near_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="查看全部"
+            android:textSize="16sp" />
+
+        <include layout="@layout/gray_line"/>
+
+        <TextView
+            android:id="@+id/ll_pop_near_greet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="附近打招呼的人"
+            android:textSize="16sp"
+            android:gravity="center"
+            />
+        <include layout="@layout/gray_line"/>
+
+
+        <TextView
+            android:id="@+id/ll_pop_near_clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="清空位置信息并推出"
+            android:textSize="16sp"
+            android:gravity="center"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/bg_color_gray"/>
+
+        <TextView
+            android:id="@+id/ll_pop_near_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="取消"
+            android:textSize="16sp"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+</LinearLayout>

@@ -6,24 +6,25 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/rl_contactlist_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/dimens_10"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="@dimen/dimens_10"
-        android:background="@mipmap/search_bg">
+        android:background="@mipmap/search_bg"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:drawableLeft="@mipmap/search"
-            android:text="搜索"
-            android:padding="4dp"
-            android:textColor="#909090"
             android:drawablePadding="4dp"
-            />
+            android:padding="4dp"
+            android:text="搜索"
+            android:textColor="#909090" />
     </RelativeLayout>
 
     <View
@@ -74,6 +75,7 @@
             android:textSize="12sp"
             android:visibility="gone" />
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
@@ -110,20 +112,20 @@
     </RelativeLayout>
 
     <View
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:background="#d9d9d9" />
+        android:background="#d9d9d9"
+        android:visibility="gone" />
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/Label"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:background="@drawable/btn_list_item_bg"
-        android:clickable="true">
+        android:clickable="true"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_avatar3"
@@ -147,20 +149,20 @@
     </RelativeLayout>
 
     <View
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:background="#d9d9d9" />
+        android:background="#d9d9d9"
+        android:visibility="gone" />
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/Shopping"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:background="@drawable/btn_list_item_bg"
-        android:clickable="true">
+        android:clickable="true"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_shopping"
@@ -184,10 +186,10 @@
     </RelativeLayout>
 
     <View
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:background="#d9d9d9" />
+        android:background="#d9d9d9"
+        android:visibility="gone" />
 </LinearLayout>

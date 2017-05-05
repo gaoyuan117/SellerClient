@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#e1e1e1"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_gray"
+    android:orientation="vertical">
 
-    <include layout="@layout/title_project"/>
+    <include layout="@layout/title_project" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,6 +14,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/bg_color_gray"
+
             android:orientation="vertical">
 
             <RelativeLayout
@@ -31,7 +33,7 @@
                     android:horizontalSpacing="6dp"
                     android:listSelector="@android:color/transparent"
                     android:numColumns="4"
-                    android:verticalSpacing="10dp"/>
+                    android:verticalSpacing="10dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -39,15 +41,15 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="#dadada"/>
+                    android:background="#dadada" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/allChenYuan"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="@drawable/btn_list_item_bg"
-                android:visibility="gone">
+                android:background="@color/white"
+                android:visibility="visible">
 
                 <TextView
                     android:id="@+id/allChenYuanText"
@@ -57,8 +59,7 @@
                     android:gravity="center_vertical|left"
                     android:paddingLeft="20dip"
                     android:text="全部群成员(0)"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -67,32 +68,34 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
-                    android:src="@mipmap/arrow_right"/>
+                    android:src="@mipmap/arrow_right" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dip"
                     android:layout_alignParentBottom="true"
-                    android:background="#dadada"/>
+                    android:background="#dadada" />
             </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
-                android:layout_marginTop="16dp" android:background="#E6E6E6"
-                android:visibility="gone"/>
+                android:layout_marginTop="16dp"
+                android:background="@color/bg_color_gray"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
+                android:background="@color/bg_color_gray"
                 android:orientation="vertical">
 
                 <RelativeLayout
                     android:id="@+id/BangPaiNameLayout"
                     android:layout_width="match_parent"
                     android:layout_height="50dip"
-                    android:background="@drawable/btn_list_item_bg">
+                    android:layout_marginTop="16dp"
+                    android:background="@color/white">
 
                     <TextView
                         android:id="@+id/tv_temp_name"
@@ -102,8 +105,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
                         android:text="群聊名称"
-                        android:textColor="#353535"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_name"
@@ -117,8 +119,8 @@
                         android:gravity="right"
                         android:singleLine="true"
                         android:text="XXX"
-                        android:textColor="#AAAAAA"
-                        android:textSize="14sp"/>
+                        android:textColor="@color/zy_text_gray"
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -127,7 +129,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
-                        android:src="@mipmap/arrow_right"/>
+                        android:src="@mipmap/arrow_right" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -135,14 +137,14 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
-                        android:background="#dadada"/>
+                        android:background="#dadada" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/re_code"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:background="@drawable/btn_list_item_bg"
+                    android:background="@color/white"
                     android:clickable="true">
 
                     <TextView
@@ -154,15 +156,15 @@
                         android:layout_marginLeft="20dp"
                         android:text="群二维码"
                         android:textColor="#353535"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="32dp"
-                        android:src="@mipmap/a_5"/>
+                        android:layout_marginRight="36dp"
+                        android:src="@mipmap/code2" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -171,7 +173,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
-                        android:src="@mipmap/arrow_right"/>
+                        android:src="@mipmap/arrow_right" />
 
                     <View
                         android:layout_width="match_parent"
@@ -179,14 +181,14 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
-                        android:background="#dadada"/>
+                        android:background="#dadada" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/rl_gonggao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_list_item_bg">
+                    android:background="@color/white">
 
                     <TextView
                         android:id="@+id/noticeTile"
@@ -196,7 +198,7 @@
                         android:layout_marginTop="15dp"
                         android:text="群公告"
                         android:textColor="#353535"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/noticeContext"
@@ -208,8 +210,8 @@
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="15dp"
                         android:paddingBottom="5dp"
-                        android:textColor="#AAAAAA"
-                        android:textSize="16sp"/>
+                        android:textColor="@color/zy_text_gray"
+                        android:textSize="12sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -218,13 +220,13 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
-                        android:src="@mipmap/arrow_right"/>
+                        android:src="@mipmap/arrow_right" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dip"
                         android:layout_alignParentBottom="true"
-                        android:background="#dadada"/>
+                        android:background="#dadada" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -234,15 +236,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
                 android:layout_marginTop="16dp"
-                android:background="#dadada"/>
+                android:background="#dadada" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
+                android:background="@color/bg_color_gray"
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/re_miandarao"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -257,7 +260,7 @@
                         android:layout_marginLeft="20dp"
                         android:text="消息免打扰"
                         android:textColor="#353535"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <com.kaichaohulian.baocms.view.SwitchButton
                         android:id="@+id/sb_MianDaRao"
@@ -266,7 +269,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"/>
+                        android:layout_marginRight="20dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -274,12 +277,13 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
-                        android:background="#dadada"/>
+                        android:background="#dadada" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:background="@color/white"
                     android:id="@+id/re_zhiding"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -294,7 +298,7 @@
                         android:layout_marginLeft="20dp"
                         android:text="置顶聊天"
                         android:textColor="#353535"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <View
                         android:id="@+id/view"
@@ -303,7 +307,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
-                        android:background="#dadada"/>
+                        android:background="#dadada" />
 
                     <com.kaichaohulian.baocms.view.SwitchButton
                         android:id="@+id/sb_ZhiDing"
@@ -312,12 +316,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"/>
+                        android:layout_marginRight="20dp" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/re_save_txl"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -332,7 +337,7 @@
                         android:layout_marginLeft="20dp"
                         android:text="保存到通讯录"
                         android:textColor="#353535"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <com.kaichaohulian.baocms.view.SwitchButton
                         android:id="@+id/sb_save_txl"
@@ -341,16 +346,17 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"/>
+                        android:layout_marginRight="20dp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#dadada"/>
+                        android:background="#dadada" />
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/re_jinyan"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -365,17 +371,18 @@
                         android:layout_marginLeft="20dp"
                         android:text="禁言成员"
                         android:textColor="#353535"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#dadada"/>
+                        android:background="#dadada" />
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/re_zhuanrang"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -390,26 +397,22 @@
                         android:layout_marginLeft="20dp"
                         android:text="转让群主"
                         android:textColor="#353535"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#dadada"/>
+                        android:background="#dadada" />
                 </RelativeLayout>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dip"
-                android:layout_marginTop="16dp"
-                android:background="#dadada"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_list_item_bg"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -426,7 +429,7 @@
                         android:layout_marginLeft="20dp"
                         android:text="我在本群的昵称"
                         android:textColor="#353535"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_myname"
@@ -441,7 +444,7 @@
                         android:singleLine="true"
                         android:text="暂无"
                         android:textColor="#AAAAAA"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -450,7 +453,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
-                        android:src="@mipmap/arrow_right"/>
+                        android:src="@mipmap/arrow_right" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -458,10 +461,11 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
-                        android:background="#dadada"/>
+                        android:background="#dadada" />
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/re_show_name"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -476,7 +480,7 @@
                         android:layout_marginLeft="20dp"
                         android:text="显示群成员昵称"
                         android:textColor="#353535"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <com.kaichaohulian.baocms.view.SwitchButton
                         android:id="@+id/sb_show_name"
@@ -485,13 +489,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"/>
+                        android:layout_marginRight="20dp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#dadada"/>
+                        android:background="#dadada" />
 
 
                 </RelativeLayout>
@@ -512,33 +516,34 @@
                     android:layout_marginLeft="20dp"
                     android:text="清空聊天记录"
                     android:textColor="#353535"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0.1dip"
-                    android:background="#dadada"/>
+                    android:background="#dadada" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0.1dip"
                     android:layout_alignParentBottom="true"
-                    android:background="#dadada"/>
+                    android:background="#dadada" />
             </RelativeLayout>
 
             <Button
                 android:id="@+id/btn_exit_grp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:background="@drawable/btn_style_alert_dialog_special"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/zy_orange"
                 android:onClick="exitGroup"
-                android:paddingBottom="7dp"
-                android:paddingTop="7dp"
+                android:padding="10dp"
                 android:text="删除并退出"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"/>
-
+                android:textSize="16sp" />
 
         </LinearLayout>
     </ScrollView>

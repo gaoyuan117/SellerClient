@@ -587,7 +587,7 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
         if (!isPeerChat()) {
             IMessageSqlManager.checkContact(mRecipients, mUsername);
         }
-        int topbar_back_bt = R.drawable.topbar_back_bt;
+        int topbar_back_bt = R.mipmap.zy_back;
         int actionbar_facefriend_icon = R.mipmap.actionbar_facefriend_icon;
         int actionbar_particular_icon = R.mipmap.actionbar_particular_icon;
         boolean peerChat = isPeerChat();
@@ -617,7 +617,7 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
 
                     if (getTopBarView() != null) {
                         getTopBarView().setTopBarToStatus(1,
-                                R.drawable.topbar_back_bt,
+                                R.mipmap.zy_back,
                                 isPeerChat() ? R.mipmap.actionbar_facefriend_icon : R.mipmap.actionbar_particular_icon,
                                 null, null,
                                 mUsername,

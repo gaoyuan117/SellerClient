@@ -25,6 +25,7 @@ import com.kaichaohulian.baocms.ecdemo.common.utils.LogUtil;
 import com.kaichaohulian.baocms.ecdemo.ui.huawei.PustDemoActivity;
 import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
 import com.kaichaohulian.baocms.entity.UserInfo;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.utils.DBLog;
 import com.kaichaohulian.baocms.utils.FileUtil;
 import com.kaichaohulian.baocms.utils.SharedPrefsUtil;
@@ -40,6 +41,7 @@ import java.io.File;
 import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 程序基类
@@ -250,4 +252,6 @@ public class MyApplication extends MultiDexApplication {
     public static float getScreenDensity() {
         return screenDensity;
     }
+
+
 }

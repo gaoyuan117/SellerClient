@@ -1165,7 +1165,9 @@
         <activity android:name=".activity.AdvertMgActivity" />
         <activity android:name=".activity.AdvertmassActivity" />
         <activity android:name=".activity.SendinvitationActivity" />
-        <activity android:name=".activity.InvitationmgActivity"></activity>
+        <activity android:name=".activity.InvitationmgActivity" />
+
+
     </application>
 
 </manifest>

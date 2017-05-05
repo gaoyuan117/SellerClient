@@ -13,7 +13,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimens_48"
-            android:background="@color/common_top_bar_blue" >
+            android:background="@color/zy_orange" >
 
             <ImageView
                 android:id="@+id/iv_back"
@@ -38,33 +38,36 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_toRightOf="@+id/iv_back"
-                android:background="@drawable/edittext_login"
-                android:gravity="bottom"
+                android:background="@color/zy_orange"
                 android:textColor="#fff"
                 android:hint="手机号"
                 android:paddingBottom="8dp"
-                android:paddingLeft="46dp"
+                android:paddingLeft="32dp"
                 android:singleLine="true"
-                android:textColorHint="#484c4c"
-                android:textSize="16sp" />
+                android:textColorHint="@color/white"
+                android:textSize="12sp" />
 
             <ImageView
          
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/et_search"
                 android:layout_alignLeft="@id/et_search"
-                android:layout_margin="8dp"
-                android:src="@mipmap/icon_search" />
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/search2" />
 
             <View
                 android:id="@+id/view_temp"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_toRightOf="@id/iv_back"
-                android:background="#14191A" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="16dp"
+                android:background="#f8ba93" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -85,7 +88,7 @@
                 android:layout_height="48dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/a_a" />
+                android:src="@mipmap/search_friend" />
 
             <TextView
                 android:id="@+id/tv_temp"
@@ -95,7 +98,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_toRightOf="@id/iv_find"
                 android:text="搜索:   "
-                android:textColor="#353535"
+                android:textColor="#323232"
                 android:textSize="16sp" />
 
             <TextView
@@ -107,7 +110,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/tv_temp"
                 android:text="13830140218"
-                android:textColor="#3FB838"
+                android:textColor="#31c4f7"
                 android:textSize="16sp" />
         </RelativeLayout>
 

@@ -16,6 +16,7 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.activity.BusinessActivity;
 import com.kaichaohulian.baocms.activity.GroupChatActivity;
 import com.kaichaohulian.baocms.activity.LabelActivity;
+import com.kaichaohulian.baocms.activity.MyFriendsSearchActivity;
 import com.kaichaohulian.baocms.activity.NewFriendsActivity;
 import com.kaichaohulian.baocms.adapter.ConactAdapter;
 import com.kaichaohulian.baocms.app.ActivityUtil;
@@ -51,7 +52,7 @@ public class ContactListFragment extends BaseFragment {
 
     private ConactAdapter adapter;
     private List<ContactFriendsEntity> contactList;
-    private RelativeLayout re_newfriends, GroupChat, Label, Shopping;
+    private RelativeLayout re_newfriends, GroupChat, Label, Shopping,searchFriend;
     private ListView listView;
     private boolean hidden;
     private Sidebar sidebar;
@@ -79,6 +80,7 @@ public class ContactListFragment extends BaseFragment {
         listView = getId(R.id.listHaoYou);
         infalter = LayoutInflater.from(getActivity());
         View headView = infalter.inflate(R.layout.item_contact_list_header, null);
+        searchFriend = (RelativeLayout) headView.findViewById(R.id.rl_contactlist_search);
         listView.addHeaderView(headView);
         View footerView = infalter.inflate(R.layout.item_contact_list_footer, null);
         listView.addFooterView(footerView);
@@ -151,6 +153,12 @@ public class ContactListFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 ActivityUtil.next(getActivity(), BusinessActivity.class);
+            }
+        });
+        searchFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.next(getActivity(), MyFriendsSearchActivity.class);
             }
         });
     }
