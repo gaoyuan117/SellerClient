@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.text.Editable;
@@ -8,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -292,6 +294,10 @@ public class WithdrawApplyActivity extends BaseActivity {
             paywordEdt.setFocusable(true);
 
         }
+
+        InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        //这里给它设置了弹出的时间，
+        imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
     }
     //网络请求验证支付密码
     private void SignPayPassWord(String payword){
@@ -324,7 +330,7 @@ public class WithdrawApplyActivity extends BaseActivity {
 
                     }
                 });
-    };
+    }
 
     @Override
     protected void onResume() {

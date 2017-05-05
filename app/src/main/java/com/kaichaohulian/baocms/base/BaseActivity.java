@@ -42,7 +42,7 @@ public abstract class BaseActivity extends FragmentActivity {
     public double mStartLatitude, mStartLontitude;
     private static final int UPDATE_TIME = 5000;
     private boolean alreadyLocation = false;
-    protected Map<String,String> map;
+    public Map<String,String> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

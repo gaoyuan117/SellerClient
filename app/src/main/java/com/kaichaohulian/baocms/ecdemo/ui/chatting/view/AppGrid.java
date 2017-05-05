@@ -14,6 +14,7 @@ package com.kaichaohulian.baocms.ecdemo.ui.chatting.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,7 +113,8 @@ public class AppGrid extends GridView implements
 		mPageItems = pageItems;
 		mPanelPageCount = pageCount;
 		mReserveItems = reserve;
-		setNumColumns(column);
+		setNumColumns(3);
+
 	}
 
 	/**

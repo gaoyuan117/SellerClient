@@ -123,8 +123,9 @@ public class AddFriendsOneActivity extends BaseActivity {
                 .error(R.mipmap.default_useravatar)
                 .crossFade()
                 .into(avatar);
+        Log.e("gy","哈哈哈："+"http://www.52yeli.com/"+MyApplication.getInstance().UserInfo.getQrCode());
         Glide.with(MyApplication.getInstance())
-                .load(MyApplication.getInstance().UserInfo.getQrCode())
+                .load("http://www.52yeli.com/"+MyApplication.getInstance().UserInfo.getQrCode())
                 .error(R.mipmap.default_image)
                 .crossFade()
                 .into(codeImg);

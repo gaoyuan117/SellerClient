@@ -27,6 +27,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -167,7 +168,7 @@ public class CCPChattingFooter2 extends LinearLayout {
 
     private BQMMKeyboard bqmmKeyboard;
     /**
-     * Cloud communication panel, display all support ability
+     * Cloud communication   , display all support ability
      */
     private AppPanel mAppPanel;
 

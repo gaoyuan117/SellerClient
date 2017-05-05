@@ -76,4 +76,9 @@ public class TitleUtils {
         return this;
     }
 
+    public ImageView getRirht(){
+
+        return mMore;
+    }
+
 }

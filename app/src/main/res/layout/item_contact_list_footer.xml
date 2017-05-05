@@ -8,11 +8,11 @@
         android:id="@+id/tv_total"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#ebebeb"
+        android:background="@color/bg_color_gray"
         android:gravity="center"
         android:visibility="gone"
         android:text="0位联系人"
         android:textColor="#888888"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
 </LinearLayout>

@@ -46,6 +46,7 @@ import com.kaichaohulian.baocms.entity.GroupEntity;
 import com.kaichaohulian.baocms.entity.MessageEntity;
 import com.kaichaohulian.baocms.entity.QiNiuConfigEntity;
 import com.kaichaohulian.baocms.fragment.ContactListFragment;
+import com.kaichaohulian.baocms.fragment.DiscoverFragment;
 import com.kaichaohulian.baocms.fragment.FindFragment;
 import com.kaichaohulian.baocms.fragment.HomeFragment;
 import com.kaichaohulian.baocms.fragment.ProFileFragment;
@@ -97,7 +98,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
     private Fragment[] fragments;
     private HomeFragment homefragment;
     private ContactListFragment contactlistfragment;
-    private FindFragment findfragment;
+    private DiscoverFragment findfragment;
     private ProFileFragment profilefragment;
 
     private ImageView[] imagebuttons;
@@ -134,7 +135,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
 //        Log.e("TRACE", "expired first : " + expireddate);
 //        Log.e("TRACE", "expired curr : " + current);
 //        Log.e("TRACE", "expired duration : " + duration);
-
+        startService(new Intent(this,UpdateLocationService.class));
         mDataHelper = new DataHelper(getActivity());
         myApplication = (MyApplication) getApplication();
         if (MyApplication.getInstance() != null && MyApplication.getInstance().UserInfo != null) {
@@ -220,7 +221,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
     @Override
     public void initView() {
 
-        setCenterTitle("买家");
+        setCenterTitle("消息");
         visibilityExit();
         final ImageView iv_add = setIm1_view(R.mipmap.add_friend);
         iv_add.setOnClickListener(new View.OnClickListener() {
@@ -236,7 +237,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
 
         homefragment = new HomeFragment(myApplication, MainActivity.this, MainActivity.this);
         contactlistfragment = new ContactListFragment(myApplication, MainActivity.this, MainActivity.this);
-        findfragment = new FindFragment(myApplication, MainActivity.this, MainActivity.this);
+        findfragment = new DiscoverFragment(myApplication, MainActivity.this, MainActivity.this);
         profilefragment = new ProFileFragment(myApplication, MainActivity.this, MainActivity.this);
 
         fragments = new Fragment[]{homefragment, contactlistfragment, findfragment, profilefragment};

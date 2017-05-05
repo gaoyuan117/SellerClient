@@ -89,11 +89,8 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        if (detail != null && detail != null) {
-            getData();
-        }
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -161,6 +158,7 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
             }
         });
     }
+
 
     private void searchUser(final int id) {
         RequestParams params = new RequestParams();
@@ -474,7 +472,7 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
                         if (dataObject.members != null && dataObject.members.size() > 0) {
                             if (dataObject.members.get(0).id == MyApplication.getInstance().UserInfo.getUserId()) {
                                 btn_exit_grp.setText("解散群聊");
-                                re_zhuanrang.setVisibility(View.VISIBLE);
+                                re_zhuanrang.setVisibility(View.GONE);
                             }
                         }
                         if (dataObject.members != null && dataObject.members.size() > 0) {

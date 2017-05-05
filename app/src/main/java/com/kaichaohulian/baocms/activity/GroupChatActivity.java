@@ -16,6 +16,7 @@ import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.ecdemo.common.CCPAppManager;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.ecdemo.storage.GroupSqlManager;
 import com.kaichaohulian.baocms.ecdemo.ui.group.GroupService;
 import com.kaichaohulian.baocms.entity.GroupEntity;
@@ -98,9 +99,10 @@ public class GroupChatActivity extends BaseActivity {
         setCenterTitle("群聊");
         listView = getId(R.id.listView);
 
-        View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.item_contact_list_footer, null);
-        listView.addFooterView(footerView);
+        View footerView = LayoutInflater.from(this).inflate(R.layout.item_contact_list_footer, null);
         tv_total = (TextView) footerView.findViewById(R.id.tv_total);
+        tv_total.setVisibility(View.VISIBLE);
+        listView.addFooterView(footerView);
 
         listView.setAdapter(adapter);
     }
@@ -153,6 +155,7 @@ public class GroupChatActivity extends BaseActivity {
                         List<String> allGroupIdByJoin = GroupSqlManager.getAllGroupIdBy(true);
                         JSONArray jsonArray = response.getJSONArray("dataObject");
                         for (int i = 0; i < jsonArray.length(); i++) {
+                            Log.e("gy","size："+jsonArray.length());
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             final GroupEntity GroupEntity = new GroupEntity();
                             GroupEntity.setCapacity(jsonObject.getInt("capacity"));
@@ -165,7 +168,7 @@ public class GroupChatActivity extends BaseActivity {
                                     flag = true;
                                 }
                             }
-                            if (flag) continue;
+//                            if (flag) continue;
                             GroupEntity.setChatGroupId(chatGroupId);
                             GroupEntity.setCreatedTime(jsonObject.getString("createdTime"));
                             GroupEntity.setGroupNumber(jsonObject.getString("groupNumber"));
@@ -185,6 +188,7 @@ public class GroupChatActivity extends BaseActivity {
 
                             GroupEntity.setAvatar(avatarList);
                             List.add(GroupEntity);
+                            Log.e("gy","list  size："+List.size());
                             if (mIsFromMM) {
                                 if (GroupEntity.getChatGroupId().equals(mFromMMGroupid)) {
                                     mHandler.postDelayed(new Runnable() {
@@ -199,7 +203,7 @@ public class GroupChatActivity extends BaseActivity {
                             }
                         }
                     }
-                    tv_total.setText("共" + List.size() + "个群组");
+                    tv_total.setText(List.size() + "个群聊");
                     adapter.notifyDataSetChanged();
                 } catch (Exception e) {
                     e.printStackTrace();

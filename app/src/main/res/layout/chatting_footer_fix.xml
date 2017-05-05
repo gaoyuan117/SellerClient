@@ -8,7 +8,7 @@
         android:id="@+id/chatting_foot_bar_group"
         style="@style/CCPFooter"
         android:layout_height="wrap_content"
-        android:background="@drawable/bottombar_bg"
+        android:background="@color/bg_color_gray"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/ChattingFootSendMargin"
@@ -18,13 +18,11 @@
             android:id="@+id/chatting_mode_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_marginLeft="8.0dip"
             android:layout_marginRight="11.0dip"
             android:background="@null"
             android:contentDescription="@string/chat_footer_switch_mode_btn"
             android:minWidth="0.0dip"
-            android:paddingBottom="@dimen/ChattingFootPaddingBottom"
             android:src="@drawable/chatting_setmode_voice_btn" />
 
         <LinearLayout
@@ -34,7 +32,6 @@
             android:layout_marginBottom="5.5dip"
             android:layout_marginTop="5.5dip"
             android:layout_weight="1.0"
-            android:background="@drawable/edittext_group_bg_selector"
             android:gravity="bottom"
             android:orientation="horizontal">
 
@@ -42,7 +39,7 @@
                 android:id="@+id/chatting_content_et"
                 style="@style/CCPEditText"
                 android:layout_weight="1.0"
-                android:background="@null"
+                android:background="@mipmap/input_bg"
                 android:hint="@null"
                 android:inputType="textCapSentences|textMultiLine"
                 android:maxHeight="@dimen/ChattingFootEditMaxHeigh"
@@ -59,6 +56,7 @@
                 android:background="@null"
                 android:contentDescription="@string/chat_footer_smiley_btn"
                 android:padding="@dimen/SmallPadding"
+                android:layout_marginLeft="4dp"
                 android:src="@drawable/chatting_setmode_biaoqing_btn" />
         </LinearLayout>
 
@@ -80,10 +78,8 @@
             android:id="@+id/chatting_send_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/ChattingFootPaddingBottom"
             android:paddingLeft="6.0dip">
 
             <TextView
@@ -106,16 +102,17 @@
                     android:layout_gravity="center"
                     android:background="@null"
                     android:contentDescription="@string/chat_footer_app_btn"
-                    android:gravity="center"
                     android:paddingLeft="5.0dip"
                     android:paddingRight="5.0dip"
+                    android:paddingTop="dp"
                     android:src="@drawable/type_select_btn"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <com.melink.bqmmsdk.widget.BQMMSendButton
+                    android:visibility="gone"
                     android:id="@+id/chatting_send_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/ChattingFootSendHeight"
+                    android:layout_height="28dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/chat_send_btn"
                     android:gravity="center"

@@ -13,8 +13,8 @@
  -->
 <selector
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_focused="true" android:state_pressed="true" android:drawable="@mipmap/chatting_biaoqing_operation_enabled" />
-    <item android:state_focused="false" android:state_pressed="true" android:drawable="@mipmap/chatting_biaoqing_operation_enabled" />
-    <item android:state_focused="true" android:drawable="@mipmap/chatting_biaoqing_operation_enabled" />
-    <item android:drawable="@mipmap/chatting_biaoqing_operation_normal" />
+    <item android:state_focused="true" android:state_pressed="true" android:drawable="@mipmap/biaoqing" />
+    <item android:state_focused="false" android:state_pressed="true" android:drawable="@mipmap/biaoqing" />
+    <item android:state_focused="true" android:drawable="@mipmap/biaoqing" />
+    <item android:drawable="@mipmap/biaoqing" />
 </selector>

@@ -1,6 +1,7 @@
 package com.kaichaohulian.baocms.activity;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,7 +47,8 @@ public class GroupCodeActivity extends BaseActivity {
         imgTwoCode = getId(R.id.two_code);
         txtName = getId(R.id.name_text);
         txtName.setText(name);
-        Glide.with(getActivity()).load("http://115.29.99.167:8081/SellerNet/" + code).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgTwoCode);
+        Log.e("gy","code："+"http://www.52yeli.com/" + code);
+        Glide.with(getActivity()).load("http://www.52yeli.com/" + code).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgTwoCode);
     }
 
     @Override
