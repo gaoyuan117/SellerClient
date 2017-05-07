@@ -1,6 +1,7 @@
 package com.kaichaohulian.baocms.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,7 @@ public class UserInfo implements Serializable {
     public static final String HOBBY="hobby";
     public static final String AGE="age";
     public static final String JOB="job";
+
     private int id;
     private int userId;
     private String createdTime;

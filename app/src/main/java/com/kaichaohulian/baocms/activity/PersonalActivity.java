@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -25,12 +26,15 @@ import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.db.DataHelper;
+import com.kaichaohulian.baocms.entity.CommonEntity;
+import com.kaichaohulian.baocms.entity.EarnestMoneyEntity;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.qiniu.Auth;
 import com.kaichaohulian.baocms.qiniu.QiNiuConfig;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.DBLog;
 import com.kaichaohulian.baocms.view.ShowDialog;
@@ -205,7 +209,7 @@ public class PersonalActivity extends BaseActivity {
         } else {
             personalAddress.setText(userinfo.getDistrictId());
         }
-        String l =  "http://www.52yeli.com/"+ MyApplication.getInstance().UserInfo.getQrCode();
+        String l = "http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode();
         Log.e(TAG, "initView: " + l);
 ////        Glide.with(getActivity()).load(l).error(R.mipmap.qrcode).diskCacheStrategy(DiskCacheStrategy.ALL).into(imQrCode);
         showUserAvator(imQrCode, l, R.mipmap.qrcode);
@@ -215,6 +219,23 @@ public class PersonalActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
+        RetrofitClient.getInstance().createApi().Getfaith(Long.parseLong(MyApplication.getInstance().UserInfo.getPhoneNumber()))
+                .compose(RxUtils.<HttpResult<EarnestMoneyEntity>>io_main())
+                .subscribe(new BaseObjObserver<EarnestMoneyEntity>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(EarnestMoneyEntity earnestMoneyEntity) {
+                        try{
+                            tvEarnestMoney.setText((String)earnestMoneyEntity.getPayEarnestMoney());
+                            tvGetMoney.setText((String)earnestMoneyEntity.getGetEarnestMoney());
+                            tvBeAddFriend.setText(earnestMoneyEntity.getBeToAdd());
+                            tvAppointment.setText((String)earnestMoneyEntity.getAppointment());
+                            tvBeInvite.setText((String)earnestMoneyEntity.getBeInvite());
+                            tvBeMiss.setText((String)earnestMoneyEntity.getNoAppointment());
+                        }catch (NullPointerException e){
+                            Log.e(TAG, "onHandleSuccess: "+e.getMessage() );
+                        }
+                    }
+                });
     }
 
     @Override

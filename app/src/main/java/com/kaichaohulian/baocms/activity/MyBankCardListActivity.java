@@ -61,15 +61,7 @@ public class MyBankCardListActivity extends BaseActivity {
     @Override
     public void initEvent() {
         listView.setAdapter(adapter);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                if (data.size() == position) {
-//                    Intent intent = new Intent(MyBankCardListActivity.this, AddBankCardActivity.class);
-//                    startActivityForResult(intent, ADD_BANKCARD_REQUEST);
-//                }
-//            }
-//        });
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {

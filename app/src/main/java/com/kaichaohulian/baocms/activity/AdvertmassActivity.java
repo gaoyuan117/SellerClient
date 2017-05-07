@@ -32,6 +32,8 @@ public class AdvertmassActivity extends BaseActivity {
     ListView lvAdvertmass;
     private AdvertmasslistAdapter adapter;
     private ArrayList<AdviertisementEntity> Datalist;
+    private int index = 1;
+
     @Override
     public void setContent() {
         setContentView(R.layout.activity_advertmass);
@@ -43,26 +45,26 @@ public class AdvertmassActivity extends BaseActivity {
         lvAdvertmass.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(getActivity(),AdvertDetail.class);
-                intent.putExtra("advertId",Datalist.get(i).id);
+                Intent intent = new Intent(getActivity(), AdvertDetail.class);
+                intent.putExtra("advertId", Datalist.get(i).id);
                 startActivity(intent);
             }
         });
         map = new HashMap<>();
-        Datalist=new ArrayList<>();
-        adapter = new AdvertmasslistAdapter(getActivity(), Datalist,R.layout.item_advertmasslist);
+        Datalist = new ArrayList<>();
+        adapter = new AdvertmasslistAdapter(getActivity(), Datalist, R.layout.item_advertmasslist);
         lvAdvertmass.setAdapter(adapter);
 
         map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
-        map.put("page", "1");
-        RetrofitClient.getInstance().createApi().GetMyadviertisement(map)
+        map.put("page", index + "");
+        RetrofitClient.getInstance().createApi().Getadviertisement(map)
                 .compose(RxUtils.<HttpArray<AdviertisementEntity>>io_main())
                 .subscribe(new BaseListObserver<AdviertisementEntity>(getActivity(), "获取广告中...") {
                     @Override
                     protected void onHandleSuccess(List<AdviertisementEntity> list) {
                         if (list != null) {
-                                Datalist.addAll(list);
-                                adapter.notifyDataSetChanged();
+                            Datalist.addAll(list);
+                            adapter.notifyDataSetChanged();
                         } else {
                             Toast.makeText(AdvertmassActivity.this, "暂无广告", Toast.LENGTH_SHORT).show();
                         }
@@ -86,10 +88,10 @@ public class AdvertmassActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_friend_advertmass:
-                ActivityUtil.next(this,AdvertMassSelectActivity.class);
+                ActivityUtil.next(this, AdvertMassSelectActivity.class);
                 break;
             case R.id.ll_other_advertmass:
-                ActivityUtil.next(this,AdvertOtherActivity.class);
+                ActivityUtil.next(this, AdvertOtherActivity.class);
                 break;
         }
     }

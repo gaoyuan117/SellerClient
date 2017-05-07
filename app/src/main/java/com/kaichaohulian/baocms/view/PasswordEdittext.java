@@ -23,7 +23,7 @@ public class PasswordEdittext extends EditText {
 
 
     private static final int defaultContMargin = 5;
-    private static final int defaultSplitLineWidth = 3;
+    private static final int defaultSplitLineWidth = 1;
 
     private int borderColor = 0xFFCCCCCC;
     private float borderWidth = 5;

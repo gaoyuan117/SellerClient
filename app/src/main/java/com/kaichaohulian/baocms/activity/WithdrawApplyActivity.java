@@ -79,7 +79,6 @@ public class WithdrawApplyActivity extends BaseActivity {
     private View SignPassword;
     private PasswordEdittext paywordEdt;
     private PopupWindow PopSignPassword;
-    private HashMap<String,String> params=new HashMap<>();
 
     @Override
     public void setContent() {
@@ -301,10 +300,14 @@ public class WithdrawApplyActivity extends BaseActivity {
     }
     //网络请求验证支付密码
     private void SignPayPassWord(String payword){
-        params.clear();
-        params.put("id", String.valueOf(MyApplication.getInstance().UserInfo.getUserId()));
-        params.put("password",payword);
-        RetrofitClient.getInstance().createApi().verificatPayword(params)
+        if(map==null){
+            map=new HashMap<>();
+        }else{
+            map.clear();
+        }
+        map.put("id", String.valueOf(MyApplication.getInstance().UserInfo.getUserId()));
+        map.put("password",payword);
+        RetrofitClient.getInstance().createApi().verificatPassword(map)
                 .compose(RxUtils.<HttpResult>io_main())
                 .subscribe(new Observer<HttpResult>() {
                     @Override

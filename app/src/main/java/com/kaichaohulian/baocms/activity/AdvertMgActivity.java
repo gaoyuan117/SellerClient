@@ -1,5 +1,9 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -8,11 +12,15 @@ import com.kaichaohulian.baocms.adapter.AdvertmasslistAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.AdviertisementEntity;
+import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.http.HttpArray;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseListObserver;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +32,9 @@ public class AdvertMgActivity extends BaseActivity {
 
     @BindView(R.id.lv_advertmanager)
     ListView lvAdvertmanager;
+    private int index=1;
+    private List<AdviertisementEntity> DataList;
+    private AdvertmasslistAdapter adapter;
 
     @Override
     public void setContent() {
@@ -34,15 +45,17 @@ public class AdvertMgActivity extends BaseActivity {
     @Override
     public void initData() {
         map=new HashMap<>();
+        DataList=new ArrayList<>();
         map.put("userId", MyApplication.getInstance().UserInfo.getUserId()+"");
-        map.put("page", "1");
+        map.put("page", index+"");
         RetrofitClient.getInstance().createApi().GetMyadviertisement(map)
                 .compose(RxUtils.<HttpArray<AdviertisementEntity>>io_main())
                 .subscribe(new BaseListObserver<AdviertisementEntity>(getActivity(),"获取广告中...") {
                     @Override
                     protected void onHandleSuccess(List<AdviertisementEntity> list) {
                         if(list!=null){
-                            AdvertmasslistAdapter adapter=new AdvertmasslistAdapter(getActivity(),list);
+                            DataList.addAll(list);
+                            adapter = new AdvertmasslistAdapter(getActivity(),DataList);
                             adapter.setLayoutIds(R.layout.item_advertmasslist);
                             lvAdvertmanager.setAdapter(adapter);
                         }else{
@@ -60,8 +73,38 @@ public class AdvertMgActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
+        lvAdvertmanager.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                final String[] cities = {"删除",};
+                //    设置一个下拉的列表选择项
+                final String advertId=DataList.get(i).id+"";
 
+                builder.setItems(cities, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        DeleteAdvert(advertId);
+                    }
+                });
+                builder.show();
+                return false;
+            }
+        });
     }
 
+    private void DeleteAdvert(String advertId){
+        RetrofitClient.getInstance().createApi().DeleteAdvert(MyApplication.getInstance().UserInfo.getUserId(), Long.parseLong(advertId))
+        .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+        .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
+            @Override
+            protected void onHandleSuccess(CommonEntity commonEntity) {
+                Toast.makeText(AdvertMgActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
 
 }

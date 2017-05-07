@@ -479,6 +479,7 @@
                 android:background="@drawable/seltor"
                 android:orientation="horizontal"
                 >
+
                 <LinearLayout
                     android:gravity="center"
                     android:layout_width="0dp"
@@ -503,6 +504,7 @@
 
                         />
                 </LinearLayout>
+
                 <View
                     android:background="@color/line"
                     android:layout_width="0.5dp"

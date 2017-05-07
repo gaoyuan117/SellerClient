@@ -9,9 +9,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.entity.CommonEntity;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.DBLog;
 import com.kaichaohulian.baocms.view.ShowDialog;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -65,6 +71,7 @@ public class forgetPayWordActivity extends BaseActivity {
     };
     private Timer mTimer = null;
     private int mTime = 60;
+
     @Override
     public void setContent() {
         setContentView(R.layout.activity_forget_pay_word);
@@ -156,11 +163,18 @@ public class forgetPayWordActivity extends BaseActivity {
                 });
                 break;
             case R.id.changpayword_cash_btn:
-//                map = new HashMap<>();
-//                map.put("phoneNumber", PhoneNum.getText().toString().trim());
-//                map.put("code", SignCode.getText().toString().trim());
-//                map.put("password", AgainPayWord.getText().toString().trim());
-                Toast.makeText(this, "尚无接口", Toast.LENGTH_SHORT).show();
+                RetrofitClient.getInstance().createApi().ForGetPayWord(
+                        MyApplication.getInstance().UserInfo.getPhoneNumber(),/*手机号*/
+                        NewPayWord.getText().toString().trim()/*新密码*/
+                        , SignCode.getText().toString().trim())/*验证码*/
+                        .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                        .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
+                            @Override
+                            protected void onHandleSuccess(CommonEntity commonEntity) {
+                                Toast.makeText(forgetPayWordActivity.this, "找回支付密码成功", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        });
                 break;
         }
     }

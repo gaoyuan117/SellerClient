@@ -36,13 +36,17 @@
             android:text="金额" />
 
         <EditText
-            android:gravity="right"
+            android:id="@+id/edt_addfriendPay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/tv_addfriend_yuan"
-            android:background="@color/white"
+            android:background="#00000000"
+            android:gravity="right"
             android:hint="0.00"
+            android:textColorHint="@color/blue"
+            android:inputType="number"
             android:textCursorDrawable="@null" />
 
         <TextView
@@ -56,6 +60,7 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/btn_setPayNeed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

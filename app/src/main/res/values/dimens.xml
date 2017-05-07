@@ -307,6 +307,6 @@
 
     <!--//5.1增加-->
     <dimen name="edt_password_height">38dp</dimen>
-    <dimen name="edt_forgetpassword_height">35dp</dimen>
+    <dimen name="edt_forgetpassword_height">45dp</dimen>
 
 </resources>

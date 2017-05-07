@@ -40,6 +40,9 @@ public class AdvertmasslistAdapter extends BaseListAdapter {
         }
     }
 
+    private List getList(){
+        return data;
+    }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
@@ -74,7 +77,6 @@ public class AdvertmasslistAdapter extends BaseListAdapter {
         Date date = new Date(Long.parseLong(entity.timeStamp));
         url="http://oez2a4f3v.bkt.clouddn.com/" + entity.image;
         url=url.replace(",","");
-        Log.e("msg", "getView: "+url );
         Glide.with(context).load(url).error(R.mipmap.default_advertmass).into(vh.img);
         vh.time.setText(format.format(date));
         vh.content.setText(buffer.toString());

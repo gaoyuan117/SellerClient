@@ -98,46 +98,7 @@ public class ProFileFragment extends BaseFragment {
 
     @Override
     public void initEvent() {
-//        mPersonal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ActivityUtil.next(getActivity(), PersonalActivity.class);
-//            }
-//        });
-//
-//        mPocket.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                UserInfoManager.getInstance().updateUserCache(getActivity());
-//                ActivityUtil.next(getActivity(), PocketActivity.class);
-//            }
-//        });
-//
-//        mSettings.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ActivityUtil.next(getActivity(), MeSettingsActivity.class);
-//            }
-//        });
-//        mAlbum.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ActivityUtil.next(getActivity(), MyAlbumActivity.class);
-//            }
-//        });
-//        mAbout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ActivityUtil.next(getActivity(), CollectionListActivity.class);
-//            }
-//        });
-//        mFace.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                ActivityUtil.next(getActivity(), SetPasswordActivity.class);
-//                startActivity(new Intent(getActivity(), EmojiPackageList.class));
-//            }
-//        });
+
     }
 
 

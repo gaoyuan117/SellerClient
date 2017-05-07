@@ -100,7 +100,7 @@ public class MeSettingsActivity extends BaseEcActivity {
 
 
 
-    @OnClick({R.id.setting_change_paypassword, R.id.setting_forget_paypassword, R.id.setting_change_password, R.id.settings_relative_logout, R.id.settings_addfriend})
+    @OnClick({R.id.setting_set_paypassword,R.id.setting_change_paypassword, R.id.setting_forget_paypassword, R.id.setting_change_password, R.id.settings_relative_logout, R.id.settings_addfriend})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.setting_change_paypassword:
@@ -117,6 +117,9 @@ public class MeSettingsActivity extends BaseEcActivity {
                 break;
             case R.id.settings_addfriend:
                 ActivityUtil.next(getActivity(),AddfriendPay.class);
+                break;
+            case R.id.setting_set_paypassword:
+                ActivityUtil.next(getActivity(),Setpayword.class);
                 break;
         }
     }

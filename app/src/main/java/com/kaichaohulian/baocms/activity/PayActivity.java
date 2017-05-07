@@ -184,6 +184,9 @@ public class PayActivity extends BaseActivity {
                         if (value.errorDescription.contains("重新输入")) {
                             Toast.makeText(PayActivity.this, "密码错误请重新输入", Toast.LENGTH_SHORT).show();
                             paywordEdt.getText().clear();
+                        }else{
+                            setResult(RESULT_OK);
+                            finish();
                         }
                         ToastUtil.showMessage(value.errorDescription);
                     }

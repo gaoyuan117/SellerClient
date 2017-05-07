@@ -14,6 +14,38 @@
         android:orientation="vertical" />
 
 
+    <RelativeLayout
+        android:id="@+id/setting_set_paypassword"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/seltor"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+            android:text="设置支付密码"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/discover_rightarrow_marginparentright"
+            android:src="@mipmap/right_arrow" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#E8E8E8"
+        android:orientation="vertical" />
 
     <RelativeLayout
         android:id="@+id/setting_change_paypassword"

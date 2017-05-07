@@ -7,7 +7,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.entity.CommonEntity;
+import com.kaichaohulian.baocms.http.HttpResult;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,16 +81,28 @@ public class changPwdActivity extends BaseActivity {
 
     }
 
-    private boolean SignPwd(){
-
-        return false;
-    }
-
     @OnClick(R.id.btn_changePwd)
     public void onClick() {
         if(edtNewPassword.getText().toString().trim().equals(edtAgainnewPassword.getText().toString().trim())){
-            //TODO 接口修改密码
-            Toast.makeText(this, "修改密码成功", Toast.LENGTH_SHORT).show();
+            if(map==null){
+                map=new HashMap<>();
+            }else{
+                map.clear();
+            }
+            map.put("oldPassword",edtOriginalPassword.getText().toString().trim());
+            map.put("newPassword",edtNewPassword.getText().toString().trim());
+            map.put("reNewPassword",edtAgainnewPassword.getText().toString().trim());
+            map.put("phoneNumber", MyApplication.getInstance().UserInfo.getPhoneNumber());
+
+            RetrofitClient.getInstance().createApi().ChangePassWord(map)
+                    .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                    .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
+                        @Override
+                        protected void onHandleSuccess(CommonEntity commonEntity) {
+                            Toast.makeText(changPwdActivity.this, "修改密码成功", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    });
         }else{
             Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
         }
