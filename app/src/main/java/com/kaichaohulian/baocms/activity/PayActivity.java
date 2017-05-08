@@ -23,11 +23,16 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
+import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.util.TitleUtils;
 import com.kaichaohulian.baocms.view.PasswordEdittext;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -171,7 +176,7 @@ public class PayActivity extends BaseActivity {
         map.clear();
         map.put("id", String.valueOf(MyApplication.getInstance().UserInfo.getUserId()));
         map.put("password", payword);
-        RetrofitClient.getInstance().createApi().verificatPassword(map)
+        RetrofitClient.getInstance().createApi().verificatPayword(map)
                 .compose(RxUtils.<HttpResult>io_main())
                 .subscribe(new Observer<HttpResult>() {
                     @Override
@@ -199,6 +204,19 @@ public class PayActivity extends BaseActivity {
                     @Override
                     public void onComplete() {
 
+                    }
+                });
+    }
+
+    private void addFriendByMoney(){
+        Map<String,Object> map = new HashMap<>();
+        RetrofitClient.getInstance().createApi().addFriendByMoney(map)
+                .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                .subscribe(new BaseObjObserver<CommonEntity>(this) {
+                    @Override
+                    protected void onHandleSuccess(CommonEntity commonEntity) {
+                        ToastUtil.showMessage("添加成功");
+                        finish();
                     }
                 });
     }

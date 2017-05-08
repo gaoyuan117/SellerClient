@@ -67,7 +67,7 @@ public class NewFriendsAdapter extends BaseAdapter {
         holder.tv_name.setText(msg.getNickname());
         holder.tv_reason.setText(msg.getMessage());
         holder.tv_added.setText("已添加");
-        if (msg.getStatus().equals("接受")) {
+        if (msg.getStatus().equals("接受")||msg.getStatus().equals("SAYHELLO")) {
             holder.tv_added.setVisibility(View.GONE);
             holder.btn_add.setVisibility(View.VISIBLE);
             holder.btn_add.setTag(msg);

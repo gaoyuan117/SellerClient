@@ -12,7 +12,14 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.adapter.AdverAdapter;
+import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.entity.HasGetAdverBean;
+import com.kaichaohulian.baocms.http.HttpArray;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseListObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
+import com.kaichaohulian.baocms.util.TitleUtils;
 import com.kaichaohulian.baocms.view.RecyclerViewDivider;
 
 import java.util.ArrayList;
@@ -21,6 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
 
 public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener {
 
@@ -34,7 +42,7 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
     @BindView(R.id.rv_adver)
     RecyclerView mRecyclerView;
 
-    private List<String> mList;
+    private List<HasGetAdverBean> mList;
     private AdverAdapter mAdapter;
 
     @Override
@@ -45,15 +53,13 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
 
     @Override
     public void initData() {
-
+        getAdverList(1);
     }
 
     @Override
     public void initView() {
+        new TitleUtils(this).setTitle("广告信息");
         mList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            mList.add("");
-        }
         mAdapter = new AdverAdapter(R.layout.item_adver,mList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
@@ -81,6 +87,25 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Intent intent = new Intent(this,AdverDetailActivity.class);
+        intent.putExtra("adverId",mList.get(position).getId()+"");
         startActivity(intent);
+    }
+
+    private void getAdverList(int page){
+        map.put("userId", MyApplication.getInstance().UserInfo.getUserId()+"");
+        map.put("page",page+"");
+        RetrofitClient.getInstance().createApi().hasGetAdver(map)
+                .compose(RxUtils.<HttpArray<HasGetAdverBean>>io_main())
+                .subscribe(new BaseListObserver<HasGetAdverBean>(this,"加载中") {
+                    @Override
+                    protected void onHandleSuccess(List<HasGetAdverBean> list) {
+                        if(list==null){
+                            return;
+                        }
+                        mList.clear();
+                        mList.addAll(list);
+                        mAdapter.notifyDataSetChanged();
+                    }
+                });
     }
 }

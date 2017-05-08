@@ -39,9 +39,9 @@ public abstract class BaseActivity extends FragmentActivity {
     public int height;
 
     private LocationClient locationClient = null;
-    public double mStartLatitude, mStartLontitude;
-    private static final int UPDATE_TIME = 5000;
-    private boolean alreadyLocation = false;
+//    public double mStartLatitude, mStartLontitude;
+//    private static final int UPDATE_TIME = 5000;
+//    private boolean alreadyLocation = false;
     public Map<String,String> map;
 
     @Override
@@ -54,42 +54,45 @@ public abstract class BaseActivity extends FragmentActivity {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
         }
 
-        locationClient = new LocationClient(this);
-        //设置定位条件
-        LocationClientOption option = new LocationClientOption();
-        option.setOpenGps(true);        //是否打开GPS
-        option.setCoorType("bd09ll");        //设置返回值的坐标类型。
-        option.setPriority(LocationClientOption.NetWorkFirst);    //设置定位优先级
-        option.setScanSpan(UPDATE_TIME);    //设置定时定位的时间间隔。单位毫秒
-        locationClient.setLocOption(option);
-
-        //注册位置监听器
-        locationClient.registerLocationListener(new BDLocationListener() {
-
-            @Override
-            public void onReceiveLocation(BDLocation location) {
-                if (location == null) {
-                    return;
-                }
-                if (alreadyLocation) {
-                    locationClient.stop();
-                }
-                mStartLatitude = location.getLatitude();
-                mStartLontitude = location.getLongitude();
-                alreadyLocation = true;
-                DBLog.e("当前经纬度:","Latitude:"+mStartLatitude+",mStartLontitude:"+mStartLontitude);
-            }
-
-        });
-        locationClient.start();
+//        locationClient = new LocationClient(this);
+//        //设置定位条件
+//        LocationClientOption option = new LocationClientOption();
+//        option.setOpenGps(true);        //是否打开GPS
+//        option.setCoorType("bd09ll");        //设置返回值的坐标类型。
+//        option.setPriority(LocationClientOption.NetWorkFirst);    //设置定位优先级
+//        option.setScanSpan(UPDATE_TIME);    //设置定时定位的时间间隔。单位毫秒
+//        locationClient.setLocOption(option);
+//
+//        //注册位置监听器
+//        locationClient.registerLocationListener(new BDLocationListener() {
+//
+//            @Override
+//            public void onReceiveLocation(BDLocation location) {
+//                if (location == null) {
+//                    return;
+//                }
+//                if (alreadyLocation) {
+//                    if(locationClient!=null){
+//                        locationClient.stop();
+//                    }
+//                }
+//                mStartLatitude = location.getLatitude();
+//                mStartLontitude = location.getLongitude();
+//                alreadyLocation = true;
+//                DBLog.e("当前经纬度:","Latitude:"+mStartLatitude+",mStartLontitude:"+mStartLontitude);
+//            }
+//
+//        });
+//        locationClient.start();
         // 添加Activity到堆栈
         AppManager.getAppManager().addActivity(this);
+        map = new HashMap<>();
+
         setContent();
         initData();
         initView();
         initEvent();
 
-        map = new HashMap<>();
 
     }
 

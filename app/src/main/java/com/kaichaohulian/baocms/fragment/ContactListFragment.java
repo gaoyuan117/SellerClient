@@ -3,6 +3,7 @@ package com.kaichaohulian.baocms.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,8 @@ import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
 import com.kaichaohulian.baocms.ecdemo.common.CCPAppManager;
+import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingActivity;
+import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingFragment;
 import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
@@ -123,8 +126,14 @@ public class ContactListFragment extends BaseFragment {
                     Bundle.putString("imNumber", user.getImNumber());
 //                    ActivityUtil.next(getActivity(), ChatActivity.class, Bundle);
 
-                    CCPAppManager.startChattingAction(ContactListFragment.this.getActivity()
-                            , user.getPhoneNumber(), user.getUsername(), true);
+                    Intent intent = new Intent(getActivity(), ChattingActivity.class);
+                    intent.putExtra(ChattingFragment.RECIPIENTS, user.getPhoneNumber());
+                    intent.putExtra(ChattingFragment.CONTACT_USER, user.getUsername());
+                    intent.putExtra("user_id",user.getId()+"");
+                    intent.putExtra(ChattingFragment.CUSTOMER_SERVICE, false);
+                    startActivity(intent);
+//                    CCPAppManager.startChattingAction(ContactListFragment.this.getActivity()
+//                            , user.getPhoneNumber(), user.getUsername(), true);
                 }
 
             }

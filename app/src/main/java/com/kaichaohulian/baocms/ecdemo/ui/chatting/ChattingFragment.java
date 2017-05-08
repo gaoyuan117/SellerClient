@@ -231,6 +231,10 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
      */
     private String mUsername;
     /**
+     * 联系人id
+     */
+    private String mUserId;
+    /**
      * 计算当前录音时长
      */
     private long computationTime = -1L;
@@ -568,7 +572,7 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
         Intent intent = getActivity().getIntent();
         mRecipients = intent.getStringExtra(RECIPIENTS);
         mUsername = intent.getStringExtra(CONTACT_USER);
-
+        mUserId = intent.getStringExtra("user_id");
         if (TextUtils.isEmpty(mRecipients)) {
             ToastUtil.showMessage("联系人账号不存在");
             finish();
@@ -2609,6 +2613,9 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
 //                    startActivity(new Intent(getActivity(), ChatSingleSettingActivity.class).putExtra("userId", mRecipients));
 //                        getUserInfo(contact.getContactid());
                         Intent intent = new Intent(getActivity(),FriendInfoActivity.class);
+                        intent.putExtra("phone",contact.getContactid()+"");
+                        intent.putExtra("friendId",mUserId+"");
+                        intent.putExtra("type","1");
                         startActivity(intent);
 //                    searchUser(contact.getContactid());
                         return;

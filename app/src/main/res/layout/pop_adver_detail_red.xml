@@ -1,77 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="310dp"
-    android:layout_height="360dp"
-    android:background="@mipmap/red_package_bg">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-    <ImageView
-        android:id="@+id/img_pop_red_package_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/red_close"
-        android:layout_margin="16dp"
-        android:layout_alignParentRight="true"
-        />
-
-    <LinearLayout
-        android:layout_below="@+id/img_pop_red_package_close"
+    <RelativeLayout
+        android:layout_centerInParent="true"
         android:layout_width="310dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="您获得了一个红包！"
-            android:textColor="#f4ab69"
-            android:textSize="18sp"
-            android:gravity="center"
-            />
+        android:layout_height="360dp"
 
-        <TextView
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
+        android:background="@mipmap/red_package_bg">
+
+        <ImageView
+            android:id="@+id/img_pop_red_package_close"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="来自种鱼app"
-            android:textColor="#f4ab69"
-            android:textSize="18sp"
-            android:gravity="center"
-            />
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:src="@mipmap/red_close" />
 
         <LinearLayout
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_width="310dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/img_pop_red_package_close"
+            android:orientation="vertical">
+
             <TextView
-                android:id="@+id/tv_pop_red_package_money"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2.22"
-                android:textColor="#f4ab69"
-                android:textSize="24sp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="元"
-                android:textColor="#f4ab69"
-                android:textSize="16sp"
                 android:gravity="center"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="4dp"
-                />
+                android:text="您获得了一个红包！"
+                android:textColor="#f4ab69"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:text="来自种鱼app"
+                android:textColor="#f4ab69"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_pop_red_package_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.22"
+                    android:textColor="#f4ab69"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="元"
+                    android:textColor="#f4ab69"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:text="已存入钱包"
+                android:textColor="#c62424"
+                android:textSize="12sp" />
         </LinearLayout>
 
-        <TextView
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="已存入钱包"
-            android:textSize="12sp"
-            android:textColor="#c62424"/>
-    </LinearLayout>
-
-
+    </RelativeLayout>
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -16,7 +17,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
-import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.CommonEntity;
@@ -26,7 +26,6 @@ import com.kaichaohulian.baocms.qiniu.QiNiuConfig;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
-import com.kaichaohulian.baocms.util.PayDialog;
 import com.kaichaohulian.baocms.view.ShowDialog;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
@@ -34,10 +33,7 @@ import com.qiniu.android.storage.UploadManager;
 import org.json.JSONArray;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -57,15 +53,16 @@ public class ReleaseAdvertActivity extends BaseActivity {
     GridView gridview;
     @BindView(R.id.tv_time_releaseadvert)
     TextView time;
-    private int REQUEST_CODE = 200;
-    private int PAY_CODE=100;
 
+
+
+    private int REQUEST_CODE = 200;
     private List<String> list;
     private ImageBaseAdapter ImageBaseAdapter;
     int index = 0;
-    private StringBuffer img=new StringBuffer();
-    private StringBuffer ids=new StringBuffer();
-    private int payMoney=2;
+    private StringBuffer img = new StringBuffer();
+    private StringBuffer ids = new StringBuffer();
+
     @Override
     public void setContent() {
         setContentView(R.layout.activity_release_advert);
@@ -74,9 +71,6 @@ public class ReleaseAdvertActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        DateFormat format=new SimpleDateFormat("HH:mm yyyy.MM.dd");
-        Date date=new Date(System.currentTimeMillis());
-        time.setText(format.format(date));
         list = new ArrayList<>();
         ImageBaseAdapter = new ImageBaseAdapter();
         gridview.setAdapter(ImageBaseAdapter);
@@ -106,14 +100,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new PayDialog(getActivity()).setMessage("本次群发需要支付2元手续费").setSureClick(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(ReleaseAdvertActivity.this, PayActivity.class);
-                        intent.putExtra("pay_money", payMoney+"");
-                        startActivityForResult(intent,PAY_CODE);
-                    }
-                }).showDialog();
+                InServer();
             }
         });
     }
@@ -138,14 +125,12 @@ public class ReleaseAdvertActivity extends BaseActivity {
             if (data != null) {
                 list = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
                 ImageBaseAdapter.notifyDataSetChanged();
-                if(gridview.getVisibility()==View.GONE){
+                if (gridview.getVisibility() == View.GONE) {
                     gridview.setVisibility(View.VISIBLE);
-                }else if(list.size()==0){
+                } else if (list.size() == 0) {
                     gridview.setVisibility(View.GONE);
                 }
             }
-        }else if(resultCode == RESULT_OK && requestCode == PAY_CODE){
-            InServer();
         }
     }
 
@@ -157,7 +142,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
             intent.setPhotoCount(9);
             intent.setShowCamera(true);
             startActivityForResult(intent, REQUEST_CODE);
-        }else{
+        } else {
             Toast.makeText(this, "不能添加更多图片", Toast.LENGTH_SHORT).show();
         }
     }
@@ -190,6 +175,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
             return convertView;
         }
     }
+
     private UploadManager uploadManager;
 
     private void InServer() {
@@ -224,15 +210,15 @@ public class ReleaseAdvertActivity extends BaseActivity {
                                 String fileKey = jsonData.getString("key");
                                 final String url = "http://oez2a4f3v.bkt.clouddn.com/" + fileKey;
                                 JSONArray.put(url);
-                                Log.e(TAG, "complete: "+url );
-                                img.append(fileKey+",");
+                                Log.e(TAG, "complete: " + url);
+                                img.append(fileKey + ",");
                                 if (JSONArray.length() == index - 1) {
-                                    img.replace(img.length()-1,img.length(),"");
+                                    img.replace(img.length() - 1, img.length(), "");
                                     Log.e(TAG, img.toString().trim());
                                     Commt();
                                 }
                             } catch (Exception e) {
-                                Log.e(TAG, "complete: "+e );
+                                Log.e(TAG, "complete: " + e);
                                 ShowDialog.dissmiss();
                                 showToastMsg("上传图片失败");
                             }
@@ -245,16 +231,16 @@ public class ReleaseAdvertActivity extends BaseActivity {
     }
 
     public void Commt() {
-        map.put("userId", MyApplication.getInstance().UserInfo.getUserId()+"");
-        map.put("title",title.getText().toString().trim());
-        map.put("context",content.getText().toString().trim());
-        map.put("type",1+"");
-        if(!img.equals("")){
-            map.put("images",img.toString().trim());
+        map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
+        map.put("title", title.getText().toString().trim());
+        map.put("context", content.getText().toString().trim());
+        map.put("type", 1 + "");
+        if (!img.equals("")) {
+            map.put("images", img.toString().trim());
         }
-        map.put("ids",getIntent().getStringExtra("ids"));
-        map.put("pay",payMoney+"");
-        map.put("redMoney","5");
+        map.put("ids", getIntent().getStringExtra("ids"));
+        map.put("pay", "4");
+        map.put("redMoney", "5");
         RetrofitClient.getInstance().createApi().ReleaseAdvert(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
                 .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
