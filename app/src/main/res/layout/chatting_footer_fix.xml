@@ -104,7 +104,7 @@
                     android:contentDescription="@string/chat_footer_app_btn"
                     android:paddingLeft="5.0dip"
                     android:paddingRight="5.0dip"
-                    android:paddingTop="dp"
+                    android:paddingTop="2dp"
                     android:src="@drawable/type_select_btn"
                     android:visibility="visible" />
 

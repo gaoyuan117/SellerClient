@@ -1089,7 +1089,7 @@
 
         <!--
              备注：Push相关的android组件需要添加到业务的AndroidManifest.xml,
-        	 Push相关android组件运行在另外一个进程是为了防止Push服务异常而影响主业务
+            Push相关android组件运行在另外一个进程是为了防止Push服务异常而影响主业务
         -->
 
 
@@ -1187,6 +1187,13 @@
 
         <activity android:name=".activity.AdverActivity" />
         <activity android:name=".activity.AdverDetailActivity" />
+
+        <service
+            android:name=".UpdateLocationService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.Setpayword"/>
     </application>
 
 </manifest>

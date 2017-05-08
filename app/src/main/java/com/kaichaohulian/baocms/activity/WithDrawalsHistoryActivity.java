@@ -1,11 +1,17 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.graphics.Color;
+import android.os.Build;
+import android.test.suitebuilder.annotation.Suppress;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,6 +32,8 @@ import org.apache.http.Header;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,7 +45,11 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
     private List<WithDrawalsBean> data = new ArrayList<WithDrawalsBean>();
     private Dialog timeselect;
     private View timeSelectView;
-    private TextView tv_starttime,tv_stoptime;
+    private TextView tv_starttime, tv_stoptime;
+    private String date;
+    private String selectType;
+
+
     @Override
     public void setContent() {
         setContentView(R.layout.activity_draw_history);
@@ -45,27 +57,35 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
         setIm1_view(R.mipmap.ic_action_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(timeselect==null){
-
-
-                    timeSelectView=View.inflate(WithDrawalsHistoryActivity.this,R.layout.alert_timeselect,null);
-                    tv_starttime= (TextView) timeSelectView.findViewById(R.id.tv_timeselect_start);
-                    tv_stoptime= (TextView) timeSelectView.findViewById(R.id.tv_timeselect_stop);
+                if (timeselect == null) {
+                    timeSelectView = View.inflate(WithDrawalsHistoryActivity.this, R.layout.alert_timeselect, null);
+                    tv_starttime = (TextView) timeSelectView.findViewById(R.id.tv_timeselect_start);
+                    tv_stoptime = (TextView) timeSelectView.findViewById(R.id.tv_timeselect_stop);
+                    timeSelectView.findViewById(R.id.img_with_draw_dialog).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            timeselect.dismiss();
+                        }
+                    });
                     timeSelectView.findViewById(R.id.rl_timeselect_start).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            selectType = "start";
+                            openDateDialog();
                         }
                     });
                     timeSelectView.findViewById(R.id.rl_timeselect_stop).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            selectType = "stop";
+                            openDateDialog();
                         }
                     });
-                    timeselect=new Dialog(getActivity(),R.style.Theme_Light_CustomDialog_Blue);
+                    timeselect = new Dialog(getActivity(), R.style.dialog_type);
                     timeselect.setCancelable(true);
                     timeselect.setContentView(timeSelectView);
                     timeselect.show();
-                }else{
+                } else {
                     timeselect.show();
                 }
             }
@@ -80,6 +100,35 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
     @Override
     public void initView() {
         mWithdrawList = getId(R.id.withdraw_list);
+
+    }
+
+    /**
+     * 打开日期对话框
+     */
+    private void openDateDialog() {
+        Calendar calendar = Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this, DatePickerDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                date = year + ":" + (monthOfYear + 1) + ":" + dayOfMonth;
+                Log.e("gy", "日期：" + date);
+                if (selectType.equals("start")) {
+                    tv_starttime.setText(date);
+                } else {
+                    tv_stoptime.setText(date);
+                }
+
+            }
+        }, calendar.get(Calendar.YEAR), calendar
+                .get(Calendar.MONTH), calendar
+                .get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.setCancelable(true);
+        datePickerDialog.getDatePicker().setMaxDate(new Date().getTime());
+        datePickerDialog.show();
+
     }
 
     @Override
@@ -144,7 +193,7 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            if(convertView==null){
+            if (convertView == null) {
                 convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_with_drawals, null);
             }
             TextView title = (TextView) convertView.findViewById(R.id.withdraw_title);
@@ -155,8 +204,8 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
 //            } else if (data.get(position).getBankName() != null) {
 //                title.setText(data.get(position).getBankName() + "    " + ((double) (data.get(position).getMoney())) / 100 + "元");
 //            }
-            if(data.get(position).getZfbAccount() != null||data.get(position).getWeixinAccount() != null||data.get(position).getBankName() != null){
-                title.setText(  "申请提现    " + ((double) (data.get(position).getMoney())) / 100 + "元");
+            if (data.get(position).getZfbAccount() != null || data.get(position).getWeixinAccount() != null || data.get(position).getBankName() != null) {
+                title.setText("申请提现    " + ((double) (data.get(position).getMoney())) / 100 + "元");
             }
             TextView time = (TextView) convertView.findViewById(R.id.withdraw_time);
             TextView status = (TextView) convertView.findViewById(R.id.status);
