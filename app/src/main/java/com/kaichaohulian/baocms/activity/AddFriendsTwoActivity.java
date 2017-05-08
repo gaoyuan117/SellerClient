@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +14,8 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingActivity;
+import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingFragment;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
@@ -131,7 +134,14 @@ public class AddFriendsTwoActivity extends BaseActivity {
 //                        UserInfo.setImages(jsonObject.getString("images"));
                         Bundle Bundle = new Bundle();
                         Bundle.putSerializable("data", UserInfo);
-                        ActivityUtil.next(getActivity(), FriendDetailActivity.class, Bundle);
+//                        ActivityUtil.next(getActivity(), FriendDetailActivity.class, Bundle);
+
+                        Intent intent = new Intent(getActivity(),FriendInfoActivity.class);
+                        intent.putExtra("phone",UserInfo.getPhoneNumber()+"");
+                        intent.putExtra("friendId",UserInfo.getUserId()+"");
+                        intent.putExtra("type","2");
+                        startActivity(intent);
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

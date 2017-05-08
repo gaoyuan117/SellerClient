@@ -11,12 +11,23 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.UpdateLocationService;
 import com.kaichaohulian.baocms.activity.AdverActivity;
 import com.kaichaohulian.baocms.activity.NearbyZyActivity;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
+import com.kaichaohulian.baocms.entity.GreetBean;
+import com.kaichaohulian.baocms.http.HttpResult;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.view.zxing.activity.CaptureActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +64,6 @@ public class DiscoverFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
     }
 
     @Override
@@ -83,10 +93,13 @@ public class DiscoverFragment extends BaseFragment {
                 break;
 
             case R.id.rl_discover_fj://附近的人
+                getActivity().startService(new Intent(getActivity(), UpdateLocationService.class));
                 startActivity(new Intent(getActivity(), NearbyZyActivity.class));
                 break;
         }
     }
+
+
 
 
     @Override

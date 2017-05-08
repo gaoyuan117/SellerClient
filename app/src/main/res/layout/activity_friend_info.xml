@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@+id/img_friend_info_avatar"
-                android:text="高原"
+                android:text="未填写"
                 android:textColor="@color/zy_text_black"
                 android:textSize="16sp" />
 
@@ -47,10 +47,11 @@
                 android:layout_alignBottom="@+id/img_friend_info_avatar"
                 android:layout_marginBottom="4dp"
                 android:layout_toRightOf="@+id/img_friend_info_avatar"
-                android:text="2013"
+                android:text="ID"
                 android:textColor="@color/zy_text_gray" />
 
             <ImageView
+                android:id="@+id/img_friend_info_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/tv_friend_info_name"
@@ -84,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="46dp"
                 android:layout_weight="1"
-                android:text="哈哈"
+                android:text=""
                 android:textColor="@color/zy_text_gray"
                 android:textSize="12sp" />
 
@@ -118,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="46dp"
-                android:text="23"
+                android:text="未知"
                 android:textColor="@color/zy_text_gray"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -146,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="46dp"
-                android:text="程序员"
+                android:text="无"
                 android:textColor="@color/zy_text_gray"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -174,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="46dp"
-                android:text="敲代码"
+                android:text="无"
                 android:textColor="@color/zy_text_gray"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -202,7 +203,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="46dp"
-                android:text="山东 济宁"
+                android:text="未知"
                 android:textColor="@color/zy_text_gray"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -230,7 +231,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="46dp"
-                android:text="搞笑"
+                android:text=""
                 android:textColor="@color/zy_orange"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -266,7 +267,7 @@
                     android:id="@+id/tv_friend_info_pay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="¥ 500"
+                    android:text="¥ 0"
                     android:textColor="@color/green"
                     android:textSize="12sp" />
 
@@ -297,7 +298,7 @@
                     android:id="@+id/tv_friend_info_get"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="¥ 500"
+                    android:text="¥ 0"
                     android:textColor="@color/red"
                     android:textSize="12sp" />
 
@@ -343,7 +344,7 @@
                     android:id="@+id/tv_friend_info_beijia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/zy_text_blue"
                     android:textSize="12sp" />
 
@@ -374,7 +375,7 @@
                     android:id="@+id/tv_friend_info_beiyao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/zy_text_blue"
                     android:textSize="12sp" />
 
@@ -405,7 +406,7 @@
                     android:id="@+id/tv_friend_info_fuyue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/zy_text_blue"
                     android:textSize="12sp" />
 
@@ -436,7 +437,7 @@
                     android:id="@+id/tv_friend_info_shaungyue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/red"
                     android:textSize="12sp" />
 

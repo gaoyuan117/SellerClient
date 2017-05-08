@@ -229,8 +229,8 @@ public class ShakeActivity extends BaseActivity {
     public void getPeople() {
         RequestParams params = new RequestParams();
         params.put("id", MyApplication.getInstance().UserInfo.getUserId());
-        params.put("latitude", mStartLatitude);
-        params.put("longitud", mStartLontitude);
+        params.put("latitude", MyApplication.lat);
+        params.put("longitud", MyApplication.lng);
         params.put("type", 2);
         HttpUtil.post(Url.shakeOnePeople, params, new JsonHttpResponseHandler() {
             @Override
@@ -275,8 +275,8 @@ public class ShakeActivity extends BaseActivity {
     public void getStore() {
         RequestParams params = new RequestParams();
         params.put("id", MyApplication.getInstance().UserInfo.getUserId());
-        params.put("latitude", mStartLatitude);
-        params.put("longitud", mStartLontitude);
+        params.put("latitude", MyApplication.lat);
+        params.put("longitud", MyApplication.lng);
         params.put("type", 2);
         HttpUtil.post(Url.shakeOneBusiness, params, new JsonHttpResponseHandler() {
             @Override

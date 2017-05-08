@@ -66,6 +66,9 @@ public class MyApplication extends MultiDexApplication {
     private LocationClient locationClient;
     public BDLocation BDLocation;
 
+    public static String lng;
+    public static String lat;
+
     public static MyApplication getInstance() {
         return mInstance;
     }

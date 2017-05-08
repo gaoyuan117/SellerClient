@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -129,7 +130,13 @@ public class MyFriendsSearchActivity extends BaseActivity {
 //                        UserInfo.setImages(jsonObject.getString("images"));
                         Bundle Bundle = new Bundle();
                         Bundle.putSerializable("data", UserInfo);
-                        ActivityUtil.next(getActivity(), FriendDetailActivity.class, Bundle);
+//                        ActivityUtil.next(getActivity(), FriendDetailActivity.class, Bundle);
+
+                        Intent intent = new Intent(getActivity(),FriendInfoActivity.class);
+                        intent.putExtra("phone",UserInfo.getPhoneNumber()+"");
+                        intent.putExtra("friendId",UserInfo.getUserId()+"");
+                        intent.putExtra("type","1");
+                        startActivity(intent);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

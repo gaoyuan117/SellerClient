@@ -2,6 +2,8 @@ package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,11 +13,28 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.ecdemo.common.CCPAppManager;
 import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
+import com.kaichaohulian.baocms.entity.CommonEntity;
+import com.kaichaohulian.baocms.entity.InviteInfoBean;
+import com.kaichaohulian.baocms.entity.UserInfoBean;
+import com.kaichaohulian.baocms.event.UserPhotoBean;
+import com.kaichaohulian.baocms.http.HttpResult;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
+import com.kaichaohulian.baocms.util.GlideUtils;
 import com.kaichaohulian.baocms.util.PayDialog;
 import com.kaichaohulian.baocms.util.TitleUtils;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,6 +72,8 @@ public class FriendInfoActivity extends BaseActivity {
     TextView mFriendInfoBeiyao;
     @BindView(R.id.tv_friend_info_fuyue)
     TextView mFriendInfoFuyue;
+    @BindView(R.id.img_friend_info_sex)
+    ImageView mFriendInfoSex;
     @BindView(R.id.tv_friend_info_shaungyue)
     TextView mFriendInfoShaungyue;
     @BindView(R.id.img_friend_info_img1)
@@ -65,6 +86,15 @@ public class FriendInfoActivity extends BaseActivity {
     Button mPay;
     private ImageView rightImg;
 
+    private UserInfoBean mUserInfoBean;
+
+    private List<ImageView> imgList;
+
+    private String fiendId, userPhone;
+    private String addFriendMoney = "0";
+    private String addType;//1.好友  2.加好友  3.打招呼
+    private PopupWindow popupWindow;
+
     @Override
     public void setContent() {
         setContentView(R.layout.activity_friend_info);
@@ -74,12 +104,29 @@ public class FriendInfoActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        Intent intent = getIntent();
+        if (intent == null) {
+            finish();
+            return;
+        }
+        fiendId = intent.getStringExtra("friendId");
+        userPhone = intent.getStringExtra("phone");
+        addType = intent.getStringExtra("type");
+        Log.e("gy", "用户ID：" + fiendId);
+        Log.e("gy", "用户手机：" + userPhone);
+
+        loadUserInfoPhone();
+        loadInviteInfo();
 
     }
 
     @Override
     public void initView() {
         initTitlebar();
+        imgList = new ArrayList<>();
+        imgList.add(imgFriendInfoImg1);
+        imgList.add(imgFriendInfoImg2);
+        imgList.add(imgFriendInfoImg3);
     }
 
     @Override
@@ -102,11 +149,17 @@ public class FriendInfoActivity extends BaseActivity {
         View popView = View.inflate(this, R.layout.pop_friend_info, null);
         TextView addBlack = (TextView) popView.findViewById(R.id.tv_pop_addblack);
         TextView deleteFriend = (TextView) popView.findViewById(R.id.tv_pop_delete);
-        PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setTouchable(true);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setBackgroundDrawable(new ColorDrawable());
         popupWindow.showAsDropDown(rightImg, 10, 10);
+
+        if (mUserInfoBean.getIsfriend() == 0) {
+            deleteFriend.setVisibility(View.GONE);
+        } else {
+            deleteFriend.setVisibility(View.VISIBLE);
+        }
 
         addBlack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,38 +185,172 @@ public class FriendInfoActivity extends BaseActivity {
             case R.id.ll_friend_info_bz:
                 break;
             case R.id.bt_friend_info_add:
-                openDialog();
+
+                if (mUserInfoBean.getIsfriend() == 1) {
+                    toChat();
+                } else {
+                    Intent intent = new Intent(this, AddFriendsFinalActivity.class);
+                    intent.putExtra("friend_id", mUserInfoBean.getId() + "");
+                    intent.putExtra("add_money", addFriendMoney);
+                    intent.putExtra("type", addType);
+                    startActivity(intent);
+                }
                 break;
         }
     }
 
-    private void openDialog() {
-        new PayDialog(this).setSureClick(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FriendInfoActivity.this, PayActivity.class);
-                intent.putExtra("pay_money", "2");
-                startActivity(intent);
-            }
-        }).showDialog();
+    /**
+     * 跳转到聊天页面
+     */
+    private void toChat() {
+        if (mUserInfoBean == null) {
+            return;
+        }
+        CCPAppManager.startChattingAction(FriendInfoActivity.this.getActivity()
+                , mUserInfoBean.getPhoneNumber(), mUserInfoBean.getUsername(), true);
     }
 
+
     private void addFriendBlack() {
-        Intent intent = new Intent(this,BlackActivity.class);
-        intent.putExtra("type","1");
-        startActivity(intent);
+        if (mUserInfoBean.getIsfriend() == 0) {
+            addBlack();
+        } else {
+            Intent intent = new Intent(this, BlackActivity.class);
+            intent.putExtra("type", "1");
+            intent.putExtra("friend_id", mUserInfoBean.getId() + "");
+            startActivity(intent);
+        }
+
+        popupWindow.dismiss();
     }
 
     private void deleteFriend() {
-        Intent intent = new Intent(this,BlackActivity.class);
-        intent.putExtra("type","2");
+        Intent intent = new Intent(this, BlackActivity.class);
+        intent.putExtra("type", "2");
+        intent.putExtra("friend_id", mUserInfoBean.getId() + "");
         startActivity(intent);
+        popupWindow.dismiss();
     }
 
     /**
-     * 获取加好友所需的金额
+     * 加载用户基本信息
      */
-    private void getPayMoney() {
+    private void loadUserInfoPhone() {
+        Map<String, String> userMap = new HashMap<>();
+        userMap.put("phoneNumber", userPhone);
+        userMap.put("id", MyApplication.getInstance().UserInfo.getUserId() + "");
+        RetrofitClient.getInstance().createApi().loadUserInfoPhone(userMap)
+                .compose(RxUtils.<HttpResult<UserInfoBean>>io_main())
+                .subscribe(new BaseObjObserver<UserInfoBean>(this, "加载中", false) {
+                    @Override
+                    protected void onHandleSuccess(UserInfoBean userInfoBean) {
+                        mUserInfoBean = userInfoBean;
+                        setBaseInfo(userInfoBean);
+                        Log.e("gy", "用户信息：" + userInfoBean.getToken());
+                    }
+                });
+    }
 
+    /**
+     * 加载用户 诚意金 应约信息
+     */
+    private void loadInviteInfo() {
+        map.clear();
+        map.put("phoneNumber", userPhone);
+        RetrofitClient.getInstance().createApi().loadInviteInfo(map)
+                .compose(RxUtils.<HttpResult<InviteInfoBean>>io_main())
+                .subscribe(new BaseObjObserver<InviteInfoBean>(this, false) {
+                    @Override
+                    protected void onHandleSuccess(InviteInfoBean inviteInfoBean) {
+                        setInviteInfo(inviteInfoBean);
+                    }
+                });
+    }
+
+    /**
+     * 获取用户相册信息
+     *
+     * @param uid
+     */
+    private void loadUserPhoto(String uid) {
+        map.clear();
+        map.put("id", uid + "");
+        map.put("page", "1");
+        RetrofitClient.getInstance().createApi().userPhotoInfo(map)
+                .compose(RxUtils.<HttpResult<UserPhotoBean>>io_main())
+                .subscribe(new BaseObjObserver<UserPhotoBean>(this) {
+                    @Override
+                    protected void onHandleSuccess(UserPhotoBean userPhotoBean) {
+                        setUserPhotoInfo(userPhotoBean);
+                    }
+                });
+    }
+
+    private void setUserPhotoInfo(UserPhotoBean userPhotoBean) {
+
+
+    }
+
+    private void setInviteInfo(InviteInfoBean inviteInfoBean) {
+        if (inviteInfoBean == null) {
+            return;
+        }
+        mFriendInfoGet.setText(inviteInfoBean.getGetEarnestMoney() == null ? "¥ " + 0 : "¥ " + inviteInfoBean.getGetEarnestMoney());
+        mFriendInfoPay.setText(inviteInfoBean.getPayEarnestMoney() == null ? "¥ " + 0 : "¥ " + inviteInfoBean.getPayEarnestMoney());
+        mFriendInfoBeiyao.setText(inviteInfoBean.getBeInvite() == null ? "0" : "" + inviteInfoBean.getBeInvite());
+        mFriendInfoBeijia.setText(inviteInfoBean.getBeToAdd() == null ? "0" : "" + inviteInfoBean.getBeToAdd());
+        mFriendInfoFuyue.setText(inviteInfoBean.getAppointment() == null ? "0" : "" + inviteInfoBean.getAppointment());
+        mFriendInfoShaungyue.setText(inviteInfoBean.getNoAppointment() == null ? "0" : "" + inviteInfoBean.getNoAppointment());
+    }
+
+    private void setBaseInfo(UserInfoBean userInfoBean) {
+        if (userInfoBean == null) {
+            return;
+        }
+        loadUserPhoto(userInfoBean.getId() + "");
+
+        Glide.with(MyApplication.getInstance())
+                .load(userInfoBean.getAvatar())
+                .error(R.mipmap.default_useravatar)
+                .crossFade()
+                .into(mFriendInfoAvatar);
+        mFriendInfoName.setText(userInfoBean.getUsername());
+        mFriendInfoSex.setImageResource(userInfoBean.getSex() == 0 ? R.mipmap.boy : R.mipmap.gir);
+        mFriendInfoId.setText(userInfoBean.getId() + "");
+        mFriendInfoAge.setText(userInfoBean.getAge() == null ? "未知" : userInfoBean.getAge() + "");
+        mFriendInfoJob.setText(userInfoBean.getJob() == null ? "未知" : userInfoBean.getJob() + "");
+        mFriendInfoHobby.setText(userInfoBean.getHobby() == null ? "未知" : userInfoBean.getHobby() + "");
+        mFriendInfoHobby.setText(userInfoBean.getDistrictId() + "");
+
+        addFriendMoney = userInfoBean.getAddPay() + "";
+
+        if (userInfoBean.getIsfriend() == 1) {
+            mPay.setText("发消息");
+        } else {
+            if (addType.equals("3")) {
+                mPay.setText("打招呼");
+            } else {
+                mPay.setText("加为好友");
+            }
+        }
+    }
+
+    /**
+     * 拉入黑名单
+     */
+    private void addBlack() {
+        Map<String, String> map = new HashMap<>();
+        map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
+        map.put("beUserId", fiendId);
+
+        RetrofitClient.getInstance().createApi().addBlack(map)
+                .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                .subscribe(new BaseObjObserver<CommonEntity>(this) {
+                    @Override
+                    protected void onHandleSuccess(CommonEntity commonEntity) {
+                        ToastUtil.showMessage("拉黑好友申请成功!");
+                        finish();
+                    }
+                });
     }
 }

@@ -1157,17 +1157,36 @@
         <activity android:name=".activity.WithdrawalsDetailActivity" />
         <activity android:name=".activity.PhoneMsgDetailActivity" />
         <activity android:name=".activity.MeAboutActivity" />
+        <activity android:name=".activity.AdvertmassActivity" />
+        <activity android:name=".activity.AdvertMgActivity" />
         <activity android:name=".activity.changPayWordActivity" />
         <activity android:name=".activity.forgetPayWordActivity" />
         <activity android:name=".activity.changPwdActivity" />
         <activity android:name=".activity.AddfriendPay" />
         <activity android:name=".activity.OnlineServiceActivity" />
-        <activity android:name=".activity.AdvertMgActivity" />
-        <activity android:name=".activity.AdvertmassActivity" />
         <activity android:name=".activity.SendinvitationActivity" />
         <activity android:name=".activity.InvitationmgActivity" />
+        <activity android:name=".activity.AdvertMassSelectActivity" />
+        <activity android:name=".activity.AdvertOtherActivity" />
+        <activity android:name=".activity.ReleaseAdvertActivity" />
+        <activity android:name=".activity.AdvertDetail" />
 
+        <!-- gy -->
+        <activity android:name=".activity.FriendInfoActivity" />
+        <activity android:name=".activity.PayActivity" />
+        <activity android:name=".activity.BlackActivity" />
+        <activity android:name=".activity.GroupInfoActivity" />
+        <activity android:name=".activity.NearbyZyActivity" />
+        <activity android:name=".activity.NearbyListActivity" />
+        <activity android:name=".activity.GreetActivity" />
 
+        <service
+            android:name=".UpdateLocationService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.AdverActivity" />
+        <activity android:name=".activity.AdverDetailActivity" />
     </application>
 
 </manifest>
