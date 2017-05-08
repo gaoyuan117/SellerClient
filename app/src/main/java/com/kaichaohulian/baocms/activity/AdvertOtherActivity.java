@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +32,19 @@ public class AdvertOtherActivity extends BaseActivity {
     TextView tvHobbyOtheradvert;
     @BindView(R.id.tv_address_otheradvert)
     TextView tvAddressOtheradvert;
+
+    @BindView(R.id.men_sex_advertother)
+    RelativeLayout menSex;
+    @BindView(R.id.women_sex_advertother)
+    RelativeLayout womenSex;
+    @BindView(R.id.else_sex_advertother)
+    TextView elseSex;
     /*年龄选择器*/
-    private ArrayList<Integer> ageStart;
-    private ArrayList<Integer> ageEnd;
+    private ArrayList<Integer> agestart;
+    private ArrayList<List<Integer>> ageend;
     private OptionsPickerView AgePickView;
 
+    private String sex,minage,maxage,job,hobby,address;
     @Override
     public void setContent() {
         setContentView(R.layout.activity_advert_other);
@@ -56,30 +65,44 @@ public class AdvertOtherActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(map==null){
-                    map=new HashMap<>();
-                }else{
+                if (map == null) {
+                    map = new HashMap<>();
+                } else {
                     map.clear();
                 }
-                //TODO 设置搜索条件
-
+                if(sex!=null){
+                    map.put("sex",sex);
+                }
+                if(minage!=null&&maxage!=null){
+                    map.put("ageStart",minage);
+                    map.put("ageEnd",maxage);
+                }
+                if(job!=null){
+                    map.put("job",job);
+                }
+                if(hobby!=null){
+                    map.put("hobby",hobby);
+                }
+                if(address!=null){
+                    map.put("address",address);
+                }
                 RetrofitClient.getInstance().createApi().ReleaseAdviertOfOther(map)
                         .compose(RxUtils.<HttpArray<Integer>>io_main())
                         .subscribe(new BaseListObserver<Integer>(getActivity()) {
                             @Override
                             protected void onHandleSuccess(List<Integer> list) {
-                                StringBuffer buffer=new StringBuffer();
+                                StringBuffer buffer = new StringBuffer();
 
-                                if(list.size()==0){
+                                if (list.size() == 0) {
                                     Toast.makeText(AdvertOtherActivity.this, "暂时搜索不到", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 for (int i = 0; i < list.size(); i++) {
-                                    buffer.append(list.get(i)+",");
+                                    buffer.append(list.get(i) + ",");
                                 }
-                                buffer.replace(buffer.length()-1,buffer.length(),"");
-                                Intent intent=new Intent(getActivity(),ReleaseAdvertActivity.class);
-                                intent.putExtra("ids",buffer.toString());
+                                buffer.replace(buffer.length() - 1, buffer.length(), "");
+                                Intent intent = new Intent(getActivity(), ReleaseAdvertActivity.class);
+                                intent.putExtra("ids", buffer.toString());
                                 startActivity(intent);
                             }
                         });
@@ -100,41 +123,70 @@ public class AdvertOtherActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.rl_age_otheradviert:
                 if (AgePickView == null) {
-                    ageStart = new ArrayList<>();
-                    ageEnd = new ArrayList<>();
-                    for (int i = 15; i <= 60; i++) {
-                        ageStart.add(i);
-                        ageEnd.add(i);
+                    agestart = new ArrayList<>();
+                    ageend = new ArrayList<>();
+                    for (int i = 0; i < 60; i++) {
+                        for (int i1 = 0; i1 < 60; i1++) {
+                            agestart.add(i1 + 1);
+                        }
+                        ageend.add(agestart);
                     }
                     AgePickView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
                         @Override
                         public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                            int i=ageStart.get(options1);
-                            int j=ageEnd.get(options2);
-                            if(j<=i){
-                                Toast.makeText(AdvertOtherActivity.this, "截至年龄不能大于或等于起始年龄", Toast.LENGTH_SHORT).show();
-                                return;
-                            }else if(i<j){
-                                tvAgeOtheradvert.setText(i+"-"+j+"岁");
+
+                            if (agestart.get(options1) < ageend.get(options1).get(options2)) {
+                                tvAgeOtheradvert.setText(agestart.get(options1) + "-" + ageend.get(options1).get(options2) + "岁");
+                                minage=agestart.get(options1)+"";
+                                maxage=ageend.get(options1).get(options2)+"";
+                            } else {
+                                Toast.makeText(AdvertOtherActivity.this, "起始年龄不能大于或等于截止年龄", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }).build();
-                    AgePickView.setPicker(ageStart, ageEnd);
+                    AgePickView.setPicker(agestart, ageend);
                     AgePickView.show();
                 } else {
                     AgePickView.show();
                 }
                 break;
             case R.id.rl_job_otheradviert:
+                Toast.makeText(this, "暂未开发此功能", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.rl_hobby_otheradviert:
+                Toast.makeText(this, "暂未开发此功能", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.rl_address_otheradviert:
+                Toast.makeText(this, "暂未开发此功能", Toast.LENGTH_SHORT).show();
 
                 break;
         }
     }
 
+
+    @OnClick({R.id.men_sex_advertother, R.id.women_sex_advertother, R.id.else_sex_advertother})
+    public void SelectSex(View view) {
+        switch (view.getId()) {
+            case R.id.men_sex_advertother:
+                menSex.setBackgroundColor(getResources().getColor(R.color.blue));
+                womenSex.setBackgroundColor(getResources().getColor(R.color.white));
+                elseSex.setBackgroundColor(getResources().getColor(R.color.white));
+                sex="0";
+                break;
+            case R.id.women_sex_advertother:
+                womenSex.setBackgroundColor(getResources().getColor(R.color.blue));
+                menSex.setBackgroundColor(getResources().getColor(R.color.white));
+                elseSex.setBackgroundColor(getResources().getColor(R.color.white));
+                sex="1";
+                break;
+            case R.id.else_sex_advertother:
+                elseSex.setBackgroundColor(getResources().getColor(R.color.blue));
+                womenSex.setBackgroundColor(getResources().getColor(R.color.white));
+                menSex.setBackgroundColor(getResources().getColor(R.color.white));
+                sex=null;
+                break;
+        }
+    }
 }

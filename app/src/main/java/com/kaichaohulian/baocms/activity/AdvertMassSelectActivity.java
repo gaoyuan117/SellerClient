@@ -81,7 +81,7 @@ public class AdvertMassSelectActivity extends BaseActivity {
                 if(iterator.hasNext()){
                     buffer.append(iterator.next().getId()+",");
                 }
-                buffer.replace(buffer.length()-1,buffer.length(),"");
+                buffer.append(MyApplication.getInstance().UserInfo.getUserId());
                 Intent intent=new Intent(getActivity(),ReleaseAdvertActivity.class);
                 intent.putExtra("ids",buffer.toString());
                 startActivity(intent);

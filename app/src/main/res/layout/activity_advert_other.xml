@@ -18,6 +18,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
+            android:id="@+id/men_sex_advertother"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -34,10 +35,10 @@
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
             android:background="@color/line" />
 
         <RelativeLayout
+            android:id="@+id/women_sex_advertother"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -54,10 +55,11 @@
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
             android:background="@color/line" />
 
         <TextView
+            android:id="@+id/else_sex_advertother"
+            android:background="@color/blue"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
@@ -143,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/iv_arrow_job_otheradviert"
-            android:text="15-24岁"
+            android:text="视觉设计"
             android:gravity="center"
             android:layout_marginRight="5dp"
             android:textColor="@color/zy_text_gray"
@@ -185,7 +187,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/iv_arrow_hobby_otheradviert"
-            android:text="15-24岁"
+            android:text="打球、唱歌、跳舞、看书"
             android:gravity="center"
             android:layout_marginRight="5dp"
             android:textColor="@color/zy_text_gray"
@@ -227,7 +229,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/iv_arrow_address_otheradviert"
-            android:text="15-24岁"
+            android:text="广州 广东"
             android:gravity="center"
             android:layout_marginRight="5dp"
             android:textColor="@color/zy_text_gray"

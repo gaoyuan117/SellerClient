@@ -34,7 +34,10 @@ import com.qiniu.android.storage.UploadManager;
 import org.json.JSONArray;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -71,6 +74,9 @@ public class ReleaseAdvertActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        DateFormat format=new SimpleDateFormat("HH:mm yyyy.MM.dd");
+        Date date=new Date(System.currentTimeMillis());
+        time.setText(format.format(date));
         list = new ArrayList<>();
         ImageBaseAdapter = new ImageBaseAdapter();
         gridview.setAdapter(ImageBaseAdapter);
