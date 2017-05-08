@@ -104,6 +104,7 @@ public class MyAlbumAdapter extends BaseAdapter {
             } else {
                 MyAlbumEntity Item = getItem(position - 2);
                 if (Item != null) {
+                    Calendar calendar=Calendar.getInstance();
                     String Time = Item.getCreateTime();
                     if (formatDateTime(Time)) {
                         holder.time.setText("今天");
@@ -111,17 +112,20 @@ public class MyAlbumAdapter extends BaseAdapter {
                         Date date = null;
                         try {
                             date = new SimpleDateFormat("yyyy-MM-dd").parse(Time);
+                            calendar.setTime(date);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        int mDay = date.getDay();//日
-                        int mMonth = date.getMonth() + 1;//月
+                        int mDay=calendar.get(Calendar.DAY_OF_MONTH);
+                        int mMonth=calendar.get(Calendar.MONTH)+1;
+//                        int mDay = date.getDay();//日
+//                        int mMonth = date.getMonth() + 1;//月
                         Spannable sp = new SpannableString(mDay + " " + getMonth(mMonth));
                         int length = 2;
                         if (mDay < 10) {
                             length = 1;
                         }
-                        sp.setSpan(new AbsoluteSizeSpan(32, true), 0, length, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                        sp.setSpan(new AbsoluteSizeSpan(28, true), 0, length, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                         sp.setSpan(new AbsoluteSizeSpan(12, true), length, sp.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                         holder.time.setText(sp);
                     }
