@@ -48,6 +48,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 
@@ -146,7 +147,7 @@ public class CreatChatRoomActivity extends BaseActivity {
             }
 
         });
-        listView.addHeaderView(headerView);
+//        listView.addHeaderView(headerView);
     }
 
     @Override
@@ -421,11 +422,11 @@ public class CreatChatRoomActivity extends BaseActivity {
             final CheckBox checkBox = (CheckBox) convertView
                     .findViewById(R.id.checkbox);
 
-            if (exitingMembers != null && exitingMembers.contains(username)) {
-                checkBox.setButtonDrawable(R.drawable.btn_check);
-            } else {
-                checkBox.setButtonDrawable(R.drawable.check_blue);
-            }
+//            if (exitingMembers != null && exitingMembers.contains(username)) {
+//                checkBox.setButtonDrawable(R.drawable.btn_check);
+//            } else {
+//                checkBox.setButtonDrawable(R.drawable.check_blue);
+//            }
 
             if (addList != null && addList.contains(username)) {
                 checkBox.setChecked(true);

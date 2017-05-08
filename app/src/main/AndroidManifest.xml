@@ -1157,13 +1157,13 @@
         <activity android:name=".activity.WithdrawalsDetailActivity" />
         <activity android:name=".activity.PhoneMsgDetailActivity" />
         <activity android:name=".activity.MeAboutActivity" />
+        <activity android:name=".activity.AdvertmassActivity" />
+        <activity android:name=".activity.AdvertMgActivity" />
         <activity android:name=".activity.changPayWordActivity" />
         <activity android:name=".activity.forgetPayWordActivity" />
         <activity android:name=".activity.changPwdActivity" />
         <activity android:name=".activity.AddfriendPay" />
         <activity android:name=".activity.OnlineServiceActivity" />
-        <activity android:name=".activity.AdvertMgActivity" />
-        <activity android:name=".activity.AdvertmassActivity" />
         <activity android:name=".activity.SendinvitationActivity" />
         <activity android:name=".activity.InvitationmgActivity" />
         <activity android:name=".activity.AdvertMassSelectActivity" />
@@ -1187,7 +1187,6 @@
 
         <activity android:name=".activity.AdverActivity" />
         <activity android:name=".activity.AdverDetailActivity" />
-        <activity android:name=".activity.Setpayword"></activity>
     </application>
 
 </manifest>

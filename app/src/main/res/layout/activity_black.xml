@@ -149,7 +149,7 @@
 
                 <EditText
                     android:id="@+id/et_black_content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="最多200字"
@@ -158,15 +158,17 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/img_black_pic"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+            <com.kaichaohulian.baocms.view.MyGridView
+                android:id="@+id/gv_black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="13dp"
-                android:src="@mipmap/shangchuan" />
+                android:numColumns="3" />
 
             <Button
+                android:id="@+id/bt_black_commit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"

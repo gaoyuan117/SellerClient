@@ -7,7 +7,7 @@ package com.kaichaohulian.baocms.http;
 public class HttpResult<T> {
     public int code;
     public String errorDescription;
-    public T data;
+    public T dataObject;
 
 
 }

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -240,8 +241,7 @@ public class HomeFragment extends BaseEcFragment implements CCPListAdapter.OnLis
 
                 } else
                     nick = conversation.getUsername();
-
-
+                conversation.getContactId();
                 CCPAppManager.startChattingAction(getActivity(), conversation.getSessionId(), nick);
             }
         }

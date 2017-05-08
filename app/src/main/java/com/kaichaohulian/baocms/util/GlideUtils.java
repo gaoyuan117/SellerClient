@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.util;
 
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -40,4 +41,21 @@ public class GlideUtils {
                 .crossFade()
                 .into(imageView);
     }
+
+    public static void glideQiNiuAvatar(String imgPath, ImageView imageView) {
+        Glide.with(MyApplication.getInstance())
+                .load("http://oez2a4f3v.bkt.clouddn.com/" + imgPath)
+                .error(R.mipmap.default_useravatar)
+                .crossFade()
+                .into(imageView);
+    }
+
+    public static void glideQiNiuImg(String imgPath, ImageView imageView) {
+        Glide.with(MyApplication.getInstance())
+                .load("http://oez2a4f3v.bkt.clouddn.com/" + imgPath)
+                .error(R.mipmap.default_image)
+                .crossFade()
+                .into(imageView);
+    }
+
 }
