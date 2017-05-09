@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,11 +30,44 @@ public abstract class BaseFragment extends Fragment {
     protected Activity activity;
     public int width;
     public int height;
+    /**
+     * rootView是否初始化标志，防止回调函数在rootView为空的时候触发
+     */
+    private boolean hasCreateView;
 
+    /**
+     * 当前Fragment是否处于可见状态标志，防止因ViewPager的缓存机制而导致回调函数的触发
+     */
+    private boolean isFragmentVisible;
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (mView == null) {
+            return;
+        }
+        hasCreateView = true;
+        if (isVisibleToUser) {
+            onFragmentVisibleChange(true);
+            isFragmentVisible = true;
+            return;
+        }
+        if (isFragmentVisible) {
+            onFragmentVisibleChange(false);
+            isFragmentVisible = false;
+        }
+    }
     public BaseFragment(MyApplication myApplication, Activity activity, Context context) {
         this.myApplication = myApplication;
         this.activity = activity;
         this.context = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initVariable();
     }
 
     @Override
@@ -42,6 +76,10 @@ public abstract class BaseFragment extends Fragment {
         WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
         width = wm.getDefaultDisplay().getWidth();
         height = wm.getDefaultDisplay().getHeight();
+        if (!hasCreateView && getUserVisibleHint()) {
+            onFragmentVisibleChange(true);
+            isFragmentVisible = true;
+        }
         setContent();
         initData();
         initView();
@@ -51,6 +89,11 @@ public abstract class BaseFragment extends Fragment {
             parent.removeView(mView);// 先移除
         }
         return mView;
+    }
+
+    private void initVariable() {
+        hasCreateView = false;
+        isFragmentVisible = false;
     }
 
     @Override
@@ -206,4 +249,9 @@ public abstract class BaseFragment extends Fragment {
         }
         return is;
     }
+
+    protected void onFragmentVisibleChange(boolean isVisible) {
+        Log.w("BaseFragment", "onFragmentVisibleChange -> isVisible: " + isVisible);
+    }
+
 }

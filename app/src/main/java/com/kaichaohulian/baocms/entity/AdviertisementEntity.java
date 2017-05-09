@@ -44,4 +44,28 @@ public class AdviertisementEntity {
     public Object hasGetMoney;
     public Object readNum;
     public int pay;
+
+    @Override
+    public String toString() {
+        return "AdviertisementEntity{" +
+                "id=" + id +
+                ", createdTime='" + createdTime + '\'' +
+                ", creator=" + creator +
+                ", isLocked=" + isLocked +
+                ", lastModifiedTime='" + lastModifiedTime + '\'' +
+                ", lastModifier=" + lastModifier +
+                ", timeStamp='" + timeStamp + '\'' +
+                ", userId=" + userId +
+                ", title='" + title + '\'' +
+                ", context='" + context + '\'' +
+                ", type=" + type +
+                ", receive=" + receive +
+                ", receiveGroup=" + receiveGroup +
+                ", image=" + image +
+                ", redMoney=" + redMoney +
+                ", hasGetMoney=" + hasGetMoney +
+                ", readNum=" + readNum +
+                ", pay=" + pay +
+                '}';
+    }
 }

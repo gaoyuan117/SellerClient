@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,18 +56,9 @@ public class AdvertDetail extends BaseActivity {
                     .subscribe(new BaseListObserver<AdviertisementEntity>(getActivity(),"获取广告详情中...") {
                         @Override
                         protected void onHandleSuccess(List<AdviertisementEntity> list) {
-                            AdviertisementEntity data=list.get(0);
-                            Date date=new Date(data.timeStamp);
-                            time.setText(format.format(date));
-                            if(data.receive==null){
-                                addressee.setText("0位收件人");
-                            }else{
-                                addressee.setText(data.receive+"位收件人:\n");
+                            for (int i = 0; i < list.size(); i++) {
+                                Log.d("AdvertDetail", "list.get(i):" + list.get(i));
                             }
-
-                            title.setText(data.title);
-                            content.setText(data.context);
-                            Glide.with(getActivity()).load(data.image).error(R.mipmap.default_advertmass).into(imgdetailadvert);
                         }
                     });
         }

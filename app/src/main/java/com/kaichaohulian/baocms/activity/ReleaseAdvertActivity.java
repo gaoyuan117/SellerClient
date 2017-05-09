@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.CommonEntity;
@@ -26,6 +27,7 @@ import com.kaichaohulian.baocms.qiniu.QiNiuConfig;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
+import com.kaichaohulian.baocms.util.PayDialog;
 import com.kaichaohulian.baocms.view.ShowDialog;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
@@ -33,7 +35,10 @@ import com.qiniu.android.storage.UploadManager;
 import org.json.JSONArray;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -57,11 +62,16 @@ public class ReleaseAdvertActivity extends BaseActivity {
 
 
     private int REQUEST_CODE = 200;
+    private int PAY_CODE=100;
+
     private List<String> list;
     private ImageBaseAdapter ImageBaseAdapter;
     int index = 0;
-    private StringBuffer img = new StringBuffer();
-    private StringBuffer ids = new StringBuffer();
+
+    private StringBuffer img=new StringBuffer();
+    private StringBuffer ids=new StringBuffer();
+    private int payMoney=2;
+
 
     @Override
     public void setContent() {
@@ -71,6 +81,9 @@ public class ReleaseAdvertActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        DateFormat format=new SimpleDateFormat("HH:mm yyyy.MM.dd");
+        Date date=new Date(System.currentTimeMillis());
+        time.setText(format.format(date));
         list = new ArrayList<>();
         ImageBaseAdapter = new ImageBaseAdapter();
         gridview.setAdapter(ImageBaseAdapter);
@@ -100,7 +113,17 @@ public class ReleaseAdvertActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InServer();
+
+                new PayDialog(getActivity()).setMessage("本次群发需要支付2元手续费").setSureClick(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(ReleaseAdvertActivity.this, PayActivity.class);
+                        intent.putExtra("pay_money", payMoney+"");
+                        startActivityForResult(intent,PAY_CODE);
+                    }
+                }).showDialog();
+
+
             }
         });
     }
@@ -131,6 +154,8 @@ public class ReleaseAdvertActivity extends BaseActivity {
                     gridview.setVisibility(View.GONE);
                 }
             }
+        }else if(resultCode == RESULT_OK && requestCode == PAY_CODE){
+            InServer();
         }
     }
 
@@ -238,9 +263,11 @@ public class ReleaseAdvertActivity extends BaseActivity {
         if (!img.equals("")) {
             map.put("images", img.toString().trim());
         }
+
         map.put("ids", getIntent().getStringExtra("ids"));
         map.put("pay", "4");
         map.put("redMoney", "5");
+
         RetrofitClient.getInstance().createApi().ReleaseAdvert(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
                 .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {

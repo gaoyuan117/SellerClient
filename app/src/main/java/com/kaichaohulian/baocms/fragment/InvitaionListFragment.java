@@ -8,10 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.activity.InvitationmgActivity;
+import com.kaichaohulian.baocms.adapter.MyInviteListAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
+import com.kaichaohulian.baocms.entity.MyInviteEntity;
+import com.kaichaohulian.baocms.http.HttpArray;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseListObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +39,16 @@ public class InvitaionListFragment extends BaseFragment {
     @BindView(R.id.lv_invitationMg)
     ListView lvInvitationMg;
     Unbinder unbinder;
+    private ArrayList<MyInviteEntity> dataList = new ArrayList<>();
+    private int index = 1;
+    private MyInviteListAdapter adapter;
+    private boolean IsLoad=false;
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 
     public InvitaionListFragment(MyApplication myApplication, Activity activity, Context context) {
         super(myApplication, activity, context);
@@ -41,11 +63,44 @@ public class InvitaionListFragment extends BaseFragment {
     @Override
     public void initData() {
 
+
+
+    }
+
+    public void LoadData(){
+        switch (getArguments().getInt("type")){
+            case InvitationmgActivity.MY_SEND:
+                Toast.makeText(context, "我发起的", Toast.LENGTH_SHORT).show();
+                RetrofitClient.getInstance().createApi().getMyInvite(MyApplication.getInstance().UserInfo.getUserId(), index)
+                        .compose(RxUtils.<HttpArray<MyInviteEntity>>io_main())
+                        .subscribe(new BaseListObserver<MyInviteEntity>(getActivity(), "加载中...") {
+                            @Override
+                            protected void onHandleSuccess(List<MyInviteEntity> list) {
+                                dataList.addAll(list);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                break;
+            case InvitationmgActivity.MY_JOIN:
+                Toast.makeText(context, "我参与的", Toast.LENGTH_SHORT).show();
+                RetrofitClient.getInstance().createApi().GetMyJoinInvite(MyApplication.getInstance().UserInfo.getUserId(), index)
+                        .compose(RxUtils.<HttpArray<MyInviteEntity>>io_main())
+                        .subscribe(new BaseListObserver<MyInviteEntity>(getActivity(), "加载中...") {
+                            @Override
+                            protected void onHandleSuccess(List<MyInviteEntity> list) {
+                                dataList.addAll(list);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                break;
+        }
     }
 
     @Override
     public void initView() {
-
+        adapter = new MyInviteListAdapter(getActivity(), dataList);
+        adapter.setLayoutIds(R.layout.item_invitelist);
+        lvInvitationMg.setAdapter(adapter);
     }
 
     @Override
@@ -54,8 +109,13 @@ public class InvitaionListFragment extends BaseFragment {
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    protected void onFragmentVisibleChange(boolean isVisible) {
+        super.onFragmentVisibleChange(isVisible);
+        if(isVisible&&!IsLoad){
+            LoadData();
+            IsLoad=true;
+        }else{
+
+        }
     }
 }

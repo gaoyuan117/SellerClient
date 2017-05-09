@@ -123,14 +123,7 @@ public class AdvertOtherActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.rl_age_otheradviert:
                 if (AgePickView == null) {
-                    agestart = new ArrayList<>();
-                    ageend = new ArrayList<>();
-                    for (int i = 0; i < 60; i++) {
-                        for (int i1 = 0; i1 < 60; i1++) {
-                            agestart.add(i1 + 1);
-                        }
-                        ageend.add(agestart);
-                    }
+
                     AgePickView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
                         @Override
                         public void onOptionsSelect(int options1, int options2, int options3, View v) {

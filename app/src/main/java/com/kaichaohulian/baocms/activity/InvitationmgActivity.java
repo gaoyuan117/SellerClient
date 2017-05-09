@@ -1,9 +1,11 @@
 package com.kaichaohulian.baocms.activity;
 
 import android.app.Application;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.adapter.InvitationMgFragmentAdapter;
@@ -25,11 +27,12 @@ public class InvitationmgActivity extends BaseActivity {
     ViewPager vgInvationMg;
     private ArrayList<String> titles;
     private ArrayList<Fragment> fragments;
-    private InvitationMgFragmentAdapter adapter;
+
+    public static final int MY_SEND=0,MY_JOIN=1;
     @Override
     public void setContent() {
         setContentView(R.layout.activity_invitationmg);
-        ButterKnife.bind(this);
+            ButterKnife.bind(this);
     }
 
     @Override
@@ -45,12 +48,26 @@ public class InvitationmgActivity extends BaseActivity {
     public void initEvent() {
         titles=new ArrayList<>();
         fragments=new ArrayList<>();
-        fragments.add(new InvitaionListFragment((MyApplication)getApplication(),InvitationmgActivity.this,InvitationmgActivity.this));
-        fragments.add(new InvitaionListFragment((MyApplication)getApplication(),InvitationmgActivity.this,InvitationmgActivity.this));
+        Bundle bundle=new Bundle();
+        Bundle bundle1=new Bundle();
+
+        InvitaionListFragment mysendInvite=new InvitaionListFragment((MyApplication)getApplication(),InvitationmgActivity.this,InvitationmgActivity.this);
+        bundle.putInt("type",MY_SEND);
+        mysendInvite.setArguments(bundle);
+
+
+        InvitaionListFragment myjoinInvite=new InvitaionListFragment((MyApplication)getApplication(),InvitationmgActivity.this,InvitationmgActivity.this);
+        bundle1.putInt("type",MY_JOIN);
+        myjoinInvite.setArguments(bundle1);
+
+
+        fragments.add(mysendInvite);
+        fragments.add(myjoinInvite);
+
         titles.add("我发起的");
         titles.add("我参与的");
-        adapter=new InvitationMgFragmentAdapter(getSupportFragmentManager(),fragments,titles);
-        vgInvationMg.setAdapter(adapter);
+
+        vgInvationMg.setAdapter(new InvitationMgFragmentAdapter(getSupportFragmentManager(),fragments,titles));
         tabInvationMg.setTabMode(TabLayout.MODE_FIXED);
         tabInvationMg.setupWithViewPager(vgInvationMg);
 

@@ -19,7 +19,7 @@
         <RelativeLayout
             android:id="@+id/rl_reciver_sendInvition"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="44dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:orientation="horizontal">
@@ -30,8 +30,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/be_addfriendmoney" />
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/revicer_invite" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,14 +39,15 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/img_reciver_sendInvition"
-                android:text="接收人" />
+                android:text="接收人"
+                android:textColor="@color/zy_text_black" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/discover_rightarrow_marginparentright"
+                android:layout_marginRight="15dp"
                 android:src="@mipmap/right_arrow" />
 
         </RelativeLayout>
@@ -54,7 +55,7 @@
         <RelativeLayout
             android:id="@+id/rl_sendInvitionNum"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="44dp"
             android:layout_marginTop="10dp"
             android:background="@color/white">
 
@@ -64,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/be_addfriendmoney" />
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/peoplenum_invite" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,7 +74,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/img_sendInvitionNum"
-                android:text="邀请人数" />
+                android:text="邀请人数"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/edt_sendInvitionNum"
@@ -86,8 +88,9 @@
                 android:gravity="right"
                 android:hint="填写人数"
                 android:inputType="number"
-                android:textColorHint="@color/blue"
-                android:textCursorDrawable="@null" />
+                android:textColorHint="#06b3f4"
+                android:textCursorDrawable="@null"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_sendInvitionNum"
@@ -101,7 +104,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="44dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:orientation="horizontal">
@@ -112,8 +115,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/be_addfriendmoney" />
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/zhuti_invite" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,7 +124,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/img_title_sendInvition"
-                android:text="主题" />
+                android:text="主题"
+                android:textSize="14sp" />
 
 
         </RelativeLayout>
@@ -129,22 +133,24 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/line" />
+            android:background="#e8e8e8" />
 
         <EditText
             android:id="@+id/edt_invitiontitle"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:background="@color/white"
             android:gravity="left|top"
             android:hint="请简单说明您的邀请理由..."
-            android:textSize="14sp"
-
-            />
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:textColor="#909090"
+            android:textSize="11sp" />
 
         <RelativeLayout
             android:id="@+id/rl_InvitionPay"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="44dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:orientation="horizontal">
@@ -156,7 +162,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/be_addfriendmoney" />
+                android:src="@mipmap/money_invite" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -164,7 +170,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/img_InvitionPay"
-                android:text="邀请金额" />
+                android:text="邀请金额"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/edt_InvitionPay"
@@ -177,8 +184,9 @@
                 android:gravity="right"
                 android:hint="200"
                 android:inputType="number"
-                android:textColorHint="@color/blue"
-                android:textCursorDrawable="@null" />
+                android:textColorHint="#06b3f4"
+                android:textCursorDrawable="@null"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_InvitionPay"
@@ -193,7 +201,7 @@
         <RelativeLayout
             android:id="@+id/rl_Invitiontime"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="44dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:orientation="horizontal">
@@ -205,7 +213,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/be_addfriendmoney" />
+                android:src="@mipmap/shiijan_invite" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -213,7 +221,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/img_Invitiontime"
-                android:text="见面时间" />
+                android:text="见面时间"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/edt_Invitiontime"
@@ -226,7 +235,7 @@
                 android:gravity="right|center"
                 android:text="14:33 2017.05.08"
                 android:textColor="@color/zy_text_gray"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/img_arrow_Invitiontime"
@@ -241,7 +250,7 @@
         <RelativeLayout
             android:id="@+id/rl_responsetime"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="44dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:orientation="horizontal">
@@ -253,7 +262,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/be_addfriendmoney" />
+                android:src="@mipmap/trueshijian_invite" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -261,7 +270,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/img_responsetime"
-                android:text="响应时间" />
+                android:text="响应时间"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/edt_responsetime"
@@ -274,13 +284,13 @@
                 android:gravity="right|center"
                 android:text="1小时30分"
                 android:textColor="@color/zy_text_gray"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_Activity_location"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="44dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:orientation="horizontal">
@@ -292,7 +302,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/be_addfriendmoney" />
+                android:src="@mipmap/address_invite" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -300,7 +310,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/img_Activity_location"
-                android:text="活动地点" />
+                android:text="活动地点"
+                android:textSize="14sp" />
 
 
         </RelativeLayout>
@@ -314,11 +325,11 @@
             android:id="@+id/tv_actaddress"
             android:layout_width="match_parent"
             android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:text="海淀区西二旗上地三街"
-            android:layout_marginLeft="10dp"
-            />
+            android:textSize="12sp" />
 
     </LinearLayout>
 </ScrollView>

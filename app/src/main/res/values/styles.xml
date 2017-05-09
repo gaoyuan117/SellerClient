@@ -21,6 +21,9 @@
         <item name="android:windowEnterAnimation">@anim/pop_password_in</item>
         <item name="android:windowExitAnimation">@anim/pop_password_out</item>
     </style>
+    <style name="AppThemeprice" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
     <style name="AppTheme" parent="@style/BaseAppTheme">
         <item name="android:checkboxStyle">@style/CCPCheckBox</item>
         <item name="android:buttonStyle">@style/BaseButtonStyle</item>

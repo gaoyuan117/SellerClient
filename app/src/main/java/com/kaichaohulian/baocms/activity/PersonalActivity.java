@@ -224,15 +224,35 @@ public class PersonalActivity extends BaseActivity {
                 .subscribe(new BaseObjObserver<EarnestMoneyEntity>(getActivity()) {
                     @Override
                     protected void onHandleSuccess(EarnestMoneyEntity earnestMoneyEntity) {
-                        try{
-                            tvEarnestMoney.setText((String)earnestMoneyEntity.getPayEarnestMoney());
-                            tvGetMoney.setText((String)earnestMoneyEntity.getGetEarnestMoney());
-                            tvBeAddFriend.setText(earnestMoneyEntity.getBeToAdd());
-                            tvAppointment.setText((String)earnestMoneyEntity.getAppointment());
-                            tvBeInvite.setText((String)earnestMoneyEntity.getBeInvite());
-                            tvBeMiss.setText((String)earnestMoneyEntity.getNoAppointment());
-                        }catch (NullPointerException e){
-                            Log.e(TAG, "onHandleSuccess: "+e.getMessage() );
+                        if (earnestMoneyEntity.getPayEarnestMoney() == null) {
+                            tvEarnestMoney.setText("0");
+                        } else {
+                            tvEarnestMoney.setText((String) earnestMoneyEntity.getPayEarnestMoney());
+                        }
+                        if (earnestMoneyEntity.getGetEarnestMoney() == null) {
+                            tvGetMoney.setText("0");
+                        } else {
+                            tvGetMoney.setText((String) earnestMoneyEntity.getGetEarnestMoney());
+                        }
+                        if (earnestMoneyEntity.getBeToAdd() == 0) {
+                            tvBeAddFriend.setText("0");
+                        } else {
+                            tvBeAddFriend.setText(earnestMoneyEntity.getBeToAdd()+"");
+                        }
+                        if (earnestMoneyEntity.getAppointment() == null) {
+                            tvAppointment.setText("0");
+                        } else {
+                            tvAppointment.setText((String) earnestMoneyEntity.getAppointment());
+                        }
+                        if (earnestMoneyEntity.getBeInvite() == null) {
+                            tvBeInvite.setText("0");
+                        } else {
+                            tvBeInvite.setText((String) earnestMoneyEntity.getBeInvite());
+                        }
+                        if (earnestMoneyEntity.getNoAppointment() == null) {
+                            tvBeMiss.setText("0");
+                        }else{
+                            tvBeMiss.setText((String) earnestMoneyEntity.getNoAppointment());
                         }
                     }
                 });

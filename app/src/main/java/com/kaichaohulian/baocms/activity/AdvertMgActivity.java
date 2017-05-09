@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -73,9 +74,17 @@ public class AdvertMgActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
+        lvAdvertmanager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), AdverDetailActivity.class);
+                intent.putExtra("advertId", DataList.get(i).id);
+                startActivity(intent);
+            }
+        });
         lvAdvertmanager.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 final String[] cities = {"删除",};
                 //    设置一个下拉的列表选择项
@@ -86,7 +95,7 @@ public class AdvertMgActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
-                        DeleteAdvert(advertId);
+                        DeleteAdvert(advertId,i);
                     }
                 });
                 builder.show();
@@ -95,12 +104,13 @@ public class AdvertMgActivity extends BaseActivity {
         });
     }
 
-    private void DeleteAdvert(String advertId){
+    private void DeleteAdvert(String advertId, final int position){
         RetrofitClient.getInstance().createApi().DeleteAdvert(MyApplication.getInstance().UserInfo.getUserId(), Long.parseLong(advertId))
         .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
         .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
             @Override
             protected void onHandleSuccess(CommonEntity commonEntity) {
+                DataList.remove(position);
                 Toast.makeText(AdvertMgActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
                 adapter.notifyDataSetChanged();
             }

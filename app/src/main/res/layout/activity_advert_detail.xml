@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@mipmap/rounded_rectangle"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:padding="10dp">
 
@@ -46,7 +46,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:text="120位收件人:\nasdfasdfasdfasdfasdfasdfaddddddddddddddddddddddddsdf"
-                    android:textColor="#CCCCCC"
+                    android:textColor="@color/zy_text_gray"
                     android:textSize="12sp" />
 
                 <TextView
@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="支付费用：2元"
-                    android:textColor="#CCCCCC"
+                    android:textColor="@color/zy_text_gray"
                     android:textSize="12sp" />
 
                 <View
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/img_advertmass"
                     android:text="生活在左 真丝连衣裙"
-                    android:textColor="@color/black"
+                    android:textColor="@color/zy_text_black"
                     android:textSize="16sp" />
 
                 <TextView
@@ -79,17 +79,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="花开堪折直须折，莫待无花空折枝"
-                    android:textColor="@color/zy_text_gray"
+                    android:textColor="@color/zy_text_color"
                     android:textSize="12sp" />
 
                 <ImageView
 
                     android:id="@+id/img_detailadvert"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="180dp"
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="5dp"
-                    android:src="@mipmap/default_advertmass" />
+                    android:src="@mipmap/default_advertmass"
+                    android:scaleType="fitXY"
+                    />
 
             </LinearLayout>
 

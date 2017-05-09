@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_invitationmg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context="com.kaichaohulian.baocms.activity.InvitationmgActivity">
 
     <include layout="@layout/title_project" />
 
     <android.support.design.widget.TabLayout
+        android:background="@color/white"
         android:id="@+id/tab_invationMg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/zy_orange">
 
     </android.support.design.widget.TabLayout>
 

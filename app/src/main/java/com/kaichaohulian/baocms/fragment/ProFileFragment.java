@@ -123,7 +123,7 @@ public class ProFileFragment extends BaseFragment {
                 break;
             //邀请管理
             case R.id.me_relativelayout_invitationManager:
-//                ActivityUtil.next(getActivity(), InvitationmgActivity.class);
+                ActivityUtil.next(getActivity(), InvitationmgActivity.class);
                 break;
             //相册
             case R.id.me_relativelayout_album:

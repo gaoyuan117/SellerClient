@@ -23,9 +23,11 @@ public class Url {
 
     public static final String PIC_ROOT = "http://www.maijia01.com/";
 
-    /***********用户信息*/
+    /***********
+     * 用户信息
+     */
     //获取诚意金 被加好友 被邀请 赴约 爽约 信息
-    public static final String GetSomeInfoForFriend=BASE_URL+"users/getOtherByPhone.do";
+    public static final String GetSomeInfoForFriend = BASE_URL + "users/getOtherByPhone.do";
     //修改个人信息
     public static final String changePersonalInformation = BASE_URL + "users/updateUser.do";
     //根据手机号获取用户信息
@@ -36,11 +38,13 @@ public class Url {
     public static final String deleteCard = BASE_URL + "users/banks/deleteCard.do";
 
 
-    /**********密码相关*/
+    /**********
+     * 密码相关
+     */
     //修改登录密码
-    public static final String ChangePassWord=BASE_URL+"users/editPassword.do";
+    public static final String ChangePassWord = BASE_URL + "users/editPassword.do";
     //设置加好友所需金额
-    public static final String SetNeedPay=BASE_URL+"users/addNeedPay.do";
+    public static final String SetNeedPay = BASE_URL + "users/addNeedPay.do";
     //忘记密码
     public static final String forgetPassword = BASE_URL + "users/forgetPassword.do";
     //设置支付密码
@@ -48,9 +52,9 @@ public class Url {
     //验证支付密码
     public static final String verificatPassword = BASE_URL + "users/verificationpassword.do";
     //忘记支付密码
-    public static final String ForGetPayWord=BASE_URL+"users/forgetPayPassword.do";
+    public static final String ForGetPayWord = BASE_URL + "users/forgetPayPassword.do";
     //修改支付密码
-    public static final String ChangePayWord=BASE_URL+"users/editPayPassword.do";
+    public static final String ChangePayWord = BASE_URL + "users/editPayPassword.do";
     //发送验证码
     public static final String sendMessage = BASE_URL + "users/sendMessage.do";
     //注册账号
@@ -58,19 +62,30 @@ public class Url {
     //登录
     public static final String signIn = BASE_URL + "users/signIn.do";
 
-    /*********广告相关*/
+    /*********
+     * 广告相关
+     */
     //好友群发
-    public static final String Sendadviertisement=BASE_URL+"adviertisement/release.do";
+    public static final String Sendadviertisement = BASE_URL + "adviertisement/release.do";
     //我发送的广告
-    public static final String GetMyadviertisement=BASE_URL+"adviertisement/getMyAdvert.do";
+    public static final String GetMyadviertisement = BASE_URL + "adviertisement/getMyAdvert.do";
     //用户个人收到的广告
-    public static final String Getadviertisement=BASE_URL+"adviertisement/getAdvert.do";
+    public static final String Getadviertisement = BASE_URL + "adviertisement/getAdvert.do";
     //广告详情
-    public static final String GetadvertDetail=BASE_URL+"adviertisement/getAdvertDetail.do";
+    public static final String GetadvertDetail = BASE_URL + "adviertisement/getAdvertDetail.do";
     //删除广告
-    public static final String DeleteAdvert=BASE_URL+"adviertisement/ delAdvert.do";
+    public static final String DeleteAdvert = BASE_URL + "adviertisement/ delAdvert.do";
     //其他群发
-    public static final String SendAdviertOfOther=BASE_URL+"adviertisement/getUser.do";
+    public static final String SendAdviertOfOther = BASE_URL + "adviertisement/getUser.do";
+
+
+    /****************
+     * **邀请相关*****
+     **************/
+    //获取我发起的邀请
+    public static final String getMyInvite=BASE_URL+"invite/getMyInvite.do";
+    //获取我参与的邀请
+    public static final String GetMyJoinInvite=BASE_URL+"invite/getInvite.do";
 
 
     //获取客服列表
@@ -78,10 +93,12 @@ public class Url {
     //获取城市列表
     public static final String GetCityList = BASE_URL + "area/getCity.do";
     //获取七牛配置
-    public static final String GetQiNiuConFig=BASE_URL+"qiniu/getQiniu.do";
+    public static final String GetQiNiuConFig = BASE_URL + "qiniu/getQiniu.do";
 
 
-    /************相册相关*/
+    /************
+     * 相册相关
+     */
     // 对朋友圈进行评论和回复
     public static final String evaulate = BASE_URL + "circleFriends/evaulate.do";
     // 对朋友圈点赞或取消点赞
@@ -99,7 +116,6 @@ public class Url {
     //钱包
     // 获取已绑定银行卡
     public static final String getBindCard = BASE_URL + "users/banks/getbindCard.do";
-
 
 
     // 获取我的商家和好友商家
@@ -144,7 +160,6 @@ public class Url {
 
     // 充值
     public static final String recharge = BASE_URL + "orders/gotopay.do";
-
 
 
     // 转账
