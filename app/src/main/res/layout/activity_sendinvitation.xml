@@ -26,8 +26,9 @@
 
             <ImageView
                 android:id="@+id/img_reciver_sendInvition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
@@ -61,8 +62,9 @@
 
             <ImageView
                 android:id="@+id/img_sendInvitionNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
@@ -111,8 +113,9 @@
 
             <ImageView
                 android:id="@+id/img_title_sendInvition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
@@ -157,11 +160,12 @@
 
             <ImageView
                 android:id="@+id/img_InvitionPay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:src="@mipmap/money_invite" />
 
             <TextView
@@ -208,11 +212,12 @@
 
             <ImageView
                 android:id="@+id/img_Invitiontime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:src="@mipmap/shiijan_invite" />
 
             <TextView
@@ -257,11 +262,12 @@
 
             <ImageView
                 android:id="@+id/img_responsetime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:src="@mipmap/trueshijian_invite" />
 
             <TextView
@@ -297,11 +303,12 @@
 
             <ImageView
                 android:id="@+id/img_Activity_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:src="@mipmap/address_invite" />
 
             <TextView
@@ -325,7 +332,7 @@
             android:id="@+id/tv_actaddress"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="15dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:text="海淀区西二旗上地三街"
