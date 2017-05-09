@@ -1193,7 +1193,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.Setpayword"/>
+        <activity android:name=".activity.Setpayword" />
+        <activity android:name=".activity.Invite2Activity"/>
     </application>
 
 </manifest>

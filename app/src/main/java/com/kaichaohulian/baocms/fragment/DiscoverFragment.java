@@ -4,30 +4,19 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.UpdateLocationService;
 import com.kaichaohulian.baocms.activity.AdverActivity;
+import com.kaichaohulian.baocms.activity.Invite2Activity;
 import com.kaichaohulian.baocms.activity.NearbyZyActivity;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
-import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
-import com.kaichaohulian.baocms.entity.GreetBean;
-import com.kaichaohulian.baocms.http.HttpResult;
-import com.kaichaohulian.baocms.retrofit.RetrofitClient;
-import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
-import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.view.zxing.activity.CaptureActivity;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,7 +73,8 @@ public class DiscoverFragment extends BaseFragment {
                 break;
 
             case R.id.rl_discover_invite://邀请信息
-
+//                startActivity(new Intent(getActivity(), DiscoverInviteActivity2.class));
+                startActivity(new Intent(getActivity(), Invite2Activity.class));
                 break;
 
             case R.id.rl_discover_scan://扫一扫
@@ -98,8 +88,6 @@ public class DiscoverFragment extends BaseFragment {
                 break;
         }
     }
-
-
 
 
     @Override
