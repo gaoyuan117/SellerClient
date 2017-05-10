@@ -77,7 +77,7 @@ public class AdvertMgActivity extends BaseActivity {
         lvAdvertmanager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), AdverDetailActivity.class);
+                Intent intent = new Intent(getActivity(), AdvertDetail.class);
                 intent.putExtra("advertId", DataList.get(i).id);
                 startActivity(intent);
             }
@@ -106,15 +106,15 @@ public class AdvertMgActivity extends BaseActivity {
 
     private void DeleteAdvert(String advertId, final int position){
         RetrofitClient.getInstance().createApi().DeleteAdvert(MyApplication.getInstance().UserInfo.getUserId(), Long.parseLong(advertId))
-        .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
-        .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
-            @Override
-            protected void onHandleSuccess(CommonEntity commonEntity) {
-                DataList.remove(position);
-                Toast.makeText(AdvertMgActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged();
-            }
-        });
+                .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(CommonEntity commonEntity) {
+                        DataList.remove(position);
+                        Toast.makeText(AdvertMgActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                        adapter.notifyDataSetChanged();
+                    }
+                });
     }
 
 }

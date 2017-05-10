@@ -67,11 +67,9 @@ public class ReleaseAdvertActivity extends BaseActivity {
     private List<String> list;
     private ImageBaseAdapter ImageBaseAdapter;
     int index = 0;
-
-    private StringBuffer img=new StringBuffer();
-    private StringBuffer ids=new StringBuffer();
     private int payMoney=2;
-
+    private StringBuffer img = new StringBuffer();
+    private StringBuffer ids = new StringBuffer();
 
     @Override
     public void setContent() {
@@ -113,7 +111,6 @@ public class ReleaseAdvertActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 new PayDialog(getActivity()).setMessage("本次群发需要支付2元手续费").setSureClick(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -122,8 +119,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
                         startActivityForResult(intent,PAY_CODE);
                     }
                 }).showDialog();
-
-
+                InServer();
             }
         });
     }
@@ -263,11 +259,12 @@ public class ReleaseAdvertActivity extends BaseActivity {
         if (!img.equals("")) {
             map.put("images", img.toString().trim());
         }
-
+        map.put("ids",getIntent().getStringExtra("ids"));
+        map.put("pay",payMoney+"");
+        map.put("redMoney","5");
         map.put("ids", getIntent().getStringExtra("ids"));
         map.put("pay", "4");
         map.put("redMoney", "5");
-
         RetrofitClient.getInstance().createApi().ReleaseAdvert(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
                 .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
