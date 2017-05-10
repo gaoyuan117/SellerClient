@@ -3,6 +3,7 @@ package com.kaichaohulian.baocms.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,6 @@ import butterknife.OnClick;
 public class ProFileFragment extends BaseFragment {
 
 
-
     private TextView me_head_name;
     private TextView me_buyer_number;
 
@@ -54,7 +54,7 @@ public class ProFileFragment extends BaseFragment {
     @Override
     public void setContent() {
         mView = LayoutInflater.from(getContext()).inflate(R.layout.me_layout, null);
-        ButterKnife.bind(this,mView);
+        ButterKnife.bind(this, mView);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class ProFileFragment extends BaseFragment {
         String userid = String.valueOf(MyApplication.getInstance().UserInfo.getUserId());
 
         if (!TextUtils.isEmpty(userid) && !"null".equals(userid)) {
-            me_buyer_number.setText("ID:"+userid);
+            me_buyer_number.setText("ID:" + userid);
         } else {
             me_buyer_number.setText("暂未获取到账号");
         }
@@ -123,7 +123,9 @@ public class ProFileFragment extends BaseFragment {
                 break;
             //邀请管理
             case R.id.me_relativelayout_invitationManager:
-                ActivityUtil.next(getActivity(), InvitationmgActivity.class);
+                Intent intent = new Intent(getActivity(),InvitationmgActivity.class);
+                intent.putExtra("type","my");
+                startActivity(intent);
                 break;
             //相册
             case R.id.me_relativelayout_album:
