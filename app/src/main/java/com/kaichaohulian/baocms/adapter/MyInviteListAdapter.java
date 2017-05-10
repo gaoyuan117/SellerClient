@@ -24,10 +24,6 @@ public class MyInviteListAdapter extends BaseListAdapter {
         super(context, data);
     }
 
-    @Override
-    public int getCount() {
-        return 5;
-    }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {

@@ -45,16 +45,29 @@ public class MeNameEditActivity extends BaseActivity {
     public void initView() {
         editTextName = getId(R.id.me_name_edittext);
         btnSave = getId(R.id.btn_save);
-        if (StringUtils.isEmpty(mTitleName)) {
-            setCenterTitle("我的姓名");
-        } else {
-            setCenterTitle("修改" + mTitleName);
-            if (mTitleName.equals("群公告")) {
-                editTextName.getLayoutParams().height *= 3;
-                editTextName.setFilters(new InputFilter[]{new InputFilter.LengthFilter(500)});
-            }
-            editTextName.setHint("请输入" + mTitleName);
+        switch (mTitleName){
+            case "setName":
+                setCenterTitle("我的姓名");
+                editTextName.setHint("请输入您的昵称");
+                break;
+            case "setJob":
+                setCenterTitle("我的职业");
+                editTextName.setHint("请输入您的职业");
+                break;
+            case "setHobby":
+                setCenterTitle("我的爱好");
+                editTextName.setHint("请输入您的爱好");
+                break;
+            default:
+                setCenterTitle("修改" + mTitleName);
+                if (mTitleName.equals("群公告")) {
+                    editTextName.getLayoutParams().height *= 3;
+                    editTextName.setFilters(new InputFilter[]{new InputFilter.LengthFilter(500)});
+                }
+                editTextName.setHint("请输入" + mTitleName);
+                break;
         }
+
     }
 
     @Override
@@ -65,7 +78,7 @@ public class MeNameEditActivity extends BaseActivity {
                 if (!(TextUtils.isEmpty(editTextName.getText()))) {
                     String txt = editTextName.getText().toString();
                     Intent intent = new Intent();
-                    intent.putExtra("name", txt);
+                    intent.putExtra("result", txt);
                     setResult(RESULT_OK, intent);
 
                     finish();

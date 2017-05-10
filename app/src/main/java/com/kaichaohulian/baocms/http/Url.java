@@ -82,10 +82,12 @@ public class Url {
     /****************
      * **邀请相关*****
      **************/
+    //发起邀请
+    public static final String SendInvite=BASE_URL+"invite/release.do";
     //获取我发起的邀请
-    public static final String getMyInvite=BASE_URL+"invite/getMyInvite.do";
+    public static final String getMyInvite = BASE_URL + "invite/getMyInvite.do";
     //获取我参与的邀请
-    public static final String GetMyJoinInvite=BASE_URL+"invite/getInvite.do";
+    public static final String GetMyJoinInvite = BASE_URL + "invite/getInvite.do";
 
 
     //获取客服列表

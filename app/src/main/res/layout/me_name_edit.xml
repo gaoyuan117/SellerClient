@@ -14,14 +14,14 @@
         android:background="@color/white"
         android:paddingLeft="@dimen/dimens_16"
         android:layout_marginTop="15dp"
-        android:hint="请输入昵称"
+
         android:maxLength="28" />
 
     <Button
         android:id="@+id/btn_save"
         android:layout_width="120dp"
         android:layout_height="35dp"
-        android:background="@mipmap/deepgreen_bar"
+        android:background="@mipmap/deeporange_bar_part"
         android:layout_alignParentRight="true"
         android:text="保存"
         android:textColor="@color/white"

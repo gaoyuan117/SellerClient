@@ -280,7 +280,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/edt_responsetime"
+                android:id="@+id/tv_responsetime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -328,14 +328,14 @@
             android:layout_height="0.5dp"
             android:background="@color/line" />
 
-        <TextView
-            android:id="@+id/tv_actaddress"
+        <EditText
+            android:id="@+id/edt_actaddress"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_marginLeft="15dp"
+            android:paddingLeft="15dp"
+            android:drawableLeft="@mipmap/address_img"
             android:background="@color/white"
             android:gravity="center_vertical"
-            android:text="海淀区西二旗上地三街"
             android:textSize="12sp" />
 
     </LinearLayout>

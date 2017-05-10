@@ -1,6 +1,7 @@
 package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -63,30 +64,59 @@ public class AdvertMassSelectActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        setCenterTitle("好友群发");
-        TextView tv = setRightTitle("下一步");
-        tv.setBackgroundResource(R.mipmap.rounded_rectangle);
-        tv.setTextColor(getResources().getColor(R.color.ccp_green_alpha));
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                StringBuffer buffer=new StringBuffer();
-                HashSet set=new HashSet();
-                set=adapter.GetSet();
-                if(set.size()==0){
-                    Toast.makeText(AdvertMassSelectActivity.this, "请选择要群发的好友", Toast.LENGTH_SHORT).show();
-                    return;
+        if(getIntent().getBooleanExtra("JustSelect",false)){
+            setCenterTitle(getIntent().getStringExtra("title"));
+            TextView tv = setRightTitle("确定");
+            tv.setBackgroundResource(R.mipmap.rounded_rectangle);
+            tv.setTextColor(getResources().getColor(R.color.ccp_green_alpha));
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    StringBuffer buffer=new StringBuffer();
+                    HashSet set=new HashSet();
+                    set=adapter.GetSet();
+                    if(set.size()==0){
+                        Toast.makeText(AdvertMassSelectActivity.this, "请选择要群发的好友", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Iterator<ContactFriendsEntity> iterator = set.iterator();
+                    if(iterator.hasNext()){
+                        buffer.append(iterator.next().getId()+",");
+                    }
+                    buffer.append(MyApplication.getInstance().UserInfo.getUserId());
+                    Intent intent=new Intent();
+                    intent.putExtra("ids",buffer.toString());
+                    setResult(RESULT_OK,intent);
+                    finish();
                 }
-                Iterator<ContactFriendsEntity> iterator = set.iterator();
-                if(iterator.hasNext()){
-                    buffer.append(iterator.next().getId()+",");
+            });
+        }else{
+            setCenterTitle("好友群发");
+            TextView tv = setRightTitle("下一步");
+            tv.setBackgroundResource(R.mipmap.rounded_rectangle);
+            tv.setTextColor(getResources().getColor(R.color.ccp_green_alpha));
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    StringBuffer buffer=new StringBuffer();
+                    HashSet set=new HashSet();
+                    set=adapter.GetSet();
+                    if(set.size()==0){
+                        Toast.makeText(AdvertMassSelectActivity.this, "请选择要群发的好友", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Iterator<ContactFriendsEntity> iterator = set.iterator();
+                    if(iterator.hasNext()){
+                        buffer.append(iterator.next().getId()+",");
+                    }
+                    buffer.append(MyApplication.getInstance().UserInfo.getUserId());
+                    Intent intent=new Intent(getActivity(),ReleaseAdvertActivity.class);
+                    intent.putExtra("ids",buffer.toString());
+                    startActivity(intent);
                 }
-                buffer.append(MyApplication.getInstance().UserInfo.getUserId());
-                Intent intent=new Intent(getActivity(),ReleaseAdvertActivity.class);
-                intent.putExtra("ids",buffer.toString());
-                startActivity(intent);
-            }
-        });
+            });
+        }
+
     }
 
     @Override

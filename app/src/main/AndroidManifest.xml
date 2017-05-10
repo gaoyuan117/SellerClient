@@ -1165,7 +1165,9 @@
         <activity android:name=".activity.AddfriendPay" />
         <activity android:name=".activity.OnlineServiceActivity" />
         <activity android:name=".activity.SendinvitationActivity" />
-        <activity android:name=".activity.InvitationmgActivity" android:theme="@style/AppThemeprice" />
+        <activity
+            android:name=".activity.InvitationmgActivity"
+            android:theme="@style/AppThemeprice" />
         <activity android:name=".activity.AdvertMassSelectActivity" />
         <activity android:name=".activity.AdvertOtherActivity" />
         <activity android:name=".activity.ReleaseAdvertActivity" />
@@ -1188,15 +1190,13 @@
         <activity android:name=".activity.AdverActivity" />
         <activity android:name=".activity.AdverDetailActivity" />
 
-
-
-
         <service
             android:name=".UpdateLocationService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.Setpayword"></activity>
+        <activity android:name=".activity.Setpayword" />
+        <activity android:name=".activity.InvitedetailActivity"></activity>
     </application>
 
 </manifest>

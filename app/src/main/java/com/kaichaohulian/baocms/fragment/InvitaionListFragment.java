@@ -70,7 +70,6 @@ public class InvitaionListFragment extends BaseFragment {
     public void LoadData(){
         switch (getArguments().getInt("type")){
             case InvitationmgActivity.MY_SEND:
-                Toast.makeText(context, "我发起的", Toast.LENGTH_SHORT).show();
                 RetrofitClient.getInstance().createApi().getMyInvite(MyApplication.getInstance().UserInfo.getUserId(), index)
                         .compose(RxUtils.<HttpArray<MyInviteEntity>>io_main())
                         .subscribe(new BaseListObserver<MyInviteEntity>(getActivity(), "加载中...") {
@@ -78,11 +77,13 @@ public class InvitaionListFragment extends BaseFragment {
                             protected void onHandleSuccess(List<MyInviteEntity> list) {
                                 dataList.addAll(list);
                                 adapter.notifyDataSetChanged();
+                                if(list==null){
+                                    Toast.makeText(context, "暂无邀请", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
                 break;
             case InvitationmgActivity.MY_JOIN:
-                Toast.makeText(context, "我参与的", Toast.LENGTH_SHORT).show();
                 RetrofitClient.getInstance().createApi().GetMyJoinInvite(MyApplication.getInstance().UserInfo.getUserId(), index)
                         .compose(RxUtils.<HttpArray<MyInviteEntity>>io_main())
                         .subscribe(new BaseListObserver<MyInviteEntity>(getActivity(), "加载中...") {
@@ -90,6 +91,9 @@ public class InvitaionListFragment extends BaseFragment {
                             protected void onHandleSuccess(List<MyInviteEntity> list) {
                                 dataList.addAll(list);
                                 adapter.notifyDataSetChanged();
+                                if(list==null){
+                                    Toast.makeText(context, "暂无邀请", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
                 break;

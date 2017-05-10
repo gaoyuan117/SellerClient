@@ -190,7 +190,7 @@ public class PersonalActivity extends BaseActivity {
         }
         //设置职业
         if (userinfo.getJob() != null && !userinfo.getJob().equals("null")) {
-            if (personalJob.getText().equals(userinfo.getJob()))
+            if (!personalJob.getText().equals(userinfo.getJob()))
                 personalJob.setText(userinfo.getJob());
         } else {
             personalJob.setText("未知");
@@ -273,9 +273,24 @@ public class PersonalActivity extends BaseActivity {
                     if (data == null) {
                         return;
                     }
-                    edtName = data.getStringExtra("name");
+                    edtName = data.getStringExtra("result");
                     personalName.setText(edtName);
                     updateMyUser(SET_NAME);
+                    break;
+
+                case SET_JOB:
+                    if (data == null) {
+                        return;
+                    }
+                    personalJob.setText(data.getStringExtra("result"));
+                    updateMyUser(SET_JOB);
+                    break;
+                case SET_HOBBY:
+                    if (data == null) {
+                        return;
+                    }
+                    personalHobby.setText(data.getStringExtra("result"));
+                    updateMyUser(SET_HOBBY);
                     break;
 
                 case SET_SIGN:
@@ -346,10 +361,10 @@ public class PersonalActivity extends BaseActivity {
                 map.put("age", personalAge.getText().toString().trim());
                 break;
             case SET_JOB:
-
+                map.put("job",personalJob.getText().toString().trim());
                 break;
             case SET_HOBBY:
-
+                map.put("hobby",personalHobby.getText().toString().trim());
                 break;
             case SET_LOC:
                 map.put("districtName", personalAddress.getText().toString());
@@ -629,6 +644,7 @@ public class PersonalActivity extends BaseActivity {
             case R.id.name_linear:
                 Intent intent = new Intent();
                 intent.setClass(PersonalActivity.this, MeNameEditActivity.class);
+                intent.putExtra("mTitleName","setName");
                 startActivityForResult(intent, SET_NAME);
                 break;
             case R.id.sexy_linear:
@@ -654,8 +670,16 @@ public class PersonalActivity extends BaseActivity {
                 }
                 break;
             case R.id.personal_job_linear:
+                Intent intentjob = new Intent();
+                intentjob.setClass(PersonalActivity.this, MeNameEditActivity.class);
+                intentjob.putExtra("mTitleName","setJob");
+                startActivityForResult(intentjob, SET_JOB);
                 break;
             case R.id.personal_hobby_linear:
+                Intent intenthobby = new Intent();
+                intenthobby.setClass(PersonalActivity.this, MeNameEditActivity.class);
+                intenthobby.putExtra("mTitleName","setHobby");
+                startActivityForResult(intenthobby,SET_HOBBY);
                 break;
             case R.id.address_linear:
 //                ActivityUtil.next(PersonalActivity.this, MeAddressListActivity.class);

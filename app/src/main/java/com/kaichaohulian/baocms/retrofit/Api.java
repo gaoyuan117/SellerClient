@@ -19,6 +19,7 @@ import com.kaichaohulian.baocms.http.HttpArray;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.Url;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -163,9 +164,12 @@ public interface Api {
     //获取我发起的邀请
     @GET(Url.getMyInvite)
     Observable<HttpArray<MyInviteEntity>> getMyInvite(@Query("userId") long id, @Query("page") int page);
+    //获取我参与的邀请
     @GET(Url.GetMyJoinInvite)
     Observable<HttpArray<MyInviteEntity>> GetMyJoinInvite(@Query("userId") long id, @Query("page") int page);
-
+    //发起邀请
+    @GET(Url.SendInvite)
+    Observable<HttpResult<CommonEntity>> SendInvite(@QueryMap Map<String,String> map);
 
 
 //    @GET(Url.MyAlbum)
