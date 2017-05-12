@@ -77,7 +77,7 @@ public class AdvertMgActivity extends BaseActivity {
         lvAdvertmanager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), AdvertDetail.class);
+                Intent intent = new Intent(getActivity(), AdverDetailActivity.class);
                 intent.putExtra("advertId", DataList.get(i).id);
                 startActivity(intent);
             }

@@ -1089,7 +1089,7 @@
 
         <!--
              备注：Push相关的android组件需要添加到业务的AndroidManifest.xml,
-            Push相关android组件运行在另外一个进程是为了防止Push服务异常而影响主业务
+        	 Push相关android组件运行在另外一个进程是为了防止Push服务异常而影响主业务
         -->
 
 
@@ -1172,7 +1172,6 @@
         <activity android:name=".activity.AdvertOtherActivity" />
         <activity android:name=".activity.ReleaseAdvertActivity" />
         <activity android:name=".activity.AdvertDetail" />
-
         <!-- gy -->
         <activity android:name=".activity.FriendInfoActivity" />
         <activity android:name=".activity.PayActivity" />
@@ -1196,16 +1195,7 @@
             android:exported="true" />
 
         <activity android:name=".activity.Setpayword" />
-        <activity android:name=".activity.Invite2Activity" />
-
-        <service
-            android:name=".UpdateLocationService"
-            android:enabled="true"
-            android:exported="true" />
-
-
-        <activity android:name=".activity.InvitedetailActivity"></activity>
-
+        <activity android:name=".activity.DiscoverInvitedDetailActivity"></activity>
     </application>
 
 </manifest>

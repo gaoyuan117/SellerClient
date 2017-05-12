@@ -471,20 +471,17 @@
                 android:id="@+id/img_friend_info_img1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginRight="4dp"
-                android:src="@color/blue"/>
+                android:layout_marginRight="4dp"/>
             <ImageView
                 android:id="@+id/img_friend_info_img2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginRight="4dp"
-                android:src="@color/blue"/>
+                android:layout_marginRight="4dp"/>
             <ImageView
                 android:id="@+id/img_friend_info_img3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginRight="4dp"
-                android:src="@color/blue"/>
+                android:layout_marginRight="4dp"/>
 
             <View
                 android:layout_width="1dp"

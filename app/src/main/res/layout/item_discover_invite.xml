@@ -37,7 +37,7 @@
         android:layout_toRightOf="@+id/img_item_disvover_invite_avatar"
         android:ellipsize="end"
         android:maxWidth="80dp"
-        android:text="邀请"
+        android:text="未知"
         android:textColor="@color/zy_text_color" />
 
     <TextView
@@ -51,7 +51,7 @@
         android:layout_toRightOf="@+id/img_item_disvover_invite_avatar"
         android:ellipsize="end"
         android:lines="1"
-        android:text="邀请详情"
+        android:text=""
         android:textColor="@color/zy_text_black" />
 
     <TextView
@@ -61,7 +61,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="2dp"
         android:layout_toRightOf="@+id/tv_item_discover_invite_name"
-        android:text="4月12日 12：30"
+        android:text=""
         android:textColor="@color/zy_text_gray"
         android:textSize="11sp" />
 
@@ -72,7 +72,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="2dp"
-        android:text="剩余30分0秒"
+        android:text="剩余0秒"
         android:textColor="@color/zy_text_blue"
         android:textSize="12sp" />
 
@@ -96,7 +96,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_item_adver_lingqu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -114,18 +113,18 @@
 
             <Button
                 android:id="@+id/bt_item_discover_invite_refuse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="22dp"
                 android:layout_gravity="center_vertical"
                 android:background="@mipmap/add_friends"
-                android:text="接受"
+                android:text="拒绝"
                 android:textColor="@color/zy_text_blue"
                 android:textSize="12sp" />
 
             <Button
                 android:id="@+id/bt_item_discover_invite_receive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="22dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:background="@mipmap/blue_bt"
