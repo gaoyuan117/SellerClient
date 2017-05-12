@@ -34,17 +34,23 @@ public class InvitedAdapter extends BaseQuickAdapter<InvitedBean, BaseViewHolder
             Glide.with(MyApplication.getInstance())
                     .load(item.getAvatar())
                     .error(R.mipmap.default_useravatar)
-                    .into((ImageView) helper.getView(R.id.img_item_my_invite_avatar));
+                    .into((ImageView) helper.getView(R.id.img_item_discover_invite_avatar2));
             ImageView imgChat = helper.getView(R.id.img_item_discover_invite_red_chat);
             ImageView imgArrow = helper.getView(R.id.img_item_discover_invite_arrow);
             LinearLayout layout = helper.getView(R.id.ll_item_discover_invite);
             TextView tvState = helper.getView(R.id.tv_item_discover_invite_state);
             long time = (getTimeStamp(item.getInvateTime()) - getTimeStamp(item.getCreatedTime())) / 1000;
-            String hasTime = getStrTime(time);//剩余时间
+            long time1 =getTimeStamp(item.getInvateTime())- new Date().getTime();
+            Log.e("gy","现在的时间："+new Date().getTime());
+            Log.e("gy","响应的时间："+getTimeStamp(item.getInvateTime()));
+            Log.e("gy","时间："+time1);
+            String hasTime = getStrTime(time1);//剩余时间
 
             helper.setText(R.id.tv_item_discover_invite_name, item.getNickName())
                     .setText(R.id.tv_item_discover_invite_time, item.getCreatedTime())
-                    .setText(R.id.tv_item_discover_invite_content, item.getTitle());
+                    .setText(R.id.tv_item_discover_invite_content, item.getTitle())
+                    .addOnClickListener(R.id.bt_item_discover_invite_refuse)
+                    .addOnClickListener(R.id.bt_item_discover_invite_receive);
 
             int status = item.getStatus();
             if (status == 0) {

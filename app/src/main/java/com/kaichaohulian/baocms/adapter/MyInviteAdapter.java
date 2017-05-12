@@ -12,6 +12,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.entity.MyInviteBean;
+import com.kaichaohulian.baocms.fragment.MyInviteFragment;
 
 import java.util.List;
 
@@ -20,18 +21,22 @@ import java.util.List;
  */
 
 public class MyInviteAdapter extends BaseQuickAdapter<MyInviteBean, BaseViewHolder> {
-    public MyInviteAdapter(int layoutResId, List<MyInviteBean> data) {
+    private MyInviteFragment myInviteFragment;
+
+    public MyInviteAdapter(int layoutResId, List<MyInviteBean> data,MyInviteFragment fragment) {
         super(layoutResId, data);
+        myInviteFragment = fragment;
     }
 
     @Override
     protected void convert(BaseViewHolder helper, MyInviteBean item) {
-        Glide.with(MyApplication.getInstance())
-                .load(item.getAvatar())
-                .error(R.mipmap.default_useravatar)
-                .into((ImageView) helper.getView(R.id.img_item_my_invite_avatar));
-
         try {
+
+            Glide.with(MyApplication.getInstance())
+                    .load(item.getAvatar())
+                    .error(R.mipmap.default_useravatar)
+                    .into((ImageView) helper.getView(R.id.img_item_my_invite_avatar));
+
             int status = item.getStatus();
             int userApplyStatus = item.getUserApplyStatus();
             TextView tvState = helper.getView(R.id.tv_item_my_invite_state);

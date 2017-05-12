@@ -196,7 +196,7 @@ public interface Api {
 
     //个人收到的广告
     @GET("adviertisement/getAdvert.do")
-    Observable<HttpArray<HasGetAdverBean>> hasGetAdver(@QueryMap Map<String, String> map);
+    Observable<HttpResult<HasGetAdverBean>> hasGetAdver(@QueryMap Map<String, String> map);
 
     //个人收到的广告详情
     @GET("adviertisement/getAdvertDetail.do")
@@ -216,7 +216,7 @@ public interface Api {
 
     //获取用户相册信息
     @GET("imageManager/getImages.do")
-    Observable<HttpResult<UserPhotoBean>> userPhotoInfo(@QueryMap Map<String, String> map);
+    Observable<UserPhotoBean> userPhotoInfo(@QueryMap Map<String, String> map);
 
     //用户失去网络状态或者退出时候清除用户当前位置信息
     @GET("business/clearLocations.do")
@@ -239,9 +239,7 @@ public interface Api {
     Observable<HttpResult<CommonEntity>> handlerApplication(@QueryMap Map<String, Object> map);
 
 
-
     //////////////////
-
     //邀请信息  我邀请的
     @GET("invite/getMyInviteInfo.do")
     Observable<HttpArray<MyInviteBean>> getMyDiscoverInvite(@QueryMap Map<String, Object> map);
@@ -250,5 +248,9 @@ public interface Api {
     @GET("invite/getBeInviteInfo.do")
     Observable<HttpArray<InvitedBean>> getDiscoverInvited(@QueryMap Map<String, Object> map);
 
+    //邀请 拒绝 接受
+
+    @GET("invite/acceptAndRefuse.do")
+    Observable<HttpResult<CommonEntity>> acceptOrRefuse(@QueryMap Map<String, Object> map);
 
 }

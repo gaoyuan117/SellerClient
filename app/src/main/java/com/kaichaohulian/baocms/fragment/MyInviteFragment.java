@@ -12,10 +12,14 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.adapter.MyInviteAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
+import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.entity.MyInviteBean;
 import com.kaichaohulian.baocms.http.HttpArray;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseListObserver;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.view.RecyclerViewDivider;
 
@@ -58,7 +62,7 @@ public class MyInviteFragment extends BaseFragment {
     public void initData() {
         loadMyInvite(1);
         mList = new ArrayList<>();
-        mAdapter = new MyInviteAdapter(R.layout.item_discover_my_invite, mList);
+        mAdapter = new MyInviteAdapter(R.layout.item_discover_my_invite, mList, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new RecyclerViewDivider(
                 getActivity(), LinearLayoutManager.VERTICAL, 10, ContextCompat.getColor(getActivity(), R.color.bg_color_gray)));
@@ -87,6 +91,9 @@ public class MyInviteFragment extends BaseFragment {
                         if (list == null) {
                             return;
                         }
+                        mList.clear();
+                        mList.addAll(list);
+                        mAdapter.notifyDataSetChanged();
                     }
                 });
     }

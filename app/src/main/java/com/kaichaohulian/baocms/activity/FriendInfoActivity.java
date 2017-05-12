@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.IntegerRes;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +40,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.functions.Consumer;
 
 public class FriendInfoActivity extends BaseActivity {
 
@@ -267,29 +269,6 @@ public class FriendInfoActivity extends BaseActivity {
                 });
     }
 
-    /**
-     * 获取用户相册信息
-     *
-     * @param uid
-     */
-    private void loadUserPhoto(String uid) {
-        map.clear();
-        map.put("id", uid + "");
-        map.put("page", "1");
-        RetrofitClient.getInstance().createApi().userPhotoInfo(map)
-                .compose(RxUtils.<HttpResult<UserPhotoBean>>io_main())
-                .subscribe(new BaseObjObserver<UserPhotoBean>(this) {
-                    @Override
-                    protected void onHandleSuccess(UserPhotoBean userPhotoBean) {
-                        setUserPhotoInfo(userPhotoBean);
-                    }
-                });
-    }
-
-    private void setUserPhotoInfo(UserPhotoBean userPhotoBean) {
-
-
-    }
 
     private void setInviteInfo(InviteInfoBean inviteInfoBean) {
         if (inviteInfoBean == null) {
@@ -297,17 +276,16 @@ public class FriendInfoActivity extends BaseActivity {
         }
         mFriendInfoGet.setText(inviteInfoBean.getGetEarnestMoney() == null ? "¥ " + 0 : "¥ " + inviteInfoBean.getGetEarnestMoney());
         mFriendInfoPay.setText(inviteInfoBean.getPayEarnestMoney() == null ? "¥ " + 0 : "¥ " + inviteInfoBean.getPayEarnestMoney());
-        mFriendInfoBeiyao.setText(inviteInfoBean.getBeInvite() == null ? "0" : "" + inviteInfoBean.getBeInvite());
-        mFriendInfoBeijia.setText(inviteInfoBean.getBeToAdd() == null ? "0" : "" + inviteInfoBean.getBeToAdd());
-        mFriendInfoFuyue.setText(inviteInfoBean.getAppointment() == null ? "0" : "" + inviteInfoBean.getAppointment());
-        mFriendInfoShaungyue.setText(inviteInfoBean.getNoAppointment() == null ? "0" : "" + inviteInfoBean.getNoAppointment());
+        mFriendInfoBeiyao.setText(inviteInfoBean.getBeInvite() == null ? "0" : (inviteInfoBean.getBeInvite() + "").replace(".0", ""));
+        mFriendInfoBeijia.setText(inviteInfoBean.getBeToAdd() == null ? "0" : (inviteInfoBean.getBeToAdd() + "").replace(".0", ""));
+        mFriendInfoFuyue.setText(inviteInfoBean.getAppointment() == null ? "0" : (inviteInfoBean.getAppointment() + "").replace(".0", ""));
+        mFriendInfoShaungyue.setText(inviteInfoBean.getNoAppointment() == null ? "0" : ("" + inviteInfoBean.getNoAppointment()).replace(".0", ""));
     }
 
     private void setBaseInfo(UserInfoBean userInfoBean) {
         if (userInfoBean == null) {
             return;
         }
-        loadUserPhoto(userInfoBean.getId() + "");
 
         Glide.with(MyApplication.getInstance())
                 .load(userInfoBean.getAvatar())
@@ -332,6 +310,14 @@ public class FriendInfoActivity extends BaseActivity {
             } else {
                 mPay.setText("加为好友");
             }
+        }
+
+        for (int i = 0; i < userInfoBean.getImages().size(); i++) {
+            String url = userInfoBean.getImages().get(i);
+            String replace = url.replace("\"", "");
+            String replace1 = replace.replace("\\", "");
+            Log.e("gy", "replace:" + url);
+            Glide.with(this).load(replace1).into(imgList.get(i));
         }
     }
 

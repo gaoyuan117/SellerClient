@@ -16,8 +16,10 @@ import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.HasGetAdverBean;
 import com.kaichaohulian.baocms.http.HttpArray;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseListObserver;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.util.TitleUtils;
 import com.kaichaohulian.baocms.view.RecyclerViewDivider;
@@ -42,7 +44,7 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
     @BindView(R.id.rv_adver)
     RecyclerView mRecyclerView;
 
-    private List<HasGetAdverBean> mList;
+    private List<HasGetAdverBean.AdvertListBean> mList;
     private AdverAdapter mAdapter;
 
     @Override
@@ -53,19 +55,25 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
 
     @Override
     public void initData() {
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getAdverList(1);
+
     }
 
     @Override
     public void initView() {
         new TitleUtils(this).setTitle("广告信息");
         mList = new ArrayList<>();
-        mAdapter = new AdverAdapter(R.layout.item_adver,mList);
+        mAdapter = new AdverAdapter(R.layout.item_adver, mList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView.addItemDecoration(new RecyclerViewDivider(
-                    this, LinearLayoutManager.VERTICAL, 10, ContextCompat.getColor(this, R.color.bg_color_gray)));
+                this, LinearLayoutManager.VERTICAL, 10, ContextCompat.getColor(this, R.color.bg_color_gray)));
     }
 
     @Override
@@ -78,6 +86,7 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_adver_close_notify:
+                llAdverNotify.setVisibility(View.GONE);
                 break;
             case R.id.rv_adver:
                 break;
@@ -86,25 +95,26 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        Intent intent = new Intent(this,AdverDetailActivity.class);
-        intent.putExtra("adverId",mList.get(position).getId()+"");
+        Intent intent = new Intent(this, AdverDetailActivity.class);
+        intent.putExtra("adverId", mList.get(position).getId() + "");
         startActivity(intent);
     }
 
-    private void getAdverList(int page){
-        map.put("userId", MyApplication.getInstance().UserInfo.getUserId()+"");
-        map.put("page",page+"");
+    private void getAdverList(int page) {
+        map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
+        map.put("page", page + "");
         RetrofitClient.getInstance().createApi().hasGetAdver(map)
-                .compose(RxUtils.<HttpArray<HasGetAdverBean>>io_main())
-                .subscribe(new BaseListObserver<HasGetAdverBean>(this,"加载中") {
+                .compose(RxUtils.<HttpResult<HasGetAdverBean>>io_main())
+                .subscribe(new BaseObjObserver<HasGetAdverBean>(this, "加载中") {
                     @Override
-                    protected void onHandleSuccess(List<HasGetAdverBean> list) {
-                        if(list==null){
+                    protected void onHandleSuccess(HasGetAdverBean hasGetAdverBean) {
+                        if (hasGetAdverBean.getAdvertList() == null) {
                             return;
                         }
                         mList.clear();
-                        mList.addAll(list);
+                        mList.addAll(hasGetAdverBean.getAdvertList());
                         mAdapter.notifyDataSetChanged();
+                        tvAdverNotifyInfo.setText("您有" + hasGetAdverBean.getNoReadCount() + "条未读消息");
                     }
                 });
     }
