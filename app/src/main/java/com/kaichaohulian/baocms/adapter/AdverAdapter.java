@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.adapter;
 
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -15,14 +16,14 @@ import java.util.List;
  * Created by gaoyuan on 2017/5/5.
  */
 
-public class AdverAdapter extends BaseQuickAdapter<HasGetAdverBean, BaseViewHolder> {
+public class AdverAdapter extends BaseQuickAdapter<HasGetAdverBean.AdvertListBean, BaseViewHolder> {
 
-    public AdverAdapter(int layoutResId, List<HasGetAdverBean> data) {
+    public AdverAdapter(int layoutResId, List<HasGetAdverBean.AdvertListBean> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, HasGetAdverBean item) {
+    protected void convert(BaseViewHolder helper, HasGetAdverBean.AdvertListBean item) {
         String[] split = item.getImage().split(",");
         GlideUtils.glideQiNiuAvatar(split[0],
                 (ImageView) helper.getView(R.id.img_item_adver_avatar2));
@@ -32,7 +33,11 @@ public class AdverAdapter extends BaseQuickAdapter<HasGetAdverBean, BaseViewHold
                 .setText(R.id.tv_iyem_adver_time, item.getCreatedTime());
 
         ImageView redChat = helper.getView(R.id.img_item_adver_red_chat);
-        //TODO 判断是否已读
+        if (item.getReadStatus() == 0) {
+            redChat.setVisibility(View.VISIBLE);
+        } else {
+            redChat.setVisibility(View.GONE);
+        }
 
     }
 }

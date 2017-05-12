@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_corner"
+    android:paddingBottom="12dp"
+    android:paddingLeft="13dp"
+    android:paddingRight="13dp"
+    android:paddingTop="13dp">
+
+    <ImageView
+        android:id="@+id/img_item_my_invite_avatar"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@mipmap/default_useravatar" />
+
+    <TextView
+        android:id="@+id/tv_item_my_invite_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/img_item_my_invite_avatar"
+        android:ellipsize="end"
+        android:maxWidth="80dp"
+        android:text="邀请"
+        android:textColor="@color/zy_text_color" />
+
+    <TextView
+        android:id="@+id/tv_item_my_invite_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img_item_my_invite_avatar"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_toRightOf="@+id/img_item_my_invite_avatar"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="邀请详情"
+        android:textColor="@color/zy_text_black" />
+
+    <TextView
+        android:id="@+id/tv_item_my_invite_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/tv_item_my_invite_name"
+        android:text="4月12日 12：30"
+        android:textColor="@color/zy_text_gray"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/tv_item_my_invite_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="2dp"
+        android:text="进行中"
+        android:textColor="@color/zy_text_blue"
+        android:textSize="12sp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/img_item_my_invite_avatar"
+        android:layout_marginTop="15dp"
+        android:background="#e1e1e1"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_item_adver_red"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_corner"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="查看详情"
+            android:textColor="@color/zy_text_color" />
+
+        <TextView
+            android:id="@+id/tv_item_my_invite_yn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="接受了您的邀请"
+            android:textColor="@color/zy_text_pink2"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</RelativeLayout>
+

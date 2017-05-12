@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.UpdateLocationService;
 import com.kaichaohulian.baocms.activity.AdverActivity;
-import com.kaichaohulian.baocms.activity.Invite2Activity;
+import com.kaichaohulian.baocms.activity.InvitationmgActivity;
 import com.kaichaohulian.baocms.activity.NearbyZyActivity;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
@@ -73,8 +73,9 @@ public class DiscoverFragment extends BaseFragment {
                 break;
 
             case R.id.rl_discover_invite://邀请信息
-//                startActivity(new Intent(getActivity(), DiscoverInviteActivity2.class));
-                startActivity(new Intent(getActivity(), Invite2Activity.class));
+                Intent intent2 = new Intent(getActivity(), InvitationmgActivity.class);
+                intent2.putExtra("type","discover");
+                startActivity(intent2);
                 break;
 
             case R.id.rl_discover_scan://扫一扫

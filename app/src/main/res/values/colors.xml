@@ -347,5 +347,7 @@
     <color name="zy_text_gray">#909090</color>
     <color name="zy_text_blue">#49b6f4</color>
     <color name="bg_color_gray">#f5f5f5</color>
+    <color name="zy_text_green">#54da4a</color>
+    <color name="zy_text_pink2">#fb5986</color>
 
 </resources>
