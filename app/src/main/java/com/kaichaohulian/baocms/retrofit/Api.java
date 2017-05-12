@@ -7,6 +7,7 @@ import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
 import com.kaichaohulian.baocms.entity.EarnestMoneyEntity;
 import com.kaichaohulian.baocms.entity.GreetBean;
 import com.kaichaohulian.baocms.entity.HasGetAdverBean;
+import com.kaichaohulian.baocms.entity.InviteDetailEntity;
 import com.kaichaohulian.baocms.entity.InviteInfoBean;
 import com.kaichaohulian.baocms.entity.InvitedBean;
 import com.kaichaohulian.baocms.entity.MyInviteBean;
@@ -85,7 +86,6 @@ public interface Api {
 
     //修改个人信息
     @GET(Url.changePersonalInformation)
-
     Observable<HttpResult> ChangeInfo(@QueryMap Map<String, String> map);
 
     //设置被加好友需要的金额
@@ -133,17 +133,9 @@ public interface Api {
     @GET(Url.SendAdviertOfOther)
     Observable<HttpArray<Integer>> ReleaseAdviertOfOther(@QueryMap Map<String, String> map);
 
-
-    /**************
-     * 钱包相关*****
-     * ***********/
-
-
-
     //删除好友
     @GET(Url.delete)
     Observable<HttpResult<CommonEntity>> deleteFriend(@QueryMap Map<String, String> map);
-
 
     //加入黑名单
     @GET("im/friend/defriend.do")
@@ -165,9 +157,9 @@ public interface Api {
     //获取我发起的邀请
     @GET(Url.getMyInvite)
     Observable<HttpArray<MyInviteEntity>> getMyInvite(@Query("userId") long id, @Query("page") int page);
+
     @GET(Url.GetMyJoinInvite)
     Observable<HttpArray<MyInviteEntity>> GetMyJoinInvite(@Query("userId") long id, @Query("page") int page);
-
 
 
 //    @GET(Url.MyAlbum)
@@ -238,8 +230,6 @@ public interface Api {
     @GET("im/requests/friends/handle.do")
     Observable<HttpResult<CommonEntity>> handlerApplication(@QueryMap Map<String, Object> map);
 
-
-    //////////////////
     //邀请信息  我邀请的
     @GET("invite/getMyInviteInfo.do")
     Observable<HttpArray<MyInviteBean>> getMyDiscoverInvite(@QueryMap Map<String, Object> map);
@@ -249,8 +239,23 @@ public interface Api {
     Observable<HttpArray<InvitedBean>> getDiscoverInvited(@QueryMap Map<String, Object> map);
 
     //邀请 拒绝 接受
-
     @GET("invite/acceptAndRefuse.do")
     Observable<HttpResult<CommonEntity>> acceptOrRefuse(@QueryMap Map<String, Object> map);
+
+    //发起邀请
+    @GET(Url.SendInvite)
+    Observable<HttpResult<CommonEntity>> SendInvite(@QueryMap Map<String, String> map);
+
+    //邀请详情(发布人)
+    @GET(Url.GetInviteDetailForHost)
+    Observable<HttpResult<InviteDetailEntity>> GetInviteDetailForHost(@Query("userId") String UserId, @Query("inviteId") String inviteId);
+
+    //邀请详情(受邀人)
+    @GET(Url.GetInviteDetailForReciver)
+    Observable<HttpResult<InviteDetailEntity>> GetInviteDetailForReciver(@Query("userId") String UserId, @Query("inviteId") String inviteId);
+
+    //见面确认
+    @GET(Url.GetSureMeet)
+    Observable<HttpResult<CommonEntity>> GetSureMeet(@Query("userId") String UserId, @Query("inviteId") String inviteId);
 
 }

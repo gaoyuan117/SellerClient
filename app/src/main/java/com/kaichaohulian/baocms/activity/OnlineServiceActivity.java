@@ -1,11 +1,16 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.content.Intent;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.adapter.OnlineServiceListAdapter;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingActivity;
+import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingFragment;
 import com.kaichaohulian.baocms.entity.OnlineServiceEntity;
 import com.kaichaohulian.baocms.http.HttpArray;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
@@ -18,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class OnlineServiceActivity extends BaseActivity {
+public class OnlineServiceActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
     @BindView(R.id.lv_onlineservice)
     ListView lvOnlineservice;
@@ -59,7 +64,16 @@ public class OnlineServiceActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
-
+        lvOnlineservice.setOnItemClickListener(this);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), ChattingActivity.class);
+        intent.putExtra(ChattingFragment.RECIPIENTS, data.get(position).phoneNumber);
+        intent.putExtra(ChattingFragment.CONTACT_USER, data.get(position).username);
+        intent.putExtra("user_id", data.get(position).user_id);
+        intent.putExtra(ChattingFragment.CUSTOMER_SERVICE, false);
+        startActivity(intent);
+    }
 }

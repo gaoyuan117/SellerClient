@@ -23,7 +23,7 @@ import java.util.List;
 public class MyInviteAdapter extends BaseQuickAdapter<MyInviteBean, BaseViewHolder> {
     private MyInviteFragment myInviteFragment;
 
-    public MyInviteAdapter(int layoutResId, List<MyInviteBean> data,MyInviteFragment fragment) {
+    public MyInviteAdapter(int layoutResId, List<MyInviteBean> data, MyInviteFragment fragment) {
         super(layoutResId, data);
         myInviteFragment = fragment;
     }
@@ -49,13 +49,17 @@ public class MyInviteAdapter extends BaseQuickAdapter<MyInviteBean, BaseViewHold
                 tvState.setText("失败");
             } else if (status == 4) {
                 tvState.setText("已失效");
+            } else if (status == 0) {
+                tvState.setText("等待接受");
             }
 
             if (userApplyStatus == 1) {
+                tvUserState.setVisibility(View.VISIBLE);
                 tvUserState.setText("接受了您的邀请");
                 tvState.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.zy_text_pink2));
             } else if (userApplyStatus == 2) {
                 tvUserState.setText("拒绝了您的邀请");
+                tvUserState.setVisibility(View.VISIBLE);
                 tvState.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.zy_text_green));
             } else {
                 tvUserState.setVisibility(View.GONE);

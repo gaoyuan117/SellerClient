@@ -114,7 +114,13 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
                         mList.clear();
                         mList.addAll(hasGetAdverBean.getAdvertList());
                         mAdapter.notifyDataSetChanged();
-                        tvAdverNotifyInfo.setText("您有" + hasGetAdverBean.getNoReadCount() + "条未读消息");
+                        if(hasGetAdverBean.getNoReadCount()==0){
+                            llAdverNotify.setVisibility(View.GONE);
+                        }else {
+                            llAdverNotify.setVisibility(View.VISIBLE);
+                            tvAdverNotifyInfo.setText("您有" + hasGetAdverBean.getNoReadCount() + "条未读消息");
+
+                        }
                     }
                 });
     }

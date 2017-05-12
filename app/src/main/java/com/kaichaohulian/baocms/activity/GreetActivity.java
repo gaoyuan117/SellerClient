@@ -116,7 +116,7 @@ public class GreetActivity extends BaseActivity implements BaseQuickAdapter.OnIt
 
     @Override
     public boolean onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        agreeAdd(mList.get(position).getTargetId());
+        agreeAdd(mList.get(position).getId());
         return false;
     }
 
