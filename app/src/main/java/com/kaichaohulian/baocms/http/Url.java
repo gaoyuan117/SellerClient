@@ -88,6 +88,12 @@ public class Url {
     public static final String getMyInvite = BASE_URL + "invite/getMyInvite.do";
     //获取我参与的邀请
     public static final String GetMyJoinInvite = BASE_URL + "invite/getInvite.do";
+    //邀请详情(发布人)
+    public static final String GetInviteDetailForHost=BASE_URL+"invite/getInviteDetail.do";
+    //邀请详情(受邀人)
+    public static final String GetInviteDetailForReciver=BASE_URL+"invite/getInviteDetailAndUser.do";
+    //见面确认
+    public static final String GetSureMeet=BASE_URL+"invite/sureMeet.do";
 
 
     //获取客服列表

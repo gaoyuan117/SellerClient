@@ -195,8 +195,9 @@ public class SendinvitationActivity extends BaseActivity {
                     ReponseTimePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
                         @Override
                         public void onTimeSelect(Date date, View v) {
-                            long time = Calendar.getInstance().getTime().getTime()-date.getTime();
-                            Log.d("SendinvitationActivity", "time:" + time);
+                            long time = System.currentTimeMillis()+date.getTime();
+                            Log.d("SendinvitationActivity", "System.currentTimeMillis():" + System.currentTimeMillis());
+                            Log.d("SendinvitationActivity", "date.getTime():" + date.getTime());
                             if(time>0){
                                 tvResponsetime.setText(HourTimeFormat.format(time));
                             }else{

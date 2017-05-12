@@ -4,12 +4,18 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.activity.InvitationmgActivity;
 import com.kaichaohulian.baocms.base.BaseListAdapter;
+import com.kaichaohulian.baocms.entity.InviteDetailEntity;
+import com.kaichaohulian.baocms.entity.InviteOfFindEntity;
 import com.kaichaohulian.baocms.entity.MyInviteEntity;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -20,29 +26,33 @@ import butterknife.ButterKnife;
  */
 
 public class MyInviteListAdapter extends BaseListAdapter {
+
+
     public MyInviteListAdapter(Context context, @Nullable List data) {
         super(context, data);
     }
 
-
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        if(view==null){
-            view=View.inflate(context,layoutIds[0],null);
-            holder=new ViewHolder(view);
+        if (view == null) {
+            view = View.inflate(context, layoutIds[0], null);
+            holder = new ViewHolder(view);
             view.setTag(holder);
-        }else{
-            holder= (ViewHolder) view.getTag();
+        } else {
+            holder = (ViewHolder) view.getTag();
         }
-//        MyInviteEntity entity= (MyInviteEntity) getItem(position);
-//        holder.adressInvite.setText(entity.getInvite().getInviteAddress());
-//        holder.statusInvite.setText(entity.getActiveStatus());
-//        holder.titleInvite.setText(entity.getInvite().getTitle());
+        MyInviteEntity entity = (MyInviteEntity) getItem(position);
+        holder.titleInvite.setText(entity.getInvite().getTitle());
+        holder.adressInvite.setText(entity.getInvite().getInviteAddress());
+        String time = entity.getInvite().getInvateTime().substring(0, entity.getInvite().getInvateTime().length() - 3);
+        holder.timeInvite.setText(time);
+        holder.statusInvite.setText(entity.getActiveStatus());
+
         return view;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         @BindView(R.id.time_invite)
         TextView timeInvite;
         @BindView(R.id.status_invite)
@@ -51,9 +61,8 @@ public class MyInviteListAdapter extends BaseListAdapter {
         TextView titleInvite;
         @BindView(R.id.adress_invite)
         TextView adressInvite;
-
         public ViewHolder(View view) {
-            ButterKnife.bind(this,view);
+            ButterKnife.bind(this, view);
         }
     }
 

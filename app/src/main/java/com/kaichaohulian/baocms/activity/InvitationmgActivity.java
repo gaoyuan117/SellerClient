@@ -27,16 +27,17 @@ public class InvitationmgActivity extends BaseActivity {
     ViewPager vgInvationMg;
     private ArrayList<String> titles;
     private ArrayList<Fragment> fragments;
+    public static final int MY_SEND = 0, MY_JOIN = 1;
 
-    public static final int MY_SEND=0,MY_JOIN=1;
     @Override
     public void setContent() {
         setContentView(R.layout.activity_invitationmg);
-            ButterKnife.bind(this);
+        ButterKnife.bind(this);
     }
 
     @Override
     public void initData() {
+
     }
 
     @Override
@@ -46,20 +47,20 @@ public class InvitationmgActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
-        titles=new ArrayList<>();
-        fragments=new ArrayList<>();
-        Bundle bundle=new Bundle();
-        Bundle bundle1=new Bundle();
 
-        InvitaionListFragment mysendInvite=new InvitaionListFragment((MyApplication)getApplication(),InvitationmgActivity.this,InvitationmgActivity.this);
-        bundle.putInt("type",MY_SEND);
+        titles = new ArrayList<>();
+        fragments = new ArrayList<>();
+        Bundle bundle = new Bundle();
+        Bundle bundle1 = new Bundle();
+
+
+        InvitaionListFragment mysendInvite = new InvitaionListFragment((MyApplication) getApplication(), InvitationmgActivity.this, InvitationmgActivity.this);
+        bundle.putInt("type", MY_SEND);
         mysendInvite.setArguments(bundle);
 
-
-        InvitaionListFragment myjoinInvite=new InvitaionListFragment((MyApplication)getApplication(),InvitationmgActivity.this,InvitationmgActivity.this);
-        bundle1.putInt("type",MY_JOIN);
+        InvitaionListFragment myjoinInvite = new InvitaionListFragment((MyApplication) getApplication(), InvitationmgActivity.this, InvitationmgActivity.this);
+        bundle1.putInt("type", MY_JOIN);
         myjoinInvite.setArguments(bundle1);
-
 
         fragments.add(mysendInvite);
         fragments.add(myjoinInvite);
@@ -67,10 +68,9 @@ public class InvitationmgActivity extends BaseActivity {
         titles.add("我发起的");
         titles.add("我参与的");
 
-        vgInvationMg.setAdapter(new InvitationMgFragmentAdapter(getSupportFragmentManager(),fragments,titles));
+        vgInvationMg.setAdapter(new InvitationMgFragmentAdapter(getSupportFragmentManager(), fragments, titles));
         tabInvationMg.setTabMode(TabLayout.MODE_FIXED);
         tabInvationMg.setupWithViewPager(vgInvationMg);
 
     }
-
 }

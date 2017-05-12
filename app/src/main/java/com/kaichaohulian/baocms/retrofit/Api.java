@@ -7,7 +7,10 @@ import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
 import com.kaichaohulian.baocms.entity.EarnestMoneyEntity;
 import com.kaichaohulian.baocms.entity.GreetBean;
 import com.kaichaohulian.baocms.entity.HasGetAdverBean;
+import com.kaichaohulian.baocms.entity.InviteDetailEntity;
 import com.kaichaohulian.baocms.entity.InviteInfoBean;
+import com.kaichaohulian.baocms.entity.InviteOfFindEntity;
+import com.kaichaohulian.baocms.entity.MyInviteEntity;
 import com.kaichaohulian.baocms.entity.NearbyBean;
 import com.kaichaohulian.baocms.entity.OnlineServiceEntity;
 import com.kaichaohulian.baocms.entity.QiNiuConfigEntity;
@@ -59,12 +62,40 @@ public interface Api {
     @GET(Url.setPayPassword)
     Observable<HttpResult<CommonEntity>> setPayWord(@QueryMap Map<String, String> map);
 
+
+    /****************
+     * **邀请相关*****
+     **************/
+        //获取我发起的邀请
+    @GET(Url.getMyInvite)
+            Observable<HttpArray<MyInviteEntity>> getMyInvite(@Query("userId") long id, @Query("page") int page);
+    //获取我参与的邀请
+    @GET(Url.GetMyJoinInvite)
+    Observable<HttpArray<MyInviteEntity>> GetMyJoinInvite(@Query("userId") long id, @Query("page") int page);
+    //发起邀请
+    @GET(Url.SendInvite)
+    Observable<HttpResult<CommonEntity>> SendInvite(@QueryMap Map<String,String> map);
+
+
+    //邀请详情(发布人)
+    @GET(Url.GetInviteDetailForHost)
+    Observable<HttpResult<InviteDetailEntity>> GetInviteDetailForHost(@Query("userId") String UserId, @Query("inviteId") String inviteId);
+    //邀请详情(受邀人)
+    @GET(Url.GetInviteDetailForReciver)
+    Observable<HttpResult<InviteDetailEntity>> GetInviteDetailForReciver(@Query("userId") String UserId,@Query("inviteId") String inviteId);
+    //见面确认
+    @GET(Url.GetSureMeet)
+    Observable<HttpResult<CommonEntity>> GetSureMeet(@Query("userId") String UserId,@Query("inviteId") String inviteId);
+
+
+
     //忘记登录密码
     @GET(Url.forgetPassword)
     Observable<HttpResult<CommonEntity>> ForgetPwd(@QueryMap Map<String, String> map);
 
     @GET(Url.GetMyadviertisement)
     Observable<HttpArray<AdviertisementEntity>> GetMyadviertisement(@QueryMap Map<String, String> map);
+
 
     @GET(Url.Getadviertisement)
     Observable<HttpArray<AdviertisementEntity>> Getadviertisement(@QueryMap Map<String, String> map);
@@ -189,6 +220,8 @@ public interface Api {
     * */
     @GET(Url.SendAdviertOfOther)
     Observable<HttpArray<Integer>> ReleaseAdviertOfOther(@QueryMap Map<String, String> map);
+
+
 
 
 }

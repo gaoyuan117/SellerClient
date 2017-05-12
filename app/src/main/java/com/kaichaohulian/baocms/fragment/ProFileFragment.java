@@ -3,6 +3,7 @@ package com.kaichaohulian.baocms.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -124,6 +125,7 @@ public class ProFileFragment extends BaseFragment {
             //邀请管理
             case R.id.me_relativelayout_invitationManager:
                 ActivityUtil.next(getActivity(), InvitationmgActivity.class);
+
                 break;
             //相册
             case R.id.me_relativelayout_album:
