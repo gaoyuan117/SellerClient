@@ -124,7 +124,9 @@ public class ProFileFragment extends BaseFragment {
                 break;
             //邀请管理
             case R.id.me_relativelayout_invitationManager:
-                ActivityUtil.next(getActivity(), InvitationmgActivity.class);
+                Intent intent2 = new Intent(getActivity(), InvitationmgActivity.class);
+                intent2.putExtra("type","ProFile");
+                startActivity(intent2);
 
                 break;
             //相册

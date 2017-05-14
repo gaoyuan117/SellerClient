@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.circledemo.widgets;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.circledemo.utils.DensityUtil;
 
 import java.util.List;
@@ -185,7 +187,7 @@ public class MultiImageView extends LinearLayout {
 
 		imageView.setId(url.hashCode());
 		imageView.setOnClickListener(new ImageOnClickListener(position));
-		Glide.with(getContext()).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+		Glide.with(getContext()).load(url).error(R.mipmap.default_image).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
 		return imageView;
 	}
 

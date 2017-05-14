@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:gravity="right"
+        android:text="今天"
+        android:textColor="#333333"
+        android:textSize="25sp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/time">
+
+        <ImageView
+            android:id="@+id/img_myablum"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            />
+
+        <TextView
+            android:id="@+id/text_context"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/multiImagView"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/multiImagView"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="拍照"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

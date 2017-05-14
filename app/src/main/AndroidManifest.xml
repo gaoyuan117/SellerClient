@@ -1188,10 +1188,16 @@
 
         <activity android:name=".activity.AdverActivity" />
         <activity android:name=".activity.AdverDetailActivity" />
+
+        <service
+            android:name=".UpdateLocationService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity android:name=".activity.Setpayword" />
-        <activity android:name=".activity.DiscoverInvitedDetailActivity" />
-        <activity android:name=".activity.InvitedetailActivity" />
-        <activity android:name=".activity.EvaluateActivity"></activity>
+        <activity android:name=".activity.DiscoverInvitedDetailActivity"></activity>
+        <activity android:name=".activity.InvitedetailActivity" /> 
+
     </application>
 
 </manifest>

@@ -90,14 +90,14 @@ public class SendinvitationActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SendInvite(view);
                 view.setClickable(false);
+                SendInvite(view);
             }
         });
 
         TvInvitiontime.setText(DayTimeFormat.format(Calendar.getInstance().getTime()));
         InviteTime = AllTtmeFormat.format(Calendar.getInstance().getTime());
-
+        tvResponsetime.setText(DayTimeFormat.format(Calendar.getInstance().getTime().getTime() + 600000));
         edtActaddress.setHint(MyApplication.getInstance().BDLocation.getAddrStr());
 
     }
@@ -144,34 +144,21 @@ public class SendinvitationActivity extends BaseActivity {
         }
         RetrofitClient.getInstance().createApi().SendInvite(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
-                .subscribe(new Observer<HttpResult<CommonEntity>>() {
+                .subscribe(new BaseObjObserver<CommonEntity>(getActivity(),"加载中...") {
                     @Override
-                    public void onSubscribe(Disposable d) {
-
+                    protected void onHandleSuccess(CommonEntity commonEntity) {
+                        Toast.makeText(SendinvitationActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                     @Override
-                    public void onNext(HttpResult<CommonEntity> value) {
-                        if (value.errorDescription.contains("成功")) {
-                            Toast.makeText(SendinvitationActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
-                            finish();
-                        } else {
-                            Toast.makeText(SendinvitationActivity.this, value.errorDescription, Toast.LENGTH_SHORT).show();
-                            view.setClickable(true);
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                    protected void onHandleError(int code, String msg) {
+                        Toast.makeText(SendinvitationActivity.this, "发布失败，请稍后再试", Toast.LENGTH_SHORT).show();
+                        view.setClickable(true);
                     }
                 });
     }
+
 
     @Override
     public void initEvent() {
@@ -218,8 +205,19 @@ public class SendinvitationActivity extends BaseActivity {
                     ReponseTimePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
                         @Override
                         public void onTimeSelect(Date date, View v) {
-                            ApplyTime = DayTimeFormat.format(date);
-                            tvResponsetime.setText(ApplyTime);
+                            long i = 0;
+                            try {
+                                i = date.getTime() - AllTtmeFormat.parse(InviteTime).getTime();
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            if (i > 0) {
+                                ApplyTime = DayTimeFormat.format(date);
+                                tvResponsetime.setText(ApplyTime);
+                            } else {
+                                Toast.makeText(SendinvitationActivity.this, "响应时间不能小于邀请时间", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     }).setType(TimePickerView.Type.YEAR_MONTH_DAY_HOUR_MIN)
                             .setDate(Calendar.getInstance())

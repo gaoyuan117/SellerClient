@@ -109,14 +109,25 @@ public class InvitaionListFragment extends BaseFragment {
                             }
                         });
                 break;
+            case InvitationmgActivity.MY_INVITE:
 
+                break;
+            case InvitationmgActivity.MY_BEINVITE:
+
+                break;
         }
     }
 
     @Override
     public void initView() {
         adapter = new MyInviteListAdapter(getActivity(), dataList);
-        adapter.setLayoutIds(R.layout.item_invitelist);
+        switch (getArguments().getInt("type")) {
+            case InvitationmgActivity.MY_SEND:
+            case InvitationmgActivity.MY_JOIN:
+                adapter.setLayoutIds(R.layout.item_invitelist);
+                break;
+
+        }
         lvInvitationMg.setAdapter(adapter);
         lvInvitationMg.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

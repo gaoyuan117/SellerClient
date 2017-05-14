@@ -24,13 +24,13 @@
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/time">
 
-        <ImageView
+        <com.kaichaohulian.baocms.circledemo.widgets.MultiImageView
             android:id="@+id/multiImagView"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/camera_myalbum"
-
+            android:minWidth="80dp"
+            android:minHeight="80dp"
+            android:gravity="center"
             />
 
         <TextView

@@ -1,16 +1,28 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.app.Activity;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.adapter.MyAlbumAdapter;
+import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.circledemo.bean.HeadInfo;
+import com.kaichaohulian.baocms.entity.AblumEntity;
 import com.kaichaohulian.baocms.entity.MyAlbumEntity;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.DBLog;
 import com.kaichaohulian.baocms.view.ShowDialog;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -36,12 +48,15 @@ public class MyAlbumActivity extends BaseActivity {
     @BindView(R.id.listView)
     ListView listView;
 
-    private List<MyAlbumEntity> List;
+    private List<AblumEntity.ExperiencesBean> List;
     private MyAlbumAdapter adapter;
-
+    private View headView;
+    public ImageView head;
+    public TextView name;
+    public ImageView create;
     private boolean mIsFriend;
     private String mFriendId;
-
+    private int index=1;
     @Override
     public void setContent() {
         setContentView(R.layout.myalbum_activity);
@@ -64,77 +79,40 @@ public class MyAlbumActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
-    }
 
-    private int limit = 1;
+    }
 
     public void addHttpData() {
         List=new ArrayList<>();
-        adapter=new MyAlbumAdapter(getActivity(),List);
+        adapter=new MyAlbumAdapter(this,List);
         listView.setAdapter(adapter);
-        RequestParams params = new RequestParams();
-        if (mIsFriend) {
-            params.put("id", mFriendId);
-        } else {
-            params.put("id", MyApplication.getInstance().UserInfo.getUserId());
-        }
-        params.put("page", limit + "");
-        HttpUtil.post(Url.MyAlbum, params, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, org.json.JSONObject response) {
-
-                try {
-                    if (response.getInt("code") == 0) {
-                        response = response.getJSONObject("dataObject");
-                        String avatar = response.getString("avatar");
-                        String nickName = response.getString("nikeName");
-                        String backAvatar = response.getString("backAvatar");
-
-                        HeadInfo headInfo = new HeadInfo();
-                        headInfo.nickname = nickName;
-                        headInfo.avatar = avatar;
-                        headInfo.bg = backAvatar;
-                        adapter.SetHeadInfo(headInfo);
-                        JSONArray JSONArray = response.getJSONArray("experiences");
-                        for (int i = 0; i < JSONArray.length(); i++) {
-                            JSONObject JSONObject = JSONArray.getJSONObject(i);
-                            MyAlbumEntity MyAlbumEntity = new MyAlbumEntity();
-                            MyAlbumEntity.setCreateTime(JSONObject.getString("createdTime"));
-                            MyAlbumEntity.setContent(JSONObject.getString("content"));
-                            List<String> list = new ArrayList<String>();
-
-                            String photos = JSONObject.getString("images");
-                            photos = photos.substring(0, photos.length());
-                            if (photos != null && !photos.equals("null")) {
-                                JSONArray imageArray = new JSONArray(photos);
-                                for (int j = 0; j < imageArray.length(); j++) {
-                                    list.add(imageArray.getString(j));
-                                }
-                            }
-                            MyAlbumEntity.setList(list);
-                            Log.e(TAG, "onSuccess: "+MyAlbumEntity.toString() );
-                            List.add(MyAlbumEntity);
-                        }
-
+        RetrofitClient.getInstance().createApi().GetUserPhoto(MyApplication.getInstance().UserInfo.getUserId(),index+"")
+                .compose(RxUtils.<HttpResult<AblumEntity>>io_main())
+                .subscribe(new BaseObjObserver<AblumEntity>(getActivity(),"获取中...") {
+                    @Override
+                    protected void onHandleSuccess(AblumEntity ablumEntity) {
+                        List.addAll(ablumEntity.experiences);
                         adapter.notifyDataSetChanged();
+                        if(headView==null){
+                            headView=View.inflate(getActivity(),R.layout.head_circle,null);
+                            head = (ImageView) headView.findViewById(R.id.head);
+                            name = (TextView) headView.findViewById(R.id.name);
+                            create = (ImageView) headView.findViewById(R.id.create_photo);
+                            ImageView bg = (ImageView) headView.findViewById(R.id.head_bg);
+                            name.setText(ablumEntity.nikeName);
+                            create.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    ActivityUtil.next(getActivity(), ReleaseTalkActivity.class);
+                                }
+                            });
+                            Glide.with(getActivity()).load(ablumEntity.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.def_shop_bg).into(head);
+                            Glide.with(getActivity()).load(ablumEntity.backAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.def_shop_bg).into(bg);
+                        }
+                        listView.addHeaderView(headView);
                     }
-                } catch (Exception e) {
-                    showToastMsg("数据解析异常...");
-                    e.printStackTrace();
-                }
-            }
+                });
 
-            @Override
-            public void onFinish() {
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                showToastMsg("请求服务器失败");
-                DBLog.e("tag", statusCode + ":" + responseString);
-                ShowDialog.dissmiss();
-            }
-        });
     }
 
 }

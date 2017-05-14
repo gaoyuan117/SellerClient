@@ -11,7 +11,6 @@ import java.util.List;
 public class UserInfo implements Serializable {
     public static final String NEW_FRIENDS_USERNAME = "item_new_friends";
     public static final String GROUP_USERNAME = "item_groups";
-
     public static final String ID = "_id";
     public static final String USERID = "userId";
     public static final String CREATEDTIME = "createdTime";
