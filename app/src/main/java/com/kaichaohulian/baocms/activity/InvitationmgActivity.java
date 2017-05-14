@@ -12,6 +12,8 @@ import com.kaichaohulian.baocms.adapter.InvitationMgFragmentAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.fragment.InvitaionListFragment;
+import com.kaichaohulian.baocms.fragment.InvitedFragment;
+import com.kaichaohulian.baocms.fragment.MyInviteFragment;
 
 import java.util.ArrayList;
 
@@ -27,7 +29,7 @@ public class InvitationmgActivity extends BaseActivity {
     ViewPager vgInvationMg;
     private ArrayList<String> titles;
     private ArrayList<Fragment> fragments;
-    public static final int MY_SEND = 0, MY_JOIN = 1;
+    public static final int MY_SEND = 0, MY_JOIN = 1,MY_INVITE=2,MY_BEINVITE=3;
 
     @Override
     public void setContent() {
@@ -53,21 +55,30 @@ public class InvitationmgActivity extends BaseActivity {
         Bundle bundle = new Bundle();
         Bundle bundle1 = new Bundle();
 
+        if(getIntent().getStringExtra("type").equals("discover")){
+            MyInviteFragment fragment1=new MyInviteFragment((MyApplication) getApplication(),InvitationmgActivity.this,InvitationmgActivity.this);
+            InvitedFragment fragment2=new InvitedFragment((MyApplication) getApplication(),InvitationmgActivity.this,InvitationmgActivity.this);
 
-        InvitaionListFragment mysendInvite = new InvitaionListFragment((MyApplication) getApplication(), InvitationmgActivity.this, InvitationmgActivity.this);
-        bundle.putInt("type", MY_SEND);
-        mysendInvite.setArguments(bundle);
+            fragments.add(fragment1);
+            fragments.add(fragment2);
 
-        InvitaionListFragment myjoinInvite = new InvitaionListFragment((MyApplication) getApplication(), InvitationmgActivity.this, InvitationmgActivity.this);
-        bundle1.putInt("type", MY_JOIN);
-        myjoinInvite.setArguments(bundle1);
+            titles.add("我邀请的");
+            titles.add("邀请我的");
+        }else if(getIntent().getStringExtra("type").equals("ProFile")){
+            InvitaionListFragment mysendInvite = new InvitaionListFragment((MyApplication) getApplication(), InvitationmgActivity.this, InvitationmgActivity.this);
+            bundle.putInt("type", MY_SEND);
+            mysendInvite.setArguments(bundle);
 
-        fragments.add(mysendInvite);
-        fragments.add(myjoinInvite);
+            InvitaionListFragment myjoinInvite = new InvitaionListFragment((MyApplication) getApplication(), InvitationmgActivity.this, InvitationmgActivity.this);
+            bundle1.putInt("type", MY_JOIN);
+            myjoinInvite.setArguments(bundle1);
 
-        titles.add("我发起的");
-        titles.add("我参与的");
+            fragments.add(mysendInvite);
+            fragments.add(myjoinInvite);
 
+            titles.add("我发起的");
+            titles.add("我参与的");
+        }
         vgInvationMg.setAdapter(new InvitationMgFragmentAdapter(getSupportFragmentManager(), fragments, titles));
         tabInvationMg.setTabMode(TabLayout.MODE_FIXED);
         tabInvationMg.setupWithViewPager(vgInvationMg);

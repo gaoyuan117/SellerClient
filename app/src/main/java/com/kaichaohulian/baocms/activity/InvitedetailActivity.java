@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.adapter.InviteDetailGridAdapter;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.entity.InviteDetailEntity;
@@ -71,6 +73,8 @@ public class InvitedetailActivity extends BaseActivity {
     Button btn_reciverOrRefuse;
     @BindView(R.id.ll_invite_detail_state_ids)
     LinearLayout llInviteIds;
+
+
     private int UserId, InviteId;
     private boolean IsHost = false;
 
@@ -93,9 +97,6 @@ public class InvitedetailActivity extends BaseActivity {
     public void initView() {
         Intent intent = getIntent();
         IsHost = intent.getBooleanExtra("IsOwn", false);
-        if (!IsHost) {
-            tv_DetailInviteJoinNum.setText("发起人");
-        }
         InviteId = intent.getIntExtra("inviteId", 0);
         UserId = intent.getIntExtra("UserId", 0);
     }
@@ -112,17 +113,23 @@ public class InvitedetailActivity extends BaseActivity {
             finish();
         }
         if (IsHost) {
+            //发布人查看
             RetrofitClient.getInstance().createApi().GetInviteDetailForHost(UserId + "", InviteId + "")
                     .compose(RxUtils.<HttpResult<InviteDetailEntity>>io_main())
                     .subscribe(new BaseObjObserver<InviteDetailEntity>(getActivity()) {
                         @Override
                         protected void onHandleSuccess(InviteDetailEntity inviteDetailEntity) {
-                            setDataToView(inviteDetailEntity, 0);
+                            try {
+                                setDataToView(inviteDetailEntity, 0);
+                            } catch (Exception e) {
+                                Log.d("InvitedetailActivity", e.getMessage());
+                            }
                             loaddingView.setVisibility(View.GONE);
                             ThisView.setVisibility(View.VISIBLE);
                         }
                     });
         } else {
+            //受邀人查看
             RetrofitClient.getInstance().createApi().GetInviteDetailForReciver(UserId + "", InviteId + "")
                     .compose(RxUtils.<HttpResult<InviteDetailEntity>>io_main())
                     .subscribe(new BaseObjObserver<InviteDetailEntity>(getActivity()) {
@@ -137,26 +144,58 @@ public class InvitedetailActivity extends BaseActivity {
     }
 
     public void setDataToView(InviteDetailEntity inviteDetailEntity, int type) {
-        if (inviteDetailEntity.getActiveStatus().contains("进行中")) {
-            llInviteDetailStateIsGoing.setVisibility(View.VISIBLE);
-            btn_reciverOrRefuse.setVisibility(View.VISIBLE);
-        } else if (inviteDetailEntity.getActiveStatus().contains("失效")) {
-            llInviteIds.setVisibility(View.GONE);
-        }
-        tv_DetailUserName.setText("发起人： " + inviteDetailEntity.getInvite().getNickName());
-        Glide.with(getActivity()).load(inviteDetailEntity.getInvite().getAvatar()).into(img_DetailAvatar);
-        tv_DetailUserId.setText(inviteDetailEntity.getInvite().getUserId() + "");
-        tv_DetailTheme.setText(inviteDetailEntity.getInvite().getTitle());
-        tv_DetailReciverNum.setText(inviteDetailEntity.getInvite().getUserNum() + "位收件人");
-        tv_DetailInviteMoney.setText(inviteDetailEntity.getInvite().getInviteMoney() + "");
-        tv_DetailInviteAddress.setText(inviteDetailEntity.getInvite().getInviteAddress());
-        String time = inviteDetailEntity.getInvite().getInvateTime().substring(0, inviteDetailEntity.getInvite().getInvateTime().length() - 3);
-        tv_DetailInviteTime.setText(time);
-        tv_DetailInviteNum.setText(inviteDetailEntity.getInvite().getUserNum() + "");
-        if (IsHost) {
-            tv_DetailInviteJoinNum.setText("参与者(" + inviteDetailEntity.getInvite().getUserNum() + ")");
-        } else {
-            tv_DetailInviteJoinNum.setText("发起人");
+        switch (type) {
+            case 0:
+                switch (inviteDetailEntity.invite.status) {
+                    case 0:
+                        //进行中
+                        llInviteDetailStateIsGoing.setVisibility(View.VISIBLE);
+                        btn_reciverOrRefuse.setVisibility(View.VISIBLE);
+                        InviteDetailGridAdapter adapter1 = new InviteDetailGridAdapter(getActivity(), inviteDetailEntity.list);
+                        adapter1.setLayoutIds(R.layout.item_inviteinfo, R.layout.item_inviteinfo2);
+                        grid_DetailInvitePeopleNum.setAdapter(adapter1);
+                    case 1:
+                        //已见面，进行中
+                        llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
+                        tv_DetailState.setText(inviteDetailEntity.activeStatus);
+                        InviteDetailGridAdapter adapter2 = new InviteDetailGridAdapter(getActivity(), inviteDetailEntity.list);
+                        adapter2.setLayoutIds(R.layout.item_inviteinfo, R.layout.item_inviteinfo2);
+                        grid_DetailInvitePeopleNum.setAdapter(adapter2);
+                        break;
+                    case 2:
+                        //完成
+                        llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
+                        tv_DetailState.setText(inviteDetailEntity.activeStatus);
+                        InviteDetailGridAdapter adapter3 = new InviteDetailGridAdapter(getActivity(), inviteDetailEntity.list);
+                        adapter3.setLayoutIds(R.layout.item_inviteinfo, R.layout.item_inviteinfo2);
+                        grid_DetailInvitePeopleNum.setAdapter(adapter3);
+                        break;
+                    case 4:
+                        //失效退款
+                        llInviteIds.setVisibility(View.GONE);
+                        break;
+                }
+                tv_DetailUserName.setText("发起人： " + inviteDetailEntity.invite.nickName);
+                Glide.with(getActivity()).load(inviteDetailEntity.invite.avatar).into(img_DetailAvatar);
+                tv_DetailUserId.setText(inviteDetailEntity.invite.userId + "");
+                tv_DetailTheme.setText(inviteDetailEntity.invite.title);
+                tv_DetailReciverNum.setText(inviteDetailEntity.invite.userNum + "位收件人");
+                tv_DetailInviteMoney.setText(inviteDetailEntity.invite.inviteMoney + "");
+                tv_DetailInviteAddress.setText(inviteDetailEntity.invite.inviteAddress);
+                tv_DetailInviteReponseTime.setText(inviteDetailEntity.invite.applyTime);
+                String time = inviteDetailEntity.invite.invateTime.substring(0, inviteDetailEntity.invite.invateTime.length() - 3);
+                tv_DetailInviteTime.setText(time);
+                tv_DetailInviteNum.setText(inviteDetailEntity.invite.userNum + "");
+                tv_DetailRevicerNames.setText(inviteDetailEntity.invite.inviteUsers);
+                if (IsHost) {
+                    tv_DetailInviteJoinNum.setText("参与者(" + inviteDetailEntity.invite.userNum + ")");
+                } else {
+                    tv_DetailInviteJoinNum.setText("发起人");
+                }
+                break;
+            case 1:
+
+                break;
         }
 
     }
@@ -164,11 +203,11 @@ public class InvitedetailActivity extends BaseActivity {
 
     @OnClick(R.id.bt_invite_detail_sure)
     public void onViewClicked(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.bt_invite_detail_sure:
-                RetrofitClient.getInstance().createApi().GetSureMeet(UserId+"",InviteId+"")
+                RetrofitClient.getInstance().createApi().GetSureMeet(UserId + "", InviteId + "")
                         .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
-                        .subscribe(new BaseObjObserver<CommonEntity>(getActivity(),"确认中...") {
+                        .subscribe(new BaseObjObserver<CommonEntity>(getActivity(), "确认中...") {
                             @Override
                             protected void onHandleSuccess(CommonEntity commonEntity) {
                                 Toast.makeText(InvitedetailActivity.this, "确认成功", Toast.LENGTH_SHORT).show();
@@ -178,12 +217,7 @@ public class InvitedetailActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 
 
 }

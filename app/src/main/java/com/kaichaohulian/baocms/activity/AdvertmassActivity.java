@@ -13,8 +13,10 @@ import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.AdviertisementEntity;
 import com.kaichaohulian.baocms.http.HttpArray;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseListObserver;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
 
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class AdvertmassActivity extends BaseActivity {
     @BindView(R.id.lv_advertmass)
     ListView lvAdvertmass;
     private AdvertmasslistAdapter adapter;
-    private ArrayList<AdviertisementEntity> Datalist;
+    private ArrayList<AdviertisementEntity.AdvertListBean> Datalist;
     private int index = 1;
 
     @Override
@@ -58,12 +60,12 @@ public class AdvertmassActivity extends BaseActivity {
         map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
         map.put("page", index + "");
         RetrofitClient.getInstance().createApi().Getadviertisement(map)
-                .compose(RxUtils.<HttpArray<AdviertisementEntity>>io_main())
-                .subscribe(new BaseListObserver<AdviertisementEntity>(getActivity(), "获取广告中...") {
+                .compose(RxUtils.<HttpResult<AdviertisementEntity>>io_main())
+                .subscribe(new BaseObjObserver<AdviertisementEntity>(getActivity(),"获取中...") {
                     @Override
-                    protected void onHandleSuccess(List<AdviertisementEntity> list) {
-                        if (list != null) {
-                            Datalist.addAll(list);
+                    protected void onHandleSuccess(AdviertisementEntity adviertisementEntity) {
+                        if (adviertisementEntity.advertList != null) {
+                            Datalist.addAll(adviertisementEntity.advertList);
                             adapter.notifyDataSetChanged();
                         } else {
                             Toast.makeText(AdvertmassActivity.this, "暂无广告", Toast.LENGTH_SHORT).show();

@@ -24,13 +24,10 @@
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/time">
 
-        <com.kaichaohulian.baocms.circledemo.widgets.MultiImageView
-            android:id="@+id/multiImagView"
+        <ImageView
+            android:id="@+id/img_myablum"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:minWidth="80dp"
-            android:minHeight="80dp"
-            android:gravity="center"
             />
 
         <TextView
@@ -42,7 +39,7 @@
             android:layout_toRightOf="@+id/multiImagView"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="TextVieTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextVieww"
+            android:text="拍照"
             android:textSize="15sp" />
     </RelativeLayout>
 

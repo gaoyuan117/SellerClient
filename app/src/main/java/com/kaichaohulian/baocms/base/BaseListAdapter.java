@@ -36,6 +36,7 @@ public abstract class BaseListAdapter<T> extends BaseAdapter {
         return layoutIds==null?1:layoutIds.length;
     }
 
+
     @Override
     public Object getItem(int i) {
         return data.get(i);

@@ -54,25 +54,14 @@ public class AdvertmasslistAdapter extends BaseListAdapter {
         } else {
             vh = (AdvertmassHolder) view.getTag();
         }
-        AdviertisementEntity entity = (AdviertisementEntity) data.get(i);
+        AdviertisementEntity.AdvertListBean entity = (AdviertisementEntity.AdvertListBean) data.get(i);
         vh.content.setText((String) entity.context);
         vh.title.setText((String) entity.title);
         StringBuffer buffer = new StringBuffer();
-        if (entity.readNum.equals("null")) {
-            buffer.append("阅读数 " + 0);
-        } else {
             buffer.append("阅读数 " + entity.readNum);
-        }
-        if (entity.hasGetMoney.equals("null")) {
-            buffer.append(" 已领取红包 " + 0);
-        } else {
-            buffer.append(" 已领取红包 " + entity.hasGetMoney);
-        }
-        if (entity.receive.equals("null")) {
-            buffer.append(" 发布费用 "+0);
-        } else {
-            buffer.append(" 发布费用 "+entity.pay);
-        }
+            buffer.append(" 已领取红包 " + (int)entity.hasGetMoney+"元");
+            buffer.append(" 发布费用 "+(int)entity.pay+"元");
+
         SimpleDateFormat format = new SimpleDateFormat("MM月dd日 H:m");
         Date date = new Date(Long.parseLong(entity.timeStamp));
         url="http://oez2a4f3v.bkt.clouddn.com/" + entity.image;

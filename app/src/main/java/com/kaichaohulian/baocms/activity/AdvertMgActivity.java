@@ -34,7 +34,7 @@ public class AdvertMgActivity extends BaseActivity {
     @BindView(R.id.lv_advertmanager)
     ListView lvAdvertmanager;
     private int index=1;
-    private List<AdviertisementEntity> DataList;
+    private List<AdviertisementEntity.AdvertListBean> DataList;
     private AdvertmasslistAdapter adapter;
 
     @Override
@@ -50,12 +50,12 @@ public class AdvertMgActivity extends BaseActivity {
         map.put("userId", MyApplication.getInstance().UserInfo.getUserId()+"");
         map.put("page", index+"");
         RetrofitClient.getInstance().createApi().GetMyadviertisement(map)
-                .compose(RxUtils.<HttpArray<AdviertisementEntity>>io_main())
-                .subscribe(new BaseListObserver<AdviertisementEntity>(getActivity(),"获取广告中...") {
+                .compose(RxUtils.<HttpResult<AdviertisementEntity>>io_main())
+                .subscribe(new BaseObjObserver<AdviertisementEntity>(getActivity(),"获取广告中...") {
                     @Override
-                    protected void onHandleSuccess(List<AdviertisementEntity> list) {
-                        if(list!=null){
-                            DataList.addAll(list);
+                    protected void onHandleSuccess(AdviertisementEntity adviertisementEntity) {
+                        if(adviertisementEntity.advertList!=null){
+                            DataList.addAll(adviertisementEntity.advertList);
                             adapter = new AdvertmasslistAdapter(getActivity(),DataList);
                             adapter.setLayoutIds(R.layout.item_advertmasslist);
                             lvAdvertmanager.setAdapter(adapter);

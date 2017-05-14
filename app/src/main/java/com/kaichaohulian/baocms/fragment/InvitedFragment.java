@@ -67,7 +67,7 @@ public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.On
         mAdapter = new InvitedAdapter(R.layout.item_discover_invite, mList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new RecyclerViewDivider(
-                getActivity(), LinearLayoutManager.VERTICAL, 10, ContextCompat.getColor(getActivity(), R.color.bg_color_gray)));
+                getActivity(), LinearLayoutManager.VERTICAL, 15, ContextCompat.getColor(getActivity(), R.color.bg_color_gray)));
         mRecyclerView.setAdapter(mAdapter);
 
     }

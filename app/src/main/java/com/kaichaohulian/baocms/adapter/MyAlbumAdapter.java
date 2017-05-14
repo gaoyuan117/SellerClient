@@ -1,150 +1,86 @@
 package com.kaichaohulian.baocms.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.activity.ImagePagerActivity;
 import com.kaichaohulian.baocms.activity.ReleaseTalkActivity;
-import com.kaichaohulian.baocms.app.ActivityUtil;
-import com.kaichaohulian.baocms.circledemo.bean.HeadInfo;
-import com.kaichaohulian.baocms.entity.MyAlbumEntity;
+import com.kaichaohulian.baocms.base.BaseListAdapter;
+import com.kaichaohulian.baocms.circledemo.widgets.MultiImageView;
+import com.kaichaohulian.baocms.entity.AblumEntity;
+
+import junit.framework.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 相册适配器
  * Created by ljl on 2016/12/29.
  */
 
-public class MyAlbumAdapter extends BaseAdapter {
-    private List<MyAlbumEntity> List;
-    private Context mContext;
+public class MyAlbumAdapter extends BaseListAdapter {
 
-    public MyAlbumAdapter(Context mContext, List<MyAlbumEntity> List) {
-        this.mContext = mContext;
-        this.List = List;
+
+    public MyAlbumAdapter(Context context, @Nullable List data) {
+        super(context, data);
     }
-
 
     @Override
     public int getCount() {
-        return List.size() + 2;
-    }
-
-    @Override
-    public MyAlbumEntity getItem(int position) {
-        return List.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        if (position == 0) {
-            HeaderViewHolder holder;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.head_circle, null);
-                holder = new HeaderViewHolder(convertView);
-                convertView.setTag(holder);
-            } else {
-                holder = (HeaderViewHolder) convertView.getTag();
-            }
-            if (mHeadInfo != null) {
-                ImageView bg = (ImageView) convertView.findViewById(R.id.head_bg);
-                holder.name.setText(mHeadInfo.nickname);
-
-                holder.create.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ActivityUtil.next((Activity) mContext, ReleaseTalkActivity.class);
-                    }
-                });
-                Glide.with(parent.getContext()).load(mHeadInfo.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.def_shop_bg).into(holder.head);
-                Glide.with(parent.getContext()).load(mHeadInfo.bg).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.def_shop_bg).into(bg);
-            }
+        if (data == null) {
+            return 1;
         } else {
-            ViewHolder holder;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_myalbum_list, null);
-                holder = new ViewHolder(convertView);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
-            if (position == 1) {
-                holder.text_context.setText("");
-                holder.time.setText("今天");
-                holder.multiImageView.setImageResource(R.mipmap.camera_myalbum);
-                holder.multiImageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-//                    ActivityUtil.next(mContext, ReleaseTalkActivity.class);
-                        mContext.startActivity(new Intent(mContext, ReleaseTalkActivity.class));
-                    }
-                });
-            } else {
-                MyAlbumEntity Item = getItem(position - 2);
-                if (Item != null) {
-                    Calendar calendar=Calendar.getInstance();
-                    String Time = Item.getCreateTime();
-                    if (formatDateTime(Time)) {
-                        holder.time.setText("今天");
-                    } else {
-                        Date date = null;
-                        try {
-                            date = new SimpleDateFormat("yyyy-MM-dd").parse(Time);
-                            calendar.setTime(date);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        int mDay=calendar.get(Calendar.DAY_OF_MONTH);
-                        int mMonth=calendar.get(Calendar.MONTH)+1;
-//                        int mDay = date.getDay();//日
-//                        int mMonth = date.getMonth() + 1;//月
-                        Spannable sp = new SpannableString(mDay + " " + getMonth(mMonth));
-                        int length = 2;
-                        if (mDay < 10) {
-                            length = 1;
-                        }
-                        sp.setSpan(new AbsoluteSizeSpan(28, true), 0, length, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                        sp.setSpan(new AbsoluteSizeSpan(12, true), length, sp.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                        holder.time.setText(sp);
-                    }
-                    holder.text_context.setText(Item.getContent());
-                    final List<String> photos = Item.getList();
-                    if (photos != null) {
-                        for (int i = 0; i < photos.size(); i++) {
-                            if (photos.get(i) != null) {
-                                Glide.with(mContext).load(photos.get(i)).into(holder.multiImageView);
-                                break;
-                            }
-                        }
-                    }
-                }
-
-            }
+            return data.size() == 0 ? 1 : data.size() + 1;
         }
-        return convertView;
+    }
 
+    public boolean formatDateTime(String time) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        if (time == null || "".equals(time)) {
+            return false;
+        }
+        Date date = null;
+        try {
+            date = format.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar current = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();    //今天
+        today.set(Calendar.YEAR, current.get(Calendar.YEAR));
+        today.set(Calendar.MONTH, current.get(Calendar.MONTH));
+        today.set(Calendar.DAY_OF_MONTH, current.get(Calendar.DAY_OF_MONTH));
+        //  Calendar.HOUR——12小时制的小时数 Calendar.HOUR_OF_DAY——24小时制的小时数
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        current.setTime(date);
+        if (current.after(today)) {
+            return true;
+        }
+        return false;
     }
 
     public String getMonth(int month) {
@@ -177,60 +113,106 @@ public class MyAlbumAdapter extends BaseAdapter {
         return "";
     }
 
-    HeadInfo mHeadInfo;
-
-    public void SetHeadInfo(HeadInfo headInfo) {
-        this.mHeadInfo = headInfo;
+    private void FormatString(List list, String params) {
+        String s = params.replace("]", "");
+        s = s.replace("[", "");
+        s = s.replace("\\", "");
+        s = s.replace("\"", "");
+        Collections.addAll(list, s.split(","));
     }
 
-    public class HeaderViewHolder {
-        public ImageView head;
-        public TextView name;
-        public ImageView create;
+    @Override
+    public Object getItem(int i) {
+        return super.getItem(i-1);
+    }
 
-        public HeaderViewHolder(View itemView) {
-            head = (ImageView) itemView.findViewById(R.id.head);
-            name = (TextView) itemView.findViewById(R.id.name);
-            create = (ImageView) itemView.findViewById(R.id.create_photo);
+    @Override
+    public View getView(int position, View view, ViewGroup viewGroup) {
+        ViewHolder vh;
+        if (view == null) {
+            if(position==0){
+                view = View.inflate(context, R.layout.item_myalbum_listhead, null);
+            }else{
+                view = View.inflate(context, R.layout.item_myalbum_list, null);
+            }
+            vh = new ViewHolder(view);
+            view.setTag(vh);
+        } else {
+            vh = (ViewHolder) view.getTag();
         }
+        if (position == 0) {
+            vh.textContext.setText("");
+            vh.time.setText("今天");
+            ImageView img= (ImageView) view.findViewById(R.id.img_myablum);
+            img.setImageResource(R.mipmap.camera_myalbum);
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    ActivityUtil.next(mContext, ReleaseTalkActivity.class);
+                    context.startActivity(new Intent(context, ReleaseTalkActivity.class));
+                }
+            });
+            img.setVisibility(View.VISIBLE);
+
+        }
+        try{
+            AblumEntity.ExperiencesBean data = (AblumEntity.ExperiencesBean) getItem(position);
+            String Time = data.createdTime;
+            if (formatDateTime(Time)) {
+                vh.time.setText("今天");
+            } else {
+                Date date = null;
+                Calendar calendar = Calendar.getInstance();
+                try {
+                    date = new SimpleDateFormat("yyyy-MM-dd").parse(Time);
+                    calendar.setTime(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+                int mMonth = calendar.get(Calendar.MONTH) + 1;
+                Spannable sp = new SpannableString(mDay + " " + getMonth(mMonth));
+                int length = 2;
+                if (mDay < 10) {
+                    length = 1;
+                }
+                sp.setSpan(new AbsoluteSizeSpan(28, true), 0, length, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                sp.setSpan(new AbsoluteSizeSpan(12, true), length, sp.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                vh.time.setText(sp);
+            }
+            vh.textContext.setText((String) data.content);
+            final List<String> photos = new ArrayList<>();
+            FormatString(photos, data.images);
+            MultiImageView multiImageView= (MultiImageView) view.findViewById(R.id.multiImagView);
+            if (photos != null && photos.size() > 0) {
+                multiImageView.setVisibility(View.VISIBLE);
+                multiImageView.setList(photos);
+                multiImageView.setOnItemClickListener(new MultiImageView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        //imagesize是作为loading时的图片size
+                        ImagePagerActivity.ImageSize imageSize = new ImagePagerActivity.ImageSize(view.getMeasuredWidth(), view.getMeasuredHeight());
+                        ImagePagerActivity.startImagePagerActivity(context, photos, position, imageSize);
+                    }
+                });
+
+            } else {
+                multiImageView.setVisibility(View.GONE);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return view;
     }
 
     public class ViewHolder {
-        public ImageView multiImageView;
-        public TextView time, text_context;
+        @BindView(R.id.time)
+        TextView time;
 
+        @BindView(R.id.text_context)
+        TextView textContext;
         public ViewHolder(View itemView) {
-            multiImageView = (ImageView) itemView.findViewById(R.id.multiImagView);
-            time = (TextView) itemView.findViewById(R.id.time);
-            text_context = (TextView) itemView.findViewById(R.id.text_context);
+            ButterKnife.bind(this, itemView);
         }
     }
-
-    public boolean formatDateTime(String time) {
-        SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        if (time == null || "".equals(time)) {
-            return false;
-        }
-        Date date = null;
-        try {
-            date = format.parse(time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Calendar current = Calendar.getInstance();
-        Calendar today = Calendar.getInstance();    //今天
-        today.set(Calendar.YEAR, current.get(Calendar.YEAR));
-        today.set(Calendar.MONTH, current.get(Calendar.MONTH));
-        today.set(Calendar.DAY_OF_MONTH, current.get(Calendar.DAY_OF_MONTH));
-        //  Calendar.HOUR——12小时制的小时数 Calendar.HOUR_OF_DAY——24小时制的小时数
-        today.set(Calendar.HOUR_OF_DAY, 0);
-        today.set(Calendar.MINUTE, 0);
-        today.set(Calendar.SECOND, 0);
-        current.setTime(date);
-        if (current.after(today)) {
-            return true;
-        }
-        return false;
-    }
-
 }

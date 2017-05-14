@@ -1196,6 +1196,8 @@
 
         <activity android:name=".activity.Setpayword" />
         <activity android:name=".activity.DiscoverInvitedDetailActivity"></activity>
+        <activity android:name=".activity.InvitedetailActivity" /> 
+
     </application>
 
 </manifest>

@@ -47,8 +47,18 @@ public class MyInviteListAdapter extends BaseListAdapter {
         holder.adressInvite.setText(entity.getInvite().getInviteAddress());
         String time = entity.getInvite().getInvateTime().substring(0, entity.getInvite().getInvateTime().length() - 3);
         holder.timeInvite.setText(time);
-        holder.statusInvite.setText(entity.getActiveStatus());
-
+        switch (entity.getInvite().getStatus()){
+            case 0:
+            case 1:
+                holder.statusInvite.setText("进行中");
+                break;
+            case 2:
+                holder.statusInvite.setText("已完成");
+                break;
+            case 3:
+                holder.statusInvite.setText("已失效");
+                break;
+        }
         return view;
     }
 

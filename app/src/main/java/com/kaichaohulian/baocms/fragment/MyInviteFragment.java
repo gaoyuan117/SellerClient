@@ -65,7 +65,7 @@ public class MyInviteFragment extends BaseFragment {
         mAdapter = new MyInviteAdapter(R.layout.item_discover_my_invite, mList, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new RecyclerViewDivider(
-                getActivity(), LinearLayoutManager.VERTICAL, 10, ContextCompat.getColor(getActivity(), R.color.bg_color_gray)));
+                getActivity(), LinearLayoutManager.VERTICAL, 15, ContextCompat.getColor(getActivity(), R.color.bg_color_gray)));
         mRecyclerView.setAdapter(mAdapter);
     }
 
