@@ -10,6 +10,7 @@ import com.kaichaohulian.baocms.entity.GreetBean;
 import com.kaichaohulian.baocms.entity.HasGetAdverBean;
 import com.kaichaohulian.baocms.entity.InviteDetailEntity;
 import com.kaichaohulian.baocms.entity.InviteInfoBean;
+import com.kaichaohulian.baocms.entity.InviteReciverEntity;
 import com.kaichaohulian.baocms.entity.InvitedBean;
 import com.kaichaohulian.baocms.entity.MyInviteBean;
 import com.kaichaohulian.baocms.entity.MyInviteEntity;
@@ -84,6 +85,10 @@ public interface Api {
      * 用户信息相关**
      **************/
 
+
+    //根据手机号获取用户信息
+    @GET(Url.dependPhoneGetUserInfo)
+    Observable<HttpResult> getUserInfo(@Query("phoneNumber") String phoneNum);
 
     //修改个人信息
     @GET(Url.changePersonalInformation)
@@ -177,10 +182,12 @@ public interface Api {
     Observable<HttpResult<InviteDetailEntity>> GetInviteDetailForHost(@Query("userId") String UserId, @Query("inviteId") String inviteId);
     //邀请详情(受邀人)
     @GET(Url.GetInviteDetailForReciver)
-    Observable<HttpResult<InviteDetailEntity>> GetInviteDetailForReciver(@Query("userId") String UserId, @Query("inviteId") String inviteId);
+    Observable<HttpResult<InviteReciverEntity>> GetInviteDetailForReciver(@Query("userId") String UserId, @Query("inviteId") String inviteId);
     //见面确认
     @GET(Url.GetSureMeet)
     Observable<HttpResult<CommonEntity>> GetSureMeet(@Query("userId") String UserId, @Query("inviteId") String inviteId);
+
+
 
 
     /****************

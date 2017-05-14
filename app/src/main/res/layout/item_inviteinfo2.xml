@@ -24,19 +24,12 @@
             android:id="@+id/tv_invited_info_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/img_invited_info_avatar"
+           android:layout_centerVertical="true"
+            android:textColor="@color/zy_text_gray"
             android:layout_toRightOf="@+id/img_invited_info_avatar"
             android:text="嘻嘻"
             android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_invited_info_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_invited_info_name"
-            android:layout_toRightOf="@+id/img_invited_info_avatar"
-            android:text="2017.5.12"
-            android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/img_invite_info_chat"
@@ -54,7 +47,7 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/img_invite_info_chat"
             android:background="@mipmap/btn_invite_complaint"
-            android:text="投诉" />
+            android:text="评价" />
         <Button
             android:id="@+id/btn_invite_evaluate"
             android:layout_width="wrap_content"
