@@ -34,7 +34,6 @@ public class EvaluateActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void setContent() {
         setContentView(R.layout.activity_evaluate);
-
     }
 
     @Override
