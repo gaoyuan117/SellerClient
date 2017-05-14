@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
 import com.kaichaohulian.baocms.utils.StringUtils;
 

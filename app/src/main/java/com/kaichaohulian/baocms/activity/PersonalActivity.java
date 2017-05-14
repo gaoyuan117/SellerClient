@@ -165,56 +165,60 @@ public class PersonalActivity extends BaseActivity {
     }
 
     private void SetData() {
-        //设置姓名
-        if (userinfo.getUsername() != null
-                && !personalName.getText().equals(userinfo.getUsername())) {
-            personalName.setText(userinfo.getUsername());
-        }
-        //设置性别
-        if (userinfo.getSex() != null) {
-            String sexT = userinfo.getSex();
-            if (sexT.equals("0") || sexT.equals("男")) {
-                personalSex.setText("男");
-            } else {
-                personalSex.setText("女");
+        try {
+            //设置姓名
+            if (userinfo.getUsername() != null
+                    && !personalName.getText().equals(userinfo.getUsername())) {
+                personalName.setText(userinfo.getUsername());
             }
-        }
-        //设置爱好
-        if (userinfo.getHobby() != null && !userinfo.getHobby().equals("null")) {
-            //如果已经设置切值不变时不做操作
-            if (!personalHobby.getText().equals(userinfo.getHobby()))
-                personalHobby.setText(userinfo.getHobby());
+            //设置性别
+            if (userinfo.getSex() != null) {
+                String sexT = userinfo.getSex();
+                if (sexT.equals("0") || sexT.equals("男")) {
+                    personalSex.setText("男");
+                } else {
+                    personalSex.setText("女");
+                }
+            }
+            //设置爱好
+            if (userinfo.getHobby() != null && !userinfo.getHobby().equals("null")) {
+                //如果已经设置切值不变时不做操作
+                if (!personalHobby.getText().equals(userinfo.getHobby()))
+                    personalHobby.setText(userinfo.getHobby());
 
-        } else {
-            personalHobby.setText("无");
-        }
-        //设置职业
-        if (userinfo.getJob() != null && !userinfo.getJob().equals("null")) {
-            if (!personalJob.getText().equals(userinfo.getJob()))
-                personalJob.setText(userinfo.getJob());
-        } else {
-            personalJob.setText("未知");
-        }
-        //设置年龄
-        if (userinfo.getAge() != 0) {
-            if (Integer.parseInt(personalAge.getText().toString()) != userinfo.getAge())
-                personalAge.setText(userinfo.getAge() + "");
-        } else {
-            personalAge.setText("未知");
+            } else {
+                personalHobby.setText("无");
+            }
+            //设置职业
+            if (userinfo.getJob() != null && !userinfo.getJob().equals("null")) {
+                if (!personalJob.getText().equals(userinfo.getJob()))
+                    personalJob.setText(userinfo.getJob());
+            } else {
+                personalJob.setText("未知");
+            }
+            //设置年龄
+            if (userinfo.getAge() != 0) {
+                if (Integer.parseInt(personalAge.getText().toString()) != userinfo.getAge())
+                    personalAge.setText(userinfo.getAge() + "");
+            } else {
+                personalAge.setText("未知");
 
-        }
-        //设置地区
-        if (userinfo.getDistrictId() == null || userinfo.getDistrictId().equals("null")) {
-            personalAddress.setText("暂未获取到地区");
-        } else {
-            personalAddress.setText(userinfo.getDistrictId());
-        }
-        String l = "http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode();
-        Log.e(TAG, "initView: " + l);
+            }
+            //设置地区
+            if (userinfo.getDistrictId() == null || userinfo.getDistrictId().equals("null")) {
+                personalAddress.setText("暂未获取到地区");
+            } else {
+                personalAddress.setText(userinfo.getDistrictId());
+            }
+            String l = "http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode();
+            Log.e(TAG, "initView: " + l);
 ////        Glide.with(getActivity()).load(l).error(R.mipmap.qrcode).diskCacheStrategy(DiskCacheStrategy.ALL).into(imQrCode);
-        showUserAvator(imQrCode, l, R.mipmap.qrcode);
+            showUserAvator(imQrCode, l, R.mipmap.qrcode);
 //        Glide.with(MyApplication.getInstance()).load(MyApplication.getInstance().UserInfo.getAvatar()).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgHead);
-        showUserAvator(imgHead, userinfo.getAvatar(), R.mipmap.default_useravatar);
+            showUserAvator(imgHead, userinfo.getAvatar(), R.mipmap.default_useravatar);
+        } catch (Exception e) {
+            Log.e("gy", e.toString());
+        }
     }
 
     @Override
@@ -224,37 +228,42 @@ public class PersonalActivity extends BaseActivity {
                 .subscribe(new BaseObjObserver<EarnestMoneyEntity>(getActivity()) {
                     @Override
                     protected void onHandleSuccess(EarnestMoneyEntity earnestMoneyEntity) {
-                        if (earnestMoneyEntity.getPayEarnestMoney() == null) {
-                            tvEarnestMoney.setText("0");
-                        } else {
-                            tvEarnestMoney.setText((String) earnestMoneyEntity.getPayEarnestMoney());
-                        }
-                        if (earnestMoneyEntity.getGetEarnestMoney() == null) {
-                            tvGetMoney.setText("0");
-                        } else {
-                            tvGetMoney.setText((String) earnestMoneyEntity.getGetEarnestMoney());
-                        }
-                        if (earnestMoneyEntity.getBeToAdd() == 0) {
-                            tvBeAddFriend.setText("0");
-                        } else {
-                            tvBeAddFriend.setText(earnestMoneyEntity.getBeToAdd()+"");
-                        }
-                        if (earnestMoneyEntity.getAppointment() == null) {
-                            tvAppointment.setText("0");
-                        } else {
-                            tvAppointment.setText((String) earnestMoneyEntity.getAppointment());
-                        }
-                        if (earnestMoneyEntity.getBeInvite() == null) {
-                            tvBeInvite.setText("0");
-                        } else {
-                            tvBeInvite.setText((String) earnestMoneyEntity.getBeInvite());
-                        }
-                        if (earnestMoneyEntity.getNoAppointment() == null) {
-                            tvBeMiss.setText("0");
-                        }else{
-                            tvBeMiss.setText((String) earnestMoneyEntity.getNoAppointment());
+                        try {
+                            if (earnestMoneyEntity.getPayEarnestMoney() == null) {
+                                tvEarnestMoney.setText("0");
+                            } else {
+                                tvEarnestMoney.setText((String) earnestMoneyEntity.getPayEarnestMoney());
+                            }
+                            if (earnestMoneyEntity.getGetEarnestMoney() == null) {
+                                tvGetMoney.setText("0");
+                            } else {
+                                tvGetMoney.setText((String) earnestMoneyEntity.getGetEarnestMoney());
+                            }
+                            if (earnestMoneyEntity.getBeToAdd() == 0) {
+                                tvBeAddFriend.setText("0");
+                            } else {
+                                tvBeAddFriend.setText(earnestMoneyEntity.getBeToAdd() + "");
+                            }
+                            if (earnestMoneyEntity.getAppointment() == null) {
+                                tvAppointment.setText("0");
+                            } else {
+                                tvAppointment.setText((String) earnestMoneyEntity.getAppointment());
+                            }
+                            if (earnestMoneyEntity.getBeInvite() == null) {
+                                tvBeInvite.setText("0");
+                            } else {
+                                tvBeInvite.setText((String) earnestMoneyEntity.getBeInvite());
+                            }
+                            if (earnestMoneyEntity.getNoAppointment() == null) {
+                                tvBeMiss.setText("0");
+                            } else {
+                                tvBeMiss.setText((String) earnestMoneyEntity.getNoAppointment());
+                            }
+                        } catch (Exception e) {
+                            Log.e("gy", e.toString());
                         }
                     }
+
                 });
     }
 
@@ -361,10 +370,10 @@ public class PersonalActivity extends BaseActivity {
                 map.put("age", personalAge.getText().toString().trim());
                 break;
             case SET_JOB:
-                map.put("job",personalJob.getText().toString().trim());
+                map.put("job", personalJob.getText().toString().trim());
                 break;
             case SET_HOBBY:
-                map.put("hobby",personalHobby.getText().toString().trim());
+                map.put("hobby", personalHobby.getText().toString().trim());
                 break;
             case SET_LOC:
                 map.put("districtName", personalAddress.getText().toString());
@@ -644,7 +653,7 @@ public class PersonalActivity extends BaseActivity {
             case R.id.name_linear:
                 Intent intent = new Intent();
                 intent.setClass(PersonalActivity.this, MeNameEditActivity.class);
-                intent.putExtra("mTitleName","setName");
+                intent.putExtra("mTitleName", "setName");
                 startActivityForResult(intent, SET_NAME);
                 break;
             case R.id.sexy_linear:
@@ -672,14 +681,14 @@ public class PersonalActivity extends BaseActivity {
             case R.id.personal_job_linear:
                 Intent intentjob = new Intent();
                 intentjob.setClass(PersonalActivity.this, MeNameEditActivity.class);
-                intentjob.putExtra("mTitleName","setJob");
+                intentjob.putExtra("mTitleName", "setJob");
                 startActivityForResult(intentjob, SET_JOB);
                 break;
             case R.id.personal_hobby_linear:
                 Intent intenthobby = new Intent();
                 intenthobby.setClass(PersonalActivity.this, MeNameEditActivity.class);
-                intenthobby.putExtra("mTitleName","setHobby");
-                startActivityForResult(intenthobby,SET_HOBBY);
+                intenthobby.putExtra("mTitleName", "setHobby");
+                startActivityForResult(intenthobby, SET_HOBBY);
                 break;
             case R.id.address_linear:
 //                ActivityUtil.next(PersonalActivity.this, MeAddressListActivity.class);

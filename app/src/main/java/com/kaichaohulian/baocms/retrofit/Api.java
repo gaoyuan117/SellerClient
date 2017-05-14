@@ -258,4 +258,10 @@ public interface Api {
     @GET(Url.GetSureMeet)
     Observable<HttpResult<CommonEntity>> GetSureMeet(@Query("userId") String UserId, @Query("inviteId") String inviteId);
 
+
+
+    //见面确认
+    @GET("business/delSayhello.do")
+    Observable<HttpResult<CommonEntity>> clearGreet(@Query("userId") String UserId, @Query("inviteId") String inviteId);
+
 }

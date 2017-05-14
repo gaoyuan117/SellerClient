@@ -12,6 +12,7 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.adapter.AdvertMassSelectAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
@@ -64,7 +65,7 @@ public class AdvertMassSelectActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        if(getIntent().getBooleanExtra("JustSelect",false)){
+        if (getIntent().getBooleanExtra("JustSelect", false)) {
             setCenterTitle(getIntent().getStringExtra("title"));
             TextView tv = setRightTitle("确定");
             tv.setBackgroundResource(R.mipmap.rounded_rectangle);
@@ -72,25 +73,26 @@ public class AdvertMassSelectActivity extends BaseActivity {
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    StringBuffer buffer=new StringBuffer();
-                    HashSet set=new HashSet();
-                    set=adapter.GetSet();
-                    if(set.size()==0){
+                    StringBuffer buffer = new StringBuffer();
+                    HashSet set = new HashSet();
+                    set = adapter.GetSet();
+                    if (set.size() == 0) {
                         Toast.makeText(AdvertMassSelectActivity.this, "请选择要群发的好友", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     Iterator<ContactFriendsEntity> iterator = set.iterator();
-                    if(iterator.hasNext()){
-                        buffer.append(iterator.next().getId()+",");
+                    while (iterator.hasNext()) {
+                        buffer.append(iterator.next().getId() + ",");
                     }
                     buffer.append(MyApplication.getInstance().UserInfo.getUserId());
-                    Intent intent=new Intent();
-                    intent.putExtra("ids",buffer.toString());
-                    setResult(RESULT_OK,intent);
+                    Intent intent = new Intent();
+                    intent.putExtra("ids", buffer.toString());
+                    Log.e("gy", "ids：" + buffer.toString());
+                    setResult(RESULT_OK, intent);
                     finish();
                 }
             });
-        }else{
+        } else {
             setCenterTitle("好友群发");
             TextView tv = setRightTitle("下一步");
             tv.setBackgroundResource(R.mipmap.rounded_rectangle);
@@ -98,20 +100,20 @@ public class AdvertMassSelectActivity extends BaseActivity {
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    StringBuffer buffer=new StringBuffer();
-                    HashSet set=new HashSet();
-                    set=adapter.GetSet();
-                    if(set.size()==0){
+                    StringBuffer buffer = new StringBuffer();
+                    HashSet set = new HashSet();
+                    set = adapter.GetSet();
+                    if (set.size() == 0) {
                         Toast.makeText(AdvertMassSelectActivity.this, "请选择要群发的好友", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     Iterator<ContactFriendsEntity> iterator = set.iterator();
-                    if(iterator.hasNext()){
-                        buffer.append(iterator.next().getId()+",");
+                    if (iterator.hasNext()) {
+                        buffer.append(iterator.next().getId() + ",");
                     }
                     buffer.append(MyApplication.getInstance().UserInfo.getUserId());
-                    Intent intent=new Intent(getActivity(),ReleaseAdvertActivity.class);
-                    intent.putExtra("ids",buffer.toString());
+                    Intent intent = new Intent(getActivity(), ReleaseAdvertActivity.class);
+                    intent.putExtra("ids", buffer.toString());
                     startActivity(intent);
                 }
             });

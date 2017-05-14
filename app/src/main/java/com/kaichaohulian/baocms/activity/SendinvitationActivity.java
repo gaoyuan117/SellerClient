@@ -18,6 +18,7 @@ import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -46,19 +47,33 @@ public class SendinvitationActivity extends BaseActivity {
     TextView tvResponsetime;
     SimpleDateFormat AllTtmeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     SimpleDateFormat DayTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    SimpleDateFormat HourTimeFormat = new SimpleDateFormat("HH小时mm");
 
     private TimePickerView timePickerView;
     private TimePickerView ReponseTimePickerView;
     private final int SELECT_ID = 100;
     private String ids;
-    private String InviteTime;
+    private String InviteTime, ApplyTime;
 
     @Override
     public void setContent() {
         setContentView(R.layout.activity_sendinvitation);
         ButterKnife.bind(this);
 
+    }
+
+    public boolean compareDate(String start, String end) {
+        long i = 0;
+        try {
+            i = AllTtmeFormat.parse(start).getTime() - AllTtmeFormat.parse(end).getTime();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (i > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -75,17 +90,19 @@ public class SendinvitationActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SendInvite();
+                SendInvite(view);
+                view.setClickable(false);
             }
         });
 
         TvInvitiontime.setText(DayTimeFormat.format(Calendar.getInstance().getTime()));
         InviteTime = AllTtmeFormat.format(Calendar.getInstance().getTime());
+
         edtActaddress.setHint(MyApplication.getInstance().BDLocation.getAddrStr());
 
     }
 
-    private void SendInvite() {
+    private void SendInvite(final View view) {
         if (map == null) {
             map = new HashMap<>();
         } else {
@@ -119,7 +136,12 @@ public class SendinvitationActivity extends BaseActivity {
         map.put("longitud", MyApplication.getInstance().BDLocation.getLongitude() + "");
         map.put("latitude", MyApplication.getInstance().BDLocation.getLatitude() + "");
         map.put("invateTime", InviteTime);
-        map.put("applyTime", "12小时");
+        if (ApplyTime == null) {
+            Toast.makeText(this, "请选择响应时间", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            map.put("applyTime", ApplyTime);
+        }
         RetrofitClient.getInstance().createApi().SendInvite(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
                 .subscribe(new Observer<HttpResult<CommonEntity>>() {
@@ -130,11 +152,12 @@ public class SendinvitationActivity extends BaseActivity {
 
                     @Override
                     public void onNext(HttpResult<CommonEntity> value) {
-                        if(value.errorDescription.contains("成功")){
+                        if (value.errorDescription.contains("成功")) {
                             Toast.makeText(SendinvitationActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
                             finish();
-                        }else{
+                        } else {
                             Toast.makeText(SendinvitationActivity.this, value.errorDescription, Toast.LENGTH_SHORT).show();
+                            view.setClickable(true);
                         }
                     }
 
@@ -195,17 +218,12 @@ public class SendinvitationActivity extends BaseActivity {
                     ReponseTimePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
                         @Override
                         public void onTimeSelect(Date date, View v) {
-                            long time = System.currentTimeMillis()+date.getTime();
-                            Log.d("SendinvitationActivity", "System.currentTimeMillis():" + System.currentTimeMillis());
-                            Log.d("SendinvitationActivity", "date.getTime():" + date.getTime());
-                            if(time>0){
-                                tvResponsetime.setText(HourTimeFormat.format(time));
-                            }else{
-                                Toast.makeText(SendinvitationActivity.this, "时间不能小于当前时间", Toast.LENGTH_SHORT).show();
-                            }
+                            ApplyTime = DayTimeFormat.format(date);
+                            tvResponsetime.setText(ApplyTime);
                         }
-                    }).setType(TimePickerView.Type.HOURS_MINS)
+                    }).setType(TimePickerView.Type.YEAR_MONTH_DAY_HOUR_MIN)
                             .setDate(Calendar.getInstance())
+                            .setTitleText("选择响应截止时间")
                             .build();
                     ReponseTimePickerView.show();
                 } else {
@@ -214,6 +232,5 @@ public class SendinvitationActivity extends BaseActivity {
                 break;
         }
     }
-
 }
 
