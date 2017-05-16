@@ -79,6 +79,8 @@ public class WithdrawApplyActivity extends BaseActivity {
     private View SignPassword;
     private PasswordEdittext paywordEdt;
     private PopupWindow PopSignPassword;
+    private DataHelper mDataHelper;
+
 
     @Override
     public void setContent() {
@@ -320,6 +322,10 @@ public class WithdrawApplyActivity extends BaseActivity {
                         if(value.errorDescription.contains("重新输入")){
                             Toast.makeText(WithdrawApplyActivity.this, "密码错误请重新输入", Toast.LENGTH_SHORT).show();
                             paywordEdt.getText().clear();
+                        }else {
+                            RequestParams params = new RequestParams();
+
+//                            tiXian();
                         }
                     }
 
@@ -391,7 +397,6 @@ public class WithdrawApplyActivity extends BaseActivity {
         }
     }
 
-    private DataHelper mDataHelper;
 
     public void tiXian(RequestParams params) {
         ShowDialog.showDialog(getActivity(), "提现申请中...", false, null);

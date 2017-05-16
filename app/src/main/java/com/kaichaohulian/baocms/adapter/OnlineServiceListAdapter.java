@@ -34,8 +34,8 @@ public class OnlineServiceListAdapter extends BaseListAdapter<OnlineServiceEntit
         }else{
             vh= (OnlineServiceListViewHoler) view.getTag();
         }
-        vh.nameText.setText(data.get(i).username);
-        Glide.with(context).load(data.get(i).avator).error(R.mipmap.default_onlinehead).into(vh.headImg);
+        vh.nameText.setText(data.get(i).getName());
+        Glide.with(context).load(data.get(i).getAvatar()).error(R.mipmap.default_onlinehead).into(vh.headImg);
         return view;
     }
 

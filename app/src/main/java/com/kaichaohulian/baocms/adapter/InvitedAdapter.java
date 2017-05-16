@@ -39,11 +39,9 @@ public class InvitedAdapter extends BaseQuickAdapter<InvitedBean, BaseViewHolder
             ImageView imgArrow = helper.getView(R.id.img_item_discover_invite_arrow);
             LinearLayout layout = helper.getView(R.id.ll_item_discover_invite);
             TextView tvState = helper.getView(R.id.tv_item_discover_invite_state);
-            long time = (getTimeStamp(item.getInvateTime()) - getTimeStamp(item.getCreatedTime())) / 1000;
-            long time1 =getTimeStamp(item.getInvateTime())- new Date().getTime();
-            Log.e("gy","现在的时间："+new Date().getTime());
-            Log.e("gy","响应的时间："+getTimeStamp(item.getInvateTime()));
-            Log.e("gy","时间："+time1);
+//            long time = (getTimeStamp(item.getInvateTime()) - getTimeStamp(item.getCreatedTime())) / 1000;
+            long time1 = (getTimeStamp(item.getInvateTime()) - new Date().getTime()) / 1000;
+            Log.e("gy", "时间：" + time1);
             String hasTime = getStrTime(time1);//剩余时间
 
             helper.setText(R.id.tv_item_discover_invite_name, item.getNickName())
@@ -53,16 +51,21 @@ public class InvitedAdapter extends BaseQuickAdapter<InvitedBean, BaseViewHolder
                     .addOnClickListener(R.id.bt_item_discover_invite_receive);
 
             int status = item.getStatus();
+            int userStatus = item.getUserApplyStatus();
+            if (userStatus == 0) {
+                layout.setVisibility(View.VISIBLE);
+                imgArrow.setVisibility(View.GONE);
+            } else {
+                layout.setVisibility(View.GONE);
+                imgArrow.setVisibility(View.VISIBLE);
+            }
+
             if (status == 0) {
                 imgChat.setVisibility(View.VISIBLE);
-                layout.setVisibility(View.VISIBLE);
                 tvState.setText("剩余" + hasTime);
-                imgArrow.setVisibility(View.GONE);
             } else if (status == 1) {
                 imgChat.setVisibility(View.GONE);
-                layout.setVisibility(View.VISIBLE);
                 tvState.setText("剩余" + hasTime);
-                imgArrow.setVisibility(View.GONE);
             } else if (status == 2) {
                 imgChat.setVisibility(View.GONE);
                 layout.setVisibility(View.GONE);

@@ -69,7 +69,7 @@ public class NearbyZyActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_nearby_notify:
-                if(mGreetBean==null){
+                if (mGreetBean == null) {
                     return;
                 }
                 Intent intent = new Intent(this, GreetActivity.class);
@@ -90,9 +90,9 @@ public class NearbyZyActivity extends BaseActivity {
                     @Override
                     protected void onHandleSuccess(GreetBean greetBean) {
                         if (greetBean.getRequestDTOs1() == null) {
-                            tvChatNums.setText("你收到0条新的打招呼");
-
+                            llNearbyNotify.setVisibility(View.GONE);
                         } else {
+                            llNearbyNotify.setVisibility(View.VISIBLE);
                             mGreetBean = greetBean;
                             tvChatNums.setText("你收到" + greetBean.getRembers() + "条新的打招呼");
                             Glide.with(NearbyZyActivity.this)

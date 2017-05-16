@@ -229,38 +229,40 @@ public class PersonalActivity extends BaseActivity {
                     @Override
                     protected void onHandleSuccess(EarnestMoneyEntity earnestMoneyEntity) {
                         try {
-                            if (earnestMoneyEntity.getPayEarnestMoney() == null) {
-                                tvEarnestMoney.setText("0");
-                            } else {
-                                tvEarnestMoney.setText((String) earnestMoneyEntity.getPayEarnestMoney());
-                            }
-                            if (earnestMoneyEntity.getGetEarnestMoney() == null) {
-                                tvGetMoney.setText("0");
-                            } else {
-                                tvGetMoney.setText((String) earnestMoneyEntity.getGetEarnestMoney());
-                            }
-                            if (earnestMoneyEntity.getBeToAdd() == 0) {
-                                tvBeAddFriend.setText("0");
-                            } else {
-                                tvBeAddFriend.setText(earnestMoneyEntity.getBeToAdd() + "");
-                            }
-                            if (earnestMoneyEntity.getAppointment() == null) {
-                                tvAppointment.setText("0");
-                            } else {
-                                tvAppointment.setText((String) earnestMoneyEntity.getAppointment());
-                            }
-                            if (earnestMoneyEntity.getBeInvite() == null) {
-                                tvBeInvite.setText("0");
-                            } else {
-                                tvBeInvite.setText((String) earnestMoneyEntity.getBeInvite());
-                            }
-                            if (earnestMoneyEntity.getNoAppointment() == null) {
-                                tvBeMiss.setText("0");
-                            } else {
-                                tvBeMiss.setText((String) earnestMoneyEntity.getNoAppointment());
-                            }
-                        } catch (Exception e) {
-                            Log.e("gy", e.toString());
+
+
+                        if (earnestMoneyEntity.getPayEarnestMoney() == null) {
+                            tvEarnestMoney.setText("0");
+                        } else {
+                            tvEarnestMoney.setText((String) earnestMoneyEntity.getPayEarnestMoney());
+                        }
+                        if (earnestMoneyEntity.getGetEarnestMoney() == null) {
+                            tvGetMoney.setText("0");
+                        } else {
+                            tvGetMoney.setText((String) earnestMoneyEntity.getGetEarnestMoney());
+                        }
+                        if (earnestMoneyEntity.getBeToAdd() == 0) {
+                            tvBeAddFriend.setText("0");
+                        } else {
+                            tvBeAddFriend.setText(earnestMoneyEntity.getBeToAdd() + "");
+                        }
+                        if (earnestMoneyEntity.getAppointment() == null) {
+                            tvAppointment.setText("0");
+                        } else {
+                            tvAppointment.setText((String) earnestMoneyEntity.getAppointment());
+                        }
+                        if (earnestMoneyEntity.getBeInvite() == null) {
+                            tvBeInvite.setText("0");
+                        } else {
+                            tvBeInvite.setText((String) earnestMoneyEntity.getBeInvite());
+                        }
+                        if (earnestMoneyEntity.getNoAppointment() == null) {
+                            tvBeMiss.setText("0");
+                        } else {
+                            tvBeMiss.setText((String) earnestMoneyEntity.getNoAppointment());
+                        }
+                        }catch (Exception e){
+                            Log.e("gy",e.toString());
                         }
                     }
 

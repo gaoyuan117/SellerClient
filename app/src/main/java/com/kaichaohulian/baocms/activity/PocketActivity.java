@@ -100,11 +100,6 @@ public class PocketActivity extends BaseActivity {
                 break;
         }
     }
-
-
-
-
-
 }
 
 

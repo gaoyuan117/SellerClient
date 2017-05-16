@@ -70,9 +70,9 @@ public class OnlineServiceActivity extends BaseActivity implements AdapterView.O
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(getActivity(), ChattingActivity.class);
-        intent.putExtra(ChattingFragment.RECIPIENTS, data.get(position).phoneNumber);
-        intent.putExtra(ChattingFragment.CONTACT_USER, data.get(position).username);
-        intent.putExtra("user_id", data.get(position).user_id);
+        intent.putExtra(ChattingFragment.RECIPIENTS, data.get(position).getPhoneNumber());
+        intent.putExtra(ChattingFragment.CONTACT_USER, data.get(position).getName());
+        intent.putExtra("user_id", data.get(position).getId());
         intent.putExtra(ChattingFragment.CUSTOMER_SERVICE, false);
         startActivity(intent);
     }

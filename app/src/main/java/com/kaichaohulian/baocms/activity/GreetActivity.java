@@ -74,11 +74,14 @@ public class GreetActivity extends BaseActivity implements BaseQuickAdapter.OnIt
                 finish();
                 break;
             case R.id.img_greet_clear://清空
-
+                clearGreet();
                 break;
         }
     }
 
+    /**
+     * 加载打招呼列表
+     */
     private void loadGreetList() {
         map.put("id", MyApplication.getInstance().UserInfo.getUserId() + "");
         map.put("page", "1");
@@ -96,6 +99,11 @@ public class GreetActivity extends BaseActivity implements BaseQuickAdapter.OnIt
                 });
     }
 
+    /**
+     * 接受打招呼
+     *
+     * @param requstId
+     */
     private void agreeAdd(int requstId) {
         Map<String, Object> maps = new HashMap<>();
         maps.put("id", MyApplication.getInstance().UserInfo.getUserId());
@@ -108,6 +116,21 @@ public class GreetActivity extends BaseActivity implements BaseQuickAdapter.OnIt
                     @Override
                     protected void onHandleSuccess(CommonEntity commonEntity) {
                         ToastUtil.showMessage("添加成功");
+                        loadGreetList();
+                    }
+                });
+    }
+
+    /**
+     * 清空打招呼列表
+     */
+    private void clearGreet() {
+        RetrofitClient.getInstance().createApi().clearGreet(MyApplication.getInstance().UserInfo.getUserId() + "")
+                .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                .subscribe(new BaseObjObserver<CommonEntity>(this, "清空中") {
+                    @Override
+                    protected void onHandleSuccess(CommonEntity commonEntity) {
+                        ToastUtil.showMessage("清空成功");
                         loadGreetList();
                     }
                 });

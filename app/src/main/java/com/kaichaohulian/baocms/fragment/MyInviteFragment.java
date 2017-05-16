@@ -3,12 +3,15 @@ package com.kaichaohulian.baocms.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.activity.InvitedetailActivity;
 import com.kaichaohulian.baocms.adapter.MyInviteAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
@@ -37,7 +40,7 @@ import butterknife.Unbinder;
  */
 
 @SuppressLint("ValidFragment")
-public class MyInviteFragment extends BaseFragment {
+public class MyInviteFragment extends BaseFragment implements BaseQuickAdapter.OnItemClickListener {
 
     @BindView(R.id.lv_invitationMg)
     RecyclerView mRecyclerView;
@@ -76,7 +79,7 @@ public class MyInviteFragment extends BaseFragment {
 
     @Override
     public void initEvent() {
-
+        mAdapter.setOnItemClickListener(this);
     }
 
     private void loadMyInvite(int page) {
@@ -103,5 +106,14 @@ public class MyInviteFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        Intent intent = new Intent(getActivity(), InvitedetailActivity.class);
+        intent.putExtra("inviteId", mList.get(position).getId());
+        intent.putExtra("IsOwn",true);
+        intent.putExtra("UserId",MyApplication.getInstance().UserInfo.getUserId());
+        startActivity(intent);
     }
 }

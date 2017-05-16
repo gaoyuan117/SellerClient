@@ -11,11 +11,13 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.activity.DiscoverInvitedDetailActivity;
+import com.kaichaohulian.baocms.activity.InvitedetailActivity;
 import com.kaichaohulian.baocms.adapter.InvitedAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
 import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.entity.CommonEntity;
+import com.kaichaohulian.baocms.entity.InviteDetailEntity;
 import com.kaichaohulian.baocms.entity.InvitedBean;
 import com.kaichaohulian.baocms.http.HttpArray;
 import com.kaichaohulian.baocms.http.HttpResult;
@@ -148,7 +150,25 @@ public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.On
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        Intent intent = new Intent(getActivity(), DiscoverInvitedDetailActivity.class);
-        startActivity(intent);
+        if (mList.get(position).getStatus() == 0) {
+            Intent intent = new Intent(getActivity(), DiscoverInvitedDetailActivity.class);
+            intent.putExtra("inviteId", mList.get(position).getId() + "");
+
+            if (mList.get(position).getStatus() == 0 || mList.get(position).getStatus() == 1) {
+                intent.putExtra("type", "0");
+            } else {
+                intent.putExtra("type", "1");
+            }
+            startActivity(intent);
+
+        } else {
+            Intent intent = new Intent(getActivity(), InvitedetailActivity.class);
+            intent.putExtra("inviteId", mList.get(position).getId());
+            intent.putExtra("IsOwn", false);
+            intent.putExtra("UserId", MyApplication.getInstance().UserInfo.getUserId());
+            startActivity(intent);
+        }
+
+
     }
 }

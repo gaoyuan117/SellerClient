@@ -42,8 +42,7 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:layout_marginTop="15dp"
-                    android:src="@color/colorAccent" />
+                    android:layout_marginTop="15dp" />
 
                 <TextView
                     android:id="@+id/img_invited_detail_name"
@@ -52,7 +51,7 @@
                     android:layout_alignTop="@+id/img_invited_detail_avatar"
                     android:layout_marginTop="4dp"
                     android:layout_toRightOf="@+id/img_invited_detail_avatar"
-                    android:text="发起人：高原"
+                    android:text="发起人："
                     android:textColor="@color/zy_text_black" />
 
                 <TextView
@@ -62,7 +61,7 @@
                     android:layout_alignBottom="@+id/img_invited_detail_avatar"
                     android:layout_marginBottom="4dp"
                     android:layout_toRightOf="@+id/img_invited_detail_avatar"
-                    android:text="ID:7236"
+                    android:text="ID:"
                     android:textColor="@color/zy_text_gray"
                     android:textSize="12sp" />
             </RelativeLayout>

@@ -18,7 +18,7 @@
         android:layout_alignTop="@+id/img_adver_detail_avatar"
         android:layout_marginTop="4dp"
         android:layout_toRightOf="@+id/img_adver_detail_avatar"
-        android:text="名字"
+        android:text=""
         android:textColor="#323232" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_alignBottom="@+id/img_adver_detail_avatar"
         android:layout_marginBottom="4dp"
         android:layout_toRightOf="@+id/img_adver_detail_avatar"
-        android:text="ID:7236"
+        android:text=""
         android:textColor="@color/zy_text_gray"
         android:textSize="12sp" />
 
@@ -41,7 +41,7 @@
         android:layout_marginRight="16dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text="这是标题"
+        android:text=""
         android:textColor="@color/zy_text_black"
         android:textSize="16sp" />
 
@@ -52,7 +52,7 @@
         android:layout_below="@+id/tv_adver_detail_title"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        android:text="这是内容"
+        android:text=""
         android:textColor="#323232" />
 
 </RelativeLayout>
