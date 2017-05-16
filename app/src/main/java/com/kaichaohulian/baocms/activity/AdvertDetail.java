@@ -6,15 +6,22 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.adapter.AdvertDetailGridAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.entity.AdvertDetailEntity;
 import com.kaichaohulian.baocms.entity.AdviertisementEntity;
 import com.kaichaohulian.baocms.http.HttpArray;
+import com.kaichaohulian.baocms.http.HttpResult;
+import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseListObserver;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
+import com.kaichaohulian.baocms.view.MyGridView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -36,8 +43,9 @@ public class AdvertDetail extends BaseActivity {
     @BindView(R.id.content_detailavert)
     TextView content;
     @BindView(R.id.img_detailadvert)
-    ImageView imgdetailadvert;
+    MyGridView imgdetailadvert;
     SimpleDateFormat format=new SimpleDateFormat("MM月dd日 HH:mm");
+    private AdvertDetailGridAdapter adapter;
     @Override
     public void setContent() {
         setContentView(R.layout.activity_advert_detail);
@@ -52,16 +60,34 @@ public class AdvertDetail extends BaseActivity {
             map.put("advertId",adverId+"");
             map.put("userId",MyApplication.getInstance().UserInfo.getUserId()+"");
             RetrofitClient.getInstance().createApi().GetDetailForAdvert(map)
-                    .compose(RxUtils.<HttpArray<AdviertisementEntity>>io_main())
-                    .subscribe(new BaseListObserver<AdviertisementEntity>(getActivity(),"获取广告详情中...") {
+                    .compose(RxUtils.<HttpResult<AdvertDetailEntity>>io_main())
+                    .subscribe(new BaseObjObserver<AdvertDetailEntity>(getActivity(),"获取广告详情中...") {
                         @Override
-                        protected void onHandleSuccess(List<AdviertisementEntity> list) {
-                            for (int i = 0; i < list.size(); i++) {
-                                Log.d("AdvertDetail", "list.get(i):" + list.get(i));
-                            }
+                        protected void onHandleSuccess(AdvertDetailEntity adviertisementEntity) {
+                            time.setText(adviertisementEntity.advert.createdTime.substring(0,adviertisementEntity.advert.createdTime.length()-9));
+//                            addressee.setText();
+                            title.setText(adviertisementEntity.advert.title);
+                            content.setText(adviertisementEntity.advert.context);
+                            adapter=new AdvertDetailGridAdapter(getActivity(),getList(adviertisementEntity.advert.image));
+                            adapter.setLayoutIds(R.layout.item_advert_detailgrid);
+                            imgdetailadvert.setAdapter(adapter);
                         }
                     });
         }
+    }
+
+    private List<String> getList(String data){
+        ArrayList<String> list=new ArrayList<>();
+        StringBuffer buffer=new StringBuffer();
+        for (int i = 0; i < data.length(); i++) {
+            if(data.charAt(i)!=','){
+                buffer.append(data.charAt(i));
+            }else if(data.charAt(i)==','){
+                list.add("http://oez2a4f3v.bkt.clouddn.com/"+buffer.toString());
+                buffer.delete(0,buffer.length());
+            }
+        }
+        return list;
     }
 
     @Override

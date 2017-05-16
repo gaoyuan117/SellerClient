@@ -7,6 +7,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.adapter.AdvertMassSelectAdapter;
 import com.kaichaohulian.baocms.adapter.AdvertmasslistAdapter;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
@@ -90,7 +91,10 @@ public class AdvertmassActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_friend_advertmass:
-                ActivityUtil.next(this, AdvertMassSelectActivity.class);
+                Intent intent=new Intent(this, AdvertMassSelectActivity.class);
+                intent.putExtra("JustSelect",false);
+                startActivity(intent);
+//                ActivityUtil.next(this, AdvertMassSelectActivity.class);
                 break;
             case R.id.ll_other_advertmass:
                 ActivityUtil.next(this, AdvertOtherActivity.class);

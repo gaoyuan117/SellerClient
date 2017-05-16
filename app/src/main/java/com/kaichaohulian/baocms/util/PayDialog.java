@@ -38,10 +38,17 @@ public class PayDialog {
         return this;
     }
 
+    public PayDialog dismissDialog(){
+        dialog.dismiss();
+        return this;
+    }
+
     public PayDialog setSureClick(View.OnClickListener listener){
         sureBt.setOnClickListener(listener);
         return this;
     }
+
+
 
     public PayDialog setMessage(String message){
         tv_message.setText(message);

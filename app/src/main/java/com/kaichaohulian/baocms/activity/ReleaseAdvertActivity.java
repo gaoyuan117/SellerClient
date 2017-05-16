@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.entity.AdvertParmEntity;
 import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.qiniu.Auth;
@@ -67,9 +69,10 @@ public class ReleaseAdvertActivity extends BaseActivity {
     private List<String> list;
     private ImageBaseAdapter ImageBaseAdapter;
     int index = 0;
-    private int payMoney=2;
+    private double payMoney=0;
     private StringBuffer img = new StringBuffer();
     private StringBuffer ids = new StringBuffer();
+    private PayDialog payDialog;
 
     @Override
     public void setContent() {
@@ -111,22 +114,36 @@ public class ReleaseAdvertActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new PayDialog(getActivity()).setMessage("本次群发需要支付2元手续费").setSureClick(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(ReleaseAdvertActivity.this, PayActivity.class);
-                        intent.putExtra("pay_money", payMoney+"");
-                        startActivityForResult(intent,PAY_CODE);
-                    }
-                }).showDialog();
-                InServer();
+                if(payMoney==0){
+                    initEvent();
+                }
+                if(payDialog==null){
+                    payDialog = new PayDialog(getActivity()).setMessage("本次群发需要支付"+payMoney+"元手续费").setSureClick(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            payDialog.dismissDialog();
+                            Intent intent = new Intent(ReleaseAdvertActivity.this, PayActivity.class);
+                            intent.putExtra("pay_money", payMoney+"");
+                            startActivityForResult(intent,PAY_CODE);
+                        }
+
+                    }).showDialog();
+                }else{
+                    payDialog.showDialog();
+                }
             }
         });
     }
 
     @Override
     public void initEvent() {
-
+        RetrofitClient.getInstance().createApi().getAdvertParm().compose(RxUtils.<HttpResult<AdvertParmEntity>>io_main())
+                .subscribe(new BaseObjObserver<AdvertParmEntity>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(AdvertParmEntity advertParmEntity) {
+                        payMoney=advertParmEntity.eachPay;
+                    }
+                });
     }
 
     private void showImageView(ImageView iamgeView, String avatar) {
@@ -263,7 +280,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
         map.put("pay",payMoney+"");
         map.put("redMoney","5");
         map.put("ids", getIntent().getStringExtra("ids"));
-        map.put("pay", "4");
+        map.put("pay", payMoney+"");
         map.put("redMoney", "5");
         RetrofitClient.getInstance().createApi().ReleaseAdvert(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())

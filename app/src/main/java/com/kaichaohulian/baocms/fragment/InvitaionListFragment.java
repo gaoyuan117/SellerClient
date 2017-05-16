@@ -109,12 +109,6 @@ public class InvitaionListFragment extends BaseFragment {
                             }
                         });
                 break;
-            case InvitationmgActivity.MY_INVITE:
-
-                break;
-            case InvitationmgActivity.MY_BEINVITE:
-
-                break;
         }
     }
 

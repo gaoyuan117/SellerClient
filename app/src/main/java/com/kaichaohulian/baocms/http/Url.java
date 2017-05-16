@@ -77,7 +77,8 @@ public class Url {
     public static final String DeleteAdvert = BASE_URL + "adviertisement/ delAdvert.do";
     //其他群发
     public static final String SendAdviertOfOther = BASE_URL + "adviertisement/getUser.do";
-
+    //获取支付金额
+    public static final String GetAdvertParm=BASE_URL+"adviertisement/getAdvertParm.do";
 
     /****************
      * **邀请相关*****
