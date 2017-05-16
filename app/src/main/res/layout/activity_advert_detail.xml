@@ -82,16 +82,14 @@
                     android:textColor="@color/zy_text_color"
                     android:textSize="12sp" />
 
-                <ImageView
-
+                <com.kaichaohulian.baocms.view.MyGridView
                     android:id="@+id/img_detailadvert"
-                    android:layout_width="150dp"
-                    android:layout_height="180dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@mipmap/default_advertmass"
-                    android:scaleType="fitXY"
-                    />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:numColumns="3"
+
+                    ></com.kaichaohulian.baocms.view.MyGridView>
+
 
             </LinearLayout>
 

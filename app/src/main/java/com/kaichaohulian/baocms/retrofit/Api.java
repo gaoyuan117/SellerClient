@@ -2,6 +2,8 @@ package com.kaichaohulian.baocms.retrofit;
 
 import com.kaichaohulian.baocms.entity.AblumEntity;
 import com.kaichaohulian.baocms.entity.AdversDetailBean;
+import com.kaichaohulian.baocms.entity.AdvertDetailEntity;
+import com.kaichaohulian.baocms.entity.AdvertParmEntity;
 import com.kaichaohulian.baocms.entity.AdviertisementEntity;
 import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
@@ -12,7 +14,6 @@ import com.kaichaohulian.baocms.entity.InviteDetailEntity;
 import com.kaichaohulian.baocms.entity.InviteInfoBean;
 import com.kaichaohulian.baocms.entity.InviteReciverEntity;
 import com.kaichaohulian.baocms.entity.InvitedBean;
-import com.kaichaohulian.baocms.entity.LableBean;
 import com.kaichaohulian.baocms.entity.MyInviteBean;
 import com.kaichaohulian.baocms.entity.MyInviteEntity;
 import com.kaichaohulian.baocms.entity.NearbyBean;
@@ -87,10 +88,6 @@ public interface Api {
      **************/
 
 
-    //根据手机号获取用户信息
-    @GET(Url.dependPhoneGetUserInfo)
-    Observable<HttpResult> getUserInfo(@Query("phoneNumber") String phoneNum);
-
     //修改个人信息
     @GET(Url.changePersonalInformation)
     Observable<HttpResult> ChangeInfo(@QueryMap Map<String, String> map);
@@ -108,6 +105,9 @@ public interface Api {
     /**************
      * 广告相关*****
      **************/
+    //获取支付金额
+    @GET(Url.GetAdvertParm)
+    Observable<HttpResult<AdvertParmEntity>> getAdvertParm();
     //好友群发
     @GET(Url.Sendadviertisement)
     Observable<HttpResult<CommonEntity>> ReleaseAdvert(@QueryMap Map<String, String> map);
@@ -126,7 +126,7 @@ public interface Api {
 
     //获取广告详情
     @GET(Url.GetadvertDetail)
-    Observable<HttpArray<AdviertisementEntity>> GetDetailForAdvert(@QueryMap Map<String, String> map);
+    Observable<HttpResult<AdvertDetailEntity>> GetDetailForAdvert(@QueryMap Map<String, String> map);
 
     //其他群发
     /*字段名     数据类型 是否必须
@@ -140,16 +140,9 @@ public interface Api {
     @GET(Url.SendAdviertOfOther)
     Observable<HttpArray<Integer>> ReleaseAdviertOfOther(@QueryMap Map<String, String> map);
 
-
-    /**************
-     * 钱包相关*****
-     * ***********/
-
-
     //删除好友
     @GET(Url.delete)
     Observable<HttpResult<CommonEntity>> deleteFriend(@QueryMap Map<String, String> map);
-
 
     //加入黑名单
     @GET("im/friend/defriend.do")
@@ -174,33 +167,6 @@ public interface Api {
 
     @GET(Url.GetMyJoinInvite)
     Observable<HttpArray<MyInviteEntity>> GetMyJoinInvite(@Query("userId") long id, @Query("page") int page);
-
-    //发起邀请
-    @GET(Url.SendInvite)
-    Observable<HttpResult<CommonEntity>> SendInvite(@QueryMap Map<String, String> map);
-
-    //邀请详情(发布人)
-    @GET(Url.GetInviteDetailForHost)
-    Observable<HttpResult<InviteDetailEntity>> GetInviteDetailForHost(@Query("userId") String UserId, @Query("inviteId") String inviteId);
-
-    //邀请详情(受邀人)
-    @GET(Url.GetInviteDetailForReciver)
-    Observable<HttpResult<InviteReciverEntity>> GetInviteDetailForReciver(@Query("userId") String UserId, @Query("inviteId") String inviteId);
-
-    //见面确认
-    @GET(Url.GetSureMeet)
-    Observable<HttpResult<CommonEntity>> GetSureMeet(@Query("userId") String UserId, @Query("inviteId") String inviteId);
-
-
-    /****************
-     * **相册相关*****
-     **************/
-    //获取用户相册信息
-    @GET("imageManager/getImages.do")
-    Observable<UserPhotoBean> userPhotoInfo(@QueryMap Map<String, String> map);
-
-    @GET(Url.findAll)
-    Observable<HttpResult<AblumEntity>> GetUserPhoto(@Query("id") long id, @Query("page") String page);
 
 
 //    @GET(Url.MyAlbum)
@@ -247,6 +213,10 @@ public interface Api {
     @GET("users/getOtherByPhone.do")
     Observable<HttpResult<InviteInfoBean>> loadInviteInfo(@QueryMap Map<String, String> map);
 
+    //获取用户相册信息
+    @GET("imageManager/getImages.do")
+    Observable<UserPhotoBean> userPhotoInfo(@QueryMap Map<String, String> map);
+
     //用户失去网络状态或者退出时候清除用户当前位置信息
     @GET("business/clearLocations.do")
     Observable<HttpResult<CommonEntity>> clearLocation(@Query("id") int id);
@@ -279,15 +249,32 @@ public interface Api {
     @GET("invite/acceptAndRefuse.do")
     Observable<HttpResult<CommonEntity>> acceptOrRefuse(@QueryMap Map<String, Object> map);
 
+    //发起邀请
+    @GET(Url.SendInvite)
+    Observable<HttpResult<CommonEntity>> SendInvite(@QueryMap Map<String, String> map);
 
-    //////////////////////////////////////////////////////////////
+    //邀请详情(发布人)
+    @GET(Url.GetInviteDetailForHost)
+    Observable<HttpResult<InviteDetailEntity>> GetInviteDetailForHost(@Query("userId") String UserId, @Query("inviteId") String inviteId);
+
+    //邀请详情(受邀人)
+    @GET(Url.GetInviteDetailForReciver)
+    Observable<HttpResult<InviteReciverEntity>> GetInviteDetailForReciver(@Query("userId") String UserId, @Query("inviteId") String inviteId);
+
+    //见面确认
+    @GET(Url.GetSureMeet)
+    Observable<HttpResult<CommonEntity>> GetSureMeet(@Query("userId") String UserId, @Query("inviteId") String inviteId);
 
     //清空打招呼列表
-    @GET("im/requests/friends/delHistoryRequests.do")
-    Observable<HttpResult<CommonEntity>> clearGreet(@Query("id") String UserId);
+    @GET("business/delSayhello.do")
+    Observable<HttpResult<CommonEntity>> clearGreet(@Query("userId") String UserId, @Query("inviteId") String inviteId);
 
-    //获取所有标签
-    @GET("lables/findAll.do")
-    Observable<HttpArray<LableBean>> loadLable();
+    //根据手机号获取用户信息
+    @GET(Url.dependPhoneGetUserInfo)
+    Observable<HttpResult> getUserInfo(@Query("phoneNumber") String phoneNum);
+
+    @GET(Url.findAll)
+    Observable<HttpResult<AblumEntity>> GetUserPhoto(@Query("id") long id, @Query("page") String page);
+
 
 }

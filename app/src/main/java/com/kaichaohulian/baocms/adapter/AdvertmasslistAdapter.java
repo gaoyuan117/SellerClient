@@ -59,8 +59,8 @@ public class AdvertmasslistAdapter extends BaseListAdapter {
         vh.title.setText((String) entity.title);
         StringBuffer buffer = new StringBuffer();
             buffer.append("阅读数 " + entity.readNum);
-            buffer.append(" 已领取红包 " + (int)entity.hasGetMoney+"元");
-            buffer.append(" 发布费用 "+(int)entity.pay+"元");
+            buffer.append(" 已领取红包 " + entity.hasGetMoney+"元");
+            buffer.append(" 发布费用 "+entity.pay+"元");
 
         SimpleDateFormat format = new SimpleDateFormat("MM月dd日 H:m");
         Date date = new Date(Long.parseLong(entity.timeStamp));
