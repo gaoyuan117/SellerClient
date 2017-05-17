@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +20,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
+import com.kaichaohulian.baocms.app.AppManager;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.entity.AdvertParmEntity;
 import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.http.HttpResult;
@@ -62,17 +65,18 @@ public class ReleaseAdvertActivity extends BaseActivity {
     TextView time;
 
 
-
     private int REQUEST_CODE = 200;
-    private int PAY_CODE=100;
+    private int PAY_CODE = 100;
 
     private List<String> list;
     private ImageBaseAdapter ImageBaseAdapter;
     int index = 0;
-    private double payMoney=0;
+    private double payMoney = 0;
     private StringBuffer img = new StringBuffer();
     private StringBuffer ids = new StringBuffer();
     private PayDialog payDialog;
+    private int size;
+    private String type;//发布的广告类型
 
     @Override
     public void setContent() {
@@ -82,8 +86,12 @@ public class ReleaseAdvertActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        DateFormat format=new SimpleDateFormat("HH:mm yyyy.MM.dd");
-        Date date=new Date(System.currentTimeMillis());
+        size = getIntent().getIntExtra("size", 0);
+        type = getIntent().getStringExtra("type");
+        Log.e("gy", "长度：" + size);
+
+        DateFormat format = new SimpleDateFormat("HH:mm yyyy.MM.dd");
+        Date date = new Date(System.currentTimeMillis());
         time.setText(format.format(date));
         list = new ArrayList<>();
         ImageBaseAdapter = new ImageBaseAdapter();
@@ -114,21 +122,37 @@ public class ReleaseAdvertActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(payMoney==0){
+                if (payMoney == 0) {
                     initEvent();
                 }
-                if(payDialog==null){
-                    payDialog = new PayDialog(getActivity()).setMessage("本次群发需要支付"+payMoney+"元手续费").setSureClick(new View.OnClickListener() {
+                if (list.size() == 0) {
+                    Toast.makeText(ReleaseAdvertActivity.this, "请选择图片", Toast.LENGTH_SHORT).show();
+                    ShowDialog.dissmiss();
+                    return;
+                }
+                if (TextUtils.isEmpty(title.getText().toString().trim())) {
+                    ToastUtil.showMessage("请输入标题");
+                    ShowDialog.dissmiss();
+                    return;
+                }
+                if (TextUtils.isEmpty(content.getText().toString().trim())) {
+                    ToastUtil.showMessage("请输入内容");
+                    ShowDialog.dissmiss();
+                    return;
+                }
+                if (payDialog == null) {
+                    payDialog = new PayDialog(getActivity()).setMessage("本次群发需要支付" + (payMoney * size) + "元手续费").setSureClick(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             payDialog.dismissDialog();
                             Intent intent = new Intent(ReleaseAdvertActivity.this, PayActivity.class);
-                            intent.putExtra("pay_money", payMoney+"");
-                            startActivityForResult(intent,PAY_CODE);
+                            intent.putExtra("pay_money", (payMoney * size) + "");
+                            intent.putExtra("type", 2 + "");
+                            startActivityForResult(intent, PAY_CODE);
                         }
 
                     }).showDialog();
-                }else{
+                } else {
                     payDialog.showDialog();
                 }
             }
@@ -141,7 +165,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
                 .subscribe(new BaseObjObserver<AdvertParmEntity>(getActivity()) {
                     @Override
                     protected void onHandleSuccess(AdvertParmEntity advertParmEntity) {
-                        payMoney=advertParmEntity.eachPay;
+                        payMoney = advertParmEntity.eachPay;
                     }
                 });
     }
@@ -167,7 +191,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
                     gridview.setVisibility(View.GONE);
                 }
             }
-        }else if(resultCode == RESULT_OK && requestCode == PAY_CODE){
+        } else if (resultCode == RESULT_OK && requestCode == PAY_CODE) {
             InServer();
         }
     }
@@ -272,22 +296,23 @@ public class ReleaseAdvertActivity extends BaseActivity {
         map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
         map.put("title", title.getText().toString().trim());
         map.put("context", content.getText().toString().trim());
-        map.put("type", 1 + "");
+        map.put("type", type);
         if (!img.equals("")) {
             map.put("images", img.toString().trim());
         }
-        map.put("ids",getIntent().getStringExtra("ids"));
-        map.put("pay",payMoney+"");
-        map.put("redMoney","5");
         map.put("ids", getIntent().getStringExtra("ids"));
-        map.put("pay", payMoney+"");
-        map.put("redMoney", "5");
+        map.put("pay", (payMoney * size) + "");
+//        map.put("redMoney", "5");
+//        map.put("ids", getIntent().getStringExtra("ids"));
+//        map.put("pay", (payMoney * size) + "");
+//        map.put("redMoney", "5");
         RetrofitClient.getInstance().createApi().ReleaseAdvert(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
                 .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
                     @Override
                     protected void onHandleSuccess(CommonEntity commonEntity) {
                         ShowDialog.dissmiss();
+                        ToastUtil.showMessage("发布成功");
                         finish();
                     }
                 });

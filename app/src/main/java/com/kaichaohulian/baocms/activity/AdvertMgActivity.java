@@ -37,6 +37,7 @@ public class AdvertMgActivity extends BaseActivity {
     private List<AdviertisementEntity.AdvertListBean> DataList;
     private AdvertmasslistAdapter adapter;
 
+
     @Override
     public void setContent() {
         setContentView(R.layout.activity_advert_mg);
@@ -47,18 +48,26 @@ public class AdvertMgActivity extends BaseActivity {
     public void initData() {
         map=new HashMap<>();
         DataList=new ArrayList<>();
+        adapter = new AdvertmasslistAdapter(getActivity(),DataList);
+        adapter.setLayoutIds(R.layout.item_advertmasslist);
+        lvAdvertmanager.setAdapter(adapter);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         map.put("userId", MyApplication.getInstance().UserInfo.getUserId()+"");
         map.put("page", index+"");
         RetrofitClient.getInstance().createApi().GetMyadviertisement(map)
                 .compose(RxUtils.<HttpResult<AdviertisementEntity>>io_main())
-                .subscribe(new BaseObjObserver<AdviertisementEntity>(getActivity(),"获取广告中...") {
+                .subscribe(new BaseObjObserver<AdviertisementEntity>(getActivity()) {
                     @Override
                     protected void onHandleSuccess(AdviertisementEntity adviertisementEntity) {
                         if(adviertisementEntity.advertList!=null){
+                            DataList.clear();
                             DataList.addAll(adviertisementEntity.advertList);
-                            adapter = new AdvertmasslistAdapter(getActivity(),DataList);
-                            adapter.setLayoutIds(R.layout.item_advertmasslist);
-                            lvAdvertmanager.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
                         }else{
                             Toast.makeText(AdvertMgActivity.this, "暂无广告", Toast.LENGTH_SHORT).show();
                         }

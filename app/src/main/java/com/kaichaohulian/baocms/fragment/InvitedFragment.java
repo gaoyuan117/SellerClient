@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -39,7 +40,7 @@ import butterknife.Unbinder;
 /**
  * Created by gaoyuan on 2017/5/9.
  */
-
+@SuppressLint("ValidFragment")
 public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.OnItemChildClickListener, BaseQuickAdapter.OnItemClickListener {
 
 

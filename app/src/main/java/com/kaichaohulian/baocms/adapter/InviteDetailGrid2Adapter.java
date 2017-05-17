@@ -13,17 +13,22 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.activity.EvaluateActivity;
+import com.kaichaohulian.baocms.activity.OnlineServiceActivity;
 import com.kaichaohulian.baocms.base.BaseListAdapter;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingActivity;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingFragment;
 import com.kaichaohulian.baocms.entity.InviteDetailEntity;
 import com.kaichaohulian.baocms.entity.InviteReciverEntity;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by xzwzz on 2017/5/14.
@@ -41,7 +46,7 @@ public class InviteDetailGrid2Adapter extends BaseListAdapter {
 
     @Override
     public int getCount() {
-        try{
+        try {
             if (obj != null) {
                 return 1;
             }
@@ -50,7 +55,7 @@ public class InviteDetailGrid2Adapter extends BaseListAdapter {
             } else {
                 return data.size() == 0 ? 0 : data.size();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
@@ -72,27 +77,44 @@ public class InviteDetailGrid2Adapter extends BaseListAdapter {
             vh = (ViewHolder) view.getTag();
         }
         if (obj != null) {
-            DataBindForObj((InviteReciverEntity.UserBean) obj,vh);
+            DataBindForObj((InviteReciverEntity.UserBean) obj, vh);
         } else {
             DataBind(vh, i);
         }
         return view;
     }
 
-    private void DataBindForObj(final InviteReciverEntity.UserBean data, ViewHolder vh){
+    private void DataBindForObj(final InviteReciverEntity.UserBean data, ViewHolder vh) {
         try {
             vh.name.setText(data.username);
             Glide.with(context).load(data.avator).into(vh.avatar);
             vh.btnInviteComplaint.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "投诉", Toast.LENGTH_SHORT).show();
+                    Observable.just(1)
+                            .compose(RxUtils.<Integer>io_main())
+                            .subscribe(new Consumer<Integer>() {
+                                @Override
+                                public void accept(Integer integer) throws Exception {
+                                    context.startActivity(new Intent(context, OnlineServiceActivity.class));
+                                }
+                            });
                 }
             });
             vh.btnInviteEvaluate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "评价", Toast.LENGTH_SHORT).show();
+
+                    Observable.just(1)
+                            .compose(RxUtils.<Integer>io_main())
+                            .subscribe(new Consumer<Integer>() {
+                                @Override
+                                public void accept(Integer integer) throws Exception {
+                                    Intent intent = new Intent(context, EvaluateActivity.class);
+                                    intent.putExtra("id", data.user_id + "");
+                                    context.startActivity(intent);
+                                }
+                            });
                 }
             });
             vh.chat.setOnClickListener(new View.OnClickListener() {
@@ -136,8 +158,8 @@ public class InviteDetailGrid2Adapter extends BaseListAdapter {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, ChattingActivity.class);
-                    intent.putExtra(ChattingFragment.RECIPIENTS, entity.phoneNumber+"");
-                    intent.putExtra(ChattingFragment.CONTACT_USER, entity.username+"");
+                    intent.putExtra(ChattingFragment.RECIPIENTS, entity.phoneNumber + "");
+                    intent.putExtra(ChattingFragment.CONTACT_USER, entity.username + "");
                     intent.putExtra("user_id", entity.user_id);
                     intent.putExtra(ChattingFragment.CUSTOMER_SERVICE, false);
                     context.startActivity(intent);

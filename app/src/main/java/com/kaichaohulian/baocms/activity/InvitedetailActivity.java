@@ -174,7 +174,7 @@ public class InvitedetailActivity extends BaseActivity {
                 //完成
                 llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
                 tv_DetailState.setText(inviteDetailEntity.activeStatus);
-                adapter2 = new InviteDetailGrid2Adapter(getActivity(), inviteDetailEntity.list,null);
+                adapter2 = new InviteDetailGrid2Adapter(getActivity(), inviteDetailEntity.list, null);
                 adapter2.setLayoutIds(R.layout.item_inviteinfo2);
                 grid_DetailInvitePeopleNum.setAdapter(adapter);
                 break;
@@ -235,7 +235,7 @@ public class InvitedetailActivity extends BaseActivity {
 
     //邀请我的-邀请详情
     public void setDataForNoHost(InviteReciverEntity inviteReciverEntity) {
-        try{
+        try {
             InviteDetailGrid2Adapter adapter2 = null;
             switch (inviteReciverEntity.dto.status) {
                 case 0:
@@ -252,7 +252,7 @@ public class InvitedetailActivity extends BaseActivity {
                     //完成
                     llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
                     findViewById(R.id.ll_invite_detail_shoujian).setVisibility(View.GONE);
-                    adapter2 = new InviteDetailGrid2Adapter(getActivity(),null,inviteReciverEntity.user);
+                    adapter2 = new InviteDetailGrid2Adapter(getActivity(), null, inviteReciverEntity.user);
                     adapter2.setLayoutIds(R.layout.item_inviteinfo2);
                     grid_DetailInvitePeopleNum.setAdapter(adapter2);
                     tv_DetailState.setText("活动已完成");
@@ -281,7 +281,7 @@ public class InvitedetailActivity extends BaseActivity {
             if (llInviteIds.getVisibility() == View.VISIBLE) {
                 tv_DetailInviteJoinNum.setText("发起人");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -196,7 +196,9 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_with_drawals, null);
             }
-            TextView title = (TextView) convertView.findViewById(R.id.withdraw_title);
+            try {
+
+                TextView title = (TextView) convertView.findViewById(R.id.withdraw_title);
 //            if (data.get(position).getZfbAccount() != null) {
 //                title.setText(data.get(position).getZfbAccount() + "    " + ((double) (data.get(position).getMoney())) / 100 + "元");
 //            } else if (data.get(position).getWeixinAccount() != null) {
@@ -204,23 +206,29 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
 //            } else if (data.get(position).getBankName() != null) {
 //                title.setText(data.get(position).getBankName() + "    " + ((double) (data.get(position).getMoney())) / 100 + "元");
 //            }
-            if (data.get(position).getZfbAccount() != null || data.get(position).getWeixinAccount() != null || data.get(position).getBankName() != null) {
-                title.setText("申请提现    " + ((double) (data.get(position).getMoney())) / 100 + "元");
-            }
-            TextView time = (TextView) convertView.findViewById(R.id.withdraw_time);
-            TextView status = (TextView) convertView.findViewById(R.id.status);
-            if (data.get(position).getStatus()) {
-                status.setText("已处理");
-                status.setTextColor(Color.RED);
-            } else {
-                status.setText("未处理");
-                status.setTextColor(Color.GREEN);
-            }
+                if (data.get(position).getZfbAccount() != null || data.get(position).getWeixinAccount() != null || data.get(position).getBankName() != null) {
+                    title.setText("申请提现    " + ((double) (data.get(position).getMoney())) / 100 + "元");
+                }
+                TextView time = (TextView) convertView.findViewById(R.id.withdraw_time);
+                TextView status = (TextView) convertView.findViewById(R.id.status);
+                if (data.get(position).getStatus()) {
+                    status.setText("已处理");
+                    status.setTextColor(Color.RED);
+                } else {
+                    status.setText("未处理");
+                    status.setTextColor(Color.GREEN);
+                }
 //            title.setText(data.get(position).get + "(" + data.get(position).getCardNo().substring(data.get(position).getCardNo().length() - 4, data.get(position).getCardNo().length()) + ")");
-            String timeDate = Utils.stampToDate(data.get(position).getAddtime());
-            time.setText(timeDate);
+//                String timeDate = Utils.stampToDate(data.get(position).getAddtime());
+                time.setText(data.get(position).getAddtime());
+
+            } catch (Exception e) {
+                Log.e("gy", e.toString());
+            }
             return convertView;
+
         }
     }
+
 
 }

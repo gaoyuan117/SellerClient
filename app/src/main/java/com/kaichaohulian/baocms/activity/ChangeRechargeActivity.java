@@ -100,7 +100,7 @@ public class ChangeRechargeActivity extends BaseActivity {
                     case "微信充值":
                         WxPayUtile.getInstance(getActivity(), String.valueOf(Double.valueOf(edtInputNumber
                                         .getText().toString())), Url.BASE_URL + "/api/Order/notify_wxpay"
-                                , typeTitle, "订单号", actualamount).doPay(chatHandler); // 微信支付
+                                , typeTitle, "订单号", actualamount,6+"").doPay(chatHandler); // 微信支付
                         break;
                 }
             }

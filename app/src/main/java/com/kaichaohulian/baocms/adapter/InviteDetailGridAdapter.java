@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.activity.InvitedetailActivity;
+import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseListAdapter;
 import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.entity.InviteDetailEntity;
@@ -43,52 +44,54 @@ public class InviteDetailGridAdapter extends BaseListAdapter {
     }
 
 
-
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder1 vh = null;
         if (view == null) {
-                    view = View.inflate(context, layoutIds[0], null);
-                    vh = new ViewHolder1(view);
-                    view.setTag(vh);
+            view = View.inflate(context, layoutIds[0], null);
+            vh = new ViewHolder1(view);
+            view.setTag(vh);
 
         } else {
-                vh = (ViewHolder1) view.getTag();
+            vh = (ViewHolder1) view.getTag();
         }
-        DataBind(vh,i);
+        DataBind(vh, i);
         return view;
     }
 
-    public List getList(){
+    public List getList() {
         return data;
     }
 
     private void DataBind(ViewHolder1 vh1, int i) {
-            try {
-                InviteDetailEntity.ListBean entity = (InviteDetailEntity.ListBean) getItem(i);
-                if (entity.user_id == 0) {
-                    data.remove(i);
-                    notifyDataSetChanged();
-                }
-                vh1.name.setText(entity.username + "");
-                switch (entity.inviteStatus) {
-                    case 0:
-                        vh1.state.setText("已拒绝");
-                        vh1.state.setTextColor(Color.parseColor("#54da4a"));
-                        break;
-                    case 1:
-                        vh1.state.setText("已接受");
-                        vh1.state.setTextColor(Color.parseColor("#fb5986"));
-                        break;
-                    default:
-                        vh1.state.setText("已发送邀请");
-                        break;
-                }
-                vh1.time.setText(format.format(entity.createdTime));
-                Glide.with(context).load(entity.avator).into(vh1.avatar);
-            } catch (Exception e) {
-                Log.d("InviteDetailGridAdapter", "e:" + e);
+        try {
+            InviteDetailEntity.ListBean entity = (InviteDetailEntity.ListBean) getItem(i);
+            if (entity.user_id == 0) {
+                data.remove(i);
+                notifyDataSetChanged();
             }
+            vh1.name.setText(entity.username + "");
+            switch (entity.inviteStatus) {
+                case 0:
+                    vh1.state.setText("已拒绝");
+                    vh1.state.setTextColor(Color.parseColor("#54da4a"));
+                    break;
+                case 1:
+                    vh1.state.setText("已接受");
+                    vh1.state.setTextColor(Color.parseColor("#fb5986"));
+                    break;
+                default:
+                    vh1.state.setText("已发送邀请");
+                    break;
+            }
+            Log.e("gy", "哈哈：" + entity.avator);
+            String avator = entity.avator;
+            Glide.with(MyApplication.getInstance()).load(avator).into(vh1.avatar);
+            String date = this.format.format(entity.createdTime);
+            vh1.time.setText(date+"");
+        } catch (Exception e) {
+            Log.d("InviteDetailGridAdapter", "e:" + e.toString());
+        }
 //        } else if (vh1 == null && vh2 != null) {
 //            try {
 //                InviteDetailEntity.ListBean entity = (InviteDetailEntity.ListBean) getItem(i);
@@ -116,7 +119,6 @@ public class InviteDetailGridAdapter extends BaseListAdapter {
 //            }
 //        }
     }
-
 
 
     class ViewHolder1 {

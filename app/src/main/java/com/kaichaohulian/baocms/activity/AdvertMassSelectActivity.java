@@ -108,13 +108,15 @@ public class AdvertMassSelectActivity extends BaseActivity {
                         return;
                     }
                     Iterator<ContactFriendsEntity> iterator = set.iterator();
-                    if (iterator.hasNext()) {
+                    while (iterator.hasNext()) {
                         buffer.append(iterator.next().getId() + ",");
                     }
-                    buffer.append(MyApplication.getInstance().UserInfo.getUserId());
                     Intent intent = new Intent(getActivity(), ReleaseAdvertActivity.class);
                     intent.putExtra("ids", buffer.toString());
+                    intent.putExtra("size", set.size());
+                    intent.putExtra("type","1");
                     startActivity(intent);
+                    finish();
                 }
             });
         }

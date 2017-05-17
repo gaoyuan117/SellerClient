@@ -1,6 +1,7 @@
 package com.kaichaohulian.baocms.retrofit;
 
 import com.kaichaohulian.baocms.entity.AblumEntity;
+import com.kaichaohulian.baocms.entity.AdverOtherBean;
 import com.kaichaohulian.baocms.entity.AdversDetailBean;
 import com.kaichaohulian.baocms.entity.AdvertDetailEntity;
 import com.kaichaohulian.baocms.entity.AdvertParmEntity;
@@ -14,6 +15,7 @@ import com.kaichaohulian.baocms.entity.InviteDetailEntity;
 import com.kaichaohulian.baocms.entity.InviteInfoBean;
 import com.kaichaohulian.baocms.entity.InviteReciverEntity;
 import com.kaichaohulian.baocms.entity.InvitedBean;
+import com.kaichaohulian.baocms.entity.LableBean;
 import com.kaichaohulian.baocms.entity.MyInviteBean;
 import com.kaichaohulian.baocms.entity.MyInviteEntity;
 import com.kaichaohulian.baocms.entity.NearbyBean;
@@ -138,7 +140,7 @@ public interface Api {
     * address   String  no
     * */
     @GET(Url.SendAdviertOfOther)
-    Observable<HttpArray<Integer>> ReleaseAdviertOfOther(@QueryMap Map<String, String> map);
+    Observable<HttpResult<AdverOtherBean>> ReleaseAdviertOfOther(@QueryMap Map<String, String> map);
 
     //删除好友
     @GET(Url.delete)
@@ -226,7 +228,7 @@ public interface Api {
     Observable<HttpResult<CommonEntity>> addFriend(@QueryMap Map<String, Object> map);
 
     //通过钱添加好友
-    @GET("requests/friends/addFirendByMoney.do")
+    @GET("im/requests/friends/addFirendByMoney.do")
     Observable<HttpResult<CommonEntity>> addFriendByMoney(@QueryMap Map<String, Object> map);
 
     //打招呼列表
@@ -267,7 +269,7 @@ public interface Api {
 
     //清空打招呼列表
     @GET("business/delSayhello.do")
-    Observable<HttpResult<CommonEntity>> clearGreet(@Query("userId") String UserId, @Query("inviteId") String inviteId);
+    Observable<HttpResult<CommonEntity>> clearGreet(@Query("userId") String UserId);
 
     //根据手机号获取用户信息
     @GET(Url.dependPhoneGetUserInfo)
@@ -276,5 +278,21 @@ public interface Api {
     @GET(Url.findAll)
     Observable<HttpResult<AblumEntity>> GetUserPhoto(@Query("id") long id, @Query("page") String page);
 
+
+
+    ////////////////////////////////////////////////////////////////////////////
+
+
+
+    @GET("lables/findAll.do")
+    Observable<HttpArray<LableBean>> loadLable();
+
+    @GET("invite/userLable.do")
+    Observable<HttpResult<CommonEntity>> evaluate(@QueryMap Map<String, Object> map);
+
+    //余额支付
+    @FormUrlEncoded
+    @POST("balance/gotopay.do")
+    Observable<HttpResult<CommonEntity>> yuePay(@FieldMap Map<String, Object> map);
 
 }

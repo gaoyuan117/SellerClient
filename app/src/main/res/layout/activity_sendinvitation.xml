@@ -186,7 +186,7 @@
                 android:layout_toLeftOf="@+id/tv_InvitionPay"
                 android:background="#00000000"
                 android:gravity="right"
-                android:hint="200"
+                android:hint="0"
                 android:inputType="number"
                 android:textColorHint="#06b3f4"
                 android:textCursorDrawable="@null"
@@ -238,7 +238,7 @@
                 android:layout_toLeftOf="@+id/img_arrow_Invitiontime"
                 android:background="#00000000"
                 android:gravity="right|center"
-                android:text="14:33 2017.05.08"
+                android:text=""
                 android:textColor="@color/zy_text_gray"
                 android:textSize="12sp" />
 
@@ -288,7 +288,7 @@
                 android:layout_marginRight="10dp"
                 android:background="#00000000"
                 android:gravity="right|center"
-                android:text="1小时30分"
+                android:text=""
                 android:textColor="@color/zy_text_gray"
                 android:textSize="12sp" />
         </RelativeLayout>
@@ -334,6 +334,7 @@
             android:layout_height="35dp"
             android:paddingLeft="15dp"
             android:drawableLeft="@mipmap/address_img"
+            android:drawablePadding="4dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:textSize="12sp" />

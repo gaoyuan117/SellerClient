@@ -169,8 +169,8 @@ public class SendinvitationActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SELECT_ID && resultCode == RESULT_OK) {
             String ids = data.getStringExtra("ids");
-            ids.replace(","+MyApplication.getInstance().UserInfo.getUserId(),"");
-            this.ids = data.getStringExtra("ids");
+            String replace = ids.replace("," + MyApplication.getInstance().UserInfo.getUserId(), "");
+            this.ids = replace;
         }
     }
 

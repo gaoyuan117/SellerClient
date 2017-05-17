@@ -187,7 +187,6 @@ public class FriendInfoActivity extends BaseActivity {
             case R.id.ll_friend_info_bz:
                 break;
             case R.id.bt_friend_info_add:
-
                 if (mUserInfoBean.getIsfriend() == 1) {
                     toChat();
                 } else {

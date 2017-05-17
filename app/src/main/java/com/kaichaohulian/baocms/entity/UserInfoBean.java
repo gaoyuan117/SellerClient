@@ -60,7 +60,7 @@ public class UserInfoBean {
         private Object job;
         private Object hobby;
         private Object spreadQrCOde;
-        private int addPay;
+        private double addPay;
         private boolean vip;
         private List<String> images;
 
@@ -248,11 +248,11 @@ public class UserInfoBean {
             this.spreadQrCOde = spreadQrCOde;
         }
 
-        public int getAddPay() {
+        public double getAddPay() {
             return addPay;
         }
 
-        public void setAddPay(int addPay) {
+        public void setAddPay(double addPay) {
             this.addPay = addPay;
         }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
@@ -90,6 +91,7 @@ public class WithdrawApplyActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        mDataHelper = new DataHelper(this);
 
     }
 
@@ -208,37 +210,6 @@ public class WithdrawApplyActivity extends BaseActivity {
                 break;
             case R.id.withdraw_cash_btn:
                 ShowPayWord();
-
-//                RequestParams params = new RequestParams();
-//                switch (typeTitle) {
-//                    case "支付宝提现":
-//                        if (!TextUtils.isEmpty(Apply_Id.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
-//                            params.put("zfbAccount", Apply_Id.getText().toString());
-//                            tiXian(params);
-//                        } else {
-//                            showToastMsg("请输入完整！");
-//                        }
-//                        break;
-//                    case "微信提现":
-//                        if (!TextUtils.isEmpty(Apply_Id.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
-//                            params.put("weixinAccount", Apply_Id.getText().toString());
-//                            tiXian(params);
-//                        } else {
-//                            showToastMsg("请输入完整！");
-//                        }
-//                        break;
-//                    case "银行卡提现":
-//                        if (!TextUtils.isEmpty(edKaihuyinhanag.getText().toString().trim()) && !TextUtils.isEmpty(edKaihuzhanghao.getText().toString().trim()) && !TextUtils.isEmpty(edKaihuxingming.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
-//                            params.put("bankName", edKaihuyinhanag.getText().toString());
-//                            params.put("bankNum", edKaihuzhanghao.getText().toString());
-//                            params.put("bankRealname", edKaihuxingming.getText().toString());
-//                            tiXian(params);
-//                        } else {
-//                            showToastMsg("请输入完整！");
-//                        }
-//                        break;
-//                }
-//                break;
         }
     }
     //显示支付密码的验证框
@@ -319,19 +290,45 @@ public class WithdrawApplyActivity extends BaseActivity {
 
                     @Override
                     public void onNext(HttpResult value) {
+                        PopSignPassword.dismiss();
                         if(value.errorDescription.contains("重新输入")){
                             Toast.makeText(WithdrawApplyActivity.this, "密码错误请重新输入", Toast.LENGTH_SHORT).show();
                             paywordEdt.getText().clear();
                         }else {
                             RequestParams params = new RequestParams();
-
-//                            tiXian();
+                            switch (typeTitle) {
+                                case "支付宝提现":
+                                    if (!TextUtils.isEmpty(Apply_Id.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
+                                        params.put("zfbAccount", Apply_Id.getText().toString());
+                                        tiXian(params);
+                                    } else {
+                                        showToastMsg("请输入完整！");
+                                    }
+                                    break;
+                                case "微信提现":
+                                    if (!TextUtils.isEmpty(Apply_Id.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
+                                        params.put("weixinAccount", Apply_Id.getText().toString());
+                                        tiXian(params);
+                                    } else {
+                                        showToastMsg("请输入完整！");
+                                    }
+                                    break;
+                                case "银行卡提现":
+                                    if (!TextUtils.isEmpty(edKaihuyinhanag.getText().toString().trim()) && !TextUtils.isEmpty(edKaihuzhanghao.getText().toString().trim()) && !TextUtils.isEmpty(edKaihuxingming.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
+                                        params.put("bankName", edKaihuyinhanag.getText().toString());
+                                        params.put("bankNum", edKaihuzhanghao.getText().toString());
+                                        params.put("bankRealname", edKaihuxingming.getText().toString());
+                                        tiXian(params);
+                                    } else {
+                                        showToastMsg("请输入完整！");
+                                    }
+                                    break;
+                            }
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
                     }
 
                     @Override
@@ -421,6 +418,7 @@ public class WithdrawApplyActivity extends BaseActivity {
                         showToastMsg("提现成功");
                         finish();
                         ActivityUtil.next(WithdrawApplyActivity.this, WithDrawalsHistoryActivity.class);
+
                     }
                     DBLog.showToast(response.getString("errorDescription"), getApplication());
                 } catch (Exception e) {

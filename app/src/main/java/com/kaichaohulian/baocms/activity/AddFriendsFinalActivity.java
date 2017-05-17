@@ -115,7 +115,7 @@ public class AddFriendsFinalActivity extends BaseActivity {
                         intent.putExtra("pay_money", money);
                         intent.putExtra("friend_id",friendId+"");
                         intent.putExtra("add_money",money);
-                        intent.putExtra("type",type);
+                        intent.putExtra("type","1");
                         intent.putExtra("message",message);
                         startActivity(intent);
                     }
@@ -128,37 +128,3 @@ public class AddFriendsFinalActivity extends BaseActivity {
     }
 }
 
-//  ShowDialog.showDialog(getActivity(), "正在添加...", false, null);
-//          RequestParams params = new RequestParams();
-//          params.put("id", MyApplication.getInstance().UserInfo.getUserId());
-//          params.put("friendId", friendId);
-//          params.put("message", et_reason.getText().toString().equals("") ? "你需要发送验证申请，等对方通过" : et_reason.getText().toString());
-//          HttpUtil.get(Url.friends_apply, params, new JsonHttpResponseHandler() {
-//@Override
-//public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//        try {
-//        DBLog.e("添加好友：", response.toString());
-//        if (response.getInt("code") == 0) {
-//        finish();
-//        }
-//        showToastMsg(response.getString("errorDescription"));
-//        } catch (Exception e) {
-//        e.printStackTrace();
-//        } finally {
-//        ShowDialog.dissmiss();
-//        }
-//        }
-//
-//@Override
-//public void onFinish() {
-//        }
-//
-//@Override
-//public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-//        showToastMsg("请求服务器失败");
-//        DBLog.e("tag", statusCode + ":" + responseString);
-//        ShowDialog.dissmiss();
-//        }
-//        });
-//        }
-//        });

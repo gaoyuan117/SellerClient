@@ -128,7 +128,7 @@ public class InvitaionListFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), InvitedetailActivity.class);
                 intent.putExtra("inviteId",dataList.get(i).getInvite().getId());
-                intent.putExtra("UserId", dataList.get(i).getInvite().getUserId());
+                intent.putExtra("UserId", MyApplication.getInstance().UserInfo.getUserId());
                 intent.putExtra("IsOwn", IsOwn);
                 startActivity(intent);
             }

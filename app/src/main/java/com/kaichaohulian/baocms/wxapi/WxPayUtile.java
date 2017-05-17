@@ -53,8 +53,9 @@ public class WxPayUtile {
     public static Handler chathandler;
     private String actualamount;
     private String entity;
+    private String pay_type;
 
-    public WxPayUtile(Context context, String total_fee, String notify_url, String body, String outTradNo, String actualamount) {
+    public WxPayUtile(Context context, String total_fee, String notify_url, String body, String outTradNo, String actualamount,String pay_type) {
         super();
         msgApi = WXAPIFactory.createWXAPI(context, null);
         req = new PayReq();
@@ -66,11 +67,12 @@ public class WxPayUtile {
         this.body = body;
         this.outTradNo = outTradNo;
         this.actualamount = actualamount;
+        this.pay_type = pay_type;
     }
 
     public static WxPayUtile getInstance(Context context, String total_fee, String notify_url
-            , String body, String outTradNo, String actualamount) {
-        return new WxPayUtile(context, total_fee, notify_url, body, outTradNo, actualamount);
+            , String body, String outTradNo, String actualamount,String pay_type) {
+        return new WxPayUtile(context, total_fee, notify_url, body, outTradNo, actualamount,pay_type);
     }
 
     public void doPay(Handler chathandler) {
@@ -80,6 +82,7 @@ public class WxPayUtile {
         params.put("body", body);
         params.put("subject", body);
         params.put("amount", total_fee);
+        params.put("payType",pay_type);
         params.put("phoneNumber", MyApplication.getInstance().UserInfo.getPhoneNumber());
         if (actualamount != null && !TextUtils.isEmpty(actualamount)) {
             params.put("actualamount", actualamount);

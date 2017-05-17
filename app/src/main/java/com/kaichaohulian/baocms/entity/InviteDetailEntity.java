@@ -93,10 +93,10 @@ public class InviteDetailEntity {
         public int user_id;
         public Object account;
         public Object password;
-        public Object avator;
+        public String avator;
         public Object username;
         public Object balance;
-        public Object createdTime;
+        public String createdTime;
         public Object lastTime;
         public Object phoneNumber;
         public Object email;

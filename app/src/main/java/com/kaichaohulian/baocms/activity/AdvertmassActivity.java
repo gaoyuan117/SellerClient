@@ -53,6 +53,12 @@ public class AdvertmassActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         map = new HashMap<>();
         Datalist = new ArrayList<>();
         adapter = new AdvertmasslistAdapter(getActivity(), Datalist, R.layout.item_advertmasslist);
@@ -62,7 +68,7 @@ public class AdvertmassActivity extends BaseActivity {
         map.put("page", index + "");
         RetrofitClient.getInstance().createApi().Getadviertisement(map)
                 .compose(RxUtils.<HttpResult<AdviertisementEntity>>io_main())
-                .subscribe(new BaseObjObserver<AdviertisementEntity>(getActivity(),"获取中...") {
+                .subscribe(new BaseObjObserver<AdviertisementEntity>(getActivity()) {
                     @Override
                     protected void onHandleSuccess(AdviertisementEntity adviertisementEntity) {
                         if (adviertisementEntity.advertList != null) {
@@ -72,8 +78,7 @@ public class AdvertmassActivity extends BaseActivity {
                             Toast.makeText(AdvertmassActivity.this, "暂无广告", Toast.LENGTH_SHORT).show();
                         }
                     }
-                })
-        ;
+                });
     }
 
     @Override

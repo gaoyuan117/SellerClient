@@ -16,9 +16,10 @@
             android:id="@+id/img_invited_info_avatar"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:layout_marginRight="10dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/default_image" />
+            android:src="@mipmap/default_useravatar" />
 
         <TextView
             android:id="@+id/tv_invited_info_name"

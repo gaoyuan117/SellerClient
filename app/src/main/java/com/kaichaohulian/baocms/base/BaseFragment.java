@@ -41,6 +41,8 @@ public abstract class BaseFragment extends Fragment {
     private boolean isFragmentVisible;
 
 
+
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

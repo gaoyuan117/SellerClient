@@ -88,8 +88,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="@dimen/discover_line_height"
-        android:visibility="gone"
         >
 
         <TextView
@@ -218,11 +218,11 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/add_bankcard_red_tips"
+            android:textSize="12sp"
             android:text="@string/add_bankcard_tips"
-            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/red"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/zy_orange"
             />
         <Button
             android:id="@+id/add_bankcard_btn"

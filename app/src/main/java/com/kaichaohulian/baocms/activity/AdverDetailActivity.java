@@ -39,7 +39,7 @@ public class AdverDetailActivity extends BaseActivity {
     private AdversDetailAdapter mAdapter;
     private List<String> mList;
     private ImageView headAvatar;
-    private TextView tvTitle, tvContent,tvId,tvName;
+    private TextView tvTitle, tvContent, tvId, tvName;
 
     private String adverId;
 
@@ -52,7 +52,7 @@ public class AdverDetailActivity extends BaseActivity {
     @Override
     public void initData() {
         adverId = getIntent().getStringExtra("adverId");
-        Log.e("gy","广告Id:"+adverId);
+        Log.e("gy", "广告Id:" + adverId);
         new TitleUtils(this).setTitle("详情");
         laodAdverDetail();
     }
@@ -77,8 +77,8 @@ public class AdverDetailActivity extends BaseActivity {
     }
 
     private void laodAdverDetail() {
-        map.put("userId", MyApplication.getInstance().UserInfo.getUserId()+"");
-        map.put("advertId",adverId);
+        map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
+        map.put("advertId", adverId);
         RetrofitClient.getInstance().createApi().adverDetail(map)
                 .compose(RxUtils.<HttpResult<AdversDetailBean>>io_main())
                 .subscribe(new BaseObjObserver<AdversDetailBean>(this, "记载中") {
@@ -96,17 +96,21 @@ public class AdverDetailActivity extends BaseActivity {
                 .error(R.mipmap.default_image)
                 .crossFade()
                 .into(headAvatar);
-        tvName.setText(adversDetailBean.getAdvert().getUserName()+"");
-        tvId.setText(adversDetailBean.getAdvert().getUserId()+"");
+        tvName.setText(adversDetailBean.getAdvert().getUserName() + "");
+        tvId.setText(adversDetailBean.getAdvert().getUserId() + "");
         tvTitle.setText(adversDetailBean.getAdvert().getTitle());
         tvContent.setText(adversDetailBean.getAdvert().getContext());
-        if(!TextUtils.isEmpty(adversDetailBean.getRedMoney())){
+        if (!TextUtils.isEmpty(adversDetailBean.getRedMoney())) {
             openRedPackageDialog(adversDetailBean.getRedMoney());
+        }
+        if (TextUtils.isEmpty(adversDetailBean.getAdvert().getImage())) {
+            return;
         }
         mList.clear();
         String[] split = adversDetailBean.getAdvert().getImage().split(",");
         for (int i = 0; i < split.length; i++) {
             mList.add(split[i]);
+            Log.e("gy", " 广告详情：" + mList.get(i));
         }
         mAdapter.notifyDataSetChanged();
     }
