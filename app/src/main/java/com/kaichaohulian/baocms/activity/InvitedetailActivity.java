@@ -28,6 +28,7 @@ import com.kaichaohulian.baocms.view.MyGridView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -41,7 +42,8 @@ public class InvitedetailActivity extends BaseActivity {
     TextView loaddingView;
     @BindView(R.id.scroll_invitedetail)
     ScrollView ThisView;
-
+    @BindView(R.id.tv_invite_detail_applytime)
+    TextView ApplyTime;
     @BindView(R.id.ll_invite_detail_state_isGoing)
     LinearLayout llInviteDetailStateIsGoing;    //状态为进行中
     @BindView(R.id.ll_invite_detail_state_NoGoing)
@@ -155,6 +157,8 @@ public class InvitedetailActivity extends BaseActivity {
                 llInviteDetailStateIsGoing.setVisibility(View.VISIBLE);
                 //见面确认按钮
                 btn_reciverOrRefuse.setVisibility(View.VISIBLE);
+                long time1 = (getTimeStamp(inviteDetailEntity.invite.applyTime) - new Date().getTime()) / 1000;
+                ApplyTime.setText(getStrTime(time1));
                 //参与者列表
                 adapter = new InviteDetailGridAdapter(getActivity(), inviteDetailEntity.list);
                 adapter.setLayoutIds(R.layout.item_inviteinfo);
@@ -285,7 +289,33 @@ public class InvitedetailActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
+    public long getTimeStamp(String timeStr) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(timeStr);
+            long timeStamp = date.getTime();
+            return timeStamp;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
+    public String getStrTime(long cc_time) {
+        String re_StrTime = null;
+        //同理也可以转为其它样式的时间格式.例如："yyyy/MM/dd HH:mm"
+//        SimpleDateFormat sdf = new SimpleDateFormat("mm分ss秒");
+        Log.d("InvitedetailActivity", "cc_time:" + cc_time);
+        re_StrTime=cc_time/60+"小时";
+        if((cc_time/1000)%60!=0){
+            re_StrTime=re_StrTime+cc_time%60+"分";
+        }
+        // 例如：cc_time=1291778220
+//        re_StrTime = sdf.format(new Date(cc_time * 1000L));
+
+        return re_StrTime;
+    }
     @OnClick(R.id.bt_invite_detail_sure)
     public void onViewClicked(View view) {
         switch (view.getId()) {

@@ -206,8 +206,12 @@ public class PayActivity extends BaseActivity {
                         } else {
                             if (payType.equals("1")) {//微信支付
                                 ToastUtil.showMessage("微信支付");
+                                paywordEdt.getText().clear();
+
                             } else {
                                 yuePay();//余额支付
+                                paywordEdt.getText().clear();
+
                             }
 
                         }
@@ -257,7 +261,7 @@ public class PayActivity extends BaseActivity {
         map.put("token",MyApplication.getInstance().UserInfo.getToken());
         RetrofitClient.getInstance().createApi().yuePay(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
-                .subscribe(new BaseObjObserver<CommonEntity>(this, "支付中") {
+                .subscribe(new BaseObjObserver<CommonEntity>(this, "支付中...") {
                     @Override
                     protected void onHandleSuccess(CommonEntity commonEntity) {
                         PopSignPassword.dismiss();
