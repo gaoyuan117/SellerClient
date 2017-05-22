@@ -1,6 +1,7 @@
 package com.kaichaohulian.baocms.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -79,6 +80,14 @@ public class MyAlbumActivity extends BaseActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            addHttpData();
+        }
+    }
+
+    @Override
     public void initEvent() {
 
     }
@@ -91,6 +100,7 @@ public class MyAlbumActivity extends BaseActivity {
                 .subscribe(new BaseObjObserver<AblumEntity>(getActivity(), "获取中...") {
                     @Override
                     protected void onHandleSuccess(AblumEntity ablumEntity) {
+                        List.clear();
                         List.addAll(ablumEntity.experiences);
                         if (headView == null) {
                             headView = View.inflate(getActivity(), R.layout.head_circle, null);

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.activity.ImagePagerActivity;
+import com.kaichaohulian.baocms.activity.MyAlbumActivity;
 import com.kaichaohulian.baocms.activity.ReleaseTalkActivity;
 import com.kaichaohulian.baocms.base.BaseListAdapter;
 import com.kaichaohulian.baocms.circledemo.widgets.MultiImageView;
@@ -123,7 +124,11 @@ public class MyAlbumAdapter extends BaseListAdapter {
 
     @Override
     public Object getItem(int i) {
-        return super.getItem(i-1);
+        if(i>=1){
+            return super.getItem(i-1);
+        }else{
+            return null;
+        }
     }
 
     @Override
@@ -149,7 +154,8 @@ public class MyAlbumAdapter extends BaseListAdapter {
                 @Override
                 public void onClick(View view) {
 //                    ActivityUtil.next(mContext, ReleaseTalkActivity.class);
-                    context.startActivity(new Intent(context, ReleaseTalkActivity.class));
+                    MyAlbumActivity activity=(MyAlbumActivity)context;
+                    activity.startActivityForResult((new Intent(context, ReleaseTalkActivity.class)),100);
                 }
             });
             img.setVisibility(View.VISIBLE);
@@ -182,7 +188,7 @@ public class MyAlbumAdapter extends BaseListAdapter {
             }
             vh.textContext.setText((String) data.content);
             final List<String> photos = new ArrayList<>();
-            FormatString(photos, data.images);
+            FormatString(photos, (String) data.images);
             MultiImageView multiImageView= (MultiImageView) view.findViewById(R.id.multiImagView);
             if (photos != null && photos.size() > 0) {
                 multiImageView.setVisibility(View.VISIBLE);

@@ -47,8 +47,8 @@ public class MeNameEditActivity extends BaseActivity {
         btnSave = getId(R.id.btn_save);
         switch (mTitleName){
             case "setName":
-                setCenterTitle("我的姓名");
-                editTextName.setHint("请输入您的昵称");
+                setCenterTitle("我的名字");
+                editTextName.setHint("请输入你的名字\n");
                 break;
             case "setJob":
                 setCenterTitle("我的职业");

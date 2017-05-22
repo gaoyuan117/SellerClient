@@ -8,32 +8,34 @@ import java.util.List;
 
 public class AblumEntity {
 
+
     /**
      * backAvatar : null
-     * avatar : null
-     * nikeName : 张三
-     * experiences : [{"id":3,"createdTime":"2016-12-25 12:49:46","creator":1,"isLocked":false,"lastModifiedTime":"2016-12-25 12:49:46","lastModifier":1,"nickName":"张三","avator":null,"content":null,"reminds":null,"districtId":null,"images":"1.jpg,2.jpg,3.jpg","evaluates":[],"islikes":[]},{"id":2,"createdTime":"2016-12-25 12:47:36","creator":1,"isLocked":false,"lastModifiedTime":"2016-12-25 12:47:36","lastModifier":1,"nickName":"张三","avator":null,"content":null,"reminds":null,"districtId":null,"images":null,"evaluates":[],"islikes":[]},{"id":1,"createdTime":"2016-12-25 12:42:57","creator":1,"isLocked":false,"lastModifiedTime":"2016-12-25 12:42:57","lastModifier":1,"nickName":"张三","avator":null,"content":null,"reminds":null,"districtId":null,"images":null,"evaluates":[],"islikes":[]}]
+     * avatar : http://oez2a4f3v.bkt.clouddn.com/FqHspSYV-U-SN86Hv3Xnk8KV6z__
+     * nikeName : 嘻嘻
+     * experiences : [{"id":9,"createdTime":"2017-05-22 23:31:29","creator":7237,"isLocked":false,"lastModifiedTime":"2017-05-22 23:31:29","lastModifier":7237,"timeStamp":"1495467089000","nickName":null,"avator":null,"content":"拉个闸","reminds":null,"districtId":null,"images":null,"evaluates":[],"islikes":[]},{"id":8,"createdTime":"2017-05-22 22:01:40","creator":7236,"isLocked":false,"lastModifiedTime":"2017-05-22 22:01:40","lastModifier":7236,"timeStamp":"1495461700000","nickName":null,"avator":null,"content":"哈哈哈","reminds":null,"districtId":null,"images":null,"evaluates":[],"islikes":[]},{"id":4,"createdTime":"2017-05-07 22:42:08","creator":7237,"isLocked":false,"lastModifiedTime":"2017-05-07 22:42:08","lastModifier":7237,"timeStamp":"1494168128000","nickName":null,"avator":null,"content":"啊啊啊啊啊啊啊","reminds":null,"districtId":null,"images":null,"evaluates":[],"islikes":[]},{"id":2,"createdTime":"2017-04-28 11:23:10","creator":7237,"isLocked":false,"lastModifiedTime":"2017-04-28 11:23:10","lastModifier":7237,"timeStamp":"1493349790000","nickName":null,"avator":null,"content":"啊？","reminds":null,"districtId":null,"images":null,"evaluates":[],"islikes":[]},{"id":1,"createdTime":"2017-04-27 11:33:41","creator":7236,"isLocked":false,"lastModifiedTime":"2017-04-27 11:33:41","lastModifier":7236,"timeStamp":"1493264021000","nickName":null,"avator":null,"content":"鹅鹅鹅","reminds":null,"districtId":null,"images":null,"evaluates":[],"islikes":[]}]
      */
 
     public Object backAvatar;
-    public Object avatar;
+    public String avatar;
     public String nikeName;
     public List<ExperiencesBean> experiences;
 
     public static class ExperiencesBean {
         /**
-         * id : 3
-         * createdTime : 2016-12-25 12:49:46
-         * creator : 1
+         * id : 9
+         * createdTime : 2017-05-22 23:31:29
+         * creator : 7237
          * isLocked : false
-         * lastModifiedTime : 2016-12-25 12:49:46
-         * lastModifier : 1
-         * nickName : 张三
+         * lastModifiedTime : 2017-05-22 23:31:29
+         * lastModifier : 7237
+         * timeStamp : 1495467089000
+         * nickName : null
          * avator : null
-         * content : null
+         * content : 拉个闸
          * reminds : null
          * districtId : null
-         * images : 1.jpg,2.jpg,3.jpg
+         * images : null
          * evaluates : []
          * islikes : []
          */
@@ -44,12 +46,13 @@ public class AblumEntity {
         public boolean isLocked;
         public String lastModifiedTime;
         public int lastModifier;
-        public String nickName;
+        public String timeStamp;
+        public Object nickName;
         public Object avator;
-        public Object content;
+        public String content;
         public Object reminds;
         public Object districtId;
-        public String images;
+        public Object images;
         public List<?> evaluates;
         public List<?> islikes;
     }

@@ -82,7 +82,8 @@ public class ReleaseTalkActivity extends BaseActivity implements View.OnClickLis
     public void initView() {
         setCenterTitle("");
         TextView rightTv = setRightTitle("发送");
-        rightTv.setBackgroundResource(R.mipmap.add_contactbtn);
+        rightTv.setBackgroundResource(R.mipmap.btn_invite_normal);
+        rightTv.setTextColor(getResources().getColor(R.color.blue));
         rightTv.setOnClickListener(this);
         content = (EditText) findViewById(R.id.content);
         GridView = (GridView) findViewById(R.id.gridview);
@@ -289,6 +290,7 @@ public class ReleaseTalkActivity extends BaseActivity implements View.OnClickLis
                 try {
                     DBLog.e("上传图片：", response.toString());
                     if (response.getInt("code") == 0) {
+                        setResult(RESULT_OK);
                         finish();
                     }
                     showToastMsg(response.getString("errorDescription"));

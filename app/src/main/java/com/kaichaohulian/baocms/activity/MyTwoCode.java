@@ -9,6 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.utils.QrCodeUtils;
 import com.kaichaohulian.baocms.utils.StringUtils;
 import com.google.zxing.WriterException;
@@ -41,7 +42,7 @@ public class MyTwoCode extends BaseActivity {
         sexy_icon = getId(R.id.sexy_icon);
         txtDistrict.setText(MyApplication.getInstance().UserInfo.getDistrictId());
         txtName.setText(MyApplication.getInstance().UserInfo.getUsername());
-        Glide.with(getActivity()).load("http://115.29.99.167:8081/SellerNet/" + MyApplication.getInstance().UserInfo.getQrCode()).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgTwoCode);
+        Glide.with(getActivity()).load(Url.BASE_URL+MyApplication.getInstance().UserInfo.getQrCode()).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgTwoCode);
         Glide.with(getActivity()).load(MyApplication.getInstance().UserInfo.getAvatar()).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgHeadIcon);
 
         String sexT = MyApplication.getInstance().UserInfo.getSex();

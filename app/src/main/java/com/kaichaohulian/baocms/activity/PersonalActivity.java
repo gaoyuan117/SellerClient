@@ -31,6 +31,7 @@ import com.kaichaohulian.baocms.entity.EarnestMoneyEntity;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
+import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.qiniu.Auth;
 import com.kaichaohulian.baocms.qiniu.QiNiuConfig;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
@@ -210,7 +211,7 @@ public class PersonalActivity extends BaseActivity {
             } else {
                 personalAddress.setText(userinfo.getDistrictId());
             }
-            String l = "http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode();
+            String l = Url.BASE_URL + MyApplication.getInstance().UserInfo.getQrCode();
             Log.e(TAG, "initView: " + l);
 ////        Glide.with(getActivity()).load(l).error(R.mipmap.qrcode).diskCacheStrategy(DiskCacheStrategy.ALL).into(imQrCode);
             showUserAvator(imQrCode, l, R.mipmap.qrcode);
@@ -231,38 +232,38 @@ public class PersonalActivity extends BaseActivity {
                         try {
 
 
-                        if (earnestMoneyEntity.getPayEarnestMoney() == null) {
+                        if (earnestMoneyEntity.payEarnestMoney==null) {
                             tvEarnestMoney.setText("0");
                         } else {
-                            tvEarnestMoney.setText((String) earnestMoneyEntity.getPayEarnestMoney());
+                            tvEarnestMoney.setText(earnestMoneyEntity.payEarnestMoney+"");
                         }
-                        if (earnestMoneyEntity.getGetEarnestMoney() == null) {
+                        if (earnestMoneyEntity.getEarnestMoney==null) {
                             tvGetMoney.setText("0");
                         } else {
-                            tvGetMoney.setText((String) earnestMoneyEntity.getGetEarnestMoney());
+                            tvGetMoney.setText((earnestMoneyEntity.getEarnestMoney+""));
                         }
-                        if (earnestMoneyEntity.getBeToAdd() == 0) {
+                        if (earnestMoneyEntity.beToAdd == 0) {
                             tvBeAddFriend.setText("0");
                         } else {
-                            tvBeAddFriend.setText(earnestMoneyEntity.getBeToAdd() + "");
+                            tvBeAddFriend.setText(earnestMoneyEntity.beToAdd + "");
                         }
-                        if (earnestMoneyEntity.getAppointment() == null) {
+                        if (earnestMoneyEntity.appointment == 0) {
                             tvAppointment.setText("0");
                         } else {
-                            tvAppointment.setText((String) earnestMoneyEntity.getAppointment());
+                            tvAppointment.setText( earnestMoneyEntity.appointment+"");
                         }
-                        if (earnestMoneyEntity.getBeInvite() == null) {
+                        if (earnestMoneyEntity.beInvite == 0) {
                             tvBeInvite.setText("0");
                         } else {
-                            tvBeInvite.setText((String) earnestMoneyEntity.getBeInvite());
+                            tvBeInvite.setText(earnestMoneyEntity.beInvite+"");
                         }
-                        if (earnestMoneyEntity.getNoAppointment() == null) {
+                        if (earnestMoneyEntity.noAppointment == 0) {
                             tvBeMiss.setText("0");
                         } else {
-                            tvBeMiss.setText((String) earnestMoneyEntity.getNoAppointment());
+                            tvBeMiss.setText(earnestMoneyEntity.noAppointment+"");
                         }
                         }catch (Exception e){
-                            Log.e("gy",e.toString());
+                            e.printStackTrace();
                         }
                     }
 

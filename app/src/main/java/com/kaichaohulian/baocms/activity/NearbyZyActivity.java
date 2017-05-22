@@ -97,10 +97,13 @@ public class NearbyZyActivity extends BaseActivity {
                             llNearbyNotify.setVisibility(View.VISIBLE);
                             mGreetBean = greetBean;
                             tvChatNums.setText("你收到" + greetBean.getRembers() + "条新的打招呼");
-                            Glide.with(NearbyZyActivity.this)
-                                    .load(greetBean.getRequestDTOs1().get(0).getAvatar())
-                                    .error(R.mipmap.default_useravatar)
-                                    .into(imgNearbyAvatar);
+                            if(mGreetBean.getRembers()>0){
+                                Glide.with(NearbyZyActivity.this)
+                                        .load(greetBean.getRequestDTOs1().get(0).getAvatar())
+                                        .error(R.mipmap.default_useravatar)
+                                        .into(imgNearbyAvatar);
+                            }
+
                         }
                     }
                 });
