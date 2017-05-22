@@ -3,6 +3,7 @@ package com.kaichaohulian.baocms.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,7 +24,7 @@ public class AddFriendsOneActivity extends BaseActivity {
     public final static int REQUEST_CODE = 0x0123;
     private TextView tv_search, WeChatID;
     private View scannerCode, showCode, phoneContact, shopping, Relative_LdAdd, Relative_mmGroup;
-    private String id ="我的买家号:" + MyApplication.getInstance().UserInfo.getAccountNumber();
+    private String id = "我的买家号:" + MyApplication.getInstance().UserInfo.getAccountNumber();
     private RelativeLayout rlCode;
 
     @Override
@@ -109,27 +110,29 @@ public class AddFriendsOneActivity extends BaseActivity {
     /**
      * 二维码对话框
      */
-    private void codeDialog(){
+    private void codeDialog() {
         //TODO 实例化对话框控件
-        View dialogView = View.inflate(this,R.layout.dialog_code,null);
+        View dialogView = View.inflate(this, R.layout.dialog_code, null);
         ImageView avatar = (ImageView) dialogView.findViewById(R.id.img_code_avatar);
         ImageView codeImg = (ImageView) dialogView.findViewById(R.id.img_code);
         TextView name = (TextView) dialogView.findViewById(R.id.tv_code_name);
         TextView address = (TextView) dialogView.findViewById(R.id.tv_code_adress);
         name.setText(MyApplication.getInstance().UserInfo.getUsername());
-        address.setText(MyApplication.getInstance().UserInfo.getDistrictId());
+        if (!TextUtils.isEmpty(MyApplication.getInstance().UserInfo.getDistrictId()) && !MyApplication.getInstance().UserInfo.getDistrictId().equals("null")) {
+            address.setText(MyApplication.getInstance().UserInfo.getDistrictId());
+        }
         Glide.with(MyApplication.getInstance())
                 .load(MyApplication.getInstance().UserInfo.getAvatar())
                 .error(R.mipmap.default_useravatar)
                 .crossFade()
                 .into(avatar);
-        Log.e("gy","哈哈哈："+"http://www.52yeli.com/"+MyApplication.getInstance().UserInfo.getQrCode());
+        Log.e("gy", "哈哈哈：" + "http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode());
         Glide.with(MyApplication.getInstance())
-                .load("http://www.52yeli.com/"+MyApplication.getInstance().UserInfo.getQrCode())
+                .load("http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode())
                 .error(R.mipmap.default_image)
                 .crossFade()
                 .into(codeImg);
-        Dialog dialog = new Dialog(this,R.style.MyDialogStyle);
+        Dialog dialog = new Dialog(this, R.style.MyDialogStyle);
         dialog.setContentView(dialogView);
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();

@@ -46,6 +46,12 @@ public abstract class BaseListObserver<T> implements Observer<HttpArray<T>> {
         this.message = message;
     }
 
+    protected BaseListObserver(Context context, String message,SwipeRefreshLayout refreshLayout) {
+        this.mContext = context;
+        this.message = message;
+        this.refreshLayout = refreshLayout;
+    }
+
     protected BaseListObserver(Context context, String message, boolean isToast) {
         this(context, message);
         this.isToast = isToast;
@@ -57,6 +63,9 @@ public abstract class BaseListObserver<T> implements Observer<HttpArray<T>> {
         if (value.code == 0) {
             List<T> t = value.dataObject;
             onHandleSuccess(t);
+            if (refreshLayout != null) {
+                refreshLayout.setRefreshing(false);
+            }
         } else {
             onHandleError(value.code, value.message);
         }

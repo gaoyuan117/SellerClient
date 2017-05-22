@@ -9,7 +9,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.kaichaohulian.baocms"
+        applicationId "com.gy.zhongyu"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1

@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.adapter;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,9 +65,12 @@ public class AdvertmasslistAdapter extends BaseListAdapter {
 
         SimpleDateFormat format = new SimpleDateFormat("MM月dd日 H:m");
         Date date = new Date(Long.parseLong(entity.timeStamp));
-        url="http://oez2a4f3v.bkt.clouddn.com/" + entity.image;
-        url=url.replace(",","");
-        Glide.with(context).load(url).error(R.mipmap.default_advertmass).into(vh.img);
+            url="http://oez2a4f3v.bkt.clouddn.com/" + entity.image;
+            url=url.replace(",","");
+
+            Glide.with(context).load(url).into(vh.img);
+
+
         vh.time.setText(format.format(date));
         vh.content.setText(buffer.toString());
 

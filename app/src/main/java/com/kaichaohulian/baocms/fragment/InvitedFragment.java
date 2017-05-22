@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -41,11 +42,13 @@ import butterknife.Unbinder;
  * Created by gaoyuan on 2017/5/9.
  */
 @SuppressLint("ValidFragment")
-public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.OnItemChildClickListener, BaseQuickAdapter.OnItemClickListener {
+public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.OnItemChildClickListener, BaseQuickAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
 
     @BindView(R.id.lv_invitationMg)
     RecyclerView mRecyclerView;
+    @BindView(R.id.refresh_invited)
+    SwipeRefreshLayout refreshLayout;
 
     private InvitedAdapter mAdapter;
     private List<InvitedBean> mList;
@@ -84,6 +87,7 @@ public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.On
     public void initEvent() {
         mAdapter.setOnItemChildClickListener(this);
         mAdapter.setOnItemClickListener(this);
+        refreshLayout.setOnRefreshListener(this);
     }
 
     private void loadInvited(int page) {
@@ -92,7 +96,7 @@ public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.On
         map.put("page", page);
         RetrofitClient.getInstance().createApi().getDiscoverInvited(map)
                 .compose(RxUtils.<HttpArray<InvitedBean>>io_main())
-                .subscribe(new BaseListObserver<InvitedBean>(getActivity()) {
+                .subscribe(new BaseListObserver<InvitedBean>(getActivity(), refreshLayout) {
                     @Override
                     protected void onHandleSuccess(List<InvitedBean> list) {
                         if (list == null) {
@@ -151,15 +155,9 @@ public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.On
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        if (mList.get(position).getStatus() == 0) {
+        if (mList.get(position).getUserApplyStatus() == 0) {
             Intent intent = new Intent(getActivity(), DiscoverInvitedDetailActivity.class);
             intent.putExtra("inviteId", mList.get(position).getId() + "");
-
-            if (mList.get(position).getStatus() == 0 || mList.get(position).getStatus() == 1) {
-                intent.putExtra("type", "0");
-            } else {
-                intent.putExtra("type", "1");
-            }
             startActivity(intent);
 
         } else {
@@ -171,5 +169,10 @@ public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.On
         }
 
 
+    }
+
+    @Override
+    public void onRefresh() {
+        loadInvited(1);
     }
 }

@@ -56,7 +56,8 @@ public class MyAlbumActivity extends BaseActivity {
     public ImageView create;
     private boolean mIsFriend;
     private String mFriendId;
-    private int index=1;
+    private int index = 1;
+
     @Override
     public void setContent() {
         setContentView(R.layout.myalbum_activity);
@@ -83,18 +84,16 @@ public class MyAlbumActivity extends BaseActivity {
     }
 
     public void addHttpData() {
-        List=new ArrayList<>();
-        adapter=new MyAlbumAdapter(this,List);
-        listView.setAdapter(adapter);
-        RetrofitClient.getInstance().createApi().GetUserPhoto(MyApplication.getInstance().UserInfo.getUserId(),index+"")
+        List = new ArrayList<>();
+
+        RetrofitClient.getInstance().createApi().GetUserPhoto(MyApplication.getInstance().UserInfo.getUserId(), index + "")
                 .compose(RxUtils.<HttpResult<AblumEntity>>io_main())
-                .subscribe(new BaseObjObserver<AblumEntity>(getActivity(),"获取中...") {
+                .subscribe(new BaseObjObserver<AblumEntity>(getActivity(), "获取中...") {
                     @Override
                     protected void onHandleSuccess(AblumEntity ablumEntity) {
                         List.addAll(ablumEntity.experiences);
-                        adapter.notifyDataSetChanged();
-                        if(headView==null){
-                            headView=View.inflate(getActivity(),R.layout.head_circle,null);
+                        if (headView == null) {
+                            headView = View.inflate(getActivity(), R.layout.head_circle, null);
                             head = (ImageView) headView.findViewById(R.id.head);
                             name = (TextView) headView.findViewById(R.id.name);
                             create = (ImageView) headView.findViewById(R.id.create_photo);
@@ -106,10 +105,12 @@ public class MyAlbumActivity extends BaseActivity {
                                     ActivityUtil.next(getActivity(), ReleaseTalkActivity.class);
                                 }
                             });
-                            Glide.with(getActivity()).load(ablumEntity.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.def_shop_bg).into(head);
-                            Glide.with(getActivity()).load(ablumEntity.backAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.def_shop_bg).into(bg);
+                            Glide.with(getActivity()).load(ablumEntity.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(head);
+                            Glide.with(getActivity()).load(ablumEntity.backAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(bg);
                         }
                         listView.addHeaderView(headView);
+                        adapter = new MyAlbumAdapter(MyAlbumActivity.this, List);
+                        listView.setAdapter(adapter);
                     }
                 });
 

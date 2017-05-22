@@ -21,11 +21,14 @@
         android:visibility="gone" />
 
     <ScrollView
+        android:layout_below="@+id/title_invitedetail"
         android:id="@+id/scroll_invitedetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_invitedetail"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,7 +139,7 @@
                         android:layout_alignTop="@+id/img_invit_detail_avatar"
                         android:layout_marginTop="4dp"
                         android:layout_toRightOf="@+id/img_invit_detail_avatar"
-                        android:text="发起人：高原"
+                        android:text="发起人："
                         android:textColor="@color/zy_text_black" />
 
                     <TextView

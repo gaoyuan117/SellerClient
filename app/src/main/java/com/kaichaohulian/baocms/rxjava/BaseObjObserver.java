@@ -17,7 +17,6 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * Created by admin on 2017/3/27.
- *
  */
 
 public abstract class BaseObjObserver<T> implements Observer<HttpResult<T>> {
@@ -49,6 +48,12 @@ public abstract class BaseObjObserver<T> implements Observer<HttpResult<T>> {
         this.message = message;
     }
 
+    protected BaseObjObserver(Context context, String message, SwipeRefreshLayout refreshLayout) {
+        this.mContext = context;
+        this.message = message;
+        this.refreshLayout = refreshLayout;
+    }
+
     protected BaseObjObserver(Context context, String message, boolean isToast) {
         this(context, message);
         this.isToast = isToast;
@@ -60,6 +65,9 @@ public abstract class BaseObjObserver<T> implements Observer<HttpResult<T>> {
         if (value.code == 0) {
             T t = value.dataObject;
             onHandleSuccess(t);
+            if (refreshLayout != null) {
+                refreshLayout.setRefreshing(false);
+            }
         } else {
             onHandleError(value.code, value.errorDescription);
         }

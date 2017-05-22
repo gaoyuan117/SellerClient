@@ -13,6 +13,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bg_color_gray"
         android:scrollbars="none">
 
         <LinearLayout
@@ -45,16 +46,16 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="120位收件人:\nasdfasdfasdfasdfasdfasdfaddddddddddddddddddddddddsdf"
+                    android:text=""
                     android:textColor="@color/zy_text_gray"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_payforadvert"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="支付费用：2元"
+                    android:text="支付费用：0元"
                     android:textColor="@color/zy_text_gray"
                     android:textSize="12sp" />
 
@@ -62,23 +63,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/line" />
 
                 <TextView
+                    android:layout_marginTop="6dp"
                     android:id="@+id/title_detailavert"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/img_advertmass"
-                    android:text="生活在左 真丝连衣裙"
+                    android:text=""
                     android:textColor="@color/zy_text_black"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:layout_marginTop="4dp"
                     android:id="@+id/content_detailavert"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="花开堪折直须折，莫待无花空折枝"
+                    android:text=""
                     android:textColor="@color/zy_text_color"
                     android:textSize="12sp" />
 
@@ -86,9 +89,7 @@
                     android:id="@+id/img_detailadvert"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:numColumns="3"
-
-                    ></com.kaichaohulian.baocms.view.MyGridView>
+                    android:numColumns="3"/>
 
 
             </LinearLayout>

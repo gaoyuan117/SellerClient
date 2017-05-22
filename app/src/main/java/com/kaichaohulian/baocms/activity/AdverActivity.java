@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -32,7 +33,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
-public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener {
+public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
 
     @BindView(R.id.tv_adver_notify_info)
@@ -43,6 +44,8 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
     LinearLayout llAdverNotify;
     @BindView(R.id.rv_adver)
     RecyclerView mRecyclerView;
+    @BindView(R.id.refresh_discover_advert)
+    SwipeRefreshLayout refreshLayout;
 
     private List<HasGetAdverBean.AdvertListBean> mList;
     private AdverAdapter mAdapter;
@@ -79,6 +82,7 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
     @Override
     public void initEvent() {
         mAdapter.setOnItemClickListener(this);
+        refreshLayout.setOnRefreshListener(this);
     }
 
 
@@ -105,7 +109,7 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
         map.put("page", page + "");
         RetrofitClient.getInstance().createApi().hasGetAdver(map)
                 .compose(RxUtils.<HttpResult<HasGetAdverBean>>io_main())
-                .subscribe(new BaseObjObserver<HasGetAdverBean>(this, "加载中") {
+                .subscribe(new BaseObjObserver<HasGetAdverBean>(this, "加载中",refreshLayout) {
                     @Override
                     protected void onHandleSuccess(HasGetAdverBean hasGetAdverBean) {
                         if (hasGetAdverBean.getAdvertList() == null) {
@@ -123,5 +127,10 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onRefresh() {
+        getAdverList(1);
     }
 }

@@ -3,6 +3,7 @@ package com.kaichaohulian.baocms.activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.kaichaohulian.baocms.NearService;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.adapter.NearbyListAdapter;
 import com.kaichaohulian.baocms.app.AppManager;
@@ -43,12 +45,14 @@ import io.reactivex.functions.Consumer;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class NearbyListActivity extends BaseActivity implements View.OnClickListener, BaseQuickAdapter.OnItemClickListener {
+public class NearbyListActivity extends BaseActivity implements View.OnClickListener, BaseQuickAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.rv_nearby_list)
     RecyclerView mRecyclerView;
     @BindView(R.id.rl_near_list)
     LinearLayout linearLayout;
+    @BindView(R.id.refresh_nearby)
+    SwipeRefreshLayout refreshLayout;
 
     private NearbyListAdapter mAdapter;
     private List<NearbyBean> mList;
@@ -86,6 +90,7 @@ public class NearbyListActivity extends BaseActivity implements View.OnClickList
     public void initEvent() {
         getNearUser(1, 2);
         mAdapter.setOnItemClickListener(this);
+        refreshLayout.setOnRefreshListener(this);
     }
 
     private void openBottomPopWindow() {
@@ -149,7 +154,7 @@ public class NearbyListActivity extends BaseActivity implements View.OnClickList
         map.put("sex", sex + "");//0 男 1女 2全部
         RetrofitClient.getInstance().createApi().getNearUser(map)
                 .compose(RxUtils.<HttpArray<NearbyBean>>io_main())
-                .subscribe(new BaseListObserver<NearbyBean>(this, "加载中") {
+                .subscribe(new BaseListObserver<NearbyBean>(this, "加载中", refreshLayout) {
                     @Override
                     protected void onHandleSuccess(List<NearbyBean> list) {
                         mList.clear();
@@ -162,10 +167,10 @@ public class NearbyListActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        Intent intent = new Intent(getActivity(),FriendInfoActivity.class);
-        intent.putExtra("phone",mList.get(position).getPhone()+"");
-        intent.putExtra("friendId",mList.get(position).getUserId()+"");
-        intent.putExtra("type","3");
+        Intent intent = new Intent(getActivity(), FriendInfoActivity.class);
+        intent.putExtra("phone", mList.get(position).getPhone() + "");
+        intent.putExtra("friendId", mList.get(position).getUserId() + "");
+        intent.putExtra("type", "3");
         startActivity(intent);
     }
 
@@ -180,10 +185,15 @@ public class NearbyListActivity extends BaseActivity implements View.OnClickList
                     @Override
                     protected void onHandleSuccess(CommonEntity commonEntity) {
                         ToastUtil.showMessage("清除位置信息成功");
+                        stopService(new Intent(getActivity(), NearService.class));
                         AppManager.getAppManager().finishActivity(NearbyZyActivity.class);
                         finish();
                     }
                 });
     }
 
+    @Override
+    public void onRefresh() {
+        getNearUser(1, 2);
+    }
 }

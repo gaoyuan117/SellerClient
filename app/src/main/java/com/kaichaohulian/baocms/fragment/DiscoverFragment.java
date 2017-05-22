@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.kaichaohulian.baocms.NearService;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.UpdateLocationService;
 import com.kaichaohulian.baocms.activity.AdverActivity;
@@ -84,8 +85,8 @@ public class DiscoverFragment extends BaseFragment {
                 break;
 
             case R.id.rl_discover_fj://附近的人
-                getActivity().startService(new Intent(getActivity(), UpdateLocationService.class));
                 startActivity(new Intent(getActivity(), NearbyZyActivity.class));
+                getActivity().startService(new Intent(getActivity(), NearService.class));
                 break;
         }
     }

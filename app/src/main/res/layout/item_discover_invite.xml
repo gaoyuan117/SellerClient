@@ -32,7 +32,7 @@
         android:id="@+id/tv_item_discover_invite_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="2dp"
         android:layout_toRightOf="@+id/img_item_disvover_invite_avatar"
         android:ellipsize="end"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/img_item_disvover_invite_avatar"
         android:layout_marginBottom="2dp"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="13dp"
         android:layout_toRightOf="@+id/img_item_disvover_invite_avatar"
         android:ellipsize="end"
@@ -58,19 +58,19 @@
         android:id="@+id/tv_item_discover_invite_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="2dp"
         android:layout_toRightOf="@+id/tv_item_discover_invite_name"
         android:text=""
         android:textColor="@color/zy_text_gray"
-        android:textSize="11sp" />
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/tv_item_discover_invite_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="2dp"
         android:text="剩余0秒"
         android:textColor="@color/zy_text_blue"
@@ -101,6 +101,16 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:text="查看详情"
+            android:textColor="@color/zy_orange" />
+
+        <TextView
+            android:id="@+id/tv_invited_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="8dp"
+            android:text="已接受"
+            android:visibility="gone"
             android:textColor="@color/zy_orange" />
 
         <LinearLayout

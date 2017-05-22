@@ -44,8 +44,9 @@ public class AdvertDetail extends BaseActivity {
     TextView content;
     @BindView(R.id.img_detailadvert)
     MyGridView imgdetailadvert;
-    SimpleDateFormat format=new SimpleDateFormat("MM月dd日 HH:mm");
+    SimpleDateFormat format = new SimpleDateFormat("MM月dd日 HH:mm");
     private AdvertDetailGridAdapter adapter;
+
     @Override
     public void setContent() {
         setContentView(R.layout.activity_advert_detail);
@@ -54,21 +55,24 @@ public class AdvertDetail extends BaseActivity {
 
     @Override
     public void initData() {
-        int adverId=getIntent().getIntExtra("advertId",0);
-        if(adverId!=0){
-            map=new HashMap<>();
-            map.put("advertId",adverId+"");
-            map.put("userId",MyApplication.getInstance().UserInfo.getUserId()+"");
+        int adverId = getIntent().getIntExtra("advertId", 0);
+        if (adverId != 0) {
+            map = new HashMap<>();
+            map.put("advertId", adverId + "");
+            map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
             RetrofitClient.getInstance().createApi().GetDetailForAdvert(map)
                     .compose(RxUtils.<HttpResult<AdvertDetailEntity>>io_main())
-                    .subscribe(new BaseObjObserver<AdvertDetailEntity>(getActivity(),"获取广告详情中...") {
+                    .subscribe(new BaseObjObserver<AdvertDetailEntity>(getActivity(), "获取广告详情中...") {
                         @Override
                         protected void onHandleSuccess(AdvertDetailEntity adviertisementEntity) {
-                            time.setText(adviertisementEntity.advert.createdTime.substring(0,adviertisementEntity.advert.createdTime.length()-9));
-//                            addressee.setText();
+                            time.setText(adviertisementEntity.advert.createdTime.substring(0, adviertisementEntity.advert.createdTime.length() - 9));
+                            String receive = adviertisementEntity.advert.receive;
+                            String[] split = receive.split(",");
+                            addressee.setText(split.length + "位收件人 \n" + receive);
                             title.setText(adviertisementEntity.advert.title);
+                            paynum.setText("支付费用："+adviertisementEntity.advert.pay+"元");
                             content.setText(adviertisementEntity.advert.context);
-                            adapter=new AdvertDetailGridAdapter(getActivity(),getList(adviertisementEntity.advert.image));
+                            adapter = new AdvertDetailGridAdapter(getActivity(), getList(adviertisementEntity.advert.image));
                             adapter.setLayoutIds(R.layout.item_advert_detailgrid);
                             imgdetailadvert.setAdapter(adapter);
                         }
@@ -76,15 +80,15 @@ public class AdvertDetail extends BaseActivity {
         }
     }
 
-    private List<String> getList(String data){
-        ArrayList<String> list=new ArrayList<>();
-        StringBuffer buffer=new StringBuffer();
+    private List<String> getList(String data) {
+        ArrayList<String> list = new ArrayList<>();
+        StringBuffer buffer = new StringBuffer();
         for (int i = 0; i < data.length(); i++) {
-            if(data.charAt(i)!=','){
+            if (data.charAt(i) != ',') {
                 buffer.append(data.charAt(i));
-            }else if(data.charAt(i)==','){
-                list.add("http://oez2a4f3v.bkt.clouddn.com/"+buffer.toString());
-                buffer.delete(0,buffer.length());
+            } else if (data.charAt(i) == ',') {
+                list.add("http://oez2a4f3v.bkt.clouddn.com/" + buffer.toString());
+                buffer.delete(0, buffer.length());
             }
         }
         return list;

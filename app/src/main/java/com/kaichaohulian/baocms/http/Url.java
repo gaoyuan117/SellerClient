@@ -5,10 +5,10 @@ package com.kaichaohulian.baocms.http;
  * Created by ljl on 2016/12/11.
  */
 public class Url {
-    public static final String BASE_URL = "http://www.52yeli.com/api/"; // 服务器地址
+    public static final String BASE_URL = "http://115.126.100.146:8080/ZFishApp/api/"; // 服务器地址
 
-    public static final String WX_APP_ID = "wxe2c54efaeeae4ccb";
-    public static final String WX_APP_SECRET = "902f4bebd104ed977fee542a10377f2e";
+    public static final String WX_APP_ID = "wx21f81eacea211f9a";
+    public static final String WX_APP_SECRET = "b9034c18b8fae299ab54bad5e620ecc5";
     //    public static final String WX_PARTNER_ID = "1289850701"; // 商户号
     public static final String WX_PARTNER_ID = "1433908302"; // 商户号
     public static final String WX_APP_KEY = "009aa9774b5cf730a880956fe6caab23"; // 微信商户key

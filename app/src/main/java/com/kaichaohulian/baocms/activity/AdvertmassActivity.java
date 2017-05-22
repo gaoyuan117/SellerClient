@@ -45,6 +45,11 @@ public class AdvertmassActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        map = new HashMap<>();
+        Datalist = new ArrayList<>();
+        adapter = new AdvertmasslistAdapter(getActivity(), Datalist, R.layout.item_advertmasslist);
+        lvAdvertmass.setAdapter(adapter);
+
         lvAdvertmass.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -59,11 +64,6 @@ public class AdvertmassActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        map = new HashMap<>();
-        Datalist = new ArrayList<>();
-        adapter = new AdvertmasslistAdapter(getActivity(), Datalist, R.layout.item_advertmasslist);
-        lvAdvertmass.setAdapter(adapter);
-
         map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
         map.put("page", index + "");
         RetrofitClient.getInstance().createApi().Getadviertisement(map)
@@ -96,8 +96,8 @@ public class AdvertmassActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_friend_advertmass:
-                Intent intent=new Intent(this, AdvertMassSelectActivity.class);
-                intent.putExtra("JustSelect",false);
+                Intent intent = new Intent(this, AdvertMassSelectActivity.class);
+                intent.putExtra("JustSelect", false);
                 startActivity(intent);
 //                ActivityUtil.next(this, AdvertMassSelectActivity.class);
                 break;

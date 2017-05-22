@@ -10,6 +10,7 @@ import android.util.Xml;
 
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.ecdemo.common.utils.LogUtil;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.manager.UIHelper;
@@ -88,6 +89,7 @@ public class WxPayUtile {
             params.put("actualamount", actualamount);
         }
         params.put("token", MyApplication.getInstance().UserInfo.getToken());
+        ToastUtil.showMessage("微信支付："+total_fee);
         HttpUtil.post(Url.weixin_gotopay, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

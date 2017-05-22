@@ -121,6 +121,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
     public static boolean isConflict = false;
     private DataHelper mDataHelper;
     private boolean sync = false;
+    private ImageView iv_add;
 
 //  on
 
@@ -223,7 +224,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
 
         setCenterTitle("消息");
         visibilityExit();
-        final ImageView iv_add = setIm1_view(R.mipmap.add_friend);
+        iv_add = setIm1_view(R.mipmap.add_friend);
         iv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,19 +274,23 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
         switch (view.getId()) {
             case R.id.re_weixin:
                 index = 0;
+                iv_add.setVisibility(View.VISIBLE);
                 setCenterTitle("消息");
                 break;
             case R.id.re_contact_list:
                 index = 1;
+                iv_add.setVisibility(View.VISIBLE);
                 setCenterTitle("通讯录");
                 break;
             case R.id.re_find:
                 index = 2;
+                iv_add.setVisibility(View.VISIBLE);
                 setCenterTitle("发现");
                 break;
             case R.id.re_profile:
                 UserInfoManager.getInstance().updateUserCache(getActivity());
                 index = 3;
+                iv_add.setVisibility(View.INVISIBLE);
                 setCenterTitle("我的");
                 break;
         }

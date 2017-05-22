@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.kaichaohulian.baocms.NearService;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
@@ -107,6 +109,7 @@ public class NearbyZyActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        Log.e("gy","onDestroy");
+        stopService(new Intent(this, NearService.class));
     }
 }

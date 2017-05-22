@@ -72,7 +72,7 @@ public class InviteDetailGridAdapter extends BaseListAdapter {
             }
             vh1.name.setText(entity.username + "");
             switch (entity.inviteStatus) {
-                case 0:
+                case 2:
                     vh1.state.setText("已拒绝");
                     vh1.state.setTextColor(Color.parseColor("#54da4a"));
                     break;

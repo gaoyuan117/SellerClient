@@ -99,7 +99,7 @@ public class MyFriendsSearchActivity extends BaseActivity {
         RequestParams params = new RequestParams();
         params.put("id", MyApplication.getInstance().UserInfo.getUserId());
         params.put("terms", terms);
-        HttpUtil.post(Url.myfriends_search, params, new JsonHttpResponseHandler() {
+        HttpUtil.get(Url.myfriends_search, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {

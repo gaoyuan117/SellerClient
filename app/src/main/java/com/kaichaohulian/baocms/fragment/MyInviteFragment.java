@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -40,10 +41,12 @@ import butterknife.Unbinder;
  */
 
 @SuppressLint("ValidFragment")
-public class MyInviteFragment extends BaseFragment implements BaseQuickAdapter.OnItemClickListener {
+public class MyInviteFragment extends BaseFragment implements BaseQuickAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.lv_invitationMg)
     RecyclerView mRecyclerView;
+    @BindView(R.id.refresh_invited)
+    SwipeRefreshLayout refreshLayout;
 
     private List<MyInviteBean> mList;
     private MyInviteAdapter mAdapter;
@@ -80,6 +83,7 @@ public class MyInviteFragment extends BaseFragment implements BaseQuickAdapter.O
     @Override
     public void initEvent() {
         mAdapter.setOnItemClickListener(this);
+        refreshLayout.setOnRefreshListener(this);
     }
 
     private void loadMyInvite(int page) {
@@ -88,7 +92,7 @@ public class MyInviteFragment extends BaseFragment implements BaseQuickAdapter.O
         map.put("page", page);
         RetrofitClient.getInstance().createApi().getMyDiscoverInvite(map)
                 .compose(RxUtils.<HttpArray<MyInviteBean>>io_main())
-                .subscribe(new BaseListObserver<MyInviteBean>(getActivity()) {
+                .subscribe(new BaseListObserver<MyInviteBean>(getActivity(),refreshLayout) {
                     @Override
                     protected void onHandleSuccess(List<MyInviteBean> list) {
                         if (list == null) {
@@ -115,5 +119,10 @@ public class MyInviteFragment extends BaseFragment implements BaseQuickAdapter.O
         intent.putExtra("IsOwn",true);
         intent.putExtra("UserId",MyApplication.getInstance().UserInfo.getUserId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        loadMyInvite(1);
     }
 }

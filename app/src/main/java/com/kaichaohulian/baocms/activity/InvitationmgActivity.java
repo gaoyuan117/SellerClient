@@ -85,7 +85,6 @@ public class InvitationmgActivity extends BaseActivity {
             myjoinInvite.setArguments(bundle1);
             fragments.add(mysendInvite);
             fragments.add(myjoinInvite);
-
             titles.add("我发起的");
             titles.add("我参与的");
         }

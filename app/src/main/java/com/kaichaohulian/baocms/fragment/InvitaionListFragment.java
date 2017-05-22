@@ -129,6 +129,7 @@ public class InvitaionListFragment extends BaseFragment {
                 Intent intent = new Intent(getActivity(), InvitedetailActivity.class);
                 intent.putExtra("inviteId",dataList.get(i).getInvite().getId());
                 intent.putExtra("UserId", MyApplication.getInstance().UserInfo.getUserId());
+                Log.e("gy","是不是我的："+IsOwn);
                 intent.putExtra("IsOwn", IsOwn);
                 startActivity(intent);
             }

@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -44,7 +45,7 @@ public class SendinvitationActivity extends BaseActivity {
     @BindView(R.id.edt_sendInvitionNum)
     EditText edtSendInvitionNum;
     @BindView(R.id.tv_responsetime)
-    TextView tvResponsetime;
+    EditText tvResponsetime;
     SimpleDateFormat AllTtmeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     SimpleDateFormat DayTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -97,7 +98,7 @@ public class SendinvitationActivity extends BaseActivity {
 
         TvInvitiontime.setText(DayTimeFormat.format(Calendar.getInstance().getTime()));
         InviteTime = AllTtmeFormat.format(Calendar.getInstance().getTime());
-        tvResponsetime.setText(DayTimeFormat.format(Calendar.getInstance().getTime().getTime() + 600000));
+//        tvResponsetime.setText(DayTimeFormat.format(Calendar.getInstance().getTime().getTime() + 600000));
         edtActaddress.setHint(MyApplication.getInstance().BDLocation.getAddrStr());
 
     }
@@ -136,15 +137,16 @@ public class SendinvitationActivity extends BaseActivity {
         map.put("longitud", MyApplication.getInstance().BDLocation.getLongitude() + "");
         map.put("latitude", MyApplication.getInstance().BDLocation.getLatitude() + "");
         map.put("invateTime", InviteTime);
-        if (ApplyTime == null) {
-            Toast.makeText(this, "请选择响应时间", Toast.LENGTH_SHORT).show();
+        ApplyTime = tvResponsetime.getText().toString();
+        if (TextUtils.isEmpty(ApplyTime)) {
+            Toast.makeText(this, "请输入相应时间", Toast.LENGTH_SHORT).show();
             return;
         } else {
             map.put("applyTime", ApplyTime);
         }
         RetrofitClient.getInstance().createApi().SendInvite(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
-                .subscribe(new BaseObjObserver<CommonEntity>(getActivity(),"加载中...") {
+                .subscribe(new BaseObjObserver<CommonEntity>(getActivity(), "加载中...") {
                     @Override
                     protected void onHandleSuccess(CommonEntity commonEntity) {
                         Toast.makeText(SendinvitationActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
@@ -203,32 +205,32 @@ public class SendinvitationActivity extends BaseActivity {
                 }
                 break;
             case R.id.rl_responsetime:
-                if (ReponseTimePickerView == null) {
-                    ReponseTimePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
-                        @Override
-                        public void onTimeSelect(Date date, View v) {
-                            long i = 0;
-                            try {
-                                i = date.getTime() - AllTtmeFormat.parse(InviteTime).getTime();
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-                            if (i > 0) {
-                                ApplyTime = DayTimeFormat.format(date);
-                                tvResponsetime.setText(ApplyTime);
-                            } else {
-                                Toast.makeText(SendinvitationActivity.this, "响应时间不能小于邀请时间", Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-                    }).setType(TimePickerView.Type.YEAR_MONTH_DAY_HOUR_MIN)
-                            .setDate(Calendar.getInstance())
-                            .setTitleText("选择响应截止时间")
-                            .build();
-                    ReponseTimePickerView.show();
-                } else {
-                    ReponseTimePickerView.show();
-                }
+//                if (ReponseTimePickerView == null) {
+//                    ReponseTimePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+//                        @Override
+//                        public void onTimeSelect(Date date, View v) {
+//                            long i = 0;
+//                            try {
+//                                i = date.getTime() - AllTtmeFormat.parse(InviteTime).getTime();
+//                            } catch (ParseException e) {
+//                                e.printStackTrace();
+//                            }
+//                            if (i > 0) {
+//                                ApplyTime = DayTimeFormat.format(date);
+//                                tvResponsetime.setText(ApplyTime);
+//                            } else {
+//                                Toast.makeText(SendinvitationActivity.this, "响应时间不能小于邀请时间", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                        }
+//                    }).setType(TimePickerView.Type.YEAR_MONTH_DAY_HOUR_MIN)
+//                            .setDate(Calendar.getInstance())
+//                            .setTitleText("选择响应截止时间")
+//                            .build();
+//                    ReponseTimePickerView.show();
+//                } else {
+//                    ReponseTimePickerView.show();
+//                }
                 break;
         }
     }

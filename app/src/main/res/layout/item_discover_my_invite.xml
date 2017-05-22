@@ -12,6 +12,7 @@
         android:id="@+id/img_item_my_invite_avatar"
         android:layout_width="42dp"
         android:layout_height="42dp"
+        android:scaleType="fitXY"
         android:src="@mipmap/default_useravatar" />
 
     <TextView
@@ -34,6 +35,7 @@
         android:layout_marginBottom="2dp"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
+        android:layout_marginTop="2dp"
         android:layout_toRightOf="@+id/img_item_my_invite_avatar"
         android:ellipsize="end"
         android:lines="1"
@@ -49,7 +51,7 @@
         android:layout_toRightOf="@+id/tv_item_my_invite_name"
         android:text="4月12日 12：30"
         android:textColor="@color/zy_text_gray"
-        android:textSize="11sp" />
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/tv_item_my_invite_state"

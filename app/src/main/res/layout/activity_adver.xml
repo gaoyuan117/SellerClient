@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context="com.kaichaohulian.baocms.activity.AdverActivity">
 
-    <include layout="@layout/layout_title"/>
+    <include layout="@layout/layout_title" />
 
     <LinearLayout
         android:id="@+id/ll_adver_notify"
@@ -23,35 +23,41 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="12sp"
             android:padding="2dp"
             android:text="您有两条未读消息!"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/img_adver_close_notify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
             android:src="@mipmap/close_dialog" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:paddingBottom="10dp"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:layout_marginTop="10dp">
+        android:paddingRight="15dp">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_adver"
+        <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:id="@+id/refresh_discover_advert"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_adver"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
 
 </LinearLayout>

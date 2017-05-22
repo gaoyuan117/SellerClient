@@ -279,16 +279,17 @@
                 android:text="响应时间"
                 android:textSize="14sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tv_responsetime"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:background="#00000000"
+                android:background="@null"
                 android:gravity="right|center"
-                android:text=""
+                android:hint="小时"
+                android:inputType="numberDecimal"
                 android:textColor="@color/zy_text_gray"
                 android:textSize="12sp" />
         </RelativeLayout>

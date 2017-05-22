@@ -127,9 +127,9 @@ public class InvitedetailActivity extends BaseActivity {
                     .subscribe(new BaseObjObserver<InviteDetailEntity>(getActivity()) {
                         @Override
                         protected void onHandleSuccess(InviteDetailEntity inviteDetailEntity) {
-                            setDataForHost(inviteDetailEntity);
                             loaddingView.setVisibility(View.GONE);
                             ThisView.setVisibility(View.VISIBLE);
+                            setDataForHost(inviteDetailEntity);
                         }
                     });
         } else {
@@ -157,8 +157,8 @@ public class InvitedetailActivity extends BaseActivity {
                 llInviteDetailStateIsGoing.setVisibility(View.VISIBLE);
                 //见面确认按钮
                 btn_reciverOrRefuse.setVisibility(View.VISIBLE);
-                long time1 = (getTimeStamp(inviteDetailEntity.invite.applyTime) - new Date().getTime()) / 1000;
-                ApplyTime.setText(getStrTime(time1));
+                long time1 = (getTimeStamp(inviteDetailEntity.invite.invateTime) - new Date().getTime());
+                ApplyTime.setText("倒计时："+getStrTime(time1));
                 //参与者列表
                 adapter = new InviteDetailGridAdapter(getActivity(), inviteDetailEntity.list);
                 adapter.setLayoutIds(R.layout.item_inviteinfo);
@@ -208,16 +208,7 @@ public class InvitedetailActivity extends BaseActivity {
         tv_DetailInviteTime.setText(time);
         //设置响应时间
         String applytime = inviteDetailEntity.invite.applyTime;
-        try {
-            long i = dateFormat.parse(inviteDetailEntity.invite.applyTime).getTime() - dateFormat.parse(time).getTime();
-            i = i / 1000 / 60;
-            long min = i % 60;
-            long hour = (i - min) / 60;
-            applytime = hour + "小时" + min + "分";
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        tv_DetailInviteReponseTime.setText(applytime);
+        tv_DetailInviteReponseTime.setText(applytime+"小时");
         //设置邀请人数
         tv_DetailInviteNum.setText(inviteDetailEntity.invite.userNum + "");
         //设置受邀人的名字
@@ -244,16 +235,20 @@ public class InvitedetailActivity extends BaseActivity {
             switch (inviteReciverEntity.dto.status) {
                 case 0:
                     //进行中
+                    long time1 = (getTimeStamp(inviteReciverEntity.dto.invateTime) - new Date().getTime());
+                    ApplyTime.setText("倒计时："+getStrTime(time1));
+                    llInviteIds.setVisibility(View.GONE);
                     llInviteDetailStateIsGoing.setVisibility(View.VISIBLE);
-                    btn_reciverOrRefuse.setVisibility(View.VISIBLE);
                     break;
                 case 1:
                     //已见面，进行中
+                    llInviteIds.setVisibility(View.GONE);
                     llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
 
                     break;
                 case 2:
                     //完成
+                    llInviteIds.setVisibility(View.VISIBLE);
                     llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
                     findViewById(R.id.ll_invite_detail_shoujian).setVisibility(View.GONE);
                     adapter2 = new InviteDetailGrid2Adapter(getActivity(), null, inviteReciverEntity.user);
@@ -263,15 +258,14 @@ public class InvitedetailActivity extends BaseActivity {
                     break;
                 case 4:
                     //失效退款
-                    llInviteIds.setVisibility(View.GONE);
                     llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
                     tv_DetailState.setText("活动已失效");
                     llInviteIds.setVisibility(View.GONE);
                     break;
             }
-            tv_DetailUserName.setText("发起人： " + inviteReciverEntity.dto.nickName);
-            Glide.with(getActivity()).load(inviteReciverEntity.dto.avatar).into(img_DetailAvatar);
-            tv_DetailUserId.setText(inviteReciverEntity.dto.userId + "");
+            tv_DetailUserName.setText("发起人： " + inviteReciverEntity.user.username);
+            Glide.with(getActivity()).load(inviteReciverEntity.user.avator).into(img_DetailAvatar);
+            tv_DetailUserId.setText(inviteReciverEntity.user.user_id + "");
             tv_DetailTheme.setText(inviteReciverEntity.dto.title);
 //            tv_DetailReciverNum.setVisibility(View.GONE);
             tv_DetailInviteNum.setText(inviteReciverEntity.dto.userNum + "");
@@ -279,7 +273,7 @@ public class InvitedetailActivity extends BaseActivity {
             String time = inviteReciverEntity.dto.invateTime.substring(0, inviteReciverEntity.dto.invateTime.length() - 3);
             tv_DetailInviteTime.setText(time);
             tv_DetailInviteAddress.setText(inviteReciverEntity.dto.inviteAddress);
-            tv_DetailInviteReponseTime.setText(inviteReciverEntity.dto.applyTime);
+            tv_DetailInviteReponseTime.setText(inviteReciverEntity.dto.applyTime+"小时");
 
             tv_DetailRevicerNames.setVisibility(View.GONE);
             if (llInviteIds.getVisibility() == View.VISIBLE) {
@@ -289,6 +283,7 @@ public class InvitedetailActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
+
     public long getTimeStamp(String timeStr) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = null;
@@ -303,19 +298,14 @@ public class InvitedetailActivity extends BaseActivity {
     }
 
     public String getStrTime(long cc_time) {
-        String re_StrTime = null;
-        //同理也可以转为其它样式的时间格式.例如："yyyy/MM/dd HH:mm"
-//        SimpleDateFormat sdf = new SimpleDateFormat("mm分ss秒");
-        Log.d("InvitedetailActivity", "cc_time:" + cc_time);
-        re_StrTime=cc_time/60+"小时";
-        if((cc_time/1000)%60!=0){
-            re_StrTime=re_StrTime+cc_time%60+"分";
-        }
-        // 例如：cc_time=1291778220
-//        re_StrTime = sdf.format(new Date(cc_time * 1000L));
+        Log.e("gy", "时间差：" + cc_time);
+        long days = cc_time / (1000 * 60 * 60 * 24);
+        long hours = (cc_time-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
+        long minutes = (cc_time-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
 
-        return re_StrTime;
+        return hours + "小时" + minutes + "分钟";
     }
+
     @OnClick(R.id.bt_invite_detail_sure)
     public void onViewClicked(View view) {
         switch (view.getId()) {

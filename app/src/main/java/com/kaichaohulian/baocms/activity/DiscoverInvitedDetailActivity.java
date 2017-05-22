@@ -75,14 +75,14 @@ public class DiscoverInvitedDetailActivity extends BaseActivity implements View.
     @Override
     public void initData() {
         inviteId = getIntent().getStringExtra("inviteId");
-        type = getIntent().getStringExtra("type");
-        if(type.equals("1")){
-            tvInvitedDetailAgree.setVisibility(View.INVISIBLE);
-            tvInvitedDetailRefuse.setVisibility(View.INVISIBLE);
-        }else {
-            tvInvitedDetailAgree.setVisibility(View.VISIBLE);
-            tvInvitedDetailRefuse.setVisibility(View.VISIBLE);
-        }
+//        type = getIntent().getStringExtra("type");
+//        if(type.equals("1")){
+//            tvInvitedDetailAgree.setVisibility(View.INVISIBLE);
+//            tvInvitedDetailRefuse.setVisibility(View.INVISIBLE);
+//        }else {
+//            tvInvitedDetailAgree.setVisibility(View.VISIBLE);
+//            tvInvitedDetailRefuse.setVisibility(View.VISIBLE);
+//        }
         loadDetail();
     }
 

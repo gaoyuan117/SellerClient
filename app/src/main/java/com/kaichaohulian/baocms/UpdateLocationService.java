@@ -52,9 +52,9 @@ public class UpdateLocationService extends Service {
                 if (location == null) {
                     return;
                 }
+                MyApplication.getInstance().BDLocation = location;
                 MyApplication.lat = location.getLatitude() + "";
                 MyApplication.lng = location.getLongitude() + "";
-                updateLocation(location);
             }
         });
         locationClient.start();
@@ -62,25 +62,8 @@ public class UpdateLocationService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    private void updateLocation(BDLocation bdLocation) {
-        Map<String, String> map = new HashMap<>();
-        if (MyApplication.getInstance().UserInfo == null) {
-            return;
-        }
-        map.put("id", MyApplication.getInstance().UserInfo.getUserId() + "");
-        map.put("longitud", bdLocation.getLongitude() + "");
-        map.put("latitude", bdLocation.getLatitude() + "");
-        RetrofitClient.getInstance().createApi().updateLocation(map)
-                .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
-                .subscribe(new BaseObjObserver<CommonEntity>(this) {
-                    @Override
-                    protected void onHandleSuccess(CommonEntity commonEntity) {
-                        Log.e("gy", "定位成功");
-                    }
-                });
-    }
+
 }
