@@ -160,7 +160,8 @@ public class MyAlbumAdapter extends BaseListAdapter {
             });
             img.setVisibility(View.VISIBLE);
 
-        }
+        }else{
+
         try{
             AblumEntity.ExperiencesBean data = (AblumEntity.ExperiencesBean) getItem(position);
             String Time = data.createdTime;
@@ -208,6 +209,8 @@ public class MyAlbumAdapter extends BaseListAdapter {
         }catch (Exception e){
             e.printStackTrace();
         }
+        }
+
         return view;
     }
 

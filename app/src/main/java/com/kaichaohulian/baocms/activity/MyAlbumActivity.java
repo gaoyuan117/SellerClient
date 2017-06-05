@@ -58,7 +58,7 @@ public class MyAlbumActivity extends BaseActivity {
     private boolean mIsFriend;
     private String mFriendId;
     private int index = 1;
-
+    private boolean firstLoad=true;
     @Override
     public void setContent() {
         setContentView(R.layout.myalbum_activity);
@@ -67,6 +67,9 @@ public class MyAlbumActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        List = new ArrayList<>();
+        adapter = new MyAlbumAdapter(MyAlbumActivity.this, List);
+        listView.setAdapter(adapter);
         addHttpData();
     }
 
@@ -92,35 +95,38 @@ public class MyAlbumActivity extends BaseActivity {
 
     }
 
+    private void dealwitdData(AblumEntity ablumEntity){
+        List.clear();
+        List.addAll(ablumEntity.experiences);
+        if (headView == null) {
+            headView = View.inflate(getActivity(), R.layout.head_circle, null);
+            head = (ImageView) headView.findViewById(R.id.head);
+            name = (TextView) headView.findViewById(R.id.name);
+            create = (ImageView) headView.findViewById(R.id.create_photo);
+            ImageView bg = (ImageView) headView.findViewById(R.id.head_bg);
+            name.setText(ablumEntity.nikeName);
+            create.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ActivityUtil.next(getActivity(), ReleaseTalkActivity.class);
+                }
+            });
+            Glide.with(getActivity()).load(ablumEntity.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(head);
+            Glide.with(getActivity()).load(ablumEntity.backAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(bg);
+            listView.addHeaderView(headView);
+        }
+        adapter.notifyDataSetChanged();
+    }
+
     public void addHttpData() {
-        List = new ArrayList<>();
 
         RetrofitClient.getInstance().createApi().GetUserPhoto(MyApplication.getInstance().UserInfo.getUserId(), index + "")
                 .compose(RxUtils.<HttpResult<AblumEntity>>io_main())
                 .subscribe(new BaseObjObserver<AblumEntity>(getActivity(), "获取中...") {
                     @Override
                     protected void onHandleSuccess(AblumEntity ablumEntity) {
-                        List.clear();
-                        List.addAll(ablumEntity.experiences);
-                        if (headView == null) {
-                            headView = View.inflate(getActivity(), R.layout.head_circle, null);
-                            head = (ImageView) headView.findViewById(R.id.head);
-                            name = (TextView) headView.findViewById(R.id.name);
-                            create = (ImageView) headView.findViewById(R.id.create_photo);
-                            ImageView bg = (ImageView) headView.findViewById(R.id.head_bg);
-                            name.setText(ablumEntity.nikeName);
-                            create.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    ActivityUtil.next(getActivity(), ReleaseTalkActivity.class);
-                                }
-                            });
-                            Glide.with(getActivity()).load(ablumEntity.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(head);
-                            Glide.with(getActivity()).load(ablumEntity.backAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(bg);
-                        }
-                        listView.addHeaderView(headView);
-                        adapter = new MyAlbumAdapter(MyAlbumActivity.this, List);
-                        listView.setAdapter(adapter);
+                        dealwitdData(ablumEntity);
+                        firstLoad=false;
                     }
                 });
 
