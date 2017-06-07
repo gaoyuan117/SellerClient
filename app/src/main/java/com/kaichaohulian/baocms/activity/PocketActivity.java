@@ -123,8 +123,7 @@ public class PocketActivity extends BaseActivity {
                         response = response.getJSONObject("dataObject");
                         String accountNumber = response.getString("accountNumber");
                         BankcardNumber.setText(accountNumber);
-
-
+                        MyApplication.getInstance().UserInfo.setAccountNumber(accountNumber);
                     } else {
                         showToastMsg(response.getString("errorDescription"));
                     }
