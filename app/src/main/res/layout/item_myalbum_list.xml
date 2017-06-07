@@ -42,7 +42,7 @@
             android:layout_toRightOf="@+id/multiImagView"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="TextVieTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextVieww"
+            android:text=""
             android:textSize="15sp" />
     </RelativeLayout>
 

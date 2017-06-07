@@ -14,6 +14,7 @@ package com.kaichaohulian.baocms.ecdemo.ui.chatting;
 
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -46,9 +47,11 @@ public class ChattingsRowUtils {
                 return 20324;
             }
 
-            if (!TextUtils.isEmpty(data) && data.equals("zhuantype")) {
+            if (!TextUtils.isEmpty(data) && data.contains("zhuantyp2e")) {
+                Log.e("gy",data.toString());
                 return 20325;
             }
+
 
             if (!TextUtils.isEmpty(data) && data.contains("txt_msgType")) {
                 JSONObject jsonObj = (JSONObject) JSON.parse(data);

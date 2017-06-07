@@ -146,7 +146,7 @@ public class RechargeSuccedActicity extends Activity {
 
                     EventBus.getDefault().post(msg);
 
-                    searchUser(receiverId);
+//                    searchUser(receiverId);
 
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -8,7 +8,7 @@ public class Url {
     public static final String BASE_URL = "http://115.126.100.146:8080/ZFishApp/api/"; // 服务器地址
 
     public static final String WX_APP_ID = "wx21f81eacea211f9a";
-    public static final String WX_APP_SECRET = "b9034c18b8fae299ab54bad5e620ecc5";
+    public static final String WX_APP_SECRET = "67ac3d7906877044a4a873f712883194";
     //    public static final String WX_PARTNER_ID = "1289850701"; // 商户号
     public static final String WX_PARTNER_ID = "1433908302"; // 商户号
     public static final String WX_APP_KEY = "009aa9774b5cf730a880956fe6caab23"; // 微信商户key
@@ -23,7 +23,7 @@ public class Url {
 
     public static final String PIC_ROOT = "http://www.maijia01.com/";
 
-    /***********
+    /**
      * 用户信息
      */
     //获取诚意金 被加好友 被邀请 赴约 爽约 信息
@@ -36,6 +36,8 @@ public class Url {
     public static final String dependIDGetUserInfo = BASE_URL + "users/getUserInfo.do";
     //删除银行卡
     public static final String deleteCard = BASE_URL + "users/banks/deleteCard.do";
+    public static final String ByPhoneGetUserInfo = BASE_URL + "users/getUserMobile.do";
+    public static final String ISRECEIVE = BASE_URL + "users/banks/transferSure.do";
 
 
     /**********
@@ -113,8 +115,8 @@ public class Url {
     // 对朋友圈点赞或取消点赞
     public static final String isLike = BASE_URL + "circleFriends/isLike.do";
     // 朋友圈信息
-    public static final String findAll = BASE_URL + "circleFriends/findAll.do";
-    // 更换朋友圈背景图
+    public static final String findAll = BASE_URL + "photoCircle/findAll.do";
+    // 更换朋友圈背景
     public static final String updateBack = BASE_URL + "circleFriends/updateBack.do";
     // 相册
     public static final String MyAlbum = BASE_URL + "imageManager/getImages.do";
@@ -178,6 +180,7 @@ public class Url {
 
     // 根据用户id和状态获取相应的充值记录
     public static final String getRecharge = BASE_URL + "users/banks/getRecharge.do";
+    public static final String getRecharge2 = BASE_URL + "users/banks/getMyCashDetial.do";
 
     // 提现记录
     public static final String withdrawalsById = BASE_URL + "users/banks/withdrawalsById.do";

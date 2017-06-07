@@ -69,7 +69,7 @@ public class PayActivity extends BaseActivity {
     private String payType = "1";//1 微信  2 余额
     private String payMoney = "-1元";
     private View SignPassword;
-    private String message, friendId,type;
+    private String message, friendId, type;
     private DataHelper mDataHelper;
 
     @Override
@@ -195,7 +195,6 @@ public class PayActivity extends BaseActivity {
                 .subscribe(new Observer<HttpResult>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
                     }
 
                     @Override
@@ -205,17 +204,13 @@ public class PayActivity extends BaseActivity {
                             paywordEdt.getText().clear();
                         } else {
                             if (payType.equals("1")) {//微信支付
-                                ToastUtil.showMessage("微信支付");
+                                wxPay();
                                 paywordEdt.getText().clear();
-
                             } else {
                                 yuePay();//余额支付
                                 paywordEdt.getText().clear();
-
                             }
-
                         }
-                        ToastUtil.showMessage(value.errorDescription);
                     }
 
                     @Override
@@ -245,7 +240,6 @@ public class PayActivity extends BaseActivity {
                         ToastUtil.showMessage("添加成功");
                         finish();
                         AppManager.getAppManager().finishActivity(AddFriendsFinalActivity.class);
-
                     }
                 });
     }
@@ -258,16 +252,16 @@ public class PayActivity extends BaseActivity {
         map.put("id", MyApplication.getInstance().UserInfo.getUserId());
         map.put("amount", payMoney);
         map.put("payType", type);
-        map.put("token",MyApplication.getInstance().UserInfo.getToken());
+        map.put("token", MyApplication.getInstance().UserInfo.getToken());
         RetrofitClient.getInstance().createApi().yuePay(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
                 .subscribe(new BaseObjObserver<CommonEntity>(this, "支付中...") {
                     @Override
                     protected void onHandleSuccess(CommonEntity commonEntity) {
                         PopSignPassword.dismiss();
-                        if(type.equals("1")){
+                        if (type.equals("1")) {
                             addFriendByMoney();//添加好友
-                        }else {
+                        } else {
                             setResult(RESULT_OK);
                             finish();
                         }
@@ -278,9 +272,9 @@ public class PayActivity extends BaseActivity {
     /**
      * 微信支付
      */
-    private void wxPay(){
+    private void wxPay() {
         WxPayUtile.getInstance(getActivity(), String.valueOf(Double.valueOf(payMoney)), Url.BASE_URL + "/api/Order/notify_wxpay"
-                , "微信充值", "订单号", "",type).doPay(chatHandler); // 微信支付
+                , "微信支付", "订单号", "", type).doPay(chatHandler); // 微信支付
     }
 
     /**

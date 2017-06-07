@@ -9,14 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@color/white"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:id="@+id/head_bg"
             android:layout_width="match_parent"
             android:layout_height="255dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/album_bg" />
+            android:src="@mipmap/zy_bg" />
 
         <TextView
             android:id="@+id/name"
@@ -40,6 +43,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginEnd="23dp"
             android:layout_marginRight="23dp"
+            android:scaleType="fitXY"
             android:src="@mipmap/default_useravatar" />
 
     </RelativeLayout>

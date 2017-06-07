@@ -203,7 +203,6 @@
             android:layout_marginLeft="@dimen/add_bankcard_spacing"
             android:background="@null"
             android:inputType="number"
-            android:maxLength="21"
             />
 
     </RelativeLayout>

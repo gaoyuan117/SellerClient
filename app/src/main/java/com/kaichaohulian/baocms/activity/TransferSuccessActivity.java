@@ -1,8 +1,9 @@
 package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
@@ -10,6 +11,9 @@ import com.kaichaohulian.baocms.UserInfoManager;
 import com.kaichaohulian.baocms.base.BaseActivity;
 
 public class TransferSuccessActivity extends BaseActivity {
+
+    private String amount, uid;
+
     @Override
     public void setContent() {
         setContentView(R.layout.activity_transfer_success);
@@ -23,9 +27,14 @@ public class TransferSuccessActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        setTitle("转账详情");
+        setCenterTitle("转账详情");
         UserInfoManager.getInstance().updateUserCache(getActivity());
-        String amount = getIntent().getStringExtra("amount");
+        amount = getIntent().getStringExtra("amount");
+        uid = getIntent().getStringExtra("uid");
+        Log.e("gy", "哈哈：" + uid);
+        if (!TextUtils.isEmpty(uid)) {
+//            searchUser(uid);
+        }
         TextView amountTV = (TextView) findViewById(R.id.tv_transfer_amount);
         TextView mypckBtn = (TextView) findViewById(R.id.tv_transfer_mypck);
         amountTV.setText("¥" + amount);
@@ -43,4 +52,8 @@ public class TransferSuccessActivity extends BaseActivity {
     public void initEvent() {
 
     }
+
+
+
+
 }
