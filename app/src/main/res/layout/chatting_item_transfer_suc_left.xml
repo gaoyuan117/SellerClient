@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+   Copyright (c) 2013 The CCP project authors. All Rights Reserved.
+
+   Use of this source code is governed by a Beijing Speedtong Information Technology Co.,Ltd license
+   that can be found in the LICENSE file in the root of the web site.
+
+    				http://www.yuntongxun.com
+
+   An additional intellectual property rights grant can be found
+   in the file PATENTS.  All contributing project authors may
+   be found in the AUTHORS file in the root of the source tree.
+ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ChattingUIContent"
+    android:layout_below="@+id/chatting_time_tv">
+
+    <include layout="@layout/chatting_item_avatar_from" />
+
+    <RelativeLayout
+        android:id="@+id/re_rl"
+        android:layout_width="210dp"
+        android:layout_height="90dp"
+        android:background="@mipmap/transfer_left_bg"
+        android:clickable="true">
+
+        <TextView
+            style="@style/ChattingUISenderText"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="15dp"
+            android:padding="0dp"
+            android:text="转账"
+            android:textColor="#aaaaaa"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/ChattingUISenderText"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@+id/iv_transfer_icon"
+            android:text="已收钱"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/transfers_amount"
+            style="@style/ChattingUISenderText"
+            android:layout_below="@id/textView2"
+            android:layout_toLeftOf="@+id/iv_transfer_icon"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+
+        <ImageView
+            android:id="@+id/iv_transfer_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="25dp"
+            android:src="@mipmap/shouqian" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -93,6 +93,10 @@ public class AddBankCardActivity extends BaseActivity {
                     showToastMsg("请输入银行卡号");
                     return;
                 }
+                if(cardnumber.length()<4){
+                    showToastMsg("银行卡号最少四位");
+                    return;
+                }
                 btnConfirm.setEnabled(false);
                 Intent intent = new Intent();
                 intent.putExtra("username", name);

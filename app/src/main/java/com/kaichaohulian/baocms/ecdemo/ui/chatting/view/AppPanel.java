@@ -94,42 +94,42 @@ public class AppPanel extends LinearLayout implements CCPFlipper.OnFlipperPageLi
                 return;
             }
             switch (capabilityId) {
-//                case R.string.attach_turncash:
-//                    mAppPanelItemClickListener.OnTransferClick();
-//                    break;
+                case R.string.attach_turncash:
+                    mAppPanelItemClickListener.OnTransferClick();
+                    break;
                 case R.string.app_panel_pic:
                     mAppPanelItemClickListener.OnSelectImageClick();
                     break;
-//                case R.string.app_panel_tackpic:
-//                    mAppPanelItemClickListener.OnTakingPictureClick();
-//                    break;
-//                case R.string.attach_storage:
-//                    mAppPanelItemClickListener.OnCollectClick();
-//                    break;
-//                case R.string.app_panel_file:
-//                    mAppPanelItemClickListener.OnSelectFileClick();
-//                    break;
-//                case R.string.app_panel_voice:
-//                    mAppPanelItemClickListener.OnSelectVoiceClick();
-//                    break;
-//                case R.string.app_panel_video:
-//                    mAppPanelItemClickListener.OnSelectVideoClick();
-//                    break;
-//                case R.string.app_panel_read_after_fire:
-//                    mAppPanelItemClickListener.OnSelectFireMsgClick();
-//                    break;
+                case R.string.app_panel_tackpic:
+                    mAppPanelItemClickListener.OnTakingPictureClick();
+                    break;
+                case R.string.attach_storage:
+                    mAppPanelItemClickListener.OnCollectClick();
+                    break;
+                case R.string.app_panel_file:
+                    mAppPanelItemClickListener.OnSelectFileClick();
+                    break;
+                case R.string.app_panel_voice:
+                    mAppPanelItemClickListener.OnSelectVoiceClick();
+                    break;
+                case R.string.app_panel_video:
+                    mAppPanelItemClickListener.OnSelectVideoClick();
+                    break;
+                case R.string.app_panel_read_after_fire:
+                    mAppPanelItemClickListener.OnSelectFireMsgClick();
+                    break;
                 case R.string.app_panel_location:
                     mAppPanelItemClickListener.OnSelectFireLocationClick();
                     break;
-//                case R.string.attach_red_packet:
-//                    mAppPanelItemClickListener.OnSelectRedPacketClick();
-//                    break;
+                case R.string.attach_red_packet:
+                    mAppPanelItemClickListener.OnSelectRedPacketClick();
+                    break;
                 case R.string.attach_personinfo:
                     mAppPanelItemClickListener.OnSelectIDCardClick();
                     break;
-//                case R.string.attach_red_video:
-//                    mAppPanelItemClickListener.OnSelectVedioClick();
-//                    break;
+                case R.string.attach_red_video:
+                    mAppPanelItemClickListener.OnSelectVedioClick();
+                    break;
                 default:
                     break;
             }

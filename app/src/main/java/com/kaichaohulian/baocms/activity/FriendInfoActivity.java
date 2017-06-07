@@ -247,6 +247,7 @@ public class FriendInfoActivity extends BaseActivity {
                     protected void onHandleSuccess(UserInfoBean userInfoBean) {
                         mUserInfoBean = userInfoBean;
                         setBaseInfo(userInfoBean);
+                        ToastUtil.showMessage("手机号：" + userInfoBean.getUsername());
                         Log.e("gy", "用户信息：" + userInfoBean.getToken());
                     }
                 });
@@ -291,10 +292,11 @@ public class FriendInfoActivity extends BaseActivity {
                 .error(R.mipmap.default_useravatar)
                 .crossFade()
                 .into(mFriendInfoAvatar);
+
         mFriendInfoName.setText(userInfoBean.getUsername());
         mFriendInfoSex.setImageResource(userInfoBean.getSex() == 0 ? R.mipmap.boy : R.mipmap.gir);
         mFriendInfoId.setText(userInfoBean.getId() + "");
-        mFriendInfoAge.setText(userInfoBean.getAge() == null ? "未知" : userInfoBean.getAge() + "");
+        mFriendInfoAge.setText(userInfoBean.getAge() == null ? "未知" : (userInfoBean.getAge() + "").replace(".0", ""));
         mFriendInfoJob.setText(userInfoBean.getJob() == null ? "未知" : userInfoBean.getJob() + "");
         mFriendInfoHobby.setText(userInfoBean.getHobby() == null ? "未知" : userInfoBean.getHobby() + "");
         mFriendInfoHobby.setText(userInfoBean.getDistrictId() + "");
@@ -310,14 +312,18 @@ public class FriendInfoActivity extends BaseActivity {
                 mPay.setText("加为好友");
             }
         }
+        try {
+            for (int i = 0; i < imgList.size(); i++) {
+                String url = userInfoBean.getImages().get(i);
+                String replace = url.replace("\"", "");
+                String replace1 = replace.replace("\\", "");
+                Log.e("gy", "replace:" + url);
+                Glide.with(this).load(replace1).into(imgList.get(i));
+            }
+        } catch (Exception e) {
 
-        for (int i = 0; i < userInfoBean.getImages().size(); i++) {
-            String url = userInfoBean.getImages().get(i);
-            String replace = url.replace("\"", "");
-            String replace1 = replace.replace("\\", "");
-            Log.e("gy", "replace:" + url);
-            Glide.with(this).load(replace1).into(imgList.get(i));
         }
+
     }
 
     /**

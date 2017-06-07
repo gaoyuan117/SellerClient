@@ -15,7 +15,7 @@
         android:layout_below="@id/title_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:src="@drawable/transfer_wait" />
+        android:src="@mipmap/yishoukuan" />
 
     <TextView
         android:id="@+id/tv_transfer_tip"
@@ -24,7 +24,7 @@
         android:layout_below="@id/iv_transfer_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:text="待确认收款"
+        android:text="已收款"
         android:textColor="@color/black"
         android:textSize="20sp" />
 

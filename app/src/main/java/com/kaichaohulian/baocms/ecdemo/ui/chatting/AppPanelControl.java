@@ -40,7 +40,7 @@ public class AppPanelControl {
 //            R.string.app_panel_tackpic,
 //            R.string.attach_red_video,
 //            R.string.attach_red_packet,
-//            R.string.attach_turncash,
+            R.string.attach_turncash,
             R.string.attach_personinfo,
             R.string.app_panel_location
 //            R.string.attach_storage
@@ -51,7 +51,7 @@ public class AppPanelControl {
 //            R.string.app_panel_tackpic,
 //            R.string.attach_red_video,
 //            R.string.attach_red_packet,
-//            R.string.attach_turncash,
+            R.string.attach_turncash,
             R.string.attach_personinfo,
             R.string.app_panel_location,
 //            R.string.attach_storage
@@ -95,50 +95,50 @@ public class AppPanelControl {
                 capability = new Capability(getContext().getString(
                         R.string.app_panel_pic), R.drawable.icon_chat_pic);
                 break;
-//            case R.string.app_panel_tackpic:
-//                capability = new Capability(getContext().getString(
-//                        R.string.app_panel_tackpic), R.drawable.icon_chat_photo);
-//                break;
-//            case R.string.app_panel_file:
-//                capability = new Capability(getContext().getString(
-//                        R.string.app_panel_file), R.drawable.capability_file_icon);
-//                break;
-//            case R.string.app_panel_voice:
-//                capability = new Capability(getContext().getString(
-//                        R.string.app_panel_voice), R.drawable.icon_chat_phone);
-//                break;
-//            case R.string.app_panel_video:
-//                capability = new Capability(getContext().getString(
-//                        R.string.app_panel_video), R.drawable.video_call);
-//                break;
-//            case R.string.app_panel_read_after_fire:
-//                capability = new Capability(getContext().getString(
-//                        R.string.app_panel_read_after_fire), R.drawable.fire_msg);
-//                break;
+            case R.string.app_panel_tackpic:
+                capability = new Capability(getContext().getString(
+                        R.string.app_panel_tackpic), R.drawable.icon_chat_photo);
+                break;
+            case R.string.app_panel_file:
+                capability = new Capability(getContext().getString(
+                        R.string.app_panel_file), R.drawable.capability_file_icon);
+                break;
+            case R.string.app_panel_voice:
+                capability = new Capability(getContext().getString(
+                        R.string.app_panel_voice), R.drawable.icon_chat_phone);
+                break;
+            case R.string.app_panel_video:
+                capability = new Capability(getContext().getString(
+                        R.string.app_panel_video), R.drawable.video_call);
+                break;
+            case R.string.app_panel_read_after_fire:
+                capability = new Capability(getContext().getString(
+                        R.string.app_panel_read_after_fire), R.drawable.fire_msg);
+                break;
             case R.string.app_panel_location:
                 capability = new Capability(getContext().getString(
                         R.string.app_panel_location), R.drawable.icon_chat_location);
                 break;
-//            case R.string.attach_red_packet:
-//                capability = new Capability(getContext().getString(
-//                        R.string.attach_red_packet), R.drawable.icon_chat_moneyred);
-//                break;
-//            case R.string.attach_storage:
-//                capability = new Capability(getContext().getString(
-//                        R.string.attach_storage), R.drawable.ic_storage);
-//                break;
+            case R.string.attach_red_packet:
+                capability = new Capability(getContext().getString(
+                        R.string.attach_red_packet), R.drawable.icon_chat_moneyred);
+                break;
+            case R.string.attach_storage:
+                capability = new Capability(getContext().getString(
+                        R.string.attach_storage), R.drawable.ic_storage);
+                break;
             case R.string.attach_personinfo:
                 capability = new Capability(getContext().getString(
                         R.string.attach_personinfo), R.drawable.ic_personf);
                 break;
-//            case R.string.attach_turncash:
-//                capability = new Capability(getContext().getString(
-//                        R.string.attach_turncash), R.drawable.ic_exmoney);
-//                break;
-//            case R.string.attach_red_video:
-//                capability = new Capability(getContext().getString(
-//                        R.string.attach_red_video), R.drawable.icon_chat_vedio);
-//                break;
+            case R.string.attach_turncash:
+                capability = new Capability(getContext().getString(
+                        R.string.attach_turncash), R.drawable.ic_exmoney);
+                break;
+            case R.string.attach_red_video:
+                capability = new Capability(getContext().getString(
+                        R.string.attach_red_video), R.drawable.icon_chat_vedio);
+                break;
             default:
                 break;
         }

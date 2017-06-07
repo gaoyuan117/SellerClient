@@ -19,11 +19,11 @@ import java.util.List;
 
 public class SmallMoneyAdapter extends BaseAdapter {
     private Context mContext;
-    private List<SmallMoneyBean> data;
+    private List<SmallMoneyBean.DataObjectBean> data;
 
     private LayoutInflater inflater;
 
-    public SmallMoneyAdapter(Context mContext, List<SmallMoneyBean> data) {
+    public SmallMoneyAdapter(Context mContext, List<SmallMoneyBean.DataObjectBean> data) {
         this.mContext = mContext;
         this.data = data;
         inflater = LayoutInflater.from(mContext);
@@ -60,39 +60,12 @@ public class SmallMoneyAdapter extends BaseAdapter {
             viewHoder = (ViewHoder) view.getTag();
         }
 
-        SmallMoneyBean bean = data.get(i);
-        if (bean.getActive().equals("ALI_X_ZFWC")) {
-            viewHoder.txtMoney.setText("+" + bean.getAmount());
-            viewHoder.txtRedBag.setText("支付宝充值");
-        } else if (bean.getActive().equals("WX_X_ZFWC")) {
-            viewHoder.txtMoney.setText("+" + bean.getAmount());
-            viewHoder.txtRedBag.setText("微信充值");
-        } else if (bean.getActive().equals("SMALL_R_ZFWC")) {
-            viewHoder.txtMoney.setText("-" + bean.getAmount());
-            viewHoder.txtRedBag.setText("手机充值");
-        } else if (bean.getActive().equals("SMALL_RED_ADD")) {
-            viewHoder.txtMoney.setText("+" + bean.getAmount());
-            viewHoder.txtRedBag.setText("领取红包");
-        } else if (bean.getActive().equals("SMALL_RED_REDUCE")) {
-            viewHoder.txtMoney.setText("-" + bean.getAmount());
-            viewHoder.txtMoney.setTextColor(mContext.getResources().getColor(R.color.black));
-            viewHoder.txtRedBag.setText("发送红包");
-        } else if (bean.getActive().equals("SMALL_ALI_X_ZFWC")) {
-            viewHoder.txtRedBag.setText("支付宝充值");
-            viewHoder.txtMoney.setText("+" + bean.getAmount());
-            viewHoder.txtMoney.setTextColor(mContext.getResources().getColor(R.color.black));
-        } else if (bean.getActive().equals("SMALL_WX_X_ZFWC")) {
-            viewHoder.txtRedBag.setText("微信充值");
-            viewHoder.txtMoney.setText("+" + bean.getAmount());
-            viewHoder.txtMoney.setTextColor(mContext.getResources().getColor(R.color.black));
-        } else if (bean.getActive().equals("SMALL_TRANSFER_ADD")) {
-            viewHoder.txtMoney.setText("+" + bean.getAmount());
-            viewHoder.txtRedBag.setText("收到转账");
-        } else if (bean.getActive().equals("SMALL_TRANSFER_REDUCE")) {
-            viewHoder.txtMoney.setText("-" + bean.getAmount());
-            viewHoder.txtRedBag.setText("转账");
-        }
-        viewHoder.txtTime.setText(bean.getCreatedTime());
+        SmallMoneyBean.DataObjectBean bean = data.get(i);
+
+        viewHoder.txtMoney.setText( bean.getMoney());
+        viewHoder.txtRedBag.setText(bean.getName());
+
+        viewHoder.txtTime.setText(bean.getTime());
         return view;
     }
 

@@ -65,13 +65,14 @@ public class AdvertmassActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
-        map.put("page", index + "");
-        RetrofitClient.getInstance().createApi().Getadviertisement(map)
+        map.put("page", 1 + "");
+        RetrofitClient.getInstance().createApi().GetMyadviertisement(map)
                 .compose(RxUtils.<HttpResult<AdviertisementEntity>>io_main())
                 .subscribe(new BaseObjObserver<AdviertisementEntity>(getActivity()) {
                     @Override
                     protected void onHandleSuccess(AdviertisementEntity adviertisementEntity) {
                         if (adviertisementEntity.advertList != null) {
+                            Datalist.clear();
                             Datalist.addAll(adviertisementEntity.advertList);
                             adapter.notifyDataSetChanged();
                         } else {

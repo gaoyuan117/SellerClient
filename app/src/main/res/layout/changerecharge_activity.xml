@@ -159,7 +159,7 @@
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@mipmap/deeporange_bar_normal"
+        android:background="@mipmap/bt_bg"
         android:enabled="true"
         android:text="立即支付"
         android:textColor="@color/white"

@@ -72,8 +72,7 @@ public class AdvertMgActivity extends BaseActivity {
                             Toast.makeText(AdvertMgActivity.this, "暂无广告", Toast.LENGTH_SHORT).show();
                         }
                     }
-                })
-        ;
+                });
     }
 
     @Override

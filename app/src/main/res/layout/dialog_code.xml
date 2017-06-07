@@ -40,7 +40,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="@dimen/dimens_30"
             android:textColor="@color/zy_text_gray"
-            android:text="地址"
+            android:text="暂无信息"
             android:layout_toRightOf="@id/img_code_avatar"
             android:textSize="@dimen/text_12" />
 

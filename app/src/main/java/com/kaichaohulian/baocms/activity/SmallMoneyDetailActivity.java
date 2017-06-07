@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSONArray;
+import com.google.gson.Gson;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.adapter.SmallMoneyAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
@@ -26,7 +27,7 @@ public class SmallMoneyDetailActivity extends BaseActivity {
 
     private ListView listView;
     private SmallMoneyAdapter smallMoneyAdapter;
-    private List<SmallMoneyBean> data = new ArrayList<SmallMoneyBean>();
+    private List<SmallMoneyBean.DataObjectBean> data = new ArrayList<>();
     private String type;
 
     @Override
@@ -66,26 +67,25 @@ public class SmallMoneyDetailActivity extends BaseActivity {
     public void getdata() {
         ShowDialog.showDialog(getActivity(), "正在获取零钱明细...", false, null);
         RequestParams params = new RequestParams();
-        params.put("id", MyApplication.getInstance().UserInfo.getId());
-        if (type.equals("1")) {
-            params.put("type", "R");
-        } else {
-            params.put("type", "SMALL");
-        }
+        params.put("id", MyApplication.getInstance().UserInfo.getUserId());
+//        if (type.equals("1")) {
+//            params.put("type", "R");
+//        } else {
+//            params.put("type", "SMALL");
+//        }
         params.put("page", "1");
-        HttpUtil.post(Url.getRecharge, params, new JsonHttpResponseHandler() {
+        HttpUtil.post(Url.getRecharge2, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     DBLog.e("零钱明细：", response.toString());
-                    if (response.getInt("code") == 0) {
-                        DBLog.e("登录：", response.toString());
-//                        JSONObject JSONObject = response.getJSONObject("dataObject");
-                        org.json.JSONArray array = response.getJSONArray("dataObject");
-                        data = JSONArray.parseArray(array.toString(), SmallMoneyBean.class);
+                    SmallMoneyBean bean = new Gson().fromJson(response.toString(), SmallMoneyBean.class);
+                    if (bean.getCode().equals("0")) {
+                        data = bean.getDataObject();
                         listView.setAdapter(new SmallMoneyAdapter(getApplicationContext(), data));
+                    } else {
+                        showToastMsg(response.getString("errorDescription"));
                     }
-                    showToastMsg(response.getString("errorDescription"));
                 } catch (Exception e) {
                     showToastMsg("获取数据失败");
                     e.printStackTrace();

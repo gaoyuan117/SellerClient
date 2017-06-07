@@ -6,14 +6,11 @@ import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.activity.ImagePagerActivity;
 import com.kaichaohulian.baocms.activity.MyAlbumActivity;
@@ -22,13 +19,10 @@ import com.kaichaohulian.baocms.base.BaseListAdapter;
 import com.kaichaohulian.baocms.circledemo.widgets.MultiImageView;
 import com.kaichaohulian.baocms.entity.AblumEntity;
 
-import junit.framework.Test;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -124,9 +118,9 @@ public class MyAlbumAdapter extends BaseListAdapter {
 
     @Override
     public Object getItem(int i) {
-        if(i>=1){
-            return super.getItem(i-1);
-        }else{
+        if (i >= 1) {
+            return super.getItem(i - 1);
+        } else {
             return null;
         }
     }
@@ -135,9 +129,9 @@ public class MyAlbumAdapter extends BaseListAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder vh;
         if (view == null) {
-            if(position==0){
+            if (position == 0) {
                 view = View.inflate(context, R.layout.item_myalbum_listhead, null);
-            }else{
+            } else {
                 view = View.inflate(context, R.layout.item_myalbum_list, null);
             }
             vh = new ViewHolder(view);
@@ -148,67 +142,68 @@ public class MyAlbumAdapter extends BaseListAdapter {
         if (position == 0) {
             vh.textContext.setText("");
             vh.time.setText("今天");
-            ImageView img= (ImageView) view.findViewById(R.id.img_myablum);
+            ImageView img = (ImageView) view.findViewById(R.id.img_myablum);
             img.setImageResource(R.mipmap.camera_myalbum);
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 //                    ActivityUtil.next(mContext, ReleaseTalkActivity.class);
-                    MyAlbumActivity activity=(MyAlbumActivity)context;
-                    activity.startActivityForResult((new Intent(context, ReleaseTalkActivity.class)),100);
+                    MyAlbumActivity activity = (MyAlbumActivity) context;
+                    activity.startActivityForResult((new Intent(context, ReleaseTalkActivity.class)), 100);
                 }
             });
             img.setVisibility(View.VISIBLE);
 
-        }else{
+        } else {
 
-        try{
-            AblumEntity.ExperiencesBean data = (AblumEntity.ExperiencesBean) getItem(position);
-            String Time = data.createdTime;
-            if (formatDateTime(Time)) {
-                vh.time.setText("今天");
-            } else {
-                Date date = null;
-                Calendar calendar = Calendar.getInstance();
-                try {
-                    date = new SimpleDateFormat("yyyy-MM-dd").parse(Time);
-                    calendar.setTime(date);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                int mDay = calendar.get(Calendar.DAY_OF_MONTH);
-                int mMonth = calendar.get(Calendar.MONTH) + 1;
-                Spannable sp = new SpannableString(mDay + " " + getMonth(mMonth));
-                int length = 2;
-                if (mDay < 10) {
-                    length = 1;
-                }
-                sp.setSpan(new AbsoluteSizeSpan(28, true), 0, length, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                sp.setSpan(new AbsoluteSizeSpan(12, true), length, sp.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                vh.time.setText(sp);
-            }
-            vh.textContext.setText((String) data.content);
-            final List<String> photos = new ArrayList<>();
-            FormatString(photos, (String) data.images);
-            MultiImageView multiImageView= (MultiImageView) view.findViewById(R.id.multiImagView);
-            if (photos != null && photos.size() > 0) {
-                multiImageView.setVisibility(View.VISIBLE);
-                multiImageView.setList(photos);
-                multiImageView.setOnItemClickListener(new MultiImageView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        //imagesize是作为loading时的图片size
-                        ImagePagerActivity.ImageSize imageSize = new ImagePagerActivity.ImageSize(view.getMeasuredWidth(), view.getMeasuredHeight());
-                        ImagePagerActivity.startImagePagerActivity(context, photos, position, imageSize);
+            try {
+                AblumEntity.ExperiencesBean data = (AblumEntity.ExperiencesBean) getItem(position);
+                String Time = data.createdTime;
+                if (formatDateTime(Time)) {
+                    vh.time.setText("今天");
+                } else {
+                    Date date = null;
+                    Calendar calendar = Calendar.getInstance();
+                    try {
+                        date = new SimpleDateFormat("yyyy-MM-dd").parse(Time);
+                        calendar.setTime(date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
                     }
-                });
+                    int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+                    int mMonth = calendar.get(Calendar.MONTH) + 1;
+                    Spannable sp = new SpannableString(mDay + " " + getMonth(mMonth));
+                    int length = 2;
+                    if (mDay < 10) {
+                        length = 1;
+                    }
+                    sp.setSpan(new AbsoluteSizeSpan(28, true), 0, length, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                    sp.setSpan(new AbsoluteSizeSpan(12, true), length, sp.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                    vh.time.setText(sp);
+                }
+                vh.textContext.setText((String) data.content);
+                final List<String> photos = new ArrayList<>();
+                FormatString(photos, (String) data.images);
+                MultiImageView multiImageView = (MultiImageView) view.findViewById(R.id.multiImagView);
+                if (photos != null && photos.size() > 0) {
+                    multiImageView.setVisibility(View.VISIBLE);
 
-            } else {
-                multiImageView.setVisibility(View.GONE);
+                    multiImageView.setList(photos);
+                    multiImageView.setOnItemClickListener(new MultiImageView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            //imagesize是作为loading时的图片size
+                            ImagePagerActivity.ImageSize imageSize = new ImagePagerActivity.ImageSize(view.getMeasuredWidth(), view.getMeasuredHeight());
+                            ImagePagerActivity.startImagePagerActivity(context, photos, position, imageSize);
+                        }
+                    });
+
+                } else {
+                    multiImageView.setVisibility(View.GONE);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
         }
 
         return view;
@@ -220,6 +215,7 @@ public class MyAlbumAdapter extends BaseListAdapter {
 
         @BindView(R.id.text_context)
         TextView textContext;
+
         public ViewHolder(View itemView) {
             ButterKnife.bind(this, itemView);
         }

@@ -89,7 +89,6 @@ public class WxPayUtile {
             params.put("actualamount", actualamount);
         }
         params.put("token", MyApplication.getInstance().UserInfo.getToken());
-        ToastUtil.showMessage("微信支付："+total_fee);
         HttpUtil.post(Url.weixin_gotopay, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

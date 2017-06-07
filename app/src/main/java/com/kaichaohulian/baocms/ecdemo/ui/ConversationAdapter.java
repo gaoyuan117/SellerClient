@@ -166,6 +166,9 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
         } else if (conversation.getMsgType() == ECMessage.Type.TXT.ordinal() && conversation.getContent() != null &&
                 conversation.getContent().contains("\"txt_msgType\":\"transfetype\"")) {
             return fromNickName + "[转账]";
+        } else if (conversation.getMsgType() == ECMessage.Type.TXT.ordinal() && conversation.getContent() != null &&
+                conversation.getContent().contains("zhuantyp2e")) {
+            return fromNickName + "[已收钱]";
         }
         String snippet = fromNickName + conversation.getContent();
         if (conversation.getSessionId().equals(isAtSession)) {
@@ -346,9 +349,9 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                     int type = sysmsgObj.getInteger("type");
                     switch (type) {
                         case SystemPush.TYPE_CHARGE:
-                            mViewHolder.user_avatar.setImageResource(R.drawable.sysmsg_0);
+                            mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_0);
                             mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
-                            mViewHolder.nickname_tv.setText("手机充值");
+                            mViewHolder.nickname_tv.setText("提现申请");
                             break;
 
                         case SystemPush.TYPE_BONUS:
@@ -358,9 +361,9 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                             break;
 
                         case SystemPush.TYPE_WITHDRAWAL:
-                            mViewHolder.user_avatar.setImageResource(R.drawable.sysmsg_2);
+                            mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_1);
                             mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
-                            mViewHolder.nickname_tv.setText("提现提醒");
+                            mViewHolder.nickname_tv.setText("系统充值");
                             break;
 
                         case SystemPush.TYPE_REVIEW:

@@ -41,8 +41,7 @@ import butterknife.OnClick;
 public class ProFileFragment extends BaseFragment {
 
 
-
-    private TextView me_head_name;
+    private TextView me_head_name, me_head_phone;
     private TextView me_buyer_number;
 
     private ImageView im_QrCode;
@@ -55,7 +54,7 @@ public class ProFileFragment extends BaseFragment {
     @Override
     public void setContent() {
         mView = LayoutInflater.from(getContext()).inflate(R.layout.me_layout, null);
-        ButterKnife.bind(this,mView);
+        ButterKnife.bind(this, mView);
     }
 
     @Override
@@ -70,13 +69,16 @@ public class ProFileFragment extends BaseFragment {
         me_head_icon = getId(R.id.me_head_icon);
         me_buyer_number = getId(R.id.me_buyer_number);
         me_head_name = getId(R.id.me_head_name);
+        me_head_phone = getId(R.id.me_buyer_phone);
+
         im_QrCode = getId(R.id.im_QrCode);
         Glide.with(MyApplication.getInstance()).load(MyApplication.getInstance().UserInfo.getAvatar()).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(me_head_icon);
         me_head_name.setText(MyApplication.getInstance().UserInfo.getUsername());
+        me_head_phone.setText("账号:" + MyApplication.getInstance().UserInfo.getPhoneNumber() + "");
         String userid = String.valueOf(MyApplication.getInstance().UserInfo.getUserId());
 
         if (!TextUtils.isEmpty(userid) && !"null".equals(userid)) {
-            me_buyer_number.setText("ID:"+userid);
+            me_buyer_number.setText("ID:" + userid);
         } else {
             me_buyer_number.setText("暂未获取到账号");
         }
@@ -125,7 +127,7 @@ public class ProFileFragment extends BaseFragment {
             //邀请管理
             case R.id.me_relativelayout_invitationManager:
                 Intent intent2 = new Intent(getActivity(), InvitationmgActivity.class);
-                intent2.putExtra("type","ProFile");
+                intent2.putExtra("type", "ProFile");
                 startActivity(intent2);
 
                 break;

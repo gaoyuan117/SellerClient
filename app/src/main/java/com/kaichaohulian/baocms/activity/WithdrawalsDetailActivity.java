@@ -100,21 +100,23 @@ public class WithdrawalsDetailActivity extends BaseActivity {
                         for (int i = 0; i < JSONArray.length(); i++) {
                             WithDrawMsgEntity withDrawMsgEntity = new WithDrawMsgEntity();
                             JSONObject jsonObject = JSONArray.getJSONObject(i);
-                            withDrawMsgEntity.setCashId(jsonObject.getInt("cashId"));
-                            withDrawMsgEntity.setMoney(jsonObject.getInt("money"));
-                            withDrawMsgEntity.setAddtime(jsonObject.getInt("addtime"));
-                            withDrawMsgEntity.setStatus(jsonObject.getBoolean("status"));
-                            withDrawMsgEntity.setAccount(jsonObject.getString("account"));
-                            withDrawMsgEntity.setBankName(jsonObject.getString("bankName"));
-                            withDrawMsgEntity.setBankNum(jsonObject.getString("bankNum"));
-                            withDrawMsgEntity.setBankBranch(jsonObject.getString("bankBranch"));
-                            withDrawMsgEntity.setBankRealname(jsonObject.getString("bankRealname"));
-                            withDrawMsgEntity.setWeixinAccount(jsonObject.getString("weixinAccount"));
-                            withDrawMsgEntity.setZfbAccount(jsonObject.getString("zfbAccount"));
-                            withDrawMsgEntity.setReason(jsonObject.getString("reason"));
+                            withDrawMsgEntity.setCashId(jsonObject.optInt("cashId"));
+                            withDrawMsgEntity.setMoney(jsonObject.optInt("money"));
+                            withDrawMsgEntity.setAddtime(jsonObject.optInt("addtime"));
+                            withDrawMsgEntity.setStatus(jsonObject.optBoolean("status"));
+                            withDrawMsgEntity.setAccount(jsonObject.optString("account"));
+                            withDrawMsgEntity.setBankName(jsonObject.optString("bankName"));
+                            withDrawMsgEntity.setBankNum(jsonObject.optString("bankNum"));
+                            withDrawMsgEntity.setBankBranch(jsonObject.optString("bankBranch"));
+                            withDrawMsgEntity.setBankRealname(jsonObject.optString("bankRealname"));
+                            withDrawMsgEntity.setWeixinAccount(jsonObject.optString("weixinAccount"));
+                            withDrawMsgEntity.setZfbAccount(jsonObject.optString("zfbAccount"));
+                            withDrawMsgEntity.setReason(jsonObject.optString("reason"));
                             mList.add(withDrawMsgEntity);
                         }
                     }
+                    ToastUtil.showMessage("数据长度：" + mList.size());
+
                     mAdapter.notifyDataSetChanged();
                     mPage++;
                     showToastMsg(response.getString("errorDescription"));

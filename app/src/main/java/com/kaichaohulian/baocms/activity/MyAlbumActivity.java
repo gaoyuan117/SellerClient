@@ -1,8 +1,6 @@
 package com.kaichaohulian.baocms.activity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,23 +13,11 @@ import com.kaichaohulian.baocms.adapter.MyAlbumAdapter;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
-import com.kaichaohulian.baocms.circledemo.bean.HeadInfo;
 import com.kaichaohulian.baocms.entity.AblumEntity;
-import com.kaichaohulian.baocms.entity.MyAlbumEntity;
 import com.kaichaohulian.baocms.http.HttpResult;
-import com.kaichaohulian.baocms.http.HttpUtil;
-import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
-import com.kaichaohulian.baocms.utils.DBLog;
-import com.kaichaohulian.baocms.view.ShowDialog;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +44,8 @@ public class MyAlbumActivity extends BaseActivity {
     private boolean mIsFriend;
     private String mFriendId;
     private int index = 1;
-    private boolean firstLoad=true;
+    private boolean firstLoad = true;
+
     @Override
     public void setContent() {
         setContentView(R.layout.myalbum_activity);
@@ -85,7 +72,7 @@ public class MyAlbumActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
+        if (resultCode == RESULT_OK) {
             addHttpData();
         }
     }
@@ -95,7 +82,7 @@ public class MyAlbumActivity extends BaseActivity {
 
     }
 
-    private void dealwitdData(AblumEntity ablumEntity){
+    private void dealwitdData(AblumEntity ablumEntity) {
         List.clear();
         List.addAll(ablumEntity.experiences);
         if (headView == null) {
@@ -111,22 +98,21 @@ public class MyAlbumActivity extends BaseActivity {
                     ActivityUtil.next(getActivity(), ReleaseTalkActivity.class);
                 }
             });
-            Glide.with(getActivity()).load(ablumEntity.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(head);
-            Glide.with(getActivity()).load(ablumEntity.backAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(bg);
+            Glide.with(getActivity()).load(ablumEntity.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).error(R.mipmap.default_useravatar).into(head);
+//            Glide.with(getActivity()).load(ablumEntity.backAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(bg);
             listView.addHeaderView(headView);
         }
         adapter.notifyDataSetChanged();
     }
 
     public void addHttpData() {
-
         RetrofitClient.getInstance().createApi().GetUserPhoto(MyApplication.getInstance().UserInfo.getUserId(), index + "")
                 .compose(RxUtils.<HttpResult<AblumEntity>>io_main())
                 .subscribe(new BaseObjObserver<AblumEntity>(getActivity(), "获取中...") {
                     @Override
                     protected void onHandleSuccess(AblumEntity ablumEntity) {
                         dealwitdData(ablumEntity);
-                        firstLoad=false;
+                        firstLoad = false;
                     }
                 });
 

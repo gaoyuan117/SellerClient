@@ -42,8 +42,16 @@ public class MyTwoCode extends BaseActivity {
         sexy_icon = getId(R.id.sexy_icon);
         txtDistrict.setText(MyApplication.getInstance().UserInfo.getDistrictId());
         txtName.setText(MyApplication.getInstance().UserInfo.getUsername());
-        Glide.with(getActivity()).load(Url.BASE_URL+MyApplication.getInstance().UserInfo.getQrCode()).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgTwoCode);
-        Glide.with(getActivity()).load(MyApplication.getInstance().UserInfo.getAvatar()).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgHeadIcon);
+        Glide.with(getActivity()).
+                load(MyApplication.getInstance().UserInfo.getAvatar())
+                .error(R.mipmap.default_useravatar)
+                .diskCacheStrategy(DiskCacheStrategy.ALL).into(imgHeadIcon);
+
+        Glide.with(this)
+                .load("http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode())
+                .crossFade()
+                .into(imgTwoCode);
+
 
         String sexT = MyApplication.getInstance().UserInfo.getSex();
         if (sexT.equals("0"))

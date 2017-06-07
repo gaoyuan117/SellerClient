@@ -1999,6 +1999,7 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
             }
             ECContacts ecContacts = ContactSqlManager.getContact(mRecipients);
             getUserId(ecContacts.getContactid());
+
         }
 
         @Override
@@ -2612,10 +2613,10 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
 //					startActivityForResult(intent, REQUEST_VIEW_CARD);
 //                    startActivity(new Intent(getActivity(), ChatSingleSettingActivity.class).putExtra("userId", mRecipients));
 //                        getUserInfo(contact.getContactid());
-                        Intent intent = new Intent(getActivity(),FriendInfoActivity.class);
-                        intent.putExtra("phone",contact.getContactid()+"");
-                        intent.putExtra("friendId",mUserId+"");
-                        intent.putExtra("type","1");
+                        Intent intent = new Intent(getActivity(), FriendInfoActivity.class);
+                        intent.putExtra("phone", contact.getContactid() + "");
+                        intent.putExtra("friendId", mUserId + "");
+                        intent.putExtra("type", "1");
                         startActivity(intent);
 //                    searchUser(contact.getContactid());
                         return;
@@ -3251,7 +3252,7 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
                         //TODO 修改
 //                        ActivityUtil.next(getActivity(), FriendDetailActivity.class, Bundle);
 //                        ActivityUtil.next(getActivity(), FriendInfoActivity.class, Bundle);
-                        startActivity(new Intent(getActivity(),FriendInfoActivity.class));
+                        startActivity(new Intent(getActivity(), FriendInfoActivity.class));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -3280,6 +3281,7 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
+                    Log.e("gy", "转账：" + response.toString());
                     if (response.getInt("code") == 0) {
                         response = response.getJSONObject("dataObject");
                         int id = response.getInt("id");
@@ -3340,7 +3342,6 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
             }
         });
     }
-
 
     public void registEventBus() {
         if (!EventBus.getDefault().isRegistered(this)) {

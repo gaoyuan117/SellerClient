@@ -40,6 +40,8 @@ import com.kaichaohulian.baocms.ecdemo.ui.chatting.model.RedPacketTxRow;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.model.RichTextRxRow;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.model.RichTextTxRow;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.model.TransferRxRow;
+import com.kaichaohulian.baocms.ecdemo.ui.chatting.model.TransferSuc;
+import com.kaichaohulian.baocms.ecdemo.ui.chatting.model.TransferSucLeft;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.model.TransferTxRow;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.model.VoiceRxRow;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.model.VoiceTxRow;
@@ -323,6 +325,8 @@ public class ChattingListAdapter2 extends CCPListAdapter<ECMessage> {
         mRowItems.put(Integer.valueOf(19), new RedPacketAckTxRow(19));
         mRowItems.put(Integer.valueOf(20), new IDCardRxRow(20));
         mRowItems.put(Integer.valueOf(21), new IDCardTxRow(21));
+        mRowItems.put(Integer.valueOf(24), new TransferSucLeft(24));
+        mRowItems.put(Integer.valueOf(25), new TransferSuc(25));
         mRowItems.put(Integer.valueOf(26), new TransferRxRow(26));
         mRowItems.put(Integer.valueOf(27), new TransferTxRow(27));
     }

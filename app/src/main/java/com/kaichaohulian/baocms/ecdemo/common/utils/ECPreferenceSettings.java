@@ -44,8 +44,11 @@ public enum ECPreferenceSettings {
 
 
 
-    SETTINGS_APPKEY("com.kaichaohulian.baocms_appkey" , "8a216da858ce0b3c0158d8b1e2a00840"),
-   SETTINGS_TOKEN("com.kaichaohulian.baocms_token" , "0c54dbad19d314dd37fb4b4872a41529"),
+//    SETTINGS_APPKEY("com.kaichaohulian.baocms_appkey" , "8a216da858ce0b3c0158d8b1e2a00840"),
+//   SETTINGS_TOKEN("com.kaichaohulian.baocms_token" , "0c54dbad19d314dd37fb4b4872a41529"),
+
+    SETTINGS_APPKEY("com.kaichaohulian.baocms_appkey" , "8a216da85c34774c015c4e0bb7430911"),
+    SETTINGS_TOKEN("com.kaichaohulian.baocms_token" , "96c210ecbe70942426a17f70c957d571"),
 
 
 

@@ -36,20 +36,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="4dp"
                 android:layout_toRightOf="@+id/me_head_icon"
                 android:text="@string/me_name"
                 android:textColor="@color/dark"
                 android:textSize="@dimen/me_head_name" />
 
             <TextView
+                android:layout_marginTop="2dp"
                 android:id="@+id/me_buyer_number"
                 android:layout_width="wrap_content"
                 android:layout_height="15dp"
                 android:layout_below="@id/me_head_name"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/me_head_icon"
-                android:text="ID:18572651299"
+                android:text="ID:"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/text_12" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:id="@+id/me_buyer_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_below="@id/me_buyer_number"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/me_head_icon"
+                android:text="账号"
                 android:textColor="@color/dark_gray"
                 android:textSize="@dimen/text_12" />
 
