@@ -3,6 +3,7 @@ package com.kaichaohulian.baocms.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -48,49 +49,65 @@ public class MyBankCardListActivity extends BaseActivity {
     @Override
     public void initView() {
         listView = getId(R.id.my_bankcard_list);
-        setCenterTitle("我的银行卡");
-        setIm1_view(R.mipmap.add_part).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MyBankCardListActivity.this, AddBankCardActivity.class);
-                startActivityForResult(intent, ADD_BANKCARD_REQUEST);
-            }
-        });
+        if(getIntent().getBooleanExtra("IsChoose",false)){
+            setCenterTitle("选择银行卡");
+        }else{
+            setCenterTitle("我的银行卡");
+            setIm1_view(R.mipmap.add_part).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MyBankCardListActivity.this, AddBankCardActivity.class);
+                    startActivityForResult(intent, ADD_BANKCARD_REQUEST);
+                }
+            });
+        }
     }
 
     @Override
     public void initEvent() {
         listView.setAdapter(adapter);
+        if(getIntent().getBooleanExtra("IsChoose",false)){
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent=new Intent();
+                    intent.putExtra("bankcard",data.get(i));
+                    setResult(RESULT_OK,intent);
+                    finish();
+                }
+            });
+        }else{
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                    new AlertDialog.Builder(MyBankCardListActivity.this)
+                            .setMessage("是否删除？")
+                            .setPositiveButton(R.string.ok,
+                                    new DialogInterface.OnClickListener() {
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                new AlertDialog.Builder(MyBankCardListActivity.this)
-                        .setMessage("是否删除？")
-                        .setPositiveButton(R.string.ok,
-                                new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                            deleteCard(i);
+                                            dialog.dismiss();
 
-                                    @Override
-                                    public void onClick(DialogInterface dialog,
-                                                        int which) {
-                                        deleteCard(i);
-                                        dialog.dismiss();
+                                        }
+                                    })
+                            .setNegativeButton(R.string.cancel,
+                                    new DialogInterface.OnClickListener() {
 
-                                    }
-                                })
-                        .setNegativeButton(R.string.cancel,
-                                new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                            dialog.dismiss();
 
-                                    @Override
-                                    public void onClick(DialogInterface dialog,
-                                                        int which) {
-                                        dialog.dismiss();
+                                        }
+                                    }).setCancelable(false).show();
+                    return false;
+                }
+            });
+        }
 
-                                    }
-                                }).setCancelable(false).show();
-                return false;
-            }
-        });
     }
 
     public void deleteCard(int i) {

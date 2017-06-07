@@ -1,11 +1,13 @@
 package com.kaichaohulian.baocms.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.db.DataHelper;
+import com.kaichaohulian.baocms.entity.BankCardEntity;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
@@ -38,8 +41,10 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -81,7 +86,7 @@ public class WithdrawApplyActivity extends BaseActivity {
     private PasswordEdittext paywordEdt;
     private PopupWindow PopSignPassword;
     private DataHelper mDataHelper;
-
+    private BankCardEntity bankcard;
 
     @Override
     public void setContent() {
@@ -92,6 +97,7 @@ public class WithdrawApplyActivity extends BaseActivity {
     @Override
     public void initData() {
         mDataHelper = new DataHelper(this);
+        getBindBankCard();
 
     }
 
@@ -167,8 +173,6 @@ public class WithdrawApplyActivity extends BaseActivity {
         });
     }
 
-
-
     private String typeTitle = "微信提现";
 
     @OnClick({R.id.btn_wechat, R.id.btn_alipay, R.id.btn_bankpay, R.id.txt_withdraw_all, R.id.withdraw_cash_btn})
@@ -183,6 +187,11 @@ public class WithdrawApplyActivity extends BaseActivity {
                 btnBankpay.setTextColor(getResources().getColor(R.color.gray));
                 btnWechat.setTextColor(getResources().getColor(R.color.white));
                 btnAlipay.setTextColor(getResources().getColor(R.color.gray));
+                Apply_Id.setFocusableInTouchMode(true);
+                Apply_Id.setFocusable(true);
+                Apply_Id.requestFocus();
+                Apply_Id.setOnClickListener(null);
+                Apply_Id.setText("");
                 break;
             case R.id.btn_alipay:
                 typeTitle = "支付宝提现";
@@ -193,6 +202,12 @@ public class WithdrawApplyActivity extends BaseActivity {
                 btnBankpay.setTextColor(getResources().getColor(R.color.gray));
                 btnWechat.setTextColor(getResources().getColor(R.color.gray));
                 btnAlipay.setTextColor(getResources().getColor(R.color.white));
+                Apply_Id.setFocusableInTouchMode(true);
+                Apply_Id.setFocusable(true);
+                Apply_Id.requestFocus();
+                Apply_Id.setOnClickListener(null);
+                Apply_Id.setText("");
+
                 break;
             case R.id.btn_bankpay:
                 typeTitle = "银行卡提现";
@@ -203,6 +218,31 @@ public class WithdrawApplyActivity extends BaseActivity {
                 btnBankpay.setTextColor(getResources().getColor(R.color.white));
                 btnWechat.setTextColor(getResources().getColor(R.color.gray));
                 btnAlipay.setTextColor(getResources().getColor(R.color.gray));
+                Apply_Id.setFocusable(false);
+                Apply_Id.setFocusableInTouchMode(false);
+                Log.d("WithdrawApplyActivity", "bankcard:" + bankcard);
+                if(bankcard==null){
+                    Apply_Id.setText("添加银行卡");
+                    Apply_Id.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ActivityUtil.next(WithdrawApplyActivity.this,AddBankCardActivity.class);
+                        }
+                    });
+                }else{
+                    String i=bankcard.getCardNo();
+                    i=i.substring(i.length()-4,i.length());
+                    String j=bankcard.getBankName()+"("+i+")";
+                    Apply_Id.setText(j);
+                    Apply_Id.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent=new Intent(WithdrawApplyActivity.this,MyBankCardListActivity.class);
+                            intent.putExtra("IsChoose",true);
+                            startActivityForResult(intent,10);
+                        }
+                    });
+                }
                 break;
             case R.id.txt_withdraw_all:
                 edtInputNumber.setText(withdrawCashRestMoney.getText());
@@ -211,6 +251,19 @@ public class WithdrawApplyActivity extends BaseActivity {
                 ShowPayWord();
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            BankCardEntity cache= (BankCardEntity) data.getSerializableExtra("bankcard");
+            String i=cache.getCardNo();
+            i=i.substring(i.length()-4,i.length());
+            String j=cache.getBankName()+"("+i+")";
+            Apply_Id.setText(j);
+        }
+    }
+
     //显示支付密码的验证框
     private void ShowPayWord(){
         if(SignPassword==null){
@@ -392,6 +445,59 @@ public class WithdrawApplyActivity extends BaseActivity {
         }
     }
 
+    public void getBindBankCard() {
+        RequestParams params = new RequestParams();
+        params.put("id", MyApplication.getInstance().UserInfo.getUserId());
+        HttpUtil.post(Url.getBindCard, params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    ArrayList<BankCardEntity> list=new ArrayList<>();
+                    DBLog.e("获取银行卡:", response.toString());
+                    if (response.getInt("code") == 0) {
+                        JSONArray array = response.getJSONArray("dataObject");
+                        for (int i = 0; i < array.length(); i++) {
+                            JSONObject object = array.getJSONObject(i);
+                            BankCardEntity entity = new BankCardEntity();
+                            entity.setId(object.getInt("id"));
+                            entity.setCreatedTime(object.getString("createdTime"));
+                            entity.setCreator(object.getInt("creator"));
+                            entity.setIsLocked(object.getBoolean("isLocked"));
+                            entity.setLastModifiedTime(object.getString("lastModifiedTime"));
+                            entity.setLastModifier(object.getInt("lastModifier"));
+                            entity.setTimeStamp(object.getString("timeStamp"));
+                            entity.setCardNo(object.getString("cardNo"));
+                            entity.setCardType(object.getString("cardType"));
+                            entity.setIdcard(object.getString("idcard"));
+                            entity.setUsername(object.getString("username"));
+                            entity.setOneOuota(object.getString("oneOuota"));
+                            entity.setDayusername(object.getString("dayusername"));
+                            entity.setBankName(object.getString("bankName"));
+//                            entity.setNumberAll(object.getString("cardNo"));
+                            list.add(entity);
+                        }
+                        if(list.size()!=0){
+                            bankcard=list.get(0);
+                        }
+                    }
+                } catch (Exception e) {
+                    showToastMsg("获取银行卡，解析json异常");
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                showToastMsg("请求服务器失败");
+                DBLog.e("tag", statusCode + ":" + responseString);
+                ShowDialog.dissmiss();
+            }
+        });
+    }
 
     public void tiXian(RequestParams params) {
         ShowDialog.showDialog(getActivity(), "提现申请中...", false, null);

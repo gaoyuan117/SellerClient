@@ -1,10 +1,14 @@
 package com.kaichaohulian.baocms.entity;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by liuyu on 2016/12/24.
  */
 
-public class BankCardEntity {
+public class BankCardEntity implements Serializable {
 
     private int id;
 
