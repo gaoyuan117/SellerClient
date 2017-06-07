@@ -104,6 +104,7 @@ public class PhoneMsgDetailActivity extends BaseActivity {
                             phoneMsgDetailEntity.setActualamount(jsonObject.getString("actualamount"));
                             phoneMsgDetailEntity.setTimeStamp(jsonObject.getInt("timeStamp"));
                             phoneMsgDetailEntity.setPhoneNumber(jsonObject.getString("phoneNumber"));
+                            phoneMsgDetailEntity.setCreatedTime(jsonObject.getString("createdTime"));
                             mList.add(phoneMsgDetailEntity);
                         }
                     }

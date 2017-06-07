@@ -43,6 +43,7 @@ public class WithdrawalsDetailActivity extends BaseActivity {
         mList = new ArrayList<>();
         mAdapter = new WithDrawlsDetailAdapter(getApplicationContext(), mList);
         mListView.setAdapter(mAdapter);
+        mListView.setDividerHeight(10);
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -102,8 +103,8 @@ public class WithdrawalsDetailActivity extends BaseActivity {
                             JSONObject jsonObject = JSONArray.getJSONObject(i);
                             withDrawMsgEntity.setCashId(jsonObject.optInt("cashId"));
                             withDrawMsgEntity.setMoney(jsonObject.optInt("money"));
-                            withDrawMsgEntity.setAddtime(jsonObject.optInt("addtime"));
-                            withDrawMsgEntity.setStatus(jsonObject.optBoolean("status"));
+                            withDrawMsgEntity.setAddtime(jsonObject.optString("addtime"));
+                            withDrawMsgEntity.setStatus(jsonObject.optInt("status"));
                             withDrawMsgEntity.setAccount(jsonObject.optString("account"));
                             withDrawMsgEntity.setBankName(jsonObject.optString("bankName"));
                             withDrawMsgEntity.setBankNum(jsonObject.optString("bankNum"));
@@ -115,8 +116,6 @@ public class WithdrawalsDetailActivity extends BaseActivity {
                             mList.add(withDrawMsgEntity);
                         }
                     }
-                    ToastUtil.showMessage("数据长度：" + mList.size());
-
                     mAdapter.notifyDataSetChanged();
                     mPage++;
                     showToastMsg(response.getString("errorDescription"));

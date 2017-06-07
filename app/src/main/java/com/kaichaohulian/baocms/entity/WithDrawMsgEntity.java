@@ -8,8 +8,8 @@ public class WithDrawMsgEntity {
     private int cashId;
     private int userId;
     private int money;
-    private long addtime;
-    private boolean status;
+    private String addtime;
+    private int status;
     private String account;
     private String bankName;
     private String bankNum;
@@ -43,24 +43,28 @@ public class WithDrawMsgEntity {
         this.money = money;
     }
 
-    public long getAddtime() {
+    public String getAddtime() {
         return addtime;
     }
 
-    public void setAddtime(long addtime) {
+    public void setAddtime(String addtime) {
         this.addtime = addtime;
     }
 
-    public boolean isStatus() {
+    public int isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
     public Object getAccount() {
         return account;
+    }
+
+    public int getStatus() {
+        return status;
     }
 
     public void setAccount(String account) {

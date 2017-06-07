@@ -349,7 +349,7 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                     int type = sysmsgObj.getInteger("type");
                     switch (type) {
                         case SystemPush.TYPE_CHARGE:
-                            mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_0);
+                            mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_1);
                             mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
                             mViewHolder.nickname_tv.setText("提现申请");
                             break;
@@ -361,7 +361,7 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                             break;
 
                         case SystemPush.TYPE_WITHDRAWAL:
-                            mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_1);
+                            mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_0);
                             mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
                             mViewHolder.nickname_tv.setText("系统充值");
                             break;

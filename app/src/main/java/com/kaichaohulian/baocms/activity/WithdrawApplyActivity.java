@@ -195,7 +195,6 @@ public class WithdrawApplyActivity extends BaseActivity {
                 btnAlipay.setTextColor(getResources().getColor(R.color.white));
                 break;
             case R.id.btn_bankpay:
-
                 typeTitle = "银行卡提现";
                 tv_aliorwechat.setText("银行卡号");
                 btnAlipay.setSelected(false);
@@ -326,7 +325,6 @@ public class WithdrawApplyActivity extends BaseActivity {
                             }
                         }
                     }
-
                     @Override
                     public void onError(Throwable e) {
                     }
@@ -399,7 +397,7 @@ public class WithdrawApplyActivity extends BaseActivity {
         ShowDialog.showDialog(getActivity(), "提现申请中...", false, null);
         params.put("id", MyApplication.getInstance().UserInfo.getUserId());
         double money = Double.parseDouble(edtInputNumber.getText().toString());
-        params.put("money", (int) (money * 100));
+        params.put("money", edtInputNumber.getText().toString());
         params.put("token", MyApplication.getInstance().UserInfo.getToken());
         HttpUtil.post(Url.users_banks_withdrawals, params, new JsonHttpResponseHandler() {
             @Override
