@@ -9,12 +9,22 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.http.HttpUtil;
+import com.kaichaohulian.baocms.http.Url;
+import com.kaichaohulian.baocms.utils.DBLog;
+import com.kaichaohulian.baocms.view.ShowDialog;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.Header;
+import org.json.JSONObject;
 
 public class MyChangeActivity extends BaseActivity {
 
     Button withdraw;
     Button chongzhi;
     TextView myRestMoney;
+    String money;
 
     @Override
     public void setContent() {
@@ -61,13 +71,47 @@ public class MyChangeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        myRestMoney.setText(MyApplication.getInstance().UserInfo.getBalance());
+        getUserInfo(MyApplication.getInstance().UserInfo.getPhoneNumber());
     }
 
     public void back(View view) {
         finish();
     }
 
+    public void getUserInfo(final String phone) {
+        RequestParams params = new RequestParams();
+        params.put("phoneNumber", phone);
+        HttpUtil.post(Url.dependPhoneGetUserInfo, params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    if (response.getInt("code") == 0) {
+                        response = response.getJSONObject("dataObject");
+                        money = response.optString("balance");
+                        myRestMoney.setText(money);
+
+
+                    } else {
+                        showToastMsg(response.getString("errorDescription"));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    ShowDialog.dissmiss();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                DBLog.e("tag", statusCode + ":" + responseString);
+                ShowDialog.dissmiss();
+            }
+        });
+    }
 }
 
 

@@ -47,7 +47,7 @@ public class ConversationSqlManager extends AbstractSQLManager {
     /**
      * @return
      */
-    public static Cursor  getConversationCursor() {
+    public static Cursor getConversationCursor() {
         try {
             //String sql = "select unreadCount, im_thread.type, sendStatus, dateTime, sessionId, text, username from im_thread,contacts where im_thread.sessionId = contacts.contact_id order by dateTime desc";
             String sql = "SELECT unreadCount, im_thread.type, sendStatus, dateTime, sessionId, text, username ,name ,im_thread.contactid ,isnotice\n" +
@@ -63,7 +63,7 @@ public class ConversationSqlManager extends AbstractSQLManager {
 
     }
 
-    
+
     /**
      * 通过会话ID查找消息数据库主键
      *
@@ -154,17 +154,18 @@ public class ConversationSqlManager extends AbstractSQLManager {
         }
         return count;
     }
-    public  ArrayList<String> qureyAllSession() {
-        ArrayList<String> arr =new ArrayList<String>();
+
+    public ArrayList<String> qureyAllSession() {
+        ArrayList<String> arr = new ArrayList<String>();
         Cursor cursor = null;
         try {
             cursor = sqliteDB().query(DatabaseHelper.TABLES_NAME_IM_SESSION,
                     null, null, null, null, null, null);
             if (cursor != null && cursor.getCount() > 0) {
 
-                while(cursor.moveToNext()) {
-                        String sessionId = cursor.getString(cursor.getColumnIndex("sessionId"));
-                        arr.add(sessionId);
+                while (cursor.moveToNext()) {
+                    String sessionId = cursor.getString(cursor.getColumnIndex("sessionId"));
+                    arr.add(sessionId);
                 }
             }
         } catch (Exception e) {
@@ -195,7 +196,7 @@ public class ConversationSqlManager extends AbstractSQLManager {
                 }
             } catch (SQLException e) {
                 LogUtil.e(TAG + " " + e.toString());
-                return  false ;
+                return false;
             } finally {
                 if (cursor != null) {
                     cursor.close();
@@ -213,7 +214,7 @@ public class ConversationSqlManager extends AbstractSQLManager {
             values.put("isTop", isTop ? 1 : 0);
             String sql = "select sessionId from " + DatabaseHelper.TABLES_NAME_IM_SESSION + " where sessionId='" + sessionId + "'";
             Cursor cursor = getInstance().sqliteDB().rawQuery(sql, null);
-            if(cursor != null && cursor.getCount() > 0) {
+            if (cursor != null && cursor.getCount() > 0) {
                 getInstance().sqliteDB().update(DatabaseHelper.TABLES_NAME_IM_SESSION, values, "sessionId = ?", new String[]{sessionId});
             }
         } catch (Exception e) {
@@ -223,7 +224,6 @@ public class ConversationSqlManager extends AbstractSQLManager {
         }
 
     }
-
 
 
     public int qureyAllSessionUnreadCount() {
@@ -251,16 +251,17 @@ public class ConversationSqlManager extends AbstractSQLManager {
 
     public static void delSession(String contactId) {
         String where = IThreadColumn.THREAD_ID + " = '" + contactId + "' ";
-        getInstance().sqliteDB().delete(DatabaseHelper.TABLES_NAME_IM_SESSION , where, null);
+        getInstance().sqliteDB().delete(DatabaseHelper.TABLES_NAME_IM_SESSION, where, null);
     }
 
     /**
      * 更新会话已读状态
+     *
      * @param id
      * @return
      */
     public static long setChattingSessionRead(long id) {
-        if(id <= 0) {
+        if (id <= 0) {
             return -1;
         }
         ContentValues values = new ContentValues();

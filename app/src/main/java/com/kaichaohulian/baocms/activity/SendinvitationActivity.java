@@ -19,6 +19,7 @@ import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
 import com.kaichaohulian.baocms.rxjava.RxUtils;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,15 +46,20 @@ public class SendinvitationActivity extends BaseActivity {
     @BindView(R.id.edt_sendInvitionNum)
     EditText edtSendInvitionNum;
     @BindView(R.id.tv_responsetime)
-    EditText tvResponsetime;
+    TextView tvResponsetime;
+    @BindView(R.id.tv_send_invite_nums)
+    TextView tvNums;
+
     SimpleDateFormat AllTtmeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     SimpleDateFormat DayTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
 
     private TimePickerView timePickerView;
     private TimePickerView ReponseTimePickerView;
     private final int SELECT_ID = 100;
     private String ids;
     private String InviteTime, ApplyTime;
+    private String hour = "", min = "";
 
     @Override
     public void setContent() {
@@ -91,7 +97,6 @@ public class SendinvitationActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.setClickable(false);
                 SendInvite(view);
             }
         });
@@ -137,9 +142,9 @@ public class SendinvitationActivity extends BaseActivity {
         map.put("longitud", MyApplication.getInstance().BDLocation.getLongitude() + "");
         map.put("latitude", MyApplication.getInstance().BDLocation.getLatitude() + "");
         map.put("invateTime", InviteTime);
-        ApplyTime = tvResponsetime.getText().toString();
-        if (TextUtils.isEmpty(ApplyTime)) {
-            Toast.makeText(this, "请输入相应时间", Toast.LENGTH_SHORT).show();
+        ApplyTime = hour + ":" + min;
+        if (ApplyTime.equals(":")) {
+            Toast.makeText(this, "请输入响应时间", Toast.LENGTH_SHORT).show();
             return;
         } else {
             map.put("applyTime", ApplyTime);
@@ -172,7 +177,16 @@ public class SendinvitationActivity extends BaseActivity {
         if (requestCode == SELECT_ID && resultCode == RESULT_OK) {
             String ids = data.getStringExtra("ids");
             String replace = ids.replace("," + MyApplication.getInstance().UserInfo.getUserId(), "");
+            String nums = data.getStringExtra("nums");
+            tvNums.setText(nums);
             this.ids = replace;
+        }
+
+        if (requestCode == 110 && resultCode == 110) {
+            hour = data.getStringExtra("hour");
+            min = data.getStringExtra("min");
+            Log.e("gy", "响应时间：" + hour + "小时" + min + "分");
+            tvResponsetime.setText(hour + "小时" + min + "分");
         }
     }
 
@@ -205,34 +219,11 @@ public class SendinvitationActivity extends BaseActivity {
                 }
                 break;
             case R.id.rl_responsetime:
-//                if (ReponseTimePickerView == null) {
-//                    ReponseTimePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
-//                        @Override
-//                        public void onTimeSelect(Date date, View v) {
-//                            long i = 0;
-//                            try {
-//                                i = date.getTime() - AllTtmeFormat.parse(InviteTime).getTime();
-//                            } catch (ParseException e) {
-//                                e.printStackTrace();
-//                            }
-//                            if (i > 0) {
-//                                ApplyTime = DayTimeFormat.format(date);
-//                                tvResponsetime.setText(ApplyTime);
-//                            } else {
-//                                Toast.makeText(SendinvitationActivity.this, "响应时间不能小于邀请时间", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                        }
-//                    }).setType(TimePickerView.Type.YEAR_MONTH_DAY_HOUR_MIN)
-//                            .setDate(Calendar.getInstance())
-//                            .setTitleText("选择响应截止时间")
-//                            .build();
-//                    ReponseTimePickerView.show();
-//                } else {
-//                    ReponseTimePickerView.show();
-//                }
+                startActivityForResult(new Intent(this, TimeActivity.class), 110);
                 break;
         }
     }
+
+
 }
 

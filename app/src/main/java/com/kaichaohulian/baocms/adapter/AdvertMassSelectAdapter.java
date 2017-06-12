@@ -39,6 +39,8 @@ public class AdvertMassSelectAdapter extends ConactAdapter implements SectionInd
     private int res;
     public MyFilter myFilter;
     private HashSet<ContactFriendsEntity> set;
+    private List<ContactFriendsEntity> selectList;
+
     @SuppressLint("SdCardPath")
     public AdvertMassSelectAdapter(Context context, int resource, List<ContactFriendsEntity> objects) {
         super(context, resource, objects);
@@ -47,12 +49,17 @@ public class AdvertMassSelectAdapter extends ConactAdapter implements SectionInd
         copyUserList = new ArrayList<>();
         copyUserList.addAll(objects);
         layoutInflater = LayoutInflater.from(context);
-        set=new HashSet<>();
+        set = new HashSet<>();
+        selectList = new ArrayList<>();
     }
 
 
-    public HashSet GetSet(){
+    public HashSet GetSet() {
         return set;
+    }
+
+    public List<ContactFriendsEntity> getList() {
+        return selectList;
     }
 
 
@@ -61,21 +68,23 @@ public class AdvertMassSelectAdapter extends ConactAdapter implements SectionInd
         ViewHolder vh;
         if (convertView == null) {
             convertView = layoutInflater.inflate(res, null);
-            vh=new ViewHolder(convertView);
+            vh = new ViewHolder(convertView);
             vh.select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if(b){
+                    if (b) {
                         set.add(getItem(position));
-                    }else{
+                        selectList.add(getItem(position));
+                    } else {
                         set.remove(getItem(position));
+                        selectList.remove(getItem(position));
                     }
                 }
             });
             convertView.setTag(vh);
 
-        }else{
-            vh= (ViewHolder) convertView.getTag();
+        } else {
+            vh = (ViewHolder) convertView.getTag();
         }
 
 
@@ -120,16 +129,15 @@ public class AdvertMassSelectAdapter extends ConactAdapter implements SectionInd
     }
 
 
-
-    class ViewHolder{
-        TextView tvHeader,nameTextview;
+    class ViewHolder {
+        TextView tvHeader, nameTextview;
         View view_temp;
         ImageView avatar;
         CheckBox select;
 
         public ViewHolder(View view) {
             avatar = (ImageView) view.findViewById(R.id.iv_avatar);
-            select= (CheckBox) view.findViewById(R.id.iv_selector);
+            select = (CheckBox) view.findViewById(R.id.iv_selector);
             nameTextview = (TextView) view.findViewById(R.id.tv_name);
             tvHeader = (TextView) view.findViewById(R.id.header);
             view_temp = view.findViewById(R.id.view_temp);

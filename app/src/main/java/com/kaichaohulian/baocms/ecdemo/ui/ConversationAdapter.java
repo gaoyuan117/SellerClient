@@ -340,6 +340,8 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                     || contactId.equals(SystemPush.SYS_ACCT_WITHDRAWAL)
                     || contactId.equals(SystemPush.SYS_ACCT_REVIEW)
                     || contactId.equals(SystemPush.SYS_ACCT_ORDER)
+                    || contactId.equals("18510829668")
+                    || contactId.equals("18510829669")
                     ) {
                 mViewHolder.tipcnt_tv.setVisibility(View.GONE);
                 mViewHolder.prospect_iv.setVisibility(View.GONE);
@@ -349,9 +351,24 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                     int type = sysmsgObj.getInteger("type");
                     switch (type) {
                         case SystemPush.TYPE_CHARGE:
-                            mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_1);
-                            mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
-                            mViewHolder.nickname_tv.setText("提现申请");
+
+                            if (sysmsgObj.toString().contains("提现")) {
+                                mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_1);
+                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+                                mViewHolder.nickname_tv.setText("提现申请");
+                            } else if (sysmsgObj.toString().contains("充值")) {
+                                mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_0);
+                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+                                mViewHolder.nickname_tv.setText("系统充值");
+                            } else if (sysmsgObj.toString().contains("邀请")) {
+                                mViewHolder.user_avatar.setImageResource(R.mipmap.ic_launcher);
+                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+                                mViewHolder.nickname_tv.setText("好友邀请");
+                            } else if (sysmsgObj.toString().contains("广告")) {
+                                mViewHolder.user_avatar.setImageResource(R.mipmap.ic_launcher);
+                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+                                mViewHolder.nickname_tv.setText("广告通知");
+                            }
                             break;
 
                         case SystemPush.TYPE_BONUS:

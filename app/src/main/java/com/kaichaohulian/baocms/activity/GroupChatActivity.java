@@ -102,7 +102,7 @@ public class GroupChatActivity extends BaseActivity {
         setIm1_view(R.mipmap.group_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GroupChatActivity.this, CreateGroupActivity.class));
+                startActivity(new Intent(GroupChatActivity.this, CreatChatRoomActivity.class));
             }
         });
 

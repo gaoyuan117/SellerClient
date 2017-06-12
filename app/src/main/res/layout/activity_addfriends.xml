@@ -69,7 +69,7 @@
                 android:drawablePadding="8dp"
                 android:layout_marginLeft="16dp"
                 android:singleLine="true"
-                android:text="手机号/ID号"
+                android:text="手机号"
                 android:textColor="#909090"
                 android:textSize="14sp"/>
             <View

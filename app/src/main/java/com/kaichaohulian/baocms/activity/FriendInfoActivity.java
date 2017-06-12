@@ -247,7 +247,6 @@ public class FriendInfoActivity extends BaseActivity {
                     protected void onHandleSuccess(UserInfoBean userInfoBean) {
                         mUserInfoBean = userInfoBean;
                         setBaseInfo(userInfoBean);
-                        ToastUtil.showMessage("手机号：" + userInfoBean.getUsername());
                         Log.e("gy", "用户信息：" + userInfoBean.getToken());
                     }
                 });

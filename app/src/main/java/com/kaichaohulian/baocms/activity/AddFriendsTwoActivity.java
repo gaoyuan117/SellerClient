@@ -14,6 +14,7 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingActivity;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingFragment;
 import com.kaichaohulian.baocms.entity.UserInfo;
@@ -135,6 +136,11 @@ public class AddFriendsTwoActivity extends BaseActivity {
                         Bundle Bundle = new Bundle();
                         Bundle.putSerializable("data", UserInfo);
 //                        ActivityUtil.next(getActivity(), FriendDetailActivity.class, Bundle);
+
+                        if (MyApplication.getInstance().UserInfo.getUserId()==jsonObject.getInt("id")){
+                            ToastUtil.showMessage("不能添加自己");
+                            return;
+                        }
 
                         Intent intent = new Intent(getActivity(),FriendInfoActivity.class);
                         intent.putExtra("phone",UserInfo.getPhoneNumber()+"");

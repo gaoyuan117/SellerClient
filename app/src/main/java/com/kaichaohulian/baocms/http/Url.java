@@ -37,7 +37,7 @@ public class Url {
     //删除银行卡
     public static final String deleteCard = BASE_URL + "users/banks/deleteCard.do";
     public static final String ByPhoneGetUserInfo = BASE_URL + "users/getUserMobile.do";
-    public static final String ISRECEIVE = BASE_URL + "users/banks/transferSure.do";
+    public static final String ISRECEIVE = BASE_URL + "users/banks/sureIfTrans.do";
 
 
     /**********
@@ -356,4 +356,5 @@ public class Url {
     public static final String getOrdersMessage = BASE_URL + "orders/getOrdersMessage.do";
     //2、手机充值推送详情
     public static final String getRechargeMessage = BASE_URL + "orders/getRechargeMessage.do";
+
 }

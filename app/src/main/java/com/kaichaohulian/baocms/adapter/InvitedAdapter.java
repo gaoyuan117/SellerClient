@@ -54,16 +54,19 @@ public class InvitedAdapter extends BaseQuickAdapter<InvitedBean, BaseViewHolder
             int status = item.getStatus();
             int userStatus = item.getUserApplyStatus();
             if (userStatus == 0) {
+                imgChat.setVisibility(View.GONE);
                 layout.setVisibility(View.VISIBLE);
                 imgArrow.setVisibility(View.GONE);
                 invitedState.setVisibility(View.GONE);
-            } else if(userStatus==1) {
+            } else if (userStatus == 1) {
+                imgChat.setVisibility(View.GONE);
                 invitedState.setVisibility(View.VISIBLE);
                 invitedState.setText("已接受");
                 invitedState.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.zy_text_pink2));
                 layout.setVisibility(View.GONE);
                 imgArrow.setVisibility(View.VISIBLE);
-            }else if(userStatus==2) {
+            } else if (userStatus == 2) {
+                imgChat.setVisibility(View.GONE);
                 invitedState.setVisibility(View.VISIBLE);
                 invitedState.setText("已拒绝");
                 invitedState.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.zy_text_green));
@@ -72,7 +75,7 @@ public class InvitedAdapter extends BaseQuickAdapter<InvitedBean, BaseViewHolder
             }
 
             if (status == 0) {
-                imgChat.setVisibility(View.VISIBLE);
+                imgChat.setVisibility(View.GONE);
                 tvState.setText("剩余" + hasTime);
             } else if (status == 1) {
                 imgChat.setVisibility(View.GONE);
@@ -82,7 +85,7 @@ public class InvitedAdapter extends BaseQuickAdapter<InvitedBean, BaseViewHolder
                 layout.setVisibility(View.GONE);
                 tvState.setText("参与成功");
                 imgArrow.setVisibility(View.VISIBLE);
-            }else if (status == 4) {
+            } else if (status == 4) {
                 imgChat.setVisibility(View.GONE);
                 layout.setVisibility(View.GONE);
                 imgArrow.setVisibility(View.VISIBLE);
@@ -108,21 +111,11 @@ public class InvitedAdapter extends BaseQuickAdapter<InvitedBean, BaseViewHolder
         return 0;
     }
 
-//    public String getStrTime(long cc_time) {
-//        String re_StrTime = null;
-//        //同理也可以转为其它样式的时间格式.例如："yyyy/MM/dd HH:mm"
-//        SimpleDateFormat sdf = new SimpleDateFormat("mm分ss秒");
-//        // 例如：cc_time=1291778220
-//        re_StrTime = sdf.format(new Date(cc_time * 1000L));
-//
-//        return re_StrTime;
-//    }
-
     public String getStrTime(long cc_time) {
         Log.e("gy", "时间差：" + cc_time);
         long days = cc_time / (1000 * 60 * 60 * 24);
-        long hours = (cc_time-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
-        long minutes = (cc_time-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
+        long hours = (cc_time - days * (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+        long minutes = (cc_time - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60)) / (1000 * 60);
 
         return hours + "小时" + minutes + "分";
     }

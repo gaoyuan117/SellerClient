@@ -69,7 +69,6 @@ public class PocketActivity extends BaseActivity {
     @Override
     public void initData() {
         setCenterTitle("钱包");
-        SmallMoneyAccout.setText(MyApplication.getInstance().UserInfo.getBalance());
     }
 
     @Override
@@ -123,6 +122,9 @@ public class PocketActivity extends BaseActivity {
                         response = response.getJSONObject("dataObject");
                         String accountNumber = response.getString("accountNumber");
                         BankcardNumber.setText(accountNumber);
+                        String balance = response.optString("balance");
+                        SmallMoneyAccout.setText(balance);
+
                         MyApplication.getInstance().UserInfo.setAccountNumber(accountNumber);
                     } else {
                         showToastMsg(response.getString("errorDescription"));
@@ -144,6 +146,9 @@ public class PocketActivity extends BaseActivity {
             }
         });
     }
+
+
+
 }
 
 

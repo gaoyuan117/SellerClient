@@ -81,12 +81,15 @@ public class WithdrawApplyActivity extends BaseActivity {
     TextView tv_aliorwechat;
     @BindView(R.id.withdraw_cash_btn)
     Button btnNext;
-    private final int WECHAT=0,ALIPAY=1,BANKPAY=2;
+    private final int WECHAT = 0, ALIPAY = 1, BANKPAY = 2;
     private View SignPassword;
     private PasswordEdittext paywordEdt;
     private PopupWindow PopSignPassword;
     private DataHelper mDataHelper;
     private BankCardEntity bankcard;
+
+    private String cardType, cardRelName, cardNo;
+
 
     @Override
     public void setContent() {
@@ -120,55 +123,21 @@ public class WithdrawApplyActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
-//        Apply_Id.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                if(!Apply_Id.getText().toString().trim().equals(""))
-//                {
-//                    int i=0;
-//                    if((i= Integer.parseInt(edtInputNumber.getText().toString().trim()))!=0){
-//                        btnNext.setBackgroundResource(R.mipmap.deeporange_bar_part);
-//                    }
-//                }else{
-//                    btnNext.setBackgroundResource(R.mipmap.deeporange_bar_normal);
-//                }
-//            }
-//        });
+
         edtInputNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if(!Apply_Id.getText().toString().trim().equals(""))
-                {
-                    int i=0;
-                    if((i= Integer.parseInt(edtInputNumber.getText().toString().trim()))>=0){
-                        btnNext.setBackgroundResource(R.mipmap.deeporange_bar_part);
-                        btnNext.setClickable(true);
-
-                    }
-                }else{
-                    btnNext.setBackgroundResource(R.mipmap.deeporange_bar_normal);
-                    btnNext.setClickable(false);
+            public void afterTextChanged(Editable edt) {
+                String temp = edt.toString();
+                int posDot = temp.indexOf(".");
+                if (posDot <= 0) return;
+                if (temp.length() - posDot - 1 > 2) {
+                    edt.delete(posDot + 3, posDot + 4);
                 }
+            }
+
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+            }
+
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
             }
         });
     }
@@ -221,25 +190,28 @@ public class WithdrawApplyActivity extends BaseActivity {
                 Apply_Id.setFocusable(false);
                 Apply_Id.setFocusableInTouchMode(false);
                 Log.d("WithdrawApplyActivity", "bankcard:" + bankcard);
-                if(bankcard==null){
+                if (bankcard == null) {
                     Apply_Id.setText("添加银行卡");
                     Apply_Id.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            ActivityUtil.next(WithdrawApplyActivity.this,AddBankCardActivity.class);
+                            ActivityUtil.next(WithdrawApplyActivity.this, AddBankCardActivity.class);
                         }
                     });
-                }else{
-                    String i=bankcard.getCardNo();
-                    i=i.substring(i.length()-4,i.length());
-                    String j=bankcard.getBankName()+"("+i+")";
+                } else {
+                    String i = bankcard.getCardNo();
+                    i = i.substring(i.length() - 4, i.length());
+                    String j = bankcard.getBankName() + "(" + i + ")";
                     Apply_Id.setText(j);
+                    cardNo = bankcard.getCardNo();
+                    cardRelName = bankcard.getUsername();
+                    cardType = bankcard.getBankName();
                     Apply_Id.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent=new Intent(WithdrawApplyActivity.this,MyBankCardListActivity.class);
-                            intent.putExtra("IsChoose",true);
-                            startActivityForResult(intent,10);
+                            Intent intent = new Intent(WithdrawApplyActivity.this, MyBankCardListActivity.class);
+                            intent.putExtra("IsChoose", true);
+                            startActivityForResult(intent, 10);
                         }
                     });
                 }
@@ -255,21 +227,24 @@ public class WithdrawApplyActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
-            BankCardEntity cache= (BankCardEntity) data.getSerializableExtra("bankcard");
-            String i=cache.getCardNo();
-            i=i.substring(i.length()-4,i.length());
-            String j=cache.getBankName()+"("+i+")";
+        if (resultCode == RESULT_OK) {
+            BankCardEntity cache = (BankCardEntity) data.getSerializableExtra("bankcard");
+            String i = cache.getCardNo();
+            i = i.substring(i.length() - 4, i.length());
+            String j = cache.getBankName() + "(" + i + ")";
             Apply_Id.setText(j);
+            cardRelName = cache.getUsername();
+            cardType = cache.getBankName();
+            cardNo = cache.getCardNo();
         }
     }
 
     //显示支付密码的验证框
-    private void ShowPayWord(){
-        if(SignPassword==null){
-            SignPassword=View.inflate(this,R.layout.sign_paypassword,null);
-            paywordEdt= (PasswordEdittext) SignPassword.findViewById(R.id.paypassword_edt);
-            ImageView iv= (ImageView) SignPassword.findViewById(R.id.img_exit_signpassword);
+    private void ShowPayWord() {
+        if (SignPassword == null) {
+            SignPassword = View.inflate(this, R.layout.sign_paypassword, null);
+            paywordEdt = (PasswordEdittext) SignPassword.findViewById(R.id.paypassword_edt);
+            ImageView iv = (ImageView) SignPassword.findViewById(R.id.img_exit_signpassword);
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -289,18 +264,18 @@ public class WithdrawApplyActivity extends BaseActivity {
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-                    if(editable.length()==6){
+                    if (editable.length() == 6) {
                         SignPayPassWord(editable.toString().trim());
                     }
                 }
             });
         }
-        if(PopSignPassword==null){
+        if (PopSignPassword == null) {
             int H;
             H = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
             SignPassword.measure(0, H);
             H = SignPassword.getMeasuredHeight();
-            PopSignPassword=new PopupWindow(SignPassword, ViewGroup.LayoutParams.MATCH_PARENT,H);
+            PopSignPassword = new PopupWindow(SignPassword, ViewGroup.LayoutParams.MATCH_PARENT, H);
             PopSignPassword.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
             PopSignPassword.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
             PopSignPassword.setTouchable(true); // 设置popupwindow可点击
@@ -310,11 +285,11 @@ public class WithdrawApplyActivity extends BaseActivity {
             PopSignPassword.setBackgroundDrawable(dw);
             PopSignPassword.setAnimationStyle(R.style.popPassword_animation);
             PopSignPassword.showAtLocation(findViewById(R.id.main_activity_withdraw_apply),
-                    Gravity.BOTTOM| Gravity.CENTER_HORIZONTAL, 0, 0);
+                    Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
             paywordEdt.setFocusable(true);
-        }else{
+        } else {
             PopSignPassword.showAtLocation(findViewById(R.id.main_activity_withdraw_apply),
-                    Gravity.BOTTOM| Gravity.CENTER_HORIZONTAL, 0, 0);
+                    Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
             paywordEdt.setFocusable(true);
 
         }
@@ -323,15 +298,16 @@ public class WithdrawApplyActivity extends BaseActivity {
         //这里给它设置了弹出的时间，
         imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
     }
+
     //网络请求验证支付密码
-    private void SignPayPassWord(String payword){
-        if(map==null){
-            map=new HashMap<>();
-        }else{
+    private void SignPayPassWord(String payword) {
+        if (map == null) {
+            map = new HashMap<>();
+        } else {
             map.clear();
         }
         map.put("id", String.valueOf(MyApplication.getInstance().UserInfo.getUserId()));
-        map.put("password",payword);
+        map.put("password", payword);
         RetrofitClient.getInstance().createApi().verificatPassword(map)
                 .compose(RxUtils.<HttpResult>io_main())
                 .subscribe(new Observer<HttpResult>() {
@@ -343,10 +319,10 @@ public class WithdrawApplyActivity extends BaseActivity {
                     @Override
                     public void onNext(HttpResult value) {
                         PopSignPassword.dismiss();
-                        if(value.errorDescription.contains("重新输入")){
+                        if (value.errorDescription.contains("重新输入")) {
                             Toast.makeText(WithdrawApplyActivity.this, "密码错误请重新输入", Toast.LENGTH_SHORT).show();
                             paywordEdt.getText().clear();
-                        }else {
+                        } else {
                             RequestParams params = new RequestParams();
                             switch (typeTitle) {
                                 case "支付宝提现":
@@ -366,10 +342,10 @@ public class WithdrawApplyActivity extends BaseActivity {
                                     }
                                     break;
                                 case "银行卡提现":
-                                    if (!TextUtils.isEmpty(edKaihuyinhanag.getText().toString().trim()) && !TextUtils.isEmpty(edKaihuzhanghao.getText().toString().trim()) && !TextUtils.isEmpty(edKaihuxingming.getText().toString().trim()) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
-                                        params.put("bankName", edKaihuyinhanag.getText().toString());
-                                        params.put("bankNum", edKaihuzhanghao.getText().toString());
-                                        params.put("bankRealname", edKaihuxingming.getText().toString());
+                                    if (!TextUtils.isEmpty(cardNo) && !TextUtils.isEmpty(cardRelName) && !TextUtils.isEmpty(cardType) && !TextUtils.isEmpty(edtInputNumber.getText().toString().trim())) {
+                                        params.put("bankName", cardType);
+                                        params.put("bankNum", cardNo);
+                                        params.put("bankRealname", cardRelName);
                                         tiXian(params);
                                     } else {
                                         showToastMsg("请输入完整！");
@@ -378,6 +354,7 @@ public class WithdrawApplyActivity extends BaseActivity {
                             }
                         }
                     }
+
                     @Override
                     public void onError(Throwable e) {
                     }
@@ -395,56 +372,6 @@ public class WithdrawApplyActivity extends BaseActivity {
         withdrawCashRestMoney.setText(MyApplication.getInstance().UserInfo.getBalance() + "");
     }
 
-    class BtnListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.btn_alipay:
-
-//                    btnAlipay.setBackgroundResource(R.mipmap.deepblue_bar);
-//                    btnBank.setBackgroundResource(R.mipmap.deepwhite_bar);
-//                    btnWechat.setBackgroundResource(R.mipmap.deepwhite_bar);
-//
-//                    btnBank.setTextColor(getResources().getColor(R.color.gray));
-//                    btnWechat.setTextColor(getResources().getColor(R.color.gray));
-//                    btnAlipay.setTextColor(getResources().getColor(R.color.white));
-
-
-                    break;
-                case R.id.btn_wechat:
-
-//                    btnWechat.setBackgroundResource(R.mipmap.deepblue_bar);
-//                    btnAlipay.setBackgroundResource(R.mipmap.deepwhite_bar);
-//                    btnBank.setBackgroundResource(R.mipmap.deepwhite_bar);
-//                    btnBank.setTextColor(getResources().getColor(R.color.gray));
-//                    btnAlipay.setTextColor(getResources().getColor(R.color.gray));
-//                    btnWechat.setTextColor(getResources().getColor(R.color.white));
-
-
-                    break;
-                case R.id.btn_bankpay:
-
-//                    typeTitle = "银行卡提现";
-//                    btnWechat.setBackgroundResource(R.mipmap.lightgreen_bar);
-//                    btnAlipay.setBackgroundResource(R.mipmap.lightgreen_bar);
-//                    btnBank.setBackgroundResource(R.mipmap.deepgreen_bar);
-//
-//                    btnWechat.setTextColor(getResources().getColor(R.color.gray));
-//                    btnAlipay.setTextColor(getResources().getColor(R.color.gray));
-//                    btnBank.setTextColor(getResources().getColor(R.color.white));
-//
-//                    linear_bankpay.setVisibility(View.VISIBLE);
-//                    linear_wechatAndAlipay.setVisibility(View.GONE);
-                    break;
-                case R.id.withdraw_cash_btn:
-
-
-                    break;
-            }
-        }
-    }
-
     public void getBindBankCard() {
         RequestParams params = new RequestParams();
         params.put("id", MyApplication.getInstance().UserInfo.getUserId());
@@ -452,7 +379,7 @@ public class WithdrawApplyActivity extends BaseActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    ArrayList<BankCardEntity> list=new ArrayList<>();
+                    ArrayList<BankCardEntity> list = new ArrayList<>();
                     DBLog.e("获取银行卡:", response.toString());
                     if (response.getInt("code") == 0) {
                         JSONArray array = response.getJSONArray("dataObject");
@@ -476,8 +403,8 @@ public class WithdrawApplyActivity extends BaseActivity {
 //                            entity.setNumberAll(object.getString("cardNo"));
                             list.add(entity);
                         }
-                        if(list.size()!=0){
-                            bankcard=list.get(0);
+                        if (list.size() != 0) {
+                            bankcard = list.get(0);
                         }
                     }
                 } catch (Exception e) {
@@ -502,7 +429,6 @@ public class WithdrawApplyActivity extends BaseActivity {
     public void tiXian(RequestParams params) {
         ShowDialog.showDialog(getActivity(), "提现申请中...", false, null);
         params.put("id", MyApplication.getInstance().UserInfo.getUserId());
-        double money = Double.parseDouble(edtInputNumber.getText().toString());
         params.put("money", edtInputNumber.getText().toString());
         params.put("token", MyApplication.getInstance().UserInfo.getToken());
         HttpUtil.post(Url.users_banks_withdrawals, params, new JsonHttpResponseHandler() {

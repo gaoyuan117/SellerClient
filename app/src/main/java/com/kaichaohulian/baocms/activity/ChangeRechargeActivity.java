@@ -20,6 +20,7 @@ import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.paytreasure.PayResult;
 import com.kaichaohulian.baocms.paytreasure.PayTreasureUtils;
 import com.kaichaohulian.baocms.utils.DBLog;
+import com.kaichaohulian.baocms.view.ShowDialog;
 import com.kaichaohulian.baocms.wxapi.WxPayUtile;
 
 /**
@@ -98,6 +99,7 @@ public class ChangeRechargeActivity extends BaseActivity {
                                 .toString(), actualamount).pay(payHandler);
                         break;
                     case "微信充值":
+                        ShowDialog.showDialog(getActivity(), "支付中...", false, null);
                         WxPayUtile.getInstance(getActivity(), String.valueOf(Double.valueOf(edtInputNumber
                                         .getText().toString())), Url.BASE_URL + "/api/Order/notify_wxpay"
                                 , typeTitle, "订单号", actualamount, 6 + "").doPay(chatHandler); // 微信支付
@@ -134,6 +136,7 @@ public class ChangeRechargeActivity extends BaseActivity {
                     DBLog.e("TAG", "支付结果: 取消支付 " + msg.what);
                     break;
                 default:
+                    ShowDialog.dissmiss();
                     break;
             }
             return false;

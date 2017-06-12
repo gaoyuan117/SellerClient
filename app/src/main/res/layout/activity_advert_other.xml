@@ -187,7 +187,6 @@
             android:textColor="@color/zy_text_gray"
             android:textSize="14sp" />
 
-
     </RelativeLayout>
 
     <View
@@ -240,10 +239,38 @@
         android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
         android:background="@color/line" />
 
-    <View
+
+
+
+    <LinearLayout
+        android:id="@+id/rl_count_otheradviert"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ProFileFragment_SmallLine"
-        android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
-        android:background="@color/line" />
+        android:layout_height="@dimen/discover_line_height"
+        android:background="@drawable/seltor"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="发送广告条数"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/text_14" />
+
+        <EditText
+            android:id="@+id/et_other_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="人数"
+            android:textColor="@color/zy_text_gray"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

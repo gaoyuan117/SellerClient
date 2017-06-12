@@ -335,7 +335,7 @@
         android:layout_height="@dimen/dimens_50"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dimens_60"
-        android:background="@mipmap/deeporange_bar_normal"
+        android:background="@mipmap/bt_bg"
         android:text="@string/withdraw_cash_withdraw"
         android:textColor="@color/white"
         android:textSize="@dimen/text_14" />

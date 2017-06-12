@@ -74,20 +74,24 @@ public class AdvertMassSelectActivity extends BaseActivity {
                 @Override
                 public void onClick(View view) {
                     StringBuffer buffer = new StringBuffer();
-                    HashSet set = new HashSet();
-                    set = adapter.GetSet();
-                    if (set.size() == 0) {
+                    StringBuffer buffer1 = new StringBuffer();
+
+                    List<ContactFriendsEntity> list = adapter.getList();
+                    if (list.size() == 0) {
                         Toast.makeText(AdvertMassSelectActivity.this, "请选择要群发的好友", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    Iterator<ContactFriendsEntity> iterator = set.iterator();
-                    while (iterator.hasNext()) {
-                        buffer.append(iterator.next().getId() + ",");
+
+                    for (int i = 0; i < list.size(); i++) {
+                        buffer.append(list.get(i).getId() + ",");
+                        buffer1.append(list.get(i).getUsername() + " ");
                     }
-                    buffer.append(MyApplication.getInstance().UserInfo.getUserId());
                     Intent intent = new Intent();
                     intent.putExtra("ids", buffer.toString());
+                    intent.putExtra("nums", buffer1.toString());
+
                     Log.e("gy", "ids：" + buffer.toString());
+                    Log.e("gy", "nums：" + buffer1.toString());
                     setResult(RESULT_OK, intent);
                     finish();
                 }
@@ -114,7 +118,7 @@ public class AdvertMassSelectActivity extends BaseActivity {
                     Intent intent = new Intent(getActivity(), ReleaseAdvertActivity.class);
                     intent.putExtra("ids", buffer.toString());
                     intent.putExtra("size", set.size());
-                    intent.putExtra("type","1");
+                    intent.putExtra("type", "1");
                     startActivity(intent);
                     finish();
                 }

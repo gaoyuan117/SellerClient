@@ -17,7 +17,10 @@ import android.widget.TextView;
 
 import com.kaichaohulian.baocms.MainActivity;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.activity.AdverActivity;
 import com.kaichaohulian.baocms.activity.BonusHistoryActivity;
+import com.kaichaohulian.baocms.activity.InvitationmgActivity;
+import com.kaichaohulian.baocms.activity.InvitedetailActivity;
 import com.kaichaohulian.baocms.activity.OrderHistoryActivity;
 import com.kaichaohulian.baocms.activity.PhoneMsgDetailActivity;
 import com.kaichaohulian.baocms.activity.WithdrawalsDetailActivity;
@@ -202,6 +205,21 @@ public class HomeFragment extends BaseEcFragment implements CCPListAdapter.OnLis
                 //分红详情
                 if (contactId.equals(SystemPush.SYS_ACCT_BONUS)) {
                     Intent intent = new Intent(getActivity(), BonusHistoryActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
+                //邀请
+                if (contactId.equals("18510829668")) {
+                    Intent intent = new Intent(getActivity(), InvitationmgActivity.class);
+                    intent.putExtra("type", "discover");
+                    startActivity(intent);
+                    return;
+                }
+
+                //广告
+                if (contactId.equals("18510829669")) {
+                    Intent intent = new Intent(getActivity(), AdverActivity.class);
                     startActivity(intent);
                     return;
                 }

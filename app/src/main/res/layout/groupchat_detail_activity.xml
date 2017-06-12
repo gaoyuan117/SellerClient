@@ -23,10 +23,10 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/white">
 
-                <GridView
+                <com.kaichaohulian.baocms.view.MyGridView
                     android:id="@+id/ChenYuanGrid"
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:columnWidth="52dp"
                     android:gravity="start"
@@ -245,7 +245,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:visibility="gone"
+                    android:background="@color/white"
                     android:id="@+id/re_miandarao"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"

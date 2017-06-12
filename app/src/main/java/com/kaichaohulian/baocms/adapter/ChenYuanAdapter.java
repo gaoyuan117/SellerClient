@@ -21,7 +21,9 @@ public class ChenYuanAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+
         return members == null ? 1 : members.size() < 8 ? members.size() + 2 : 8;
+//        return members == null ? 0 : members.size() < 8 ? members.size() : 8;
     }
 
     public void setMembers(List<GroupDetail.DataObject.Members> members) {
@@ -49,24 +51,45 @@ public class ChenYuanAdapter extends BaseAdapter {
         ImageView ImageView = (android.widget.ImageView) convertView.findViewById(R.id.grid_item_image);
         TextView TextView = (android.widget.TextView) convertView.findViewById(R.id.grid_item_label);
 
-        if (getCount() - 1 == position) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ImageView.setImageDrawable(parent.getContext().getDrawable(R.mipmap.icon_releasetalk_del));
-            } else {
-                ImageView.setImageBitmap(null);
-                ImageView.setBackgroundResource(R.mipmap.icon_releasetalk_del);
-            }
-            TextView.setText("");
-        }
+        if (true) {
 
-        if (getCount() - 2 == position) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ImageView.setImageDrawable(parent.getContext().getDrawable(R.mipmap.icon_releasetalk_add));
-            } else {
-                ImageView.setImageBitmap(null);
-                ImageView.setBackgroundResource(R.mipmap.icon_releasetalk_add);
+            if (getCount() - 1 == position) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ImageView.setImageDrawable(parent.getContext().getDrawable(R.mipmap.icon_releasetalk_del));
+                } else {
+                    ImageView.setImageBitmap(null);
+                    ImageView.setBackgroundResource(R.mipmap.icon_releasetalk_del);
+                }
+                TextView.setText("");
             }
-            TextView.setText("");
+
+            if (getCount() - 2 == position) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ImageView.setImageDrawable(parent.getContext().getDrawable(R.mipmap.icon_releasetalk_add));
+                } else {
+                    ImageView.setImageBitmap(null);
+                    ImageView.setBackgroundResource(R.mipmap.icon_releasetalk_add);
+                }
+                TextView.setText("");
+            } else {
+                GroupDetail.DataObject.Members Item = getItem(position);
+                if (Item != null) {
+                    Glide.with(parent.getContext()).load(Item.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).into(ImageView);
+                    if (mDisplayName == 1) {
+                        if (StringUtils.isEmpty(Item.nameInGroup)) {
+                            TextView.setText("未命名");
+                        } else {
+                            TextView.setText(Item.nameInGroup);
+                        }
+                    } else {
+                        if (StringUtils.isEmpty(Item.username)) {
+                            TextView.setText("未命名");
+                        } else {
+                            TextView.setText(Item.username);
+                        }
+                    }
+                }
+            }
         } else {
             GroupDetail.DataObject.Members Item = getItem(position);
             if (Item != null) {
@@ -85,7 +108,9 @@ public class ChenYuanAdapter extends BaseAdapter {
                     }
                 }
             }
+
         }
+
         return convertView;
     }
 

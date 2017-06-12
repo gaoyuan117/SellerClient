@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +54,11 @@ public class AdvertOtherActivity extends BaseActivity {
     RelativeLayout womenSex;
     @BindView(R.id.else_sex_advertother)
     TextView elseSex;
+
+    @BindView(R.id.et_other_count)
+    EditText mEtCount;
+    @BindView(R.id.rl_count_otheradviert)
+    LinearLayout mLlCount;
     /*年龄选择器*/
     private ArrayList<Integer> agestart;
     private ArrayList<List<Integer>> ageend;

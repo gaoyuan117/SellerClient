@@ -39,7 +39,7 @@ public class ChattingsRowUtils {
             if (!TextUtils.isEmpty(data) && data.startsWith("yuntongxun009")) {
                 return 110;
             }
-            if (!TextUtils.isEmpty(data) && data.equals("cardtype")) {
+            if (!TextUtils.isEmpty(data) && data.contains("cardtype")) {
                 return 20323;
             }
 

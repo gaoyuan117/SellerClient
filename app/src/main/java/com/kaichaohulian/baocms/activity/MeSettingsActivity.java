@@ -2,7 +2,9 @@ package com.kaichaohulian.baocms.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
@@ -13,20 +15,27 @@ import com.kaichaohulian.baocms.ecdemo.common.dialog.ECProgressDialog;
 import com.kaichaohulian.baocms.ecdemo.common.utils.ECPreferenceSettings;
 import com.kaichaohulian.baocms.ecdemo.common.utils.ECPreferences;
 import com.kaichaohulian.baocms.ecdemo.ui.SDKCoreHelper;
+import com.kaichaohulian.baocms.entity.UserInfoBean;
+import com.kaichaohulian.baocms.http.HttpResult;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.SPUtils;
 
 import java.io.InvalidClassException;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MeSettingsActivity extends BaseEcActivity {
 
-
+    TextView tvAdd;
 
     @Override
     public void initData() {
-
+        loadUserInfoPhone();
     }
 
     @Override
@@ -54,8 +63,7 @@ public class MeSettingsActivity extends BaseEcActivity {
 
     @Override
     public void initEvent() {
-
-
+        tvAdd = (TextView) findViewById(R.id.tv_set_add);
 
     }
 
@@ -99,28 +107,44 @@ public class MeSettingsActivity extends BaseEcActivity {
     }
 
 
-
-    @OnClick({R.id.setting_set_paypassword,R.id.setting_change_paypassword, R.id.setting_forget_paypassword, R.id.setting_change_password, R.id.settings_relative_logout, R.id.settings_addfriend})
+    @OnClick({R.id.setting_set_paypassword, R.id.setting_change_paypassword, R.id.setting_forget_paypassword, R.id.setting_change_password, R.id.settings_relative_logout, R.id.settings_addfriend})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.setting_change_paypassword:
-                ActivityUtil.next(getActivity(),changPayWordActivity.class);
+                ActivityUtil.next(getActivity(), changPayWordActivity.class);
                 break;
             case R.id.setting_forget_paypassword:
-                ActivityUtil.next(getActivity(),forgetPayWordActivity.class);
+                ActivityUtil.next(getActivity(), forgetPayWordActivity.class);
                 break;
             case R.id.setting_change_password:
-                ActivityUtil.next(getActivity(),changPwdActivity.class);
+                ActivityUtil.next(getActivity(), changPwdActivity.class);
                 break;
             case R.id.settings_relative_logout:
                 handleLogout();
                 break;
             case R.id.settings_addfriend:
-                ActivityUtil.next(getActivity(),AddfriendPay.class);
+                ActivityUtil.next(getActivity(), AddfriendPay.class);
                 break;
             case R.id.setting_set_paypassword:
-                ActivityUtil.next(getActivity(),Setpayword.class);
+                ActivityUtil.next(getActivity(), Setpayword.class);
                 break;
         }
+    }
+
+    /**
+     * 加载用户基本信息
+     */
+    private void loadUserInfoPhone() {
+        Map<String, String> userMap = new HashMap<>();
+        userMap.put("phoneNumber", MyApplication.getInstance().UserInfo.getPhoneNumber());
+        userMap.put("id", MyApplication.getInstance().UserInfo.getUserId() + "");
+        RetrofitClient.getInstance().createApi().loadUserInfoPhone(userMap)
+                .compose(RxUtils.<HttpResult<UserInfoBean>>io_main())
+                .subscribe(new BaseObjObserver<UserInfoBean>(this, "加载中", false) {
+                    @Override
+                    protected void onHandleSuccess(UserInfoBean userInfoBean) {
+                        tvAdd.setText(userInfoBean.getAddPay() + "元");
+                    }
+                });
     }
 }

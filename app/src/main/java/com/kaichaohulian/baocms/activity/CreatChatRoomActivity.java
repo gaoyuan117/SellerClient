@@ -321,7 +321,8 @@ public class CreatChatRoomActivity extends BaseActivity {
         JSONObject.put("id", MyApplication.getInstance().UserInfo.getUserId());
         JSONObject.put("userToInviteIds", JSONArray);
         params.put("JsonString", JSONObject);
-        DBLog.e("tag", Url.groups_friends_add);
+        DBLog.e("gy", "userToInviteIds："+JSONArray.toString());
+        DBLog.e("gy", "JsonString："+JSONObject.toString());
         HttpUtil.post(Url.groups_friends_add, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

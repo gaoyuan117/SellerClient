@@ -4,8 +4,8 @@
     android:id="@+id/activity_advertmass"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/bg_color_gray"
+    android:orientation="vertical"
     tools:context="com.kaichaohulian.baocms.activity.AdvertmassActivity">
 
     <include layout="@layout/title_project" />
@@ -89,13 +89,19 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="最新群发"
+        android:padding="10dp"/>
+
+
     <ListView
-        android:layout_margin="10dp"
         android:id="@+id/lv_advertmass"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
+        android:layout_margin="10dp"
         android:divider="@color/bg_color_gray"
         android:dividerHeight="10dp"
-        ></ListView>
+        android:scrollbars="none"></ListView>
 </LinearLayout>

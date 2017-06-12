@@ -30,6 +30,7 @@ import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.utils.DBLog;
 import com.kaichaohulian.baocms.utils.StringUtils;
+import com.kaichaohulian.baocms.view.MyGridView;
 import com.kaichaohulian.baocms.view.ShowDialog;
 import com.kaichaohulian.baocms.view.SwitchButton;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -49,7 +50,7 @@ import de.greenrobot.event.EventBus;
  */
 public class GroupChatDetailActivity extends BaseActivity implements View.OnClickListener, SwitchButton.OnCheckedChangeListener {
     Button btn_exit_grp;
-    GridView ChenYuanGrid;
+    MyGridView ChenYuanGrid;
     String edtName, edtGongGao;
     TextView allChenYuanText, tv_name, noticeContext, tv_myname;
     SwitchButton sb_MianDaRao, sb_ZhiDing, sb_save_txl, sb_show_name;
@@ -670,6 +671,8 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
         RequestParams params = new RequestParams();
         params.put("groupId", GroupId);
         params.put("messageNo", messageFlag);
+        Log.e("gy", "消息免打扰groupId：" + GroupId);
+        Log.e("gy", "消息免打扰messageNo：" + messageFlag);
         HttpUtil.post(Url.updateName, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -720,6 +723,7 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
             }
         });
     }
+
     public void updateZhiding(int topmessage) {
         if (StringUtils.isEmpty(GroupId)) {
             return;

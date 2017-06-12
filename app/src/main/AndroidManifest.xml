@@ -112,7 +112,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="DlIgauUDuaxmaDEvnksGEEzwMbqRA5GW" />
+            android:value="NLn6UbtYBOO4pSlfc1bu0ljjYfsptndq" />
 
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -1197,14 +1197,18 @@
         <activity android:name=".activity.Setpayword" />
         <activity android:name=".activity.DiscoverInvitedDetailActivity" />
         <activity android:name=".activity.InvitedetailActivity" />
+
          
+
 
         <activity android:name=".activity.EvaluateActivity" />
 
         <service
             android:name=".NearService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".activity.TimeActivity"></activity>
     </application>
 
 </manifest>

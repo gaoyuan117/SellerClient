@@ -16,7 +16,7 @@
 
         <include layout="@layout/title_project" />
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/rl_reciver_sendInvition"
             android:layout_width="match_parent"
             android:layout_height="44dp"
@@ -28,30 +28,41 @@
                 android:id="@+id/img_reciver_sendInvition"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:scaleType="fitXY"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
                 android:src="@mipmap/revicer_invite" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/img_reciver_sendInvition"
                 android:text="接收人"
+                android:textColor="@color/zy_text_black" />
+
+            <TextView
+                android:id="@+id/tv_send_invite_nums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:lines="1"
+                android:text=""
                 android:textColor="@color/zy_text_black" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
                 android:layout_marginRight="15dp"
                 android:src="@mipmap/right_arrow" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/rl_sendInvitionNum"
@@ -64,10 +75,10 @@
                 android:id="@+id/img_sendInvitionNum"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
                 android:src="@mipmap/peoplenum_invite" />
 
             <TextView
@@ -115,10 +126,10 @@
                 android:id="@+id/img_title_sendInvition"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
                 android:src="@mipmap/zhuti_invite" />
 
             <TextView
@@ -162,10 +173,10 @@
                 android:id="@+id/img_InvitionPay"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
                 android:src="@mipmap/money_invite" />
 
             <TextView
@@ -203,6 +214,45 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_responsetime"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_responsetime"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/trueshijian_invite" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/img_responsetime"
+                android:text="响应时间"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_responsetime"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:gravity="right|center"
+                android:textColor="@color/zy_text_gray"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/rl_Invitiontime"
             android:layout_width="match_parent"
             android:layout_height="44dp"
@@ -214,10 +264,10 @@
                 android:id="@+id/img_Invitiontime"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
                 android:src="@mipmap/shiijan_invite" />
 
             <TextView
@@ -252,47 +302,6 @@
                 android:src="@mipmap/right_arrow" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/rl_responsetime"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/img_responsetime"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:scaleType="fitXY"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:src="@mipmap/trueshijian_invite" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/img_responsetime"
-                android:text="响应时间"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/tv_responsetime"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:background="@null"
-                android:gravity="right|center"
-                android:hint="小时"
-                android:inputType="numberDecimal"
-                android:textColor="@color/zy_text_gray"
-                android:textSize="12sp" />
-        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_Activity_location"
@@ -306,10 +315,10 @@
                 android:id="@+id/img_Activity_location"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
                 android:src="@mipmap/address_invite" />
 
             <TextView
@@ -333,11 +342,11 @@
             android:id="@+id/edt_actaddress"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:paddingLeft="15dp"
+            android:background="@color/white"
             android:drawableLeft="@mipmap/address_img"
             android:drawablePadding="4dp"
-            android:background="@color/white"
             android:gravity="center_vertical"
+            android:paddingLeft="15dp"
             android:textSize="12sp" />
 
     </LinearLayout>

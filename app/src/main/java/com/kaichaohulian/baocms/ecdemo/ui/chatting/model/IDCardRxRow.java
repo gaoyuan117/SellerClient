@@ -53,12 +53,12 @@ public class IDCardRxRow extends BaseChattingRow {
             ViewHolderTag holderTag = ViewHolderTag.createTag(detail,
                     ViewHolderTag.TagType.TAG_IM_IDCARD, position);
             ECTextMessageBody textBody = (ECTextMessageBody) message.getBody();
-            textBody.getMessage();
 
-            String msgTextString = textBody.getMessage();
-            Log.e("fc", msgTextString);
+//            String msgTextString = textBody.getMessage();
+            String userData = message.getUserData();
+            Log.e("gy", "名片数据："+userData);
             try {
-                JSONObject jsonObject = new JSONObject(msgTextString);
+                JSONObject jsonObject = new JSONObject(userData);
                 Glide.with(context).load(jsonObject.getString("a")).into(holder.avater);
                 holder.username.setText(jsonObject.getString("n"));
                 holder.phone.setText(jsonObject.getString("m"));

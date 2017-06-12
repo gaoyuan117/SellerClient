@@ -57,9 +57,9 @@ public class AddFriendsFinalActivity extends BaseActivity {
         friendId = intent.getStringExtra("friend_id");
         money = intent.getStringExtra("add_money");
         type = intent.getStringExtra("type");
-        Log.e("gy","id："+friendId);
-        Log.e("gy","add_money："+money);
-        Log.e("gy","type："+type);
+        Log.e("gy", "id：" + friendId);
+        Log.e("gy", "add_money：" + money);
+        Log.e("gy", "type：" + type);
     }
 
     @Override
@@ -75,9 +75,9 @@ public class AddFriendsFinalActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 message = et_reason.getText().toString();
-                if (money.equals("0")){
+                if (money.equals("0") || money.equals("0.0")) {
                     addFriend();
-                }else {
+                } else {
                     openDialog();
                 }
             }
@@ -91,8 +91,8 @@ public class AddFriendsFinalActivity extends BaseActivity {
         if (!TextUtils.isEmpty(message)) {
             addMap.put("message", message);
         }
-        if(type.equals("3")){
-            addMap.put("status","SAYHELLO");
+        if (type.equals("3")) {
+            addMap.put("status", "SAYHELLO");
         }
         RetrofitClient.getInstance().createApi().addFriend(addMap)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
@@ -113,10 +113,10 @@ public class AddFriendsFinalActivity extends BaseActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(AddFriendsFinalActivity.this, PayActivity.class);
                         intent.putExtra("pay_money", money);
-                        intent.putExtra("friend_id",friendId+"");
-                        intent.putExtra("add_money",money);
-                        intent.putExtra("type","1");
-                        intent.putExtra("message",message);
+                        intent.putExtra("friend_id", friendId + "");
+                        intent.putExtra("add_money", money);
+                        intent.putExtra("type", "1");
+                        intent.putExtra("message", message);
                         startActivity(intent);
                     }
                 }).showDialog();

@@ -207,7 +207,7 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
 //                title.setText(data.get(position).getBankName() + "    " + ((double) (data.get(position).getMoney())) / 100 + "元");
 //            }
                 if (data.get(position).getZfbAccount() != null || data.get(position).getWeixinAccount() != null || data.get(position).getBankName() != null) {
-                    title.setText("申请提现    " + ((double) (data.get(position).getMoney())) / 100 + "元");
+                    title.setText("申请提现    " + ((double) (data.get(position).getMoney()))  + "元");
                 }
                 TextView time = (TextView) convertView.findViewById(R.id.withdraw_time);
                 TextView status = (TextView) convertView.findViewById(R.id.status);

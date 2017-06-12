@@ -105,12 +105,13 @@ public class PhoneMsgDetailActivity extends BaseActivity {
                             phoneMsgDetailEntity.setTimeStamp(jsonObject.getInt("timeStamp"));
                             phoneMsgDetailEntity.setPhoneNumber(jsonObject.getString("phoneNumber"));
                             phoneMsgDetailEntity.setCreatedTime(jsonObject.getString("createdTime"));
+                            phoneMsgDetailEntity.setStatus(jsonObject.getString("status"));
                             mList.add(phoneMsgDetailEntity);
                         }
                     }
                     mAdapter.notifyDataSetChanged();
                     mPage++;
-                    showToastMsg(response.getString("errorDescription"));
+//                    showToastMsg(response.getString("errorDescription"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {

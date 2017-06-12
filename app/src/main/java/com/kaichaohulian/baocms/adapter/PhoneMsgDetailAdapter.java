@@ -46,7 +46,7 @@ public class PhoneMsgDetailAdapter extends BaseAdapter {
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.item_withdrawals_detail, null);
+            convertView = inflater.inflate(R.layout.item_chongzhi, null);
             viewHolder.msgTime = (TextView) convertView.findViewById(R.id.withdraw_msg_time);
             viewHolder.msgContent = (TextView) convertView.findViewById(R.id.withdraw_msg_content);
             viewHolder.headTime = (TextView) convertView.findViewById(R.id.tixian_time);
@@ -60,21 +60,20 @@ public class PhoneMsgDetailAdapter extends BaseAdapter {
         }
 
         PhoneMsgDetailEntity bean = mList.get(position);
-        if (bean.getStatus().equals("0")) {
-            viewHolder.status.setText("充值失败");
-        } else {
-            viewHolder.status.setText("充值成功");
-        }
-        viewHolder.msgTime.setText(Utils.stampToDate(mList.get(position).getTimeStamp() + ""));
-        viewHolder.money.setText("充值金额："+bean.getAmount()+"元");
-        if (mList.get(position).getActualamount() != null && !mList.get(position).getActualamount().equals("null")) {
-            viewHolder.msgContent.setText(mList.get(position).getPhoneNumber() + "已经成功充值" + mList.get(position).getActualamount() + "元");
-        }
+        viewHolder.status.setText("充值成功");
+        viewHolder.msgTime.setText(bean.getCreatedTime());
+        String[] split = bean.getCreatedTime().split(" ");
+        viewHolder.headTime.setText(split[0]);
+        viewHolder.money.setText("充值金额：" + bean.getActualamount() + "元");
+        viewHolder.type.setText("系统充值");
+//        if (mList.get(position).getActualamount() != null && !mList.get(position).getActualamount().equals("null")) {
+//            viewHolder.msgContent.setText(mList.get(position).getPhoneNumber() + "已经成功充值" + mList.get(position).getActualamount() + "元");
+//        }
         return convertView;
     }
 
     class ViewHolder {
-        TextView msgTime,headTime,status,money,type;
+        TextView msgTime, headTime, status, money, type;
         TextView msgContent;
     }
 }

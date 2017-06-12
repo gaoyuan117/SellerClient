@@ -130,6 +130,7 @@ public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.On
                         } else if (state == 2) {
                             ToastUtil.showMessage("已拒绝");
                         }
+                        loadInvited(1);
                     }
                 });
     }

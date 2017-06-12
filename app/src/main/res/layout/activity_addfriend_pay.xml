@@ -46,7 +46,7 @@
             android:gravity="right"
             android:hint="0.00"
             android:textColorHint="@color/blue"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textCursorDrawable="@null" />
 
         <TextView
