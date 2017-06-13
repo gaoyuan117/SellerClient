@@ -1198,6 +1198,7 @@
         <activity android:name=".activity.DiscoverInvitedDetailActivity" />
         <activity android:name=".activity.InvitedetailActivity" />
 
+
          
 
 
@@ -1208,7 +1209,11 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.TimeActivity"></activity>
+        <activity android:name=".activity.TimeActivity" />
+        <activity android:name=".activity.IDCardActivity" />
+        <activity android:name=".activity.RemarkActivity" />
+        <activity android:name=".activity.PositionActivity" />
+        <activity android:name=".HobbyActivity"></activity>
     </application>
 
 </manifest>

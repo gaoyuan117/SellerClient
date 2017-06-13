@@ -8,268 +8,277 @@ import java.util.List;
 
 public class UserInfoBean {
 
-        /**
-         * id : 7237
-         * username : 嘻嘻
-         * password : e10adc3949ba59abbe56e057f20f883e
-         * accountNumber : 3
-         * qrCode : null
-         * districtId : 北京市 海淀区
-         * sex : 0
-         * thermalSignatrue : null
-         * phoneNumber : 18572651299
-         * userEmail : null
-         * balance : 2.12
-         * avatar : http://oez2a4f3v.bkt.clouddn.com/FqHspSYV-U-SN86Hv3Xnk8KV6z__
-         * backAvatar : null
-         * paypassword : e10adc3949ba59abbe56e057f20f883e
-         * token : null
-         * isfriend : 1
-         * labelName : null
-         * isbang : null
-         * groupId : null
-         * age : null
-         * job : null
-         * hobby : null
-         * spreadQrCOde : null
-         * addPay : 0
-         * images : ["\"http:\\/\\/oez2a4f3v.bkt.clouddn.com\\/Fu8arndkMRr3svz8GT-XAicS_Lo4\"","\"http:\\/\\/oez2a4f3v.bkt.clouddn.com\\/Fu8arndkMRr3svz8GT-XAicS_Lo4\"","\"http:\\/\\/oez2a4f3v.bkt.clouddn.com\\/FlQAVuUGaTPZFLonGsQTF2hXriws\""]
-         * vip : false
-         */
+    /**
+     * id : 7237
+     * username : 嘻嘻
+     * password : e10adc3949ba59abbe56e057f20f883e
+     * accountNumber : 3
+     * qrCode : null
+     * districtId : 北京市 海淀区
+     * sex : 0
+     * thermalSignatrue : null
+     * phoneNumber : 18572651299
+     * userEmail : null
+     * balance : 2.12
+     * avatar : http://oez2a4f3v.bkt.clouddn.com/FqHspSYV-U-SN86Hv3Xnk8KV6z__
+     * backAvatar : null
+     * paypassword : e10adc3949ba59abbe56e057f20f883e
+     * token : null
+     * isfriend : 1
+     * labelName : null
+     * isbang : null
+     * groupId : null
+     * age : null
+     * job : null
+     * hobby : null
+     * spreadQrCOde : null
+     * addPay : 0
+     * images : ["\"http:\\/\\/oez2a4f3v.bkt.clouddn.com\\/Fu8arndkMRr3svz8GT-XAicS_Lo4\"","\"http:\\/\\/oez2a4f3v.bkt.clouddn.com\\/Fu8arndkMRr3svz8GT-XAicS_Lo4\"","\"http:\\/\\/oez2a4f3v.bkt.clouddn.com\\/FlQAVuUGaTPZFLonGsQTF2hXriws\""]
+     * vip : false
+     */
 
-        private int id;
-        private String username;
-        private String password;
-        private String accountNumber;
-        private Object qrCode;
-        private String districtId;
-        private int sex;
-        private Object thermalSignatrue;
-        private String phoneNumber;
-        private Object userEmail;
-        private double balance;
-        private String avatar;
-        private Object backAvatar;
-        private String paypassword;
-        private Object token;
-        private int isfriend;
-        private Object labelName;
-        private Object isbang;
-        private Object groupId;
-        private Object age;
-        private Object job;
-        private Object hobby;
-        private Object spreadQrCOde;
-        private double addPay;
-        private boolean vip;
-        private List<String> images;
+    private int id;
+    private String username;
+    private String password;
+    private String accountNumber;
+    private Object qrCode;
+    private String districtId;
+    private int sex;
+    private Object thermalSignatrue;
+    private String phoneNumber;
+    private Object userEmail;
+    private double balance;
+    private String avatar;
+    private Object backAvatar;
+    private String paypassword;
+    private Object token;
+    private int isfriend;
+    private Object labelName;
+    private Object isbang;
+    private Object groupId;
+    private Object age;
+    private Object job;
+    private Object hobby;
+    private Object spreadQrCOde;
+    private double addPay;
+    private boolean vip;
+    private Object remark;
+    private List<String> images;
 
-        public int getId() {
-            return id;
-        }
+    public Object getRemark() {
+        return remark;
+    }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+    public void setRemark(Object remark) {
+        this.remark = remark;
+    }
 
-        public String getUsername() {
-            return username;
-        }
+    public int getId() {
+        return id;
+    }
 
-        public void setUsername(String username) {
-            this.username = username;
-        }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-        public String getPassword() {
-            return password;
-        }
+    public String getUsername() {
+        return username;
+    }
 
-        public void setPassword(String password) {
-            this.password = password;
-        }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-        public String getAccountNumber() {
-            return accountNumber;
-        }
+    public String getPassword() {
+        return password;
+    }
 
-        public void setAccountNumber(String accountNumber) {
-            this.accountNumber = accountNumber;
-        }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-        public Object getQrCode() {
-            return qrCode;
-        }
+    public String getAccountNumber() {
+        return accountNumber;
+    }
 
-        public void setQrCode(Object qrCode) {
-            this.qrCode = qrCode;
-        }
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
-        public String getDistrictId() {
-            return districtId;
-        }
+    public Object getQrCode() {
+        return qrCode;
+    }
 
-        public void setDistrictId(String districtId) {
-            this.districtId = districtId;
-        }
+    public void setQrCode(Object qrCode) {
+        this.qrCode = qrCode;
+    }
 
-        public int getSex() {
-            return sex;
-        }
+    public String getDistrictId() {
+        return districtId;
+    }
 
-        public void setSex(int sex) {
-            this.sex = sex;
-        }
+    public void setDistrictId(String districtId) {
+        this.districtId = districtId;
+    }
 
-        public Object getThermalSignatrue() {
-            return thermalSignatrue;
-        }
+    public int getSex() {
+        return sex;
+    }
 
-        public void setThermalSignatrue(Object thermalSignatrue) {
-            this.thermalSignatrue = thermalSignatrue;
-        }
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
 
-        public String getPhoneNumber() {
-            return phoneNumber;
-        }
+    public Object getThermalSignatrue() {
+        return thermalSignatrue;
+    }
 
-        public void setPhoneNumber(String phoneNumber) {
-            this.phoneNumber = phoneNumber;
-        }
+    public void setThermalSignatrue(Object thermalSignatrue) {
+        this.thermalSignatrue = thermalSignatrue;
+    }
 
-        public Object getUserEmail() {
-            return userEmail;
-        }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-        public void setUserEmail(Object userEmail) {
-            this.userEmail = userEmail;
-        }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-        public double getBalance() {
-            return balance;
-        }
+    public Object getUserEmail() {
+        return userEmail;
+    }
 
-        public void setBalance(double balance) {
-            this.balance = balance;
-        }
+    public void setUserEmail(Object userEmail) {
+        this.userEmail = userEmail;
+    }
 
-        public String getAvatar() {
-            return avatar;
-        }
+    public double getBalance() {
+        return balance;
+    }
 
-        public void setAvatar(String avatar) {
-            this.avatar = avatar;
-        }
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 
-        public Object getBackAvatar() {
-            return backAvatar;
-        }
+    public String getAvatar() {
+        return avatar;
+    }
 
-        public void setBackAvatar(Object backAvatar) {
-            this.backAvatar = backAvatar;
-        }
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
-        public String getPaypassword() {
-            return paypassword;
-        }
+    public Object getBackAvatar() {
+        return backAvatar;
+    }
 
-        public void setPaypassword(String paypassword) {
-            this.paypassword = paypassword;
-        }
+    public void setBackAvatar(Object backAvatar) {
+        this.backAvatar = backAvatar;
+    }
 
-        public Object getToken() {
-            return token;
-        }
+    public String getPaypassword() {
+        return paypassword;
+    }
 
-        public void setToken(Object token) {
-            this.token = token;
-        }
+    public void setPaypassword(String paypassword) {
+        this.paypassword = paypassword;
+    }
 
-        public int getIsfriend() {
-            return isfriend;
-        }
+    public Object getToken() {
+        return token;
+    }
 
-        public void setIsfriend(int isfriend) {
-            this.isfriend = isfriend;
-        }
+    public void setToken(Object token) {
+        this.token = token;
+    }
 
-        public Object getLabelName() {
-            return labelName;
-        }
+    public int getIsfriend() {
+        return isfriend;
+    }
 
-        public void setLabelName(Object labelName) {
-            this.labelName = labelName;
-        }
+    public void setIsfriend(int isfriend) {
+        this.isfriend = isfriend;
+    }
 
-        public Object getIsbang() {
-            return isbang;
-        }
+    public Object getLabelName() {
+        return labelName;
+    }
 
-        public void setIsbang(Object isbang) {
-            this.isbang = isbang;
-        }
+    public void setLabelName(Object labelName) {
+        this.labelName = labelName;
+    }
 
-        public Object getGroupId() {
-            return groupId;
-        }
+    public Object getIsbang() {
+        return isbang;
+    }
 
-        public void setGroupId(Object groupId) {
-            this.groupId = groupId;
-        }
+    public void setIsbang(Object isbang) {
+        this.isbang = isbang;
+    }
 
-        public Object getAge() {
-            return age;
-        }
+    public Object getGroupId() {
+        return groupId;
+    }
 
-        public void setAge(Object age) {
-            this.age = age;
-        }
+    public void setGroupId(Object groupId) {
+        this.groupId = groupId;
+    }
 
-        public Object getJob() {
-            return job;
-        }
+    public Object getAge() {
+        return age;
+    }
 
-        public void setJob(Object job) {
-            this.job = job;
-        }
+    public void setAge(Object age) {
+        this.age = age;
+    }
 
-        public Object getHobby() {
-            return hobby;
-        }
+    public Object getJob() {
+        return job;
+    }
 
-        public void setHobby(Object hobby) {
-            this.hobby = hobby;
-        }
+    public void setJob(Object job) {
+        this.job = job;
+    }
 
-        public Object getSpreadQrCOde() {
-            return spreadQrCOde;
-        }
+    public Object getHobby() {
+        return hobby;
+    }
 
-        public void setSpreadQrCOde(Object spreadQrCOde) {
-            this.spreadQrCOde = spreadQrCOde;
-        }
+    public void setHobby(Object hobby) {
+        this.hobby = hobby;
+    }
 
-        public double getAddPay() {
-            return addPay;
-        }
+    public Object getSpreadQrCOde() {
+        return spreadQrCOde;
+    }
 
-        public void setAddPay(double addPay) {
-            this.addPay = addPay;
-        }
+    public void setSpreadQrCOde(Object spreadQrCOde) {
+        this.spreadQrCOde = spreadQrCOde;
+    }
 
-        public boolean isVip() {
-            return vip;
-        }
+    public double getAddPay() {
+        return addPay;
+    }
 
-        public void setVip(boolean vip) {
-            this.vip = vip;
-        }
+    public void setAddPay(double addPay) {
+        this.addPay = addPay;
+    }
 
-        public List<String> getImages() {
-            return images;
-        }
+    public boolean isVip() {
+        return vip;
+    }
 
-        public void setImages(List<String> images) {
-            this.images = images;
-        }
+    public void setVip(boolean vip) {
+        this.vip = vip;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
 }
 

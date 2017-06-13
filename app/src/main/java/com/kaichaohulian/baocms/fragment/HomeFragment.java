@@ -21,8 +21,10 @@ import com.kaichaohulian.baocms.activity.AdverActivity;
 import com.kaichaohulian.baocms.activity.BonusHistoryActivity;
 import com.kaichaohulian.baocms.activity.InvitationmgActivity;
 import com.kaichaohulian.baocms.activity.InvitedetailActivity;
+import com.kaichaohulian.baocms.activity.NewFriendsActivity;
 import com.kaichaohulian.baocms.activity.OrderHistoryActivity;
 import com.kaichaohulian.baocms.activity.PhoneMsgDetailActivity;
+import com.kaichaohulian.baocms.activity.SmallMoneyDetailActivity;
 import com.kaichaohulian.baocms.activity.WithdrawalsDetailActivity;
 import com.kaichaohulian.baocms.adapter.GroupChatAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
@@ -224,6 +226,19 @@ public class HomeFragment extends BaseEcFragment implements CCPListAdapter.OnLis
                     return;
                 }
 
+
+                //好友请求
+                if (contactId.equals("182638268288")) {
+                    Intent intent = new Intent(getActivity(), NewFriendsActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                //退款
+                if (contactId.equals("182638268289")) {
+                    Intent intent = new Intent(getActivity(), SmallMoneyDetailActivity.class);
+                    startActivity(intent);
+                    return;
+                }
                 //订单详情
                 if (contactId.equals(SystemPush.SYS_ACCT_ORDER)) {
                     Intent intent = new Intent(getActivity(), OrderHistoryActivity.class);

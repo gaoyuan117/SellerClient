@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.kaichaohulian.baocms.HobbyActivity;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
@@ -232,37 +233,37 @@ public class PersonalActivity extends BaseActivity {
                         try {
 
 
-                        if (earnestMoneyEntity.payEarnestMoney==null) {
-                            tvEarnestMoney.setText("0");
-                        } else {
-                            tvEarnestMoney.setText(earnestMoneyEntity.payEarnestMoney+"");
-                        }
-                        if (earnestMoneyEntity.getEarnestMoney==null) {
-                            tvGetMoney.setText("0");
-                        } else {
-                            tvGetMoney.setText((earnestMoneyEntity.getEarnestMoney+""));
-                        }
-                        if (earnestMoneyEntity.beToAdd == 0) {
-                            tvBeAddFriend.setText("0");
-                        } else {
-                            tvBeAddFriend.setText(earnestMoneyEntity.beToAdd + "");
-                        }
-                        if (earnestMoneyEntity.appointment == 0) {
-                            tvAppointment.setText("0");
-                        } else {
-                            tvAppointment.setText( earnestMoneyEntity.appointment+"");
-                        }
-                        if (earnestMoneyEntity.beInvite == 0) {
-                            tvBeInvite.setText("0");
-                        } else {
-                            tvBeInvite.setText(earnestMoneyEntity.beInvite+"");
-                        }
-                        if (earnestMoneyEntity.noAppointment == 0) {
-                            tvBeMiss.setText("0");
-                        } else {
-                            tvBeMiss.setText(earnestMoneyEntity.noAppointment+"");
-                        }
-                        }catch (Exception e){
+                            if (earnestMoneyEntity.payEarnestMoney == null) {
+                                tvEarnestMoney.setText("0");
+                            } else {
+                                tvEarnestMoney.setText(earnestMoneyEntity.payEarnestMoney + "");
+                            }
+                            if (earnestMoneyEntity.getEarnestMoney == null) {
+                                tvGetMoney.setText("0");
+                            } else {
+                                tvGetMoney.setText((earnestMoneyEntity.getEarnestMoney + ""));
+                            }
+                            if (earnestMoneyEntity.beToAdd == 0) {
+                                tvBeAddFriend.setText("0");
+                            } else {
+                                tvBeAddFriend.setText(earnestMoneyEntity.beToAdd + "");
+                            }
+                            if (earnestMoneyEntity.appointment == 0) {
+                                tvAppointment.setText("0");
+                            } else {
+                                tvAppointment.setText(earnestMoneyEntity.appointment + "");
+                            }
+                            if (earnestMoneyEntity.beInvite == 0) {
+                                tvBeInvite.setText("0");
+                            } else {
+                                tvBeInvite.setText(earnestMoneyEntity.beInvite + "");
+                            }
+                            if (earnestMoneyEntity.noAppointment == 0) {
+                                tvBeMiss.setText("0");
+                            } else {
+                                tvBeMiss.setText(earnestMoneyEntity.noAppointment + "");
+                            }
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -683,13 +684,13 @@ public class PersonalActivity extends BaseActivity {
                 break;
             case R.id.personal_job_linear:
                 Intent intentjob = new Intent();
-                intentjob.setClass(PersonalActivity.this, MeNameEditActivity.class);
+                intentjob.setClass(PersonalActivity.this, PositionActivity.class);
                 intentjob.putExtra("mTitleName", "setJob");
                 startActivityForResult(intentjob, SET_JOB);
                 break;
             case R.id.personal_hobby_linear:
                 Intent intenthobby = new Intent();
-                intenthobby.setClass(PersonalActivity.this, MeNameEditActivity.class);
+                intenthobby.setClass(PersonalActivity.this, HobbyActivity.class);
                 intenthobby.putExtra("mTitleName", "setHobby");
                 startActivityForResult(intenthobby, SET_HOBBY);
                 break;

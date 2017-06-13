@@ -49,10 +49,12 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.RedpacketManager;
+import com.kaichaohulian.baocms.activity.AdvertMassSelectActivity;
 import com.kaichaohulian.baocms.activity.CollectionListActivity;
 import com.kaichaohulian.baocms.activity.FriendDetailActivity;
 import com.kaichaohulian.baocms.activity.FriendInfoActivity;
 import com.kaichaohulian.baocms.activity.GroupChatDetailActivity;
+import com.kaichaohulian.baocms.activity.IDCardActivity;
 import com.kaichaohulian.baocms.activity.RedpacketOpenActivity;
 import com.kaichaohulian.baocms.activity.SendingRedBagActivity;
 import com.kaichaohulian.baocms.activity.WithDrawToFriendActivity;
@@ -98,6 +100,7 @@ import com.kaichaohulian.baocms.ecdemo.ui.contact.ContactLogic;
 import com.kaichaohulian.baocms.ecdemo.ui.contact.ECContacts;
 import com.kaichaohulian.baocms.ecdemo.ui.group.GroupInfoActivity;
 import com.kaichaohulian.baocms.ecdemo.ui.plugin.FileExplorerActivity;
+import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
 import com.kaichaohulian.baocms.entity.RedBagDetail;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpUtil;
@@ -142,6 +145,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.InvalidClassException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -886,6 +890,12 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
         // If there's no data (because the user didn't select a picture and
         // just hit BACK, for example), there's nothing to do.
 
+        if(requestCode==111){
+            ContactFriendsEntity data1 = (ContactFriendsEntity) data.getSerializableExtra("data");
+            handleSendIDCardMessage(data1.getUsername(),data1.getAvatar(),data1.getPhoneNumber(),data1.getId());
+
+        }
+
         if (requestCode == 0x2a || requestCode == SELECT_AT_SOMONE) {
             if (data == null) {
                 return;
@@ -1237,7 +1247,7 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
     /**
      * 发送个人名片
      */
-    private void handleSendIDCardMessage() {
+    private void handleSendIDCardMessage(String name, String avatar, String phone, int userId) {
         // 组建一个待发送的ECMessage
         ECMessage msg = ECMessage.createECMessage(ECMessage.Type.TXT);
 
@@ -1251,10 +1261,10 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
 
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("n", MyApplication.getInstance().UserInfo.getUsername());
-            jsonObject.put("a", MyApplication.getInstance().UserInfo.getAvatar());
-            jsonObject.put("m", MyApplication.getInstance().UserInfo.getPhoneNumber());
-            jsonObject.put("u", MyApplication.getInstance().UserInfo.getUserId());
+            jsonObject.put("n", name);
+            jsonObject.put("a",avatar);
+            jsonObject.put("m", phone);
+            jsonObject.put("u", userId);
             jsonObject.put("txt_msgType", "cardtype");
             text = jsonObject.toString();
         } catch (JSONException e) {
@@ -1914,8 +1924,11 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
 
         @Override
         public void OnSendIDCardMessageRequest() {
-            handleSendIDCardMessage();
+            Intent intent = new Intent(getActivity(), IDCardActivity.class);
+            startActivityForResult(intent, 111);
         }
+
+
 
         @Override
         public void OnSelectImageReuqest() {

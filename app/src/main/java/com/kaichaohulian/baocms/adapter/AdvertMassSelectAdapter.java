@@ -40,6 +40,7 @@ public class AdvertMassSelectAdapter extends ConactAdapter implements SectionInd
     public MyFilter myFilter;
     private HashSet<ContactFriendsEntity> set;
     private List<ContactFriendsEntity> selectList;
+    private boolean isOwner;
 
     @SuppressLint("SdCardPath")
     public AdvertMassSelectAdapter(Context context, int resource, List<ContactFriendsEntity> objects) {

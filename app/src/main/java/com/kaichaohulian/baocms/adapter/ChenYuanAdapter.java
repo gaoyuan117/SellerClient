@@ -18,12 +18,17 @@ import java.util.List;
 
 public class ChenYuanAdapter extends BaseAdapter {
     public List<GroupDetail.DataObject.Members> members;
+    private boolean isOwner;
 
     @Override
     public int getCount() {
+        if (isOwner) {
+            return members == null ? 1 : members.size() < 8 ? members.size() + 2 : 8;
 
-        return members == null ? 1 : members.size() < 8 ? members.size() + 2 : 8;
-//        return members == null ? 0 : members.size() < 8 ? members.size() : 8;
+        } else {
+            return members == null ? 0 : members.size() < 8 ? members.size() : 8;
+
+        }
     }
 
     public void setMembers(List<GroupDetail.DataObject.Members> members) {
@@ -45,14 +50,18 @@ public class ChenYuanAdapter extends BaseAdapter {
         return position;
     }
 
+    public void isOwner(boolean b) {
+        isOwner = b;
+        notifyDataSetChanged();
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, null);
         ImageView ImageView = (android.widget.ImageView) convertView.findViewById(R.id.grid_item_image);
         TextView TextView = (android.widget.TextView) convertView.findViewById(R.id.grid_item_label);
 
-        if (true) {
-
+        if (isOwner) {
             if (getCount() - 1 == position) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     ImageView.setImageDrawable(parent.getContext().getDrawable(R.mipmap.icon_releasetalk_del));
@@ -91,6 +100,7 @@ public class ChenYuanAdapter extends BaseAdapter {
                 }
             }
         } else {
+
             GroupDetail.DataObject.Members Item = getItem(position);
             if (Item != null) {
                 Glide.with(parent.getContext()).load(Item.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).into(ImageView);

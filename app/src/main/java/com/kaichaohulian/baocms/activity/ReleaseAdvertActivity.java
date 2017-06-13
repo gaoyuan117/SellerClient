@@ -13,9 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
@@ -43,6 +45,7 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -63,6 +66,8 @@ public class ReleaseAdvertActivity extends BaseActivity {
     GridView gridview;
     @BindView(R.id.tv_time_releaseadvert)
     TextView time;
+    @BindView(R.id.current_address_rlt)
+    RelativeLayout timeLayout;
 
 
     private int REQUEST_CODE = 200;
@@ -78,6 +83,11 @@ public class ReleaseAdvertActivity extends BaseActivity {
     private int size;
     private String type;//发布的广告类型
 
+
+    private TimePickerView timePickerView;
+    SimpleDateFormat DayTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private String sendTime;
+
     @Override
     public void setContent() {
         setContentView(R.layout.activity_release_advert);
@@ -90,9 +100,9 @@ public class ReleaseAdvertActivity extends BaseActivity {
         type = getIntent().getStringExtra("type");
         Log.e("gy", "长度：" + size);
 
-        DateFormat format = new SimpleDateFormat("HH:mm yyyy.MM.dd");
+//        DateFormat format = new SimpleDateFormat("HH:mm yyyy.MM.dd");
         Date date = new Date(System.currentTimeMillis());
-        time.setText(format.format(date));
+        time.setText(DayTimeFormat.format(date));
         list = new ArrayList<>();
         ImageBaseAdapter = new ImageBaseAdapter();
         gridview.setAdapter(ImageBaseAdapter);
@@ -168,6 +178,28 @@ public class ReleaseAdvertActivity extends BaseActivity {
                         payMoney = advertParmEntity.eachPay;
                     }
                 });
+
+        timeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (timePickerView == null) {
+                    timePickerView = new TimePickerView.Builder(ReleaseAdvertActivity.this, new TimePickerView.OnTimeSelectListener() {
+                        @Override
+                        public void onTimeSelect(Date date, View v) {
+                            time.setText(DayTimeFormat.format(date));
+
+                            sendTime = DayTimeFormat.format(date);
+                        }
+                    }).setType(TimePickerView.Type.YEAR_MONTH_DAY_HOUR_MIN)
+                            .setDate(Calendar.getInstance())
+                            .build();
+                    timePickerView.show();
+
+                } else {
+                    timePickerView.show();
+                }
+            }
+        });
     }
 
     private void showImageView(ImageView iamgeView, String avatar) {

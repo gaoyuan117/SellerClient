@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -55,7 +56,7 @@ public class ContactListFragment extends BaseFragment {
 
     private ConactAdapter adapter;
     private List<ContactFriendsEntity> contactList;
-    private RelativeLayout re_newfriends, GroupChat, Label, Shopping,searchFriend;
+    private RelativeLayout re_newfriends, GroupChat, Label, Shopping, searchFriend;
     private ListView listView;
     private boolean hidden;
     private Sidebar sidebar;
@@ -126,10 +127,19 @@ public class ContactListFragment extends BaseFragment {
                     Bundle.putString("imNumber", user.getImNumber());
 //                    ActivityUtil.next(getActivity(), ChatActivity.class, Bundle);
 
+                    String remark = user.getRemark();
+                    String usernick = "";
+                    if (!TextUtils.isEmpty(remark) && !remark.equals("null")) {
+                        usernick = user.getRemark();
+
+                    } else {
+                        usernick = user.getUsername();
+
+                    }
                     Intent intent = new Intent(getActivity(), ChattingActivity.class);
                     intent.putExtra(ChattingFragment.RECIPIENTS, user.getPhoneNumber());
-                    intent.putExtra(ChattingFragment.CONTACT_USER, user.getUsername());
-                    intent.putExtra("user_id",user.getId()+"");
+                    intent.putExtra(ChattingFragment.CONTACT_USER, usernick);
+                    intent.putExtra("user_id", user.getId() + "");
                     intent.putExtra(ChattingFragment.CUSTOMER_SERVICE, false);
                     startActivity(intent);
 //                    CCPAppManager.startChattingAction(ContactListFragment.this.getActivity()
@@ -236,10 +246,11 @@ public class ContactListFragment extends BaseFragment {
                             contract.setPhoneNumber(jsonObject.getString("phoneNumber"));
                             contract.setThermalSignatrue(jsonObject.getString("thermalSignatrue"));
                             contract.setUsername(jsonObject.getString("username"));
+                            contract.setRemark(jsonObject.optString("remark"));
                             if (Character.isDigit(contract.getUsername().charAt(0))) {
                                 contract.setHeader("#");
                             } else {
-                                contract.setHeader(ChineseToEnglish.getInstance().getSelling(contract.getUsername()).trim().substring(0,1));
+                                contract.setHeader(ChineseToEnglish.getInstance().getSelling(contract.getUsername()).trim().substring(0, 1));
                                 char header = contract.getHeader().toLowerCase().charAt(0);
                                 if (header < 'a' || header > 'z') {
                                     contract.setHeader("#");

@@ -530,7 +530,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="被邀请"
+                        android:text="被邀请金额"
                         android:textColor="@color/zy_text_color"
                         android:textSize="@dimen/sp_12"
 
@@ -560,7 +560,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="被邀请"
+                        android:text="赴约次数"
                         android:textColor="@color/zy_text_color"
                         android:textSize="@dimen/sp_12"
 
@@ -590,7 +590,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="被邀请"
+                        android:text="爽约次数"
                         android:textColor="@color/zy_text_color"
                         android:textSize="@dimen/sp_12"
 

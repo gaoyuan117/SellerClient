@@ -30,6 +30,7 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -73,6 +74,7 @@ public class PocketActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        data = new ArrayList<>();
     }
 
 
@@ -84,6 +86,7 @@ public class PocketActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         getUserInfo(MyApplication.getInstance().UserInfo.getPhoneNumber());
+        getBindBankCard();
     }
 
     public void back(View view) {
@@ -110,6 +113,59 @@ public class PocketActivity extends BaseActivity {
         }
     }
 
+    public void getBindBankCard() {
+        RequestParams params = new RequestParams();
+        params.put("id", MyApplication.getInstance().UserInfo.getUserId());
+        HttpUtil.post(Url.getBindCard, params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    DBLog.e("获取银行卡:", response.toString());
+                    if (response.getInt("code") == 0) {
+                        data.clear();
+                        JSONArray array = response.getJSONArray("dataObject");
+                        for (int i = 0; i < array.length(); i++) {
+                            JSONObject object = array.getJSONObject(i);
+                            BankCardEntity entity = new BankCardEntity();
+                            entity.setId(object.getInt("id"));
+                            entity.setCreatedTime(object.getString("createdTime"));
+                            entity.setCreator(object.getInt("creator"));
+                            entity.setIsLocked(object.getBoolean("isLocked"));
+                            entity.setLastModifiedTime(object.getString("lastModifiedTime"));
+                            entity.setLastModifier(object.getInt("lastModifier"));
+                            entity.setTimeStamp(object.getString("timeStamp"));
+                            entity.setCardNo(object.getString("cardNo"));
+                            entity.setCardType(object.getString("cardType"));
+                            entity.setIdcard(object.getString("idcard"));
+                            entity.setUsername(object.getString("username"));
+                            entity.setOneOuota(object.getString("oneOuota"));
+                            entity.setDayusername(object.getString("dayusername"));
+                            entity.setBankName(object.getString("bankName"));
+//                            entity.setNumberAll(object.getString("cardNo"));
+                            data.add(entity);
+                            BankcardNumber.setText(data.size() + "张");
+
+                        }
+                    }
+                } catch (Exception e) {
+                    showToastMsg("获取银行卡，解析json异常");
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                showToastMsg("请求服务器失败");
+                DBLog.e("tag", statusCode + ":" + responseString);
+                ShowDialog.dissmiss();
+            }
+        });
+    }
+
     public void getUserInfo(final String phone) {
         RequestParams params = new RequestParams();
         params.put("phoneNumber", phone);
@@ -121,7 +177,6 @@ public class PocketActivity extends BaseActivity {
                     if (response.getInt("code") == 0) {
                         response = response.getJSONObject("dataObject");
                         String accountNumber = response.getString("accountNumber");
-                        BankcardNumber.setText(accountNumber);
                         String balance = response.optString("balance");
                         SmallMoneyAccout.setText(balance);
 
@@ -146,7 +201,6 @@ public class PocketActivity extends BaseActivity {
             }
         });
     }
-
 
 
 }

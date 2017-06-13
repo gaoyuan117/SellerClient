@@ -62,6 +62,7 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
     String GroupId = "";
     String chatGroupId = "";
     GroupDetail detail;
+    private boolean isOwner;
 
     public static final int ME_NAME_EDIT_CODE = 0x1;//修改姓名
     public static final int ME_GONG_EDIT_CODE = 0x2;//修改公告
@@ -139,22 +140,28 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
         ChenYuanGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == mAdapter.getCount() - 1) {
-                    if (detail != null) {
+                if (isOwner) {
+                    if (position == mAdapter.getCount() - 1) {
+                        if (detail != null) {
+                            Bundle Bundle = new Bundle();
+                            Bundle.putSerializable("data", detail);
+                            Bundle.putBoolean("isDelMember", true);
+                            ActivityUtil.next(getActivity(), addGroupFriendsActivity.class, Bundle);
+                        }
+                    } else if (position == mAdapter.getCount() - 2) {
                         Bundle Bundle = new Bundle();
                         Bundle.putSerializable("data", detail);
-                        Bundle.putBoolean("isDelMember", true);
+                        Bundle.putBoolean("isAddMember", true);
                         ActivityUtil.next(getActivity(), addGroupFriendsActivity.class, Bundle);
+                    } else {
+                        GroupDetail.DataObject.Members user = mAdapter.getItem(position);
+                        searchUser(user.id);
                     }
-                } else if (position == mAdapter.getCount() - 2) {
-                    Bundle Bundle = new Bundle();
-                    Bundle.putSerializable("data", detail);
-                    Bundle.putBoolean("isAddMember", true);
-                    ActivityUtil.next(getActivity(), addGroupFriendsActivity.class, Bundle);
                 } else {
                     GroupDetail.DataObject.Members user = mAdapter.getItem(position);
                     searchUser(user.id);
                 }
+
 
             }
         });
@@ -430,6 +437,14 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
                     DBLog.e("群详情", response.toString());
                     detail = JSON.parseObject(response.toString(), GroupDetail.class);
                     if (detail.code.equals("0")) {
+                        if (detail.dataObject.owner == MyApplication.getInstance().UserInfo.getUserId()) {
+                            isOwner = true;
+                            mAdapter.isOwner(true);
+                        } else {
+                            isOwner = false;
+                            mAdapter.isOwner(false);
+                        }
+
                         GroupDetail.DataObject dataObject = detail.dataObject;
                         allChenYuanText.setText("全部群成员(" + dataObject.memberCount + ")");
                         if (StringUtils.isEmpty(dataObject.name)) {

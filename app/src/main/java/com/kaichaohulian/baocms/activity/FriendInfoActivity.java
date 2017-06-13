@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -74,6 +75,8 @@ public class FriendInfoActivity extends BaseActivity {
     TextView mFriendInfoBeiyao;
     @BindView(R.id.tv_friend_info_fuyue)
     TextView mFriendInfoFuyue;
+    @BindView(R.id.tv_friend_info_remark)
+    EditText mRemark;
     @BindView(R.id.img_friend_info_sex)
     ImageView mFriendInfoSex;
     @BindView(R.id.tv_friend_info_shaungyue)
@@ -185,6 +188,9 @@ public class FriendInfoActivity extends BaseActivity {
             case R.id.rl_friend_info:
                 break;
             case R.id.ll_friend_info_bz:
+                Intent intent2 = new Intent(this,RemarkActivity.class);
+                intent2.putExtra("friendId",mUserInfoBean.getId()+"");
+                startActivityForResult(intent2,111);
                 break;
             case R.id.bt_friend_info_add:
                 if (mUserInfoBean.getIsfriend() == 1) {
@@ -298,9 +304,13 @@ public class FriendInfoActivity extends BaseActivity {
         mFriendInfoAge.setText(userInfoBean.getAge() == null ? "未知" : (userInfoBean.getAge() + "").replace(".0", ""));
         mFriendInfoJob.setText(userInfoBean.getJob() == null ? "未知" : userInfoBean.getJob() + "");
         mFriendInfoHobby.setText(userInfoBean.getHobby() == null ? "未知" : userInfoBean.getHobby() + "");
-        mFriendInfoHobby.setText(userInfoBean.getDistrictId() + "");
+        mFriendInfoAddress.setText(userInfoBean.getDistrictId() + "");
 
         addFriendMoney = userInfoBean.getAddPay() + "";
+
+        if (userInfoBean.getRemark()!=null && !userInfoBean.getRemark().equals("null")) {
+            mRemark.setText(userInfoBean.getRemark().toString());
+        }
 
         if (userInfoBean.getIsfriend() == 1) {
             mPay.setText("发消息");
@@ -342,5 +352,13 @@ public class FriendInfoActivity extends BaseActivity {
                         finish();
                     }
                 });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        String remark = data.getStringExtra("remark");
+        mRemark.setText(remark);
     }
 }

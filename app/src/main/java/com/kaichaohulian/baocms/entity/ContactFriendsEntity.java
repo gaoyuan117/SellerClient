@@ -15,9 +15,18 @@ public class ContactFriendsEntity implements Serializable {
     private String phoneNumber;
     private String avatar;
     private String imNumber;
+    private String remark;
     private String thermalSignatrue;
     private String header; // 首字母
     private boolean isSelect=false;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     public int getId() {
         return id;

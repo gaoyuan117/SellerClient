@@ -1,6 +1,7 @@
 package com.kaichaohulian.baocms.retrofit;
 
 import com.kaichaohulian.baocms.entity.AblumEntity;
+import com.kaichaohulian.baocms.entity.AboutBean;
 import com.kaichaohulian.baocms.entity.AdverOtherBean;
 import com.kaichaohulian.baocms.entity.AdversDetailBean;
 import com.kaichaohulian.baocms.entity.AdvertDetailEntity;
@@ -23,6 +24,7 @@ import com.kaichaohulian.baocms.entity.OnlineServiceEntity;
 import com.kaichaohulian.baocms.entity.QiNiuConfigEntity;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.entity.UserInfoBean;
+import com.kaichaohulian.baocms.entity.VersionBean;
 import com.kaichaohulian.baocms.event.UserPhotoBean;
 import com.kaichaohulian.baocms.http.HttpArray;
 import com.kaichaohulian.baocms.http.HttpResult;
@@ -110,6 +112,7 @@ public interface Api {
     //获取支付金额
     @GET(Url.GetAdvertParm)
     Observable<HttpResult<AdvertParmEntity>> getAdvertParm();
+
     //好友群发
     @GET(Url.Sendadviertisement)
     Observable<HttpResult<CommonEntity>> ReleaseAdvert(@QueryMap Map<String, String> map);
@@ -279,9 +282,7 @@ public interface Api {
     Observable<HttpResult<AblumEntity>> GetUserPhoto(@Query("id") long id, @Query("page") String page);
 
 
-
     ////////////////////////////////////////////////////////////////////////////
-
 
 
     @GET("lables/findAll.do")
@@ -294,5 +295,18 @@ public interface Api {
     @FormUrlEncoded
     @POST("balance/gotopay.do")
     Observable<HttpResult<CommonEntity>> yuePay(@FieldMap Map<String, Object> map);
+
+    //设置备注
+    @FormUrlEncoded
+    @POST("lables2/setUplable.do")
+    Observable<HttpResult<CommonEntity>> setRemark(@FieldMap Map<String, Object> map);
+
+    //检查版本更新
+    @GET("users/getVersion.do")
+    Observable<HttpResult<VersionBean>> checkVersion();
+
+    //关于
+    @GET("baseset/about.do")
+    Observable<HttpResult<AboutBean>> getAbout();
 
 }

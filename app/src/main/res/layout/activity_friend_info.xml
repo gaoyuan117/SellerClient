@@ -28,7 +28,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginRight="16dp"
-                android:src="@color/blue" />
+                android:src="@mipmap/default_useravatar" />
 
             <TextView
                 android:id="@+id/tv_friend_info_name"
@@ -80,12 +80,18 @@
                 android:textColor="@color/zy_text_black"
                 android:textSize="14sp" />
 
-            <TextView
+            <EditText
+                android:layout_marginRight="16dp"
+                android:id="@+id/tv_friend_info_remark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="46dp"
                 android:layout_weight="1"
                 android:text=""
+                android:gravity="right"
+                android:background="@null"
+                android:enabled="false"
+                android:focusable="false"
                 android:textColor="@color/zy_text_gray"
                 android:textSize="12sp" />
 

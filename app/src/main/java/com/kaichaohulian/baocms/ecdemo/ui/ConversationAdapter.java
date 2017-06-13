@@ -224,7 +224,10 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
             String avaterPath = "";
             String nick = "";
 
+
+
             if (info != null) {
+                Log.e("gy","历史信息："+info.toString());
                 String[] data = info.split("-x-");
                 Log.e("led---", info);
                 if (data.length > 1) {
@@ -342,6 +345,8 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                     || contactId.equals(SystemPush.SYS_ACCT_ORDER)
                     || contactId.equals("18510829668")
                     || contactId.equals("18510829669")
+                    || contactId.equals("182638268288")
+                    || contactId.equals("182638268289")
                     ) {
                 mViewHolder.tipcnt_tv.setVisibility(View.GONE);
                 mViewHolder.prospect_iv.setVisibility(View.GONE);
@@ -368,6 +373,14 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                                 mViewHolder.user_avatar.setImageResource(R.mipmap.ic_launcher);
                                 mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
                                 mViewHolder.nickname_tv.setText("广告通知");
+                            } else if (sysmsgObj.toString().contains("请求")) {
+                                mViewHolder.user_avatar.setImageResource(R.mipmap.ic_launcher);
+                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+                                mViewHolder.nickname_tv.setText("好友请求");
+                            } else if (sysmsgObj.toString().contains("退款")) {
+                                mViewHolder.user_avatar.setImageResource(R.mipmap.ic_launcher);
+                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+                                mViewHolder.nickname_tv.setText("退款通知");
                             }
                             break;
 

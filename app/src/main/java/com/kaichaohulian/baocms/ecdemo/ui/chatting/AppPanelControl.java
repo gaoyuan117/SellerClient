@@ -42,8 +42,8 @@ public class AppPanelControl {
 //            R.string.attach_red_packet,
             R.string.attach_turncash,
             R.string.attach_personinfo,
-            R.string.app_panel_location
-//            R.string.attach_storage
+            R.string.app_panel_location,
+            R.string.attach_storage
     };
 
     public int[] capVoip = new int[]{
@@ -54,7 +54,7 @@ public class AppPanelControl {
             R.string.attach_turncash,
             R.string.attach_personinfo,
             R.string.app_panel_location,
-//            R.string.attach_storage
+            R.string.attach_storage
     };
 
     public AppPanelControl() {
@@ -93,7 +93,7 @@ public class AppPanelControl {
         switch (resid) {
             case R.string.app_panel_pic:
                 capability = new Capability(getContext().getString(
-                        R.string.app_panel_pic), R.drawable.icon_chat_pic);
+                        R.string.app_panel_pic), R.mipmap.photo);
                 break;
             case R.string.app_panel_tackpic:
                 capability = new Capability(getContext().getString(
@@ -117,7 +117,7 @@ public class AppPanelControl {
                 break;
             case R.string.app_panel_location:
                 capability = new Capability(getContext().getString(
-                        R.string.app_panel_location), R.drawable.icon_chat_location);
+                        R.string.app_panel_location), R.mipmap.location);
                 break;
             case R.string.attach_red_packet:
                 capability = new Capability(getContext().getString(
@@ -125,15 +125,15 @@ public class AppPanelControl {
                 break;
             case R.string.attach_storage:
                 capability = new Capability(getContext().getString(
-                        R.string.attach_storage), R.drawable.ic_storage);
+                        R.string.attach_storage), R.mipmap.collect);
                 break;
             case R.string.attach_personinfo:
                 capability = new Capability(getContext().getString(
-                        R.string.attach_personinfo), R.drawable.ic_personf);
+                        R.string.attach_personinfo), R.mipmap.idcard);
                 break;
             case R.string.attach_turncash:
                 capability = new Capability(getContext().getString(
-                        R.string.attach_turncash), R.drawable.ic_exmoney);
+                        R.string.attach_turncash), R.mipmap.transfer);
                 break;
             case R.string.attach_red_video:
                 capability = new Capability(getContext().getString(

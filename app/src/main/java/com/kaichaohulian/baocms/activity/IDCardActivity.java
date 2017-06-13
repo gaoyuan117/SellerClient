@@ -1,18 +1,15 @@
 package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.adapter.AdvertMassSelectAdapter;
+import com.kaichaohulian.baocms.adapter.IDCardAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
-import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
@@ -30,21 +27,19 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AdvertMassSelectActivity extends BaseActivity {
+public class IDCardActivity extends BaseActivity {
 
 
     @BindView(R.id.listHaoYou_selectorFriend)
     ListView listHaoYou;
     @BindView(R.id.sidebar_selectorFriend)
     Sidebar sidebar;
-    private AdvertMassSelectAdapter adapter;
+    private IDCardAdapter adapter;
     private List<ContactFriendsEntity> contactList;
 
     @Override
@@ -57,7 +52,7 @@ public class AdvertMassSelectActivity extends BaseActivity {
     public void initData() {
         contactList = new ArrayList<>();
         sidebar.setListView(listHaoYou);
-        adapter = new AdvertMassSelectAdapter(this, R.layout.item_advertselectlist, contactList);
+        adapter = new IDCardAdapter(this, R.layout.item_id_card, contactList);
         listHaoYou.setAdapter(adapter);
 
         getContactList();
@@ -65,74 +60,20 @@ public class AdvertMassSelectActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        if (getIntent().getBooleanExtra("JustSelect", false)) {
-
-
-            setCenterTitle(getIntent().getStringExtra("title"));
-            TextView tv = setRightTitle("确定");
-            tv.setBackgroundResource(R.mipmap.rounded_rectangle);
-            tv.setTextColor(getResources().getColor(R.color.ccp_green_alpha));
-            tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    StringBuffer buffer = new StringBuffer();
-                    StringBuffer buffer1 = new StringBuffer();
-
-                    List<ContactFriendsEntity> list = adapter.getList();
-                    if (list.size() == 0) {
-                        Toast.makeText(AdvertMassSelectActivity.this, "请选择要群发的好友", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    for (int i = 0; i < list.size(); i++) {
-                        buffer.append(list.get(i).getId() + ",");
-                        buffer1.append(list.get(i).getUsername() + " ");
-                    }
-                    Intent intent = new Intent();
-                    intent.putExtra("ids", buffer.toString());
-                    intent.putExtra("nums", buffer1.toString());
-
-                    Log.e("gy", "ids：" + buffer.toString());
-                    Log.e("gy", "nums：" + buffer1.toString());
-                    setResult(RESULT_OK, intent);
-                    finish();
-                }
-            });
-
-        } else {
-            setCenterTitle("好友群发");
-            TextView tv = setRightTitle("下一步");
-            tv.setBackgroundResource(R.mipmap.rounded_rectangle);
-            tv.setTextColor(getResources().getColor(R.color.ccp_green_alpha));
-            tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    StringBuffer buffer = new StringBuffer();
-                    HashSet set = new HashSet();
-                    set = adapter.GetSet();
-                    if (set.size() == 0) {
-                        Toast.makeText(AdvertMassSelectActivity.this, "请选择要群发的好友", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    Iterator<ContactFriendsEntity> iterator = set.iterator();
-                    while (iterator.hasNext()) {
-                        buffer.append(iterator.next().getId() + ",");
-                    }
-                    Intent intent = new Intent(getActivity(), ReleaseAdvertActivity.class);
-                    intent.putExtra("ids", buffer.toString());
-                    intent.putExtra("size", set.size());
-                    intent.putExtra("type", "1");
-                    startActivity(intent);
-                    finish();
-                }
-            });
-        }
-
+        setCenterTitle("选取好友");
     }
 
     @Override
     public void initEvent() {
-
+        listHaoYou.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.putExtra("data", contactList.get(position));
+                setResult(111, intent);
+                finish();
+            }
+        });
     }
 
     /**
@@ -159,6 +100,8 @@ public class AdvertMassSelectActivity extends BaseActivity {
                             contract.setPhoneNumber(jsonObject.getString("phoneNumber"));
                             contract.setThermalSignatrue(jsonObject.getString("thermalSignatrue"));
                             contract.setUsername(jsonObject.getString("username"));
+
+
                             if (Character.isDigit(contract.getUsername().charAt(0))) {
                                 contract.setHeader("#");
                             } else {
@@ -167,7 +110,6 @@ public class AdvertMassSelectActivity extends BaseActivity {
                                 if (header < 'a' || header > 'z') {
                                     contract.setHeader("#");
                                 }
-
                             }
                             boolean flag = false;
                             for (ContactFriendsEntity tempContact : contactList) {
@@ -182,8 +124,38 @@ public class AdvertMassSelectActivity extends BaseActivity {
                                 SharedPrefsUtil.putValue(getActivity(), contract.getId() + "", contract.getAvatar() + "-x-" + contract.getUsername());
                             }
                         }
+
+                        ContactFriendsEntity contract = new ContactFriendsEntity();
+                        contract.setId(MyApplication.getInstance().UserInfo.getUserId());
+                        contract.setAvatar(MyApplication.getInstance().UserInfo.getAvatar());
+                        contract.setCreatedTime(MyApplication.getInstance().UserInfo.getCreatedTime());
+                        contract.setImNumber(MyApplication.getInstance().UserInfo.getAccountNumber());
+                        contract.setPhoneNumber(MyApplication.getInstance().UserInfo.getPhoneNumber());
+                        contract.setThermalSignatrue(MyApplication.getInstance().UserInfo.getThermalSignatrue());
+                        contract.setUsername(MyApplication.getInstance().UserInfo.getUsername());
+                        if (Character.isDigit(contract.getUsername().charAt(0))) {
+                            contract.setHeader("#");
+                        } else {
+                            contract.setHeader(ChineseToEnglish.getInstance().getSelling(contract.getUsername()).trim().substring(0, 1));
+                            char header = contract.getHeader().toLowerCase().charAt(0);
+                            if (header < 'a' || header > 'z') {
+                                contract.setHeader("#");
+                            }
+                        }
+                        boolean flag = false;
+                        for (ContactFriendsEntity tempContact : contactList) {
+                            if (tempContact.getId() == contract.getId()) {
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if (!flag) {
+                            contactList.add(contract);
+                            SharedPrefsUtil.putValue(getActivity(), contract.getPhoneNumber(), contract.getAvatar() + "-x-" + contract.getUsername());
+                            SharedPrefsUtil.putValue(getActivity(), contract.getId() + "", contract.getAvatar() + "-x-" + contract.getUsername());
+                        }
                         // 对list进行排序
-                        Collections.sort(contactList, new PinyinComparator() {
+                        Collections.sort(contactList, new IDCardActivity.PinyinComparator() {
                         });
                         adapter.notifyDataSetChanged();
                     }

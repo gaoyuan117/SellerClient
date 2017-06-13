@@ -2,13 +2,19 @@ package com.kaichaohulian.baocms.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -27,8 +33,24 @@ import com.kaichaohulian.baocms.activity.SendinvitationActivity;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
+import com.kaichaohulian.baocms.entity.CommonEntity;
+import com.kaichaohulian.baocms.entity.VersionBean;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.Url;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.SharedPrefsUtil;
+import com.nostra13.universalimageloader.utils.L;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -41,11 +63,12 @@ import butterknife.OnClick;
 public class ProFileFragment extends BaseFragment {
 
 
-    private TextView me_head_name, me_head_phone;
+    private TextView me_head_name, me_head_phone, me_version;
     private TextView me_buyer_number;
 
     private ImageView im_QrCode;
     private ImageView me_head_icon;
+
 
     public ProFileFragment(MyApplication myApplication, Activity activity, Context context) {
         super(myApplication, activity, context);
@@ -70,6 +93,8 @@ public class ProFileFragment extends BaseFragment {
         me_buyer_number = getId(R.id.me_buyer_number);
         me_head_name = getId(R.id.me_head_name);
         me_head_phone = getId(R.id.me_buyer_phone);
+        me_version = getId(R.id.tv_version_num);
+
 
         im_QrCode = getId(R.id.im_QrCode);
         Glide.with(MyApplication.getInstance()).load(MyApplication.getInstance().UserInfo.getAvatar()).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(me_head_icon);
@@ -105,7 +130,7 @@ public class ProFileFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.me_name, R.id.me_relativelayout_MassAdvertising, R.id.me_relativelayout_Advertising_manager, R.id.me_relativelayout_SendInvitation, R.id.me_relativelayout_invitationManager, R.id.me_relativelayout_album, R.id.me_relativelayout_pocket, R.id.me_relativelayout_about, R.id.me_relativelayout_OnlineService, R.id.me_relativelayout_settings})
+    @OnClick({R.id.me_name, R.id.me_relativelayout_MassAdvertising, R.id.me_relativelayout_Advertising_manager, R.id.me_relativelayout_SendInvitation, R.id.me_relativelayout_invitationManager, R.id.me_relativelayout_album, R.id.me_relativelayout_pocket, R.id.me_relativelayout_about, R.id.me_relativelayout_OnlineService, R.id.me_relativelayout_settings, R.id.me_relativelayout_version})
     public void onClick(View view) {
         switch (view.getId()) {
             //个人信息
@@ -153,6 +178,138 @@ public class ProFileFragment extends BaseFragment {
             case R.id.me_relativelayout_settings:
                 ActivityUtil.next(getActivity(), MeSettingsActivity.class);
                 break;
+            //检查版本更新
+            case R.id.me_relativelayout_version:
+                openRedPackageDialog();
+                break;
         }
+    }
+
+
+    /**
+     * 版本对话框
+     */
+    private void openRedPackageDialog() {
+        View view = View.inflate(getActivity(), R.layout.dialog_version, null);
+        ImageView dialogClose = (ImageView) view.findViewById(R.id.img_verson_close);
+        TextView dialogCancle = (TextView) view.findViewById(R.id.tv_verson_cancle);
+        TextView dialogSure = (TextView) view.findViewById(R.id.tv_verson_sure);
+        final Dialog dialog = new Dialog(getActivity(), R.style.dialog_type);
+        dialog.setContentView(view);
+        dialog.show();
+
+        dialogClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialogCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialogSure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.showMessage("正在后台更新");
+            }
+        });
+    }
+
+    /**
+     * 获取版本号
+     *
+     * @return 当前应用的版本号
+     */
+    public String getVersion() {
+        try {
+            PackageManager manager = getActivity().getPackageManager();
+            PackageInfo info = manager.getPackageInfo(getActivity().getPackageName(), 0);
+            String version = info.versionName;
+            Log.e("gy", "版本号：" + version);
+            return version;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private void checkVersion(){
+        RetrofitClient.getInstance().createApi().checkVersion()
+                .compose(RxUtils.<HttpResult<VersionBean>>io_main())
+                .subscribe(new BaseObjObserver<VersionBean>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(VersionBean versionBean) {
+
+                    }
+                });
+    }
+
+
+    //下载apk程序代码
+    protected File downLoadFile(String httpUrl) {
+        // TODO Auto-generated method stub
+        final String fileName = "updata.apk";
+        File tmpFile = new File("/sdcard/update");
+        if (!tmpFile.exists()) {
+            tmpFile.mkdir();
+        }
+        final File file = new File("/sdcard/update/" + fileName);
+
+        try {
+            URL url = new URL(httpUrl);
+            try {
+                HttpURLConnection conn = (HttpURLConnection) url
+                        .openConnection();
+                InputStream is = conn.getInputStream();
+                FileOutputStream fos = new FileOutputStream(file);
+                byte[] buf = new byte[256];
+                conn.connect();
+                double count = 0;
+                if (conn.getResponseCode() >= 400) {
+                    ToastUtil.showMessage("连接超时");
+                } else {
+                    while (count <= 100) {
+                        if (is != null) {
+                            int numRead = is.read(buf);
+                            if (numRead <= 0) {
+                                break;
+                            } else {
+                                fos.write(buf, 0, numRead);
+                            }
+
+                        } else {
+                            break;
+                        }
+
+                    }
+                }
+
+                conn.disconnect();
+                fos.close();
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return file;
+    }
+    //打开APK程序代码
+
+    private void openFile(File file) {
+        // TODO Auto-generated method stub
+        Log.e("OpenFile", file.getName());
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(android.content.Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file),
+                "application/vnd.android.package-archive");
+        startActivity(intent);
     }
 }

@@ -1,17 +1,14 @@
 package com.kaichaohulian.baocms.adapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.SectionIndexer;
@@ -22,14 +19,16 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
 import com.kaichaohulian.baocms.utils.StringUtils;
-import com.kaichaohulian.baocms.view.GlideCircleTransform;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 /**
- * 简单的好友Adapter实现
- * Created by Administrator on 2016/12/13 0013.
+ * Created by gaoyuan on 2017/6/12.
  */
-public class ConactAdapter extends ArrayAdapter<ContactFriendsEntity> implements SectionIndexer {
 
+public class IDCardAdapter extends ConactAdapter implements SectionIndexer {
     List<String> list;
     List<ContactFriendsEntity> userList;
     List<ContactFriendsEntity> copyUserList;
@@ -37,10 +36,10 @@ public class ConactAdapter extends ArrayAdapter<ContactFriendsEntity> implements
     private SparseIntArray positionOfSection;
     private SparseIntArray sectionOfPosition;
     private int res;
-    public MyFilter myFilter;
+    public IDCardAdapter.MyFilter myFilter;
 
     @SuppressLint("SdCardPath")
-    public ConactAdapter(Context context, int resource, List<ContactFriendsEntity> objects) {
+    public IDCardAdapter(Context context, int resource, List<ContactFriendsEntity> objects) {
         super(context, resource, objects);
         this.res = resource;
         this.userList = objects;
@@ -50,71 +49,70 @@ public class ConactAdapter extends ArrayAdapter<ContactFriendsEntity> implements
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        IDCardAdapter.ViewHolder vh;
         if (convertView == null) {
             convertView = layoutInflater.inflate(res, null);
+            vh = new IDCardAdapter.ViewHolder(convertView);
+            convertView.setTag(vh);
+
+        } else {
+            vh = (IDCardAdapter.ViewHolder) convertView.getTag();
         }
 
-        ImageView iv_avatar = (ImageView) convertView.findViewById(R.id.iv_avatar);
 
-        TextView nameTextview = (TextView) convertView.findViewById(R.id.tv_name);
-        TextView tvHeader = (TextView) convertView.findViewById(R.id.header);
-        View view_temp = convertView.findViewById(R.id.view_temp);
-        Log.e("cdh", "view_temp=" + view_temp);
         ContactFriendsEntity user = getItem(position);
         if (user == null)
             Log.d("ContactAdapter", position + "");
         // 设置nick，demo里不涉及到完整user，用username代替nick显示
 
         String header = user.getHeader();
-
-        String remark = user.getRemark();
-        String usernick = "";
-        if (!TextUtils.isEmpty(remark) && !remark.equals("null")) {
-            usernick = user.getRemark();
-
-        } else {
-            usernick = user.getUsername();
-
-        }
+        String usernick = user.getUsername();
         String useravatar = user.getAvatar();
 
         if (position == 0 || header != null
                 && !header.equals(getItem(position - 1).getHeader())) {
             if ("".equals(header)) {
-                tvHeader.setVisibility(View.GONE);
-                view_temp.setVisibility(View.VISIBLE);
+                vh.tvHeader.setVisibility(View.GONE);
+                vh.view_temp.setVisibility(View.VISIBLE);
             } else {
-                tvHeader.setVisibility(View.VISIBLE);
-                tvHeader.setText(header);
-                view_temp.setVisibility(View.GONE);
+                vh.tvHeader.setVisibility(View.VISIBLE);
+                vh.tvHeader.setText(header);
+                vh.view_temp.setVisibility(View.GONE);
             }
         } else {
-            tvHeader.setVisibility(View.GONE);
-            view_temp.setVisibility(View.VISIBLE);
+            vh.tvHeader.setVisibility(View.GONE);
+            vh.view_temp.setVisibility(View.VISIBLE);
         }
         // 显示申请与通知item
 
         if (StringUtils.isEmpty(usernick)) {
-            nameTextview.setText("未命名");
+            vh.nameTextview.setText("未命名");
         } else {
-            nameTextview.setText(usernick);
+            vh.nameTextview.setText(usernick);
         }
         if (!StringUtils.isEmpty(useravatar)) {
-            switch (res) {
-                case R.layout.item_contact_list:
-                    Glide.with(parent.getContext()).load(useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_avatar);
-                    break;
-                case R.layout.item_shopping_list:
-                    Glide.with(parent.getContext()).load(useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).transform(new GlideCircleTransform(parent.getContext())).into(iv_avatar);
-                    break;
-            }
+            Glide.with(parent.getContext()).load(useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(vh.avatar);
         } else {
-            iv_avatar.setImageResource(R.mipmap.default_useravatar);
+            vh.avatar.setImageResource(R.mipmap.default_useravatar);
         }
 
 
         return convertView;
+    }
+
+
+    class ViewHolder {
+        TextView tvHeader, nameTextview;
+        View view_temp;
+        ImageView avatar;
+
+        public ViewHolder(View view) {
+            avatar = (ImageView) view.findViewById(R.id.iv_avatar);
+            nameTextview = (TextView) view.findViewById(R.id.tv_name);
+            tvHeader = (TextView) view.findViewById(R.id.header);
+            view_temp = view.findViewById(R.id.view_temp);
+        }
     }
 
     @Override
@@ -163,7 +161,7 @@ public class ConactAdapter extends ArrayAdapter<ContactFriendsEntity> implements
     @Override
     public Filter getFilter() {
         if (myFilter == null) {
-            myFilter = new MyFilter(userList);
+            myFilter = new IDCardAdapter.MyFilter(userList);
         }
         return myFilter;
     }

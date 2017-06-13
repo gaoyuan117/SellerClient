@@ -44,24 +44,6 @@ public class ConversationSqlManager extends AbstractSQLManager {
         return instance;
     }
 
-    /**
-     * @return
-     */
-    public static Cursor getConversationCursor() {
-        try {
-            //String sql = "select unreadCount, im_thread.type, sendStatus, dateTime, sessionId, text, username from im_thread,contacts where im_thread.sessionId = contacts.contact_id order by dateTime desc";
-            String sql = "SELECT unreadCount, im_thread.type, sendStatus, dateTime, sessionId, text, username ,name ,im_thread.contactid ,isnotice\n" +
-                    "      FROM im_thread \n" +
-                    "      LEFT JOIN contacts ON im_thread.sessionId = contacts.contact_id \n" +
-                    "      LEFT JOIN groups2 ON im_thread.sessionId = groups2.groupid order by isTop desc ;";
-//                    "      LEFT JOIN groups2 ON im_thread.sessionId = groups2.groupid order by dateTime desc;";
-            return getInstance().sqliteDB().rawQuery(sql, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-
-    }
 
 
     /**
@@ -288,5 +270,21 @@ public class ConversationSqlManager extends AbstractSQLManager {
     protected void release() {
         super.release();
         instance = null;
+    }
+
+    public static Cursor getConversationCursor() {
+        try {
+            //String sql = "select unreadCount, im_thread.type, sendStatus, dateTime, sessionId, text, username from im_thread,contacts where im_thread.sessionId = contacts.contact_id order by dateTime desc";
+            String sql = "SELECT unreadCount, im_thread.type, sendStatus, dateTime, sessionId, text, username ,name ,im_thread.contactid ,isnotice\n" +
+                    "      FROM im_thread \n" +
+                    "      LEFT JOIN contacts ON im_thread.sessionId = contacts.contact_id \n" +
+                    "      LEFT JOIN groups2 ON im_thread.sessionId = groups2.groupid order by isTop DESC,dateTime DESC;";
+//                    "      LEFT JOIN groups2 ON im_thread.sessionId = groups2.groupid order by dateTime desc;";
+            return getInstance().sqliteDB().rawQuery(sql, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 }

@@ -64,7 +64,7 @@ public class AdvertOtherActivity extends BaseActivity {
     private ArrayList<List<Integer>> ageend;
     private OptionsPickerView AgePickView;
 
-    private String sex, minage, maxage, job, hobby, address;
+    private String sex, minage, maxage, job, hobby, address, count;
     //选择器
     private OptionsPickerView addRessPickerView;
     private ArrayList<String> provinceList;//创建存放省份实体类的集合
@@ -112,6 +112,8 @@ public class AdvertOtherActivity extends BaseActivity {
                 address = tvAddressOtheradvert.getText().toString();
                 job = tvJobOtheradvert.getText().toString();
                 hobby = tvHobbyOtheradvert.getText().toString();
+                count = mEtCount.getText().toString();
+
                 if (map == null) {
                     map = new HashMap<>();
                 } else {
@@ -132,6 +134,10 @@ public class AdvertOtherActivity extends BaseActivity {
                 }
                 if (address != null && !address.equals("地区")) {
                     map.put("address", address);
+                }
+
+                if (count != null && !count.equals("人数")) {
+                    map.put("num", count);
                 }
 
                 RetrofitClient.getInstance().createApi().ReleaseAdviertOfOther(map)

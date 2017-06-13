@@ -2,28 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_pay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/ll_pay"
     android:background="@color/bg_color_gray"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical"
     tools:context="com.kaichaohulian.baocms.activity.PayActivity">
 
-    <include layout="@layout/layout_title"/>
+    <include layout="@layout/layout_title" />
 
     <LinearLayout
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <TextView
-            android:textSize="16sp"
-            android:padding="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="金额(元)"/>
+            android:padding="16dp"
+            android:text="金额(元)"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_pay_money"
@@ -31,98 +32,103 @@
             android:layout_height="wrap_content"
             android:text="2元"
             android:textColor="@color/zy_orange"
-            android:textSize="16sp"
-            />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rl_pay_wx"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp">
 
         <ImageView
             android:id="@+id/img_pay_wx"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@mipmap/wx"/>
+            android:src="@mipmap/wx" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="微信支付"
+            android:layout_marginLeft="8dp"
             android:layout_toRightOf="@+id/img_pay_wx"
-            android:layout_marginLeft="8dp"/>
+            android:text="微信支付" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="微信安全支付"
-            android:layout_toRightOf="@+id/img_pay_wx"
             android:layout_alignBottom="@+id/img_pay_wx"
             android:layout_marginLeft="8dp"
-            android:textSize="12sp"
+            android:layout_toRightOf="@+id/img_pay_wx"
+            android:text="微信安全支付"
             android:textColor="@color/zy_text_gray"
-            />
+            android:textSize="12sp" />
+
         <CheckBox
             android:id="@+id/cb_pay_wx"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/pay_check"
             android:layout_alignParentRight="true"
-            android:checked="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="16dp"
+            android:background="@drawable/pay_check"
+            android:checked="true"
+            android:duplicateParentState="true"
+            android:enabled="false" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_pay_yue"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp">
 
         <ImageView
             android:id="@+id/img_pay_yue"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@mipmap/yue"/>
+            android:src="@mipmap/yue" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="余额支付"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
             android:layout_toRightOf="@+id/img_pay_yue"
-            android:layout_marginLeft="8dp"/>
+            android:text="余额支付" />
 
         <CheckBox
             android:id="@+id/cb_pay_yue"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/pay_check"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="16dp"
+            android:background="@drawable/pay_check"
+            android:duplicateParentState="true"
+            android:enabled="false" />
     </RelativeLayout>
 
     <Button
         android:id="@+id/bt_pay_pay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="立即支付"
-        android:textColor="@color/white"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="100dp"
         android:background="@color/zy_orange"
         android:padding="14dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        />
+        android:text="立即支付"
+        android:textColor="@color/white" />
 
 
 </LinearLayout>

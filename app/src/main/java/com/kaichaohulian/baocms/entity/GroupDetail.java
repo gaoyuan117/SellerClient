@@ -19,6 +19,7 @@ public class GroupDetail  implements Serializable {
         public String name;
         public String createdTime;
         public int id;
+        public int owner;
         public String introduction;
         public String status;
         public List<Members> members;
