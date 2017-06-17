@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,8 +29,13 @@ import com.kaichaohulian.baocms.ecdemo.common.CCPAppManager;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingActivity;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingFragment;
 import com.kaichaohulian.baocms.entity.ContactFriendsEntity;
+import com.kaichaohulian.baocms.entity.NewInfoBean;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.ChineseToEnglish;
 import com.kaichaohulian.baocms.utils.DBLog;
 import com.kaichaohulian.baocms.utils.SharedPrefsUtil;
@@ -60,6 +66,7 @@ public class ContactListFragment extends BaseFragment {
     private ListView listView;
     private boolean hidden;
     private Sidebar sidebar;
+    private ImageView chat;
 
     private TextView tv_unread;
     private TextView tv_total;
@@ -85,6 +92,7 @@ public class ContactListFragment extends BaseFragment {
         infalter = LayoutInflater.from(getActivity());
         View headView = infalter.inflate(R.layout.item_contact_list_header, null);
         searchFriend = (RelativeLayout) headView.findViewById(R.id.rl_contactlist_search);
+        chat = (ImageView) headView.findViewById(R.id.img_chat);
         listView.addHeaderView(headView);
         View footerView = infalter.inflate(R.layout.item_contact_list_footer, null);
         listView.addFooterView(footerView);
@@ -188,6 +196,7 @@ public class ContactListFragment extends BaseFragment {
         this.hidden = hidden;
         if (!hidden) {
             refresh();
+            newInfo();
         }
     }
 
@@ -197,7 +206,24 @@ public class ContactListFragment extends BaseFragment {
         if (!hidden) {
             refresh();
         }
+        newInfo();
     }
+
+    private void newInfo() {
+        RetrofitClient.getInstance().createApi().newInfo(MyApplication.getInstance().UserInfo.getUserId())
+                .compose(RxUtils.<HttpResult<NewInfoBean>>io_main())
+                .subscribe(new BaseObjObserver<NewInfoBean>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(NewInfoBean newInfoBean) {
+                        if (newInfoBean.getFirendAppyStatus() == 1) {
+                            chat.setVisibility(View.VISIBLE);
+                        } else {
+                            chat.setVisibility(View.GONE);
+                        }
+                    }
+                });
+    }
+
 
     // 刷新ui
     public void refresh() {

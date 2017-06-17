@@ -20,6 +20,7 @@ import com.kaichaohulian.baocms.entity.LableBean;
 import com.kaichaohulian.baocms.entity.MyInviteBean;
 import com.kaichaohulian.baocms.entity.MyInviteEntity;
 import com.kaichaohulian.baocms.entity.NearbyBean;
+import com.kaichaohulian.baocms.entity.NewInfoBean;
 import com.kaichaohulian.baocms.entity.OnlineServiceEntity;
 import com.kaichaohulian.baocms.entity.QiNiuConfigEntity;
 import com.kaichaohulian.baocms.entity.UserInfo;
@@ -319,6 +320,6 @@ public interface Api {
 
     //是否有新的消息
     @GET("users/getNewInfo.do")
-    Observable<HttpResult<CommonEntity>> newInfo(@Query("userId") int id);
+    Observable<HttpResult<NewInfoBean>> newInfo(@Query("userId") int id);
 
 }

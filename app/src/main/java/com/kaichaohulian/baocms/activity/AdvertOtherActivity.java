@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.kaichaohulian.baocms.HobbyActivity;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.AdverOtherBean;
@@ -64,7 +65,7 @@ public class AdvertOtherActivity extends BaseActivity {
     private ArrayList<List<Integer>> ageend;
     private OptionsPickerView AgePickView;
 
-    private String sex, minage, maxage, job, hobby, address, count;
+    private String sex, minage, maxage, job = "", hobby = "", address, count;
     //选择器
     private OptionsPickerView addRessPickerView;
     private ArrayList<String> provinceList;//创建存放省份实体类的集合
@@ -110,8 +111,8 @@ public class AdvertOtherActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 address = tvAddressOtheradvert.getText().toString();
-                job = tvJobOtheradvert.getText().toString();
-                hobby = tvHobbyOtheradvert.getText().toString();
+//                job = tvJobOtheradvert.getText().toString();
+//                hobby = tvHobbyOtheradvert.getText().toString();
                 count = mEtCount.getText().toString();
 
                 if (map == null) {
@@ -176,7 +177,7 @@ public class AdvertOtherActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.rl_age_otheradviert, R.id.rl_job_otheradviert, R.id.rl_hobby_otheradviert, R.id.rl_address_otheradviert})
+    @OnClick({R.id.rl_age_otheradviert, R.id.tv_job_otheradvert, R.id.tv_hobby_otheradvert, R.id.rl_address_otheradviert})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_age_otheradviert:
@@ -199,10 +200,17 @@ public class AdvertOtherActivity extends BaseActivity {
                     AgePickView.show();
                 }
                 break;
-            case R.id.rl_job_otheradviert:
+            case R.id.tv_job_otheradvert:
+                Intent intent = new Intent(this, PositionActivity.class);
+
+                startActivityForResult(intent, 111);
 
                 break;
-            case R.id.rl_hobby_otheradviert:
+            case R.id.tv_hobby_otheradvert:
+
+                Intent intent2 = new Intent(this, HobbyActivity.class);
+
+                startActivityForResult(intent2, 110);
 
                 break;
             case R.id.rl_address_otheradviert:
@@ -297,6 +305,17 @@ public class AdvertOtherActivity extends BaseActivity {
         return stringBuilder.toString();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 111 && resultCode == RESULT_OK) {
+            job = data.getStringExtra("result");
+            tvJobOtheradvert.setText(job);
+        }else if (requestCode == 110 && resultCode == RESULT_OK) {
+            hobby = data.getStringExtra("result");
+            tvHobbyOtheradvert.setText(hobby);
+        }
+    }
 
     @OnClick({R.id.men_sex_advertother, R.id.women_sex_advertother, R.id.else_sex_advertother})
     public void SelectSex(View view) {

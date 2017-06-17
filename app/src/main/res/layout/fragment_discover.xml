@@ -18,18 +18,31 @@
         android:clickable="true"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
-            android:src="@mipmap/guanggao" />
+        <RelativeLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                android:src="@mipmap/guanggao" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/img_discover_adver_chat"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/red_circle" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/discover_text_marginparentleft"
+            android:layout_marginLeft="55dp"
             android:text="广告信息"
             android:textColor="@color/zy_text_black"
             android:textSize="@dimen/discover_text" />
@@ -53,18 +66,32 @@
         android:clickable="true"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
-            android:src="@mipmap/yaoqing" />
+        <RelativeLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                android:src="@mipmap/yaoqing" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/img_discover_invite_chat"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/red_circle" />
+        </RelativeLayout>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/discover_text_marginparentleft"
+            android:layout_marginLeft="55dp"
             android:text="邀请信息"
             android:textColor="@color/dark"
             android:textSize="@dimen/discover_text" />
@@ -98,7 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/discover_text_marginparentleft"
+            android:layout_marginLeft="55dp"
             android:text="@string/discovery_scanning"
             android:textColor="@color/dark"
             android:textSize="@dimen/discover_text" />
@@ -126,12 +153,27 @@
         android:clickable="true"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
-            android:src="@mipmap/fujin" />
+
+        <RelativeLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
+                android:src="@mipmap/fujin" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/img_discover_near_chat"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/red_circle" />
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/discovery_bottle2"

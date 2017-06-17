@@ -37,9 +37,10 @@ import java.io.IOException;
 
 /**
  * 状态栏通知
+ *
  * @author Jorstin Chan@容联•云通讯
- * @date 2015-1-4
  * @version 4.0
+ * @date 2015-1-4
  */
 public class ECNotificationManager {
 
@@ -52,8 +53,9 @@ public class ECNotificationManager {
     private static NotificationManager mNotificationManager;
 
     public static ECNotificationManager mInstance;
+
     public static ECNotificationManager getInstance() {
-        if(mInstance == null) {
+        if (mInstance == null) {
             mInstance = new ECNotificationManager(CCPAppManager.getContext());
         }
 
@@ -61,29 +63,30 @@ public class ECNotificationManager {
     }
 
     MediaPlayer mediaPlayer = null;
+
     public void playNotificationMusic(String voicePath) throws IOException {
         //paly music ...
         AssetFileDescriptor fileDescriptor = mContext.getAssets().openFd(voicePath);
-        if(mediaPlayer == null ) {
+        if (mediaPlayer == null) {
             mediaPlayer = new MediaPlayer();
         }
-        if(mediaPlayer.isPlaying()) {
+        if (mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }
         mediaPlayer.reset();
-        mediaPlayer.setDataSource(fileDescriptor.getFileDescriptor(),fileDescriptor.getStartOffset(),fileDescriptor.getLength());
+        mediaPlayer.setDataSource(fileDescriptor.getFileDescriptor(), fileDescriptor.getStartOffset(), fileDescriptor.getLength());
         mediaPlayer.prepare();
         mediaPlayer.setLooping(false);
         mediaPlayer.start();
     }
 
 
-    private ECNotificationManager(Context context){
+    private ECNotificationManager(Context context) {
         mContext = context;
     }
 
-    public final void showCustomNewMessageNotification(Context context , String pushContent ,String fromUserName ,String sessionId ,  int lastMsgType) {
-        LogUtil.w(LogUtil.getLogUtilsTag(ECNotificationManager.class),
+    public final void showCustomNewMessageNotification(Context context, String pushContent, String fromUserName, String sessionId, int lastMsgType) {
+        LogUtil.e(LogUtil.getLogUtilsTag(ECNotificationManager.class),
                 "showCustomNewMessageNotification pushContent： " + pushContent
                         + ", fromUserName: " + fromUserName + " ,sessionId: " + sessionId + " ,msgType: " + lastMsgType);
 
@@ -100,13 +103,13 @@ public class ECNotificationManager {
         String tickerText = getTickerText(mContext, fromUserName, lastMsgType);
         int sessionUnreadCount = ConversationSqlManager.getInstance().qureySessionUnreadCount();
         int allSessionUnreadCount = ConversationSqlManager.getInstance().qureyAllSessionUnreadCount();
-        String contentTitle = getContentTitle(context ,sessionUnreadCount ,fromUserName);
-        String contentText = getContentText(context, sessionUnreadCount,allSessionUnreadCount, pushContent ,lastMsgType);
+        String contentTitle = getContentTitle(context, sessionUnreadCount, fromUserName);
+        String contentText = getContentText(context, sessionUnreadCount, allSessionUnreadCount, pushContent, lastMsgType);
 
         boolean shake = ECPreferences.getSharedPreferences().getBoolean(ECPreferenceSettings.SETTINGS_NEW_MSG_SHAKE.getId(), true);
         boolean sound = ECPreferences.getSharedPreferences().getBoolean(ECPreferenceSettings.SETTINGS_NEW_MSG_SOUND.getId(), true);
         int defaults;
-        if((sound && shake)) {
+        if ((sound && shake)) {
             defaults = Notification.DEFAULT_ALL;
             shake = false;
         } else if ((sound && !shake)) {
@@ -123,33 +126,38 @@ public class ECNotificationManager {
             shake = false;
         }
 
-        Notification notification = NotificationUtil.buildNotification(context, R.mipmap.ic_launcher, defaults, shake, tickerText, contentTitle, contentText, null, pendingIntent);
+        String[] split = tickerText.split("发来");
+        Log.e("gy", "nickName：" + split[0] + "   " + split[1]);
+//        if (split.length == 0) {
+//
+//        }
+
+        Notification notification = NotificationUtil.buildNotification(context, R.mipmap.ic_launcher, defaults, shake, tickerText, split[0], contentText, null, pendingIntent);
         notification.flags = (Notification.FLAG_AUTO_CANCEL | notification.flags);
-        ((NotificationManager)mContext.getSystemService(Context.NOTIFICATION_SERVICE)).notify(NOTIFY_ID_PUSHCONTENT, notification);
+        ((NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE)).notify(NOTIFY_ID_PUSHCONTENT, notification);
     }
 
 
     /**
-     *
      * @param contex
      * @param fromUserName
      * @param msgType
      * @return
      */
-    public final String getTickerText(Context contex ,String fromUserName ,int msgType) {
+    public final String getTickerText(Context contex, String fromUserName, int msgType) {
         String info = SharedPrefsUtil.getValue(contex, fromUserName, null);
         String nick = "";
 
         if (info != null) {
             String[] data = info.split("-x-");
-            Log.e("led---",info);
+            Log.e("led---", info);
             if (data.length == 2) {
                 nick = data[1];
             }
         }
-        if(nick.equals(""))nick=fromUserName;
+        if (nick.equals("")) nick = "未填写";
 
-        if(msgType == ECMessage.Type.TXT.ordinal()) {
+        if (msgType == ECMessage.Type.TXT.ordinal()) {
 
 
             return contex.getResources().getString(R.string.notification_fmt_one_txttype, nick);
@@ -168,8 +176,8 @@ public class ECNotificationManager {
 
     }
 
-    public final String getContentTitle(Context context ,int sessionUnreadCount, String fromUserName) {
-        if(sessionUnreadCount > 1) {
+    public final String getContentTitle(Context context, int sessionUnreadCount, String fromUserName) {
+        if (sessionUnreadCount > 1) {
             return context.getString(R.string.app_name);
         }
 
@@ -177,25 +185,24 @@ public class ECNotificationManager {
     }
 
     /**
-     *
      * @param context
      * @return
      */
-    public final String getContentText(Context context , int sessionCount , int sessionUnread , String pushContent ,int lastMsgType) {
+    public final String getContentText(Context context, int sessionCount, int sessionUnread, String pushContent, int lastMsgType) {
 
         if (sessionCount > 1) {
 
             return context.getResources().getQuantityString(
-                    R.plurals.notification_fmt_multi_msg_and_talker,1,
+                    R.plurals.notification_fmt_multi_msg_and_talker, 1,
                     sessionCount, sessionUnread);
         }
 
-        if(sessionUnread > 1) {
+        if (sessionUnread > 1) {
             return context.getResources().getQuantityString(
-                    R.plurals.notification_fmt_multi_msg_and_one_talker, sessionUnread,sessionUnread);
+                    R.plurals.notification_fmt_multi_msg_and_one_talker, sessionUnread, sessionUnread);
         }
 
-        if(lastMsgType == ECMessage.Type.TXT.ordinal()) {
+        if (lastMsgType == ECMessage.Type.TXT.ordinal()) {
             return pushContent;
         } else if (lastMsgType == ECMessage.Type.FILE.ordinal()) {
             return context.getResources().getString(R.string.app_file);
@@ -236,7 +243,7 @@ public class ECNotificationManager {
         return Looper.getMainLooper();
     }
 
-    public final void showKickoffNotification(Context context , String kickofftext) {
+    public final void showKickoffNotification(Context context, String kickofftext) {
 
         Intent intent = new Intent(mContext, LauncherActivity.class);
         intent.putExtra("nofification_type", "pushcontent_notification");
@@ -250,11 +257,12 @@ public class ECNotificationManager {
         notification.defaults = (Notification.FLAG_SHOW_LIGHTS | notification.defaults);
 
         notification.setLatestEventInfo(context, kickofftext, "", pendingIntent);
-        ((NotificationManager)mContext.getSystemService(Context.NOTIFICATION_SERVICE)).notify(NOTIFY_ID_PUSHCONTENT, notification);
+        ((NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE)).notify(NOTIFY_ID_PUSHCONTENT, notification);
     }
 
     /**
      * 后台呈现音视频呼叫Notification
+     *
      * @param callType 呼叫类型
      */
     public static void showCallingNotification(ECVoIPCallManager.CallType callType) {
@@ -266,7 +274,7 @@ public class ECNotificationManager {
             notification.flags = Notification.FLAG_AUTO_CANCEL;
             notification.tickerText = topic;
             Intent intent;
-            if(callType == ECVoIPCallManager.CallType.VIDEO) {
+            if (callType == ECVoIPCallManager.CallType.VIDEO) {
                 intent = new Intent(ECVoIPBaseActivity.ACTION_VIDEO_CALL);
             } else {
                 intent = new Intent(ECVoIPBaseActivity.ACTION_VOICE_CALL);
@@ -290,10 +298,10 @@ public class ECNotificationManager {
 
 
     private void checkNotification() {
-        if(mNotificationManager == null) {
+        if (mNotificationManager == null) {
             mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         }
-        
+
     }
 
     public static void cancelCCPNotification(int id) {
