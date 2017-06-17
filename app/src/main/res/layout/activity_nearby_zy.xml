@@ -8,6 +8,7 @@
     <include layout="@layout/layout_title" android:id="@+id/title_bar"/>
 
     <LinearLayout
+        android:visibility="invisible"
         android:layout_below="@+id/title_bar"
         android:id="@+id/ll_nearby_notify"
         android:layout_width="215dp"

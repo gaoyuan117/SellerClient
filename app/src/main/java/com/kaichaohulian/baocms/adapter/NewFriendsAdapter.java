@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.app.MyApplication;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.entity.ApplyAndNoticeEntity;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpUtil;
@@ -141,7 +142,7 @@ public class NewFriendsAdapter extends BaseAdapter {
                         btn_add.setVisibility(View.GONE);
                         List.get(position).setStatus("已添加");
                     }
-                    DBLog.showToast(response.getString("errorDescription"), mContext);
+//                    DBLog.showToast(response.getString("errorDescription"), mContext);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

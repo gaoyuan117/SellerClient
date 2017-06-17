@@ -55,7 +55,12 @@ public class IDCardActivity extends BaseActivity {
         adapter = new IDCardAdapter(this, R.layout.item_id_card, contactList);
         listHaoYou.setAdapter(adapter);
 
-        getContactList();
+        try {
+            getContactList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

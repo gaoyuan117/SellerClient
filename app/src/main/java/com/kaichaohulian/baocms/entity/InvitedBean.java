@@ -43,6 +43,15 @@ public class InvitedBean {
     private String applyTime;
     private String createdTime;
     private int userApplyStatus;
+    private int ifRead;
+
+    public int getIfRead() {
+        return ifRead;
+    }
+
+    public void setIfRead(int ifRead) {
+        this.ifRead = ifRead;
+    }
 
     public int getId() {
         return id;

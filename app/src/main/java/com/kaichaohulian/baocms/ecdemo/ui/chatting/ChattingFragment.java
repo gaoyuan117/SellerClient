@@ -890,7 +890,7 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
         // If there's no data (because the user didn't select a picture and
         // just hit BACK, for example), there's nothing to do.
 
-        if(requestCode==111){
+        if(requestCode==111&&resultCode==111){
             ContactFriendsEntity data1 = (ContactFriendsEntity) data.getSerializableExtra("data");
             handleSendIDCardMessage(data1.getUsername(),data1.getAvatar(),data1.getPhoneNumber(),data1.getId());
 

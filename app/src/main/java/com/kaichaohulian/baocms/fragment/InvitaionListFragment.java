@@ -2,7 +2,9 @@ package com.kaichaohulian.baocms.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +24,7 @@ import com.kaichaohulian.baocms.activity.InvitedetailActivity;
 import com.kaichaohulian.baocms.adapter.MyInviteListAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.entity.InviteOfFindEntity;
 import com.kaichaohulian.baocms.entity.MyInviteEntity;
@@ -127,14 +130,31 @@ public class InvitaionListFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), InvitedetailActivity.class);
-                intent.putExtra("inviteId",dataList.get(i).getInvite().getId());
+                intent.putExtra("inviteId", dataList.get(i).getInvite().getId());
                 intent.putExtra("UserId", MyApplication.getInstance().UserInfo.getUserId());
-                Log.e("gy","是不是我的："+IsOwn);
                 intent.putExtra("IsOwn", IsOwn);
                 startActivity(intent);
             }
         });
 
+        lvInvitationMg.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                final String[] cities = {"删除",};
+                //    设置一个下拉的列表选择项
+                final String advertId = dataList.get(i).getInvite().getId() + "";
+
+                builder.setItems(cities, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        delInvite(advertId);
+                    }
+                });
+                builder.show();
+                return true;
+            }
+        });
 
     }
 
@@ -152,4 +172,20 @@ public class InvitaionListFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 删除邀请
+     * @param inviteId
+     */
+    private void delInvite(String inviteId) {
+        RetrofitClient.getInstance().createApi().delInvite(MyApplication.getInstance().UserInfo.getUserId(), inviteId)
+                .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(CommonEntity commonEntity) {
+                        ToastUtil.showMessage("删除成功");
+                        dataList.clear();
+                        LoadData();
+                    }
+                });
+    }
 }

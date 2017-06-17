@@ -55,8 +55,7 @@ public class MyAlbumActivity extends BaseActivity {
     @Override
     public void initData() {
         List = new ArrayList<>();
-        adapter = new MyAlbumAdapter(MyAlbumActivity.this, List);
-        listView.setAdapter(adapter);
+
         addHttpData();
     }
 
@@ -101,6 +100,8 @@ public class MyAlbumActivity extends BaseActivity {
             Glide.with(getActivity()).load(ablumEntity.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).error(R.mipmap.default_useravatar).into(head);
 //            Glide.with(getActivity()).load(ablumEntity.backAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(bg);
             listView.addHeaderView(headView);
+            adapter = new MyAlbumAdapter(MyAlbumActivity.this, List);
+            listView.setAdapter(adapter);
         }
         adapter.notifyDataSetChanged();
     }

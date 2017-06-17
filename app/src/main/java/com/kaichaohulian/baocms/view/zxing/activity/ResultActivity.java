@@ -11,9 +11,11 @@ import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.activity.FriendDetailActivity;
+import com.kaichaohulian.baocms.activity.FriendInfoActivity;
 import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.entity.GroupMMEntity;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.http.HttpUtil;
@@ -81,7 +83,6 @@ public class ResultActivity extends BaseActivity {
             byte[] compressedBitmap = extras.getByteArray(DecodeThread.BARCODE_BITMAP);
             if (compressedBitmap != null) {
                 barcode = BitmapFactory.decodeByteArray(compressedBitmap, 0, compressedBitmap.length, null);
-                // Mutable copy:
                 barcode = barcode.copy(Bitmap.Config.RGB_565, true);
             }
 
@@ -146,38 +147,13 @@ public class ResultActivity extends BaseActivity {
                     DBLog.e("扫描人物：", response.toString());
                     if (response.getInt("code") == 0) {
                         JSONObject jsonObject = response.getJSONObject("dataObject");
-                        UserInfo UserInfo = new UserInfo();
-                        UserInfo.setUserId(jsonObject.getInt("id"));
-//                        UserInfo.setCreatedTime(jsonObject.getString("createdTime"));
-//                        UserInfo.setLocked(jsonObject.getBoolean("isLocked"));
-//                        UserInfo.setLastModifiedTime(jsonObject.getString("lastModifiedTime"));
-//                        UserInfo.setLastModifier(jsonObject.getString("lastModifier"));
-                        UserInfo.setUsername(jsonObject.getString("username"));
-                        UserInfo.setPassword(jsonObject.getString("password"));
-                        UserInfo.setAccountNumber(jsonObject.getString("accountNumber"));
-                        UserInfo.setQrCode(jsonObject.getString("qrCode"));
-                        UserInfo.setDistrictId(jsonObject.getString("districtId"));
-                        UserInfo.setSex(jsonObject.getString("sex"));
-                        UserInfo.setThermalSignatrue(jsonObject.getString("thermalSignatrue"));
-                        UserInfo.setPhoneNumber(jsonObject.getString("phoneNumber"));
-                        UserInfo.setUserEmail(jsonObject.getString("userEmail"));
-                        UserInfo.setBalance(jsonObject.getString("balance"));
-                        UserInfo.setAvatar(jsonObject.getString("avatar"));
-                        UserInfo.setBackAvatar(jsonObject.getString("backAvatar"));
-//                        UserInfo.setLoginFailedCount(jsonObject.getInt("loginFailedCount"));
-                        UserInfo.setIsfriend(jsonObject.getInt("isfriend"));
-//                        UserInfo.setImages(jsonObject.getString("images"));
-//                        Bundle Bundle = new Bundle();
-//                        Bundle.putSerializable("data", UserInfo);
-
-                        Intent intent = new Intent(ResultActivity.this, FriendDetailActivity.class);
-                        intent.putExtra(FriendDetailActivity.IS_FROM_ZXING, true);
-                        intent.putExtra("data", UserInfo);
+                        Intent intent = new Intent(getActivity(), FriendInfoActivity.class);
+                        intent.putExtra("phone", jsonObject.getString("phoneNumber"));
+                        intent.putExtra("friendId", id + "");
+                        intent.putExtra("type", "1");
                         startActivity(intent);
-//                        ActivityUtil.next(ResultActivity.this, FriendDetailActivity.class, Bundle);
                         finish();
                     }
-                    showToastMsg(response.getString("errorDescription"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {

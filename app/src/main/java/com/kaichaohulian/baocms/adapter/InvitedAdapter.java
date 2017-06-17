@@ -54,19 +54,16 @@ public class InvitedAdapter extends BaseQuickAdapter<InvitedBean, BaseViewHolder
             int status = item.getStatus();
             int userStatus = item.getUserApplyStatus();
             if (userStatus == 0) {
-                imgChat.setVisibility(View.GONE);
                 layout.setVisibility(View.VISIBLE);
                 imgArrow.setVisibility(View.GONE);
                 invitedState.setVisibility(View.GONE);
             } else if (userStatus == 1) {
-                imgChat.setVisibility(View.GONE);
                 invitedState.setVisibility(View.VISIBLE);
                 invitedState.setText("已接受");
                 invitedState.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.zy_text_pink2));
                 layout.setVisibility(View.GONE);
                 imgArrow.setVisibility(View.VISIBLE);
             } else if (userStatus == 2) {
-                imgChat.setVisibility(View.GONE);
                 invitedState.setVisibility(View.VISIBLE);
                 invitedState.setText("已拒绝");
                 invitedState.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.zy_text_green));
@@ -75,21 +72,23 @@ public class InvitedAdapter extends BaseQuickAdapter<InvitedBean, BaseViewHolder
             }
 
             if (status == 0) {
-                imgChat.setVisibility(View.GONE);
                 tvState.setText("剩余" + hasTime);
             } else if (status == 1) {
-                imgChat.setVisibility(View.GONE);
                 tvState.setText("剩余" + hasTime);
             } else if (status == 2) {
-                imgChat.setVisibility(View.GONE);
                 layout.setVisibility(View.GONE);
                 tvState.setText("参与成功");
                 imgArrow.setVisibility(View.VISIBLE);
             } else if (status == 4) {
-                imgChat.setVisibility(View.GONE);
                 layout.setVisibility(View.GONE);
                 imgArrow.setVisibility(View.VISIBLE);
                 tvState.setText("已失效");
+            }
+
+            if(item.getIfRead()==1){
+                imgChat.setVisibility(View.GONE);
+            }else {
+                imgChat.setVisibility(View.VISIBLE);
             }
 
         } catch (Exception e) {

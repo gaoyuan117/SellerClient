@@ -91,19 +91,20 @@ public class NearbyZyActivity extends BaseActivity {
                 .subscribe(new BaseObjObserver<GreetBean>(this, false) {
                     @Override
                     protected void onHandleSuccess(GreetBean greetBean) {
-                        if (greetBean.getRequestDTOs1() == null) {
-                            llNearbyNotify.setVisibility(View.GONE);
-                        } else {
+                        if (greetBean == null) {
+                            return;
+                        }
+                        if (greetBean.getRequestDTOs1() != null && greetBean.getRequestDTOs1().size() > 0) {
                             llNearbyNotify.setVisibility(View.VISIBLE);
                             mGreetBean = greetBean;
                             tvChatNums.setText("你收到" + greetBean.getRembers() + "条新的打招呼");
-                            if(mGreetBean.getRembers()>0){
+                            if (mGreetBean.getRembers() > 0) {
                                 Glide.with(NearbyZyActivity.this)
                                         .load(greetBean.getRequestDTOs1().get(0).getAvatar())
                                         .error(R.mipmap.default_useravatar)
                                         .into(imgNearbyAvatar);
-                            }
 
+                            }
                         }
                     }
                 });
@@ -112,7 +113,7 @@ public class NearbyZyActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e("gy","onDestroy");
+        Log.e("gy", "onDestroy");
         stopService(new Intent(this, NearService.class));
     }
 }

@@ -30,6 +30,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.constant.SystemPush;
 import com.kaichaohulian.baocms.ecdemo.common.CCPAppManager;
 import com.kaichaohulian.baocms.ecdemo.common.utils.DateUtil;
@@ -133,6 +134,7 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
             if (conversation.getContactId() != null && CCPAppManager.getClientUser() != null
                     && !conversation.getContactId().equals(CCPAppManager.getClientUser().getUserId())) {
                 ECContacts contact = ContactSqlManager.getContact(conversation.getContactId());
+
                 if (contact != null && contact.getNickname() != null) {
                     fromNickName = contact.getNickname() + ": ";
                 } else {
@@ -225,9 +227,8 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
             String nick = "";
 
 
-
             if (info != null) {
-                Log.e("gy","历史信息："+info.toString());
+                Log.e("gy", "历史信息：" + info.toString());
                 String[] data = info.split("-x-");
                 Log.e("led---", info);
                 if (data.length > 1) {
@@ -236,10 +237,17 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                 }
             }
 
-            if (TextUtils.isEmpty(nick)) {
-                mViewHolder.nickname_tv.setText(conversation.getSessionId());
+
+            String s = MyApplication.getInstance().contactMap.get(conversation.getSessionId());
+            if (!TextUtils.isEmpty(s) && !s.equals("null")) {
+                mViewHolder.nickname_tv.setText(s);
+
             } else {
-                mViewHolder.nickname_tv.setText(nick);
+                if (TextUtils.isEmpty(nick)) {
+                    mViewHolder.nickname_tv.setText(conversation.getSessionId());
+                } else {
+                    mViewHolder.nickname_tv.setText(nick);
+                }
             }
 
 
@@ -351,9 +359,11 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                 mViewHolder.tipcnt_tv.setVisibility(View.GONE);
                 mViewHolder.prospect_iv.setVisibility(View.GONE);
                 String lastmsg = getConversationSnippet(conversation).toString();
+                Log.e("gy", "推送消息：" + lastmsg);
                 try {
                     JSONObject sysmsgObj = (JSONObject) JSON.parse(lastmsg);
                     int type = sysmsgObj.getInteger("type");
+
                     switch (type) {
                         case SystemPush.TYPE_CHARGE:
 
@@ -361,27 +371,28 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                                 mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_1);
                                 mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
                                 mViewHolder.nickname_tv.setText("提现申请");
-                            } else if (sysmsgObj.toString().contains("充值")) {
-                                mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_0);
-                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
-                                mViewHolder.nickname_tv.setText("系统充值");
-                            } else if (sysmsgObj.toString().contains("邀请")) {
-                                mViewHolder.user_avatar.setImageResource(R.mipmap.ic_launcher);
-                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
-                                mViewHolder.nickname_tv.setText("好友邀请");
-                            } else if (sysmsgObj.toString().contains("广告")) {
-                                mViewHolder.user_avatar.setImageResource(R.mipmap.ic_launcher);
-                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
-                                mViewHolder.nickname_tv.setText("广告通知");
-                            } else if (sysmsgObj.toString().contains("请求")) {
-                                mViewHolder.user_avatar.setImageResource(R.mipmap.ic_launcher);
-                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
-                                mViewHolder.nickname_tv.setText("好友请求");
-                            } else if (sysmsgObj.toString().contains("退款")) {
-                                mViewHolder.user_avatar.setImageResource(R.mipmap.ic_launcher);
-                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
-                                mViewHolder.nickname_tv.setText("退款通知");
                             }
+//                            else if (sysmsgObj.toString().contains("充值")) {
+//                                mViewHolder.user_avatar.setImageResource(R.mipmap.sysmsg_0);
+//                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+//                                mViewHolder.nickname_tv.setText("系统充值");
+//                            } else if (sysmsgObj.toString().contains("邀请信息")) {
+//                                mViewHolder.user_avatar.setImageResource(R.mipmap.yaoqing_chat);
+//                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+//                                mViewHolder.nickname_tv.setText("好友邀请");
+//                            } else if (sysmsgObj.toString().contains("广告")) {
+//                                mViewHolder.user_avatar.setImageResource(R.mipmap.guanggao_chat);
+//                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+//                                mViewHolder.nickname_tv.setText("广告通知");
+//                            } else if (sysmsgObj.toString().contains("好友请求")) {
+//                                mViewHolder.user_avatar.setImageResource(R.mipmap.add_friend2);
+//                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+//                                mViewHolder.nickname_tv.setText("好友请求");
+//                            } else if (sysmsgObj.toString().contains("退")) {
+//                                mViewHolder.user_avatar.setImageResource(R.mipmap.exit_money);
+//                                mViewHolder.last_msg_tv.setText(sysmsgObj.getString("message"));
+//                                mViewHolder.nickname_tv.setText("退款通知");
+//                            }
                             break;
 
                         case SystemPush.TYPE_BONUS:

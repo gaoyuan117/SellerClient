@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,6 +110,9 @@ public class MyAlbumAdapter extends BaseListAdapter {
     }
 
     private void FormatString(List list, String params) {
+        if (TextUtils.isEmpty(params) || params.equals("null")) {
+            return;
+        }
         String s = params.replace("]", "");
         s = s.replace("[", "");
         s = s.replace("\\", "");

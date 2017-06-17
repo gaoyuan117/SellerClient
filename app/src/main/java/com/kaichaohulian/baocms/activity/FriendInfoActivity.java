@@ -23,6 +23,7 @@ import com.kaichaohulian.baocms.ecdemo.common.CCPAppManager;
 import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
 import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.entity.InviteInfoBean;
+import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.entity.UserInfoBean;
 import com.kaichaohulian.baocms.event.UserPhotoBean;
 import com.kaichaohulian.baocms.http.HttpResult;
@@ -188,9 +189,9 @@ public class FriendInfoActivity extends BaseActivity {
             case R.id.rl_friend_info:
                 break;
             case R.id.ll_friend_info_bz:
-                Intent intent2 = new Intent(this,RemarkActivity.class);
-                intent2.putExtra("friendId",mUserInfoBean.getId()+"");
-                startActivityForResult(intent2,111);
+                Intent intent2 = new Intent(this, RemarkActivity.class);
+                intent2.putExtra("friendId", mUserInfoBean.getId() + "");
+                startActivityForResult(intent2, 111);
                 break;
             case R.id.bt_friend_info_add:
                 if (mUserInfoBean.getIsfriend() == 1) {
@@ -298,6 +299,8 @@ public class FriendInfoActivity extends BaseActivity {
                 .crossFade()
                 .into(mFriendInfoAvatar);
 
+        fiendId = userInfoBean.getId() + "";
+
         mFriendInfoName.setText(userInfoBean.getUsername());
         mFriendInfoSex.setImageResource(userInfoBean.getSex() == 0 ? R.mipmap.boy : R.mipmap.gir);
         mFriendInfoId.setText(userInfoBean.getId() + "");
@@ -308,7 +311,7 @@ public class FriendInfoActivity extends BaseActivity {
 
         addFriendMoney = userInfoBean.getAddPay() + "";
 
-        if (userInfoBean.getRemark()!=null && !userInfoBean.getRemark().equals("null")) {
+        if (userInfoBean.getRemark() != null && !userInfoBean.getRemark().equals("null")) {
             mRemark.setText(userInfoBean.getRemark().toString());
         }
 

@@ -48,7 +48,7 @@ public class MyTwoCode extends BaseActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL).into(imgHeadIcon);
 
         Glide.with(this)
-                .load("http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode())
+                .load("http://115.126.100.146:8080/ZFishApp/api/qr/userQRCode.do?userId=" + MyApplication.getInstance().UserInfo.getUserId())
                 .crossFade()
                 .into(imgTwoCode);
 

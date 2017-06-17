@@ -15,6 +15,7 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.activity.DiscoverInvitedDetailActivity;
 import com.kaichaohulian.baocms.activity.InvitedetailActivity;
 import com.kaichaohulian.baocms.adapter.InvitedAdapter;
+import com.kaichaohulian.baocms.adapter.NewFriendsAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseFragment;
 import com.kaichaohulian.baocms.ecdemo.common.utils.ToastUtil;
@@ -156,6 +157,10 @@ public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.On
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        int ifRead = mList.get(position).getIfRead();
+        if (ifRead == 0) {
+            mList.get(position).setIfRead(1);
+        }
         if (mList.get(position).getUserApplyStatus() == 0) {
             Intent intent = new Intent(getActivity(), DiscoverInvitedDetailActivity.class);
             intent.putExtra("inviteId", mList.get(position).getId() + "");
@@ -168,6 +173,7 @@ public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.On
             intent.putExtra("UserId", MyApplication.getInstance().UserInfo.getUserId());
             startActivity(intent);
         }
+        mAdapter.notifyDataSetChanged();
 
 
     }

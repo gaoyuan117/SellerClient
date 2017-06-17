@@ -19,61 +19,63 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
+import android.util.Log;
 
 /**
  * <p>Title: NotificationUtil.java</p>
  * <p>Description: </p>
  * <p>Copyright: Copyright (c) 2014</p>
  * <p>Company: Beijing Speedtong Information Technology Co.,Ltd</p>
+ *
  * @author Jorstin Chan@容联•云通讯
- * @date 2015-1-4
  * @version 4.0
+ * @date 2015-1-4
  */
 public class NotificationUtil {
-	
-	public static final String TAG = LogUtil.getLogUtilsTag(Notification.class);
 
-	@TargetApi(VERSION_CODES.HONEYCOMB)
-	public static Notification buildNotification(Context context, int icon,
-			int defaults, boolean onlyVibrate, String tickerText,
-			String contentTitle, String contentText, Bitmap largeIcon,
-			PendingIntent intent) {
-		
-		if(Build.VERSION.SDK_INT > VERSION_CODES.HONEYCOMB) {
-			Notification.Builder builder = new Notification.Builder(context);
-			builder.setLights(-16711936, 300, 1000)
-			.setSmallIcon(icon)
-			.setTicker(tickerText)
-			.setContentTitle(contentTitle)
-			.setContentText(contentText)
-			.setContentIntent(intent);
-			
-			if(onlyVibrate) {
-				defaults &= Notification.DEFAULT_VIBRATE;
-			} 
-			
-			LogUtil.d(TAG, "defaults flag " + defaults);
-			builder.setDefaults(defaults);
-			if(largeIcon != null) {
-				builder.setLargeIcon(largeIcon);
-			}
-			return builder.getNotification();
-		}
-		
-		Notification notification = new Notification();
-		notification.ledARGB = -16711936;
-		notification.ledOnMS = 300;
-		notification.ledOffMS = 1000;
-		notification.flags = (Notification.FLAG_SHOW_LIGHTS | notification.flags);
-		notification.icon = icon;
-		notification.tickerText = tickerText;
-		LogUtil.d(TAG, "defaults flag " + defaults);
-		if(onlyVibrate) {
-			defaults &= Notification.DEFAULT_VIBRATE;
-		} 
-		notification.defaults = defaults;
-		notification.setLatestEventInfo(context, contentTitle, contentText, intent);
-	    return notification;
-	}
-	
+    public static final String TAG = LogUtil.getLogUtilsTag(Notification.class);
+
+    @TargetApi(VERSION_CODES.HONEYCOMB)
+    public static Notification buildNotification(Context context, int icon,
+                                                 int defaults, boolean onlyVibrate, String tickerText,
+                                                 String contentTitle, String contentText, Bitmap largeIcon,
+                                                 PendingIntent intent) {
+
+        if (Build.VERSION.SDK_INT > VERSION_CODES.HONEYCOMB) {
+            Notification.Builder builder = new Notification.Builder(context);
+            builder.setLights(-16711936, 300, 1000)
+                    .setSmallIcon(icon)
+                    .setTicker(tickerText)
+                    .setContentTitle(contentTitle)
+                    .setContentText(contentText)
+                    .setContentIntent(intent);
+
+            if (onlyVibrate) {
+                defaults &= Notification.DEFAULT_VIBRATE;
+            }
+
+            LogUtil.d(TAG, "defaults flag " + defaults);
+            builder.setDefaults(defaults);
+            if (largeIcon != null) {
+                builder.setLargeIcon(largeIcon);
+            }
+            return builder.getNotification();
+        }
+
+        Notification notification = new Notification();
+        notification.ledARGB = -16711936;
+        notification.ledOnMS = 300;
+        notification.ledOffMS = 1000;
+        notification.flags = (Notification.FLAG_SHOW_LIGHTS | notification.flags);
+        notification.icon = icon;
+        notification.tickerText = tickerText;
+
+        if (onlyVibrate) {
+            defaults &= Notification.DEFAULT_VIBRATE;
+        }
+        notification.defaults = defaults;
+        notification.setLatestEventInfo(context, contentTitle, contentText, intent);
+        return notification;
+    }
+
 }

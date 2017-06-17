@@ -1213,7 +1213,12 @@
         <activity android:name=".activity.IDCardActivity" />
         <activity android:name=".activity.RemarkActivity" />
         <activity android:name=".activity.PositionActivity" />
-        <activity android:name=".HobbyActivity"></activity>
+        <activity android:name=".HobbyActivity" />
+
+        <service
+            android:name=".DownloadService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

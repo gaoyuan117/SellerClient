@@ -105,7 +105,7 @@ public class NewFriendsActivity extends BaseActivity {
 //        httpJson.put("mailList", ContactsArray);
         httpJson.put("page", page);
         params.put("JsonString", httpJson);
-        DBLog.e("params", params.toString());
+        DBLog.e("params", httpJson.toString());
         HttpUtil.post(Url.requests_all, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

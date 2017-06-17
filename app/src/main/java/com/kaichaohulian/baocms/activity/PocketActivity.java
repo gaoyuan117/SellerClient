@@ -143,9 +143,9 @@ public class PocketActivity extends BaseActivity {
                             entity.setBankName(object.getString("bankName"));
 //                            entity.setNumberAll(object.getString("cardNo"));
                             data.add(entity);
-                            BankcardNumber.setText(data.size() + "张");
-
                         }
+                        BankcardNumber.setText(data.size() + "张");
+
                     }
                 } catch (Exception e) {
                     showToastMsg("获取银行卡，解析json异常");

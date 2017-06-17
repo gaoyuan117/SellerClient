@@ -106,7 +106,7 @@ public class AdvertMgActivity extends BaseActivity {
                     }
                 });
                 builder.show();
-                return false;
+                return true;
             }
         });
     }

@@ -245,6 +245,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:background="@color/white"
                     android:id="@+id/re_miandarao"
                     android:layout_width="match_parent"

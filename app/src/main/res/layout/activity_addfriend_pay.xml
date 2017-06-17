@@ -14,10 +14,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_below="@+id/title_addfriend"
-        android:layout_margin="15dp"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/title_addfriend"
+        android:layout_alignLeft="@+id/btn_setPayNeed"
+        android:layout_alignStart="@+id/btn_setPayNeed">
 
         <ImageView
             android:id="@+id/img_addfriendpay"
@@ -44,7 +46,7 @@
             android:layout_toLeftOf="@+id/tv_addfriend_yuan"
             android:background="#00000000"
             android:gravity="right"
-            android:hint="0.00"
+            android:hint="0.0"
             android:textColorHint="@color/blue"
             android:inputType="numberDecimal"
             android:textCursorDrawable="@null" />

@@ -138,6 +138,8 @@ public class AdvertOtherActivity extends BaseActivity {
 
                 if (count != null && !count.equals("人数")) {
                     map.put("num", count);
+                } else {
+                    map.put("num", "0");
                 }
 
                 RetrofitClient.getInstance().createApi().ReleaseAdviertOfOther(map)

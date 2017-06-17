@@ -86,6 +86,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
 
     private TimePickerView timePickerView;
     SimpleDateFormat DayTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    SimpleDateFormat DayTimeFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private String sendTime;
 
     @Override
@@ -102,6 +103,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
 
 //        DateFormat format = new SimpleDateFormat("HH:mm yyyy.MM.dd");
         Date date = new Date(System.currentTimeMillis());
+        sendTime = DayTimeFormat2.format(date);
         time.setText(DayTimeFormat.format(date));
         list = new ArrayList<>();
         ImageBaseAdapter = new ImageBaseAdapter();
@@ -150,6 +152,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
                     ShowDialog.dissmiss();
                     return;
                 }
+
                 if (payDialog == null) {
                     payDialog = new PayDialog(getActivity()).setMessage("本次群发需要支付" + (payMoney * size) + "元手续费").setSureClick(new View.OnClickListener() {
                         @Override
@@ -188,7 +191,7 @@ public class ReleaseAdvertActivity extends BaseActivity {
                         public void onTimeSelect(Date date, View v) {
                             time.setText(DayTimeFormat.format(date));
 
-                            sendTime = DayTimeFormat.format(date);
+                            sendTime = DayTimeFormat2.format(date);
                         }
                     }).setType(TimePickerView.Type.YEAR_MONTH_DAY_HOUR_MIN)
                             .setDate(Calendar.getInstance())
@@ -329,15 +332,12 @@ public class ReleaseAdvertActivity extends BaseActivity {
         map.put("title", title.getText().toString().trim());
         map.put("context", content.getText().toString().trim());
         map.put("type", type);
+        map.put("createdTime", sendTime);
         if (!img.equals("")) {
             map.put("images", img.toString().trim());
         }
         map.put("ids", getIntent().getStringExtra("ids"));
         map.put("pay", (payMoney * size) + "");
-//        map.put("redMoney", "5");
-//        map.put("ids", getIntent().getStringExtra("ids"));
-//        map.put("pay", (payMoney * size) + "");
-//        map.put("redMoney", "5");
         RetrofitClient.getInstance().createApi().ReleaseAdvert(map)
                 .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
                 .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {

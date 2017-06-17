@@ -118,6 +118,7 @@ public class SendinvitationActivity extends BaseActivity {
             Toast.makeText(this, "请选择要邀请的人", Toast.LENGTH_SHORT).show();
             return;
         } else {
+            Log.e("gy", "好友列表：" + ids);
             map.put("ids", ids);
         }
         map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
@@ -176,10 +177,10 @@ public class SendinvitationActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SELECT_ID && resultCode == RESULT_OK) {
             String ids = data.getStringExtra("ids");
-            String replace = ids.replace("," + MyApplication.getInstance().UserInfo.getUserId(), "");
+//            String replace = ids.replace("," + MyApplication.getInstance().UserInfo.getUserId(), "");
             String nums = data.getStringExtra("nums");
             tvNums.setText(nums);
-            this.ids = replace;
+            this.ids = ids;
         }
 
         if (requestCode == 110 && resultCode == 110) {

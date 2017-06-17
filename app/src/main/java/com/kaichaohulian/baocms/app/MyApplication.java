@@ -40,6 +40,7 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 import java.io.File;
 import java.io.InvalidClassException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -68,6 +69,8 @@ public class MyApplication extends MultiDexApplication {
 
     public static String lng;
     public static String lat;
+
+    public Map<String,String> contactMap = new HashMap<>();
 
     public static MyApplication getInstance() {
         return mInstance;

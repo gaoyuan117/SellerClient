@@ -53,9 +53,14 @@ public class IDCardRxRow extends BaseChattingRow {
             ViewHolderTag holderTag = ViewHolderTag.createTag(detail,
                     ViewHolderTag.TagType.TAG_IM_IDCARD, position);
             ECTextMessageBody textBody = (ECTextMessageBody) message.getBody();
+            String userData="";
 
-//            String msgTextString = textBody.getMessage();
-            String userData = message.getUserData();
+            if(message.getUserData().equals("cardtype")){
+                userData = textBody.getMessage();
+            }else {
+                userData = message.getUserData();
+            }
+
             Log.e("gy", "名片数据："+userData);
             try {
                 JSONObject jsonObject = new JSONObject(userData);

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.kaichaohulian.baocms.DownloadService;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.UserInfoManager;
 import com.kaichaohulian.baocms.activity.AdvertMgActivity;
@@ -113,7 +115,7 @@ public class ProFileFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
+        checkVersion();
     }
 
     @Override
@@ -180,7 +182,7 @@ public class ProFileFragment extends BaseFragment {
                 break;
             //检查版本更新
             case R.id.me_relativelayout_version:
-                openRedPackageDialog();
+                checkVersion();
                 break;
         }
     }
@@ -189,7 +191,7 @@ public class ProFileFragment extends BaseFragment {
     /**
      * 版本对话框
      */
-    private void openRedPackageDialog() {
+    private void openRedPackageDialog(final String path) {
         View view = View.inflate(getActivity(), R.layout.dialog_version, null);
         ImageView dialogClose = (ImageView) view.findViewById(R.id.img_verson_close);
         TextView dialogCancle = (TextView) view.findViewById(R.id.tv_verson_cancle);
@@ -214,7 +216,12 @@ public class ProFileFragment extends BaseFragment {
         dialogSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showMessage("正在后台更新");
+                ToastUtil.showMessage("后台更新中");
+                Intent intent = new Intent(getActivity(), DownloadService.class);
+                intent.putExtra("path", path);
+//                intent.putExtra("path", "http://d.koudai.com/com.koudai.weishop/1000f/weishop_1000f.apk");
+                getActivity().startService(intent);
+                dialog.dismiss();
             }
         });
     }
@@ -237,79 +244,18 @@ public class ProFileFragment extends BaseFragment {
         }
     }
 
-    private void checkVersion(){
+    private void checkVersion() {
         RetrofitClient.getInstance().createApi().checkVersion()
                 .compose(RxUtils.<HttpResult<VersionBean>>io_main())
                 .subscribe(new BaseObjObserver<VersionBean>(getActivity()) {
                     @Override
                     protected void onHandleSuccess(VersionBean versionBean) {
-
+                        if (!versionBean.getAndroidVersion().equals(getVersion())) {
+                            openRedPackageDialog("115.126.100.146:8080/ZFishApp/" + versionBean.getAndroidPath());
+                        }
                     }
                 });
     }
 
 
-    //下载apk程序代码
-    protected File downLoadFile(String httpUrl) {
-        // TODO Auto-generated method stub
-        final String fileName = "updata.apk";
-        File tmpFile = new File("/sdcard/update");
-        if (!tmpFile.exists()) {
-            tmpFile.mkdir();
-        }
-        final File file = new File("/sdcard/update/" + fileName);
-
-        try {
-            URL url = new URL(httpUrl);
-            try {
-                HttpURLConnection conn = (HttpURLConnection) url
-                        .openConnection();
-                InputStream is = conn.getInputStream();
-                FileOutputStream fos = new FileOutputStream(file);
-                byte[] buf = new byte[256];
-                conn.connect();
-                double count = 0;
-                if (conn.getResponseCode() >= 400) {
-                    ToastUtil.showMessage("连接超时");
-                } else {
-                    while (count <= 100) {
-                        if (is != null) {
-                            int numRead = is.read(buf);
-                            if (numRead <= 0) {
-                                break;
-                            } else {
-                                fos.write(buf, 0, numRead);
-                            }
-
-                        } else {
-                            break;
-                        }
-
-                    }
-                }
-
-                conn.disconnect();
-                fos.close();
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        return file;
-    }
-    //打开APK程序代码
-
-    private void openFile(File file) {
-        // TODO Auto-generated method stub
-        Log.e("OpenFile", file.getName());
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(android.content.Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file),
-                "application/vnd.android.package-archive");
-        startActivity(intent);
-    }
 }

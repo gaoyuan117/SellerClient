@@ -7,6 +7,7 @@
     android:orientation="vertical" >
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/result_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,6 +15,7 @@
         android:scaleType="fitXY" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/result_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

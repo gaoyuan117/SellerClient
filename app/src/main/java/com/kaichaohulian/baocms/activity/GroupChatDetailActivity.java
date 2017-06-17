@@ -36,8 +36,11 @@ import com.kaichaohulian.baocms.view.SwitchButton;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.yuntongxun.ecsdk.ECChatManager;
+import com.yuntongxun.ecsdk.ECDevice;
 import com.yuntongxun.ecsdk.ECError;
+import com.yuntongxun.ecsdk.ECGroupManager;
 import com.yuntongxun.ecsdk.SdkErrorCode;
+import com.yuntongxun.ecsdk.im.ECGroupOption;
 
 import org.apache.http.Header;
 import org.json.JSONObject;
@@ -235,10 +238,12 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
             case R.id.sb_MianDaRao:
                 if (isChecked) {
                     messageNo = "1";
-                    updateMiandarao(1);
+//                    updateMiandarao(1);
+                    slicen(ECGroupOption.Rule.SILENCE);
                 } else {
-                    updateMiandarao(0);
+//                    updateMiandarao(0);
                     messageNo = "0";
+                    slicen(ECGroupOption.Rule.NORMAL);
                 }
                 break;
             case R.id.sb_ZhiDing:
@@ -273,6 +278,35 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
 
         }
         updateMyUser();
+    }
+
+    /**
+     * 消息免打扰
+     */
+    private void slicen(ECGroupOption.Rule rule) {
+        // 所属的群组ID
+        String groupId = chatGroupId;
+        ECGroupOption option = new ECGroupOption(groupId);
+        // 设置群组消息通知免打扰状态
+        option.setRule(rule);
+
+        // 获得SDK群组创建管理类
+        ECGroupManager groupManager = ECDevice.getECGroupManager();
+        // 调用设置群消息提醒接口，设置结果回调
+        groupManager.setGroupMessageOption(option,
+                new ECGroupManager.OnSetGroupMessageOptionListener() {
+                    @Override
+                    public void onSetGroupMessageOptionComplete(ECError error, String groupId) {
+                        if (error.errorCode == SdkErrorCode.REQUEST_SUCCESS) {
+                            // 设置群组消息免打扰规则成功
+//                            ToastUtil.showMessage("设置群组消息免打扰规则成功");
+                            return;
+                        }
+                        // 设置群组消息免打扰规则失败
+                        Log.e("ECSDK_Demo", "set group message option rule fail " +
+                                ", errorCode=" + error.errorCode);
+                    }
+                });
     }
 
     public void zhiding(final String sessionid, final boolean isTop) {
@@ -324,6 +358,7 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
                     intent.putExtra("code", v.getTag().toString());
                     intent.putExtra("name", tv_name.getText().toString());
                     intent.putExtra("isFromGroup", true);
+                    intent.putExtra("groupId",chatGroupId);
                     intent.setClass(getActivity(), GroupCodeActivity.class);
                     startActivity(intent);
                 }
@@ -363,6 +398,8 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
                 break;
         }
     }
+
+
 
     public void jieshanqunliao() {
         RequestParams params = new RequestParams();

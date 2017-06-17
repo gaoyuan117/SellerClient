@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.utils.QrCodeUtils;
 import com.kaichaohulian.baocms.utils.StringUtils;
 import com.google.zxing.WriterException;
@@ -17,7 +18,7 @@ public class GroupCodeActivity extends BaseActivity {
 
     private ImageView imgTwoCode;
     private TextView txtName;
-    String code, name;
+    String code, name, groupId;
 
 
     @Override
@@ -30,6 +31,7 @@ public class GroupCodeActivity extends BaseActivity {
         if (getIntent() != null) {
             code = getIntent().getStringExtra("code");
             name = getIntent().getStringExtra("name");
+            groupId = getIntent().getStringExtra("groupId");
         }
         if (StringUtils.isEmpty(code)) {
             finish();
@@ -47,8 +49,7 @@ public class GroupCodeActivity extends BaseActivity {
         imgTwoCode = getId(R.id.two_code);
         txtName = getId(R.id.name_text);
         txtName.setText(name);
-        Log.e("gy","code："+"http://www.52yeli.com/" + code);
-        Glide.with(getActivity()).load("http://www.52yeli.com/" + code).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgTwoCode);
+        Glide.with(getActivity()).load(Url.BASE_URL + "qr/groupQRCode.do?groupId=" + groupId).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgTwoCode);
     }
 
     @Override

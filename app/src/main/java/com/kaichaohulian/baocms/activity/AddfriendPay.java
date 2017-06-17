@@ -55,8 +55,8 @@ public class AddfriendPay extends BaseActivity {
                 String temp = edt.toString();
                 int posDot = temp.indexOf(".");
                 if (posDot <= 0) return;
-                if (temp.length() - posDot - 1 > 2)  {
-                    edt.delete(posDot + 3, posDot + 4);
+                if (temp.length() - posDot - 1 > 1)  {
+                    edt.delete(posDot + 2, posDot + 3);
                 }
             }
 

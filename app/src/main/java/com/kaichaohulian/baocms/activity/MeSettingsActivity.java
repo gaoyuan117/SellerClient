@@ -35,7 +35,6 @@ public class MeSettingsActivity extends BaseEcActivity {
 
     @Override
     public void initData() {
-        loadUserInfoPhone();
     }
 
     @Override
@@ -45,6 +44,13 @@ public class MeSettingsActivity extends BaseEcActivity {
         setCenterTitle("设置");
 
         registerReceiver(new String[]{SDKCoreHelper.ACTION_LOGOUT});
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserInfoPhone();
 
     }
 

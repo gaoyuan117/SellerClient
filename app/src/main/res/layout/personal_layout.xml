@@ -14,11 +14,12 @@
         android:scrollbars="none"
 
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:id="@+id/head_icon_linear"
                 android:layout_width="match_parent"
@@ -345,7 +346,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/personal_label"
+                    android:text="个性签名"
                     android:textColor="@color/dark"
                     android:textSize="@dimen/text_14" />
 
@@ -393,23 +394,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/seltor"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_EarnestMoney"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="#9CD79A"
-                        android:textSize="@dimen/sp_14"
-                        />
+                        android:textSize="@dimen/sp_14" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -419,27 +420,29 @@
 
                         />
                 </LinearLayout>
+
                 <View
-                    android:background="@color/line"
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:background="@color/line" />
+
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_GetMoney"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="#E08285"
-                        android:textSize="@dimen/sp_14"
-                        />
+                        android:textSize="@dimen/sp_14" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -456,6 +459,7 @@
                 android:layout_height="10dp"
                 android:background="#E8E8E8"
                 android:orientation="vertical" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/discover_line_height"
@@ -478,24 +482,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/seltor"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_BeAddFriend"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="#A5D8E9"
-                        android:textSize="@dimen/sp_14"
-                        />
+                        android:textSize="@dimen/sp_14" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -507,26 +510,27 @@
                 </LinearLayout>
 
                 <View
-                    android:background="@color/line"
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:background="@color/line" />
+
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_BeInvite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="#A5D8E9"
-                        android:textSize="@dimen/sp_14"
-                        />
+                        android:textSize="@dimen/sp_14" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -536,27 +540,29 @@
 
                         />
                 </LinearLayout>
+
                 <View
-                    android:background="@color/line"
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:background="@color/line" />
+
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_appointment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="#A5D8E9"
-                        android:textSize="@dimen/sp_14"
-                        />
+                        android:textSize="@dimen/sp_14" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -566,27 +572,29 @@
 
                         />
                 </LinearLayout>
+
                 <View
-                    android:background="@color/line"
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:background="@color/line" />
+
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_BeMiss"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="#E08285"
-                        android:textSize="@dimen/sp_14"
-                        />
+                        android:textSize="@dimen/sp_14" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -597,6 +605,7 @@
                         />
                 </LinearLayout>
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="30dp"

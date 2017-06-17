@@ -126,9 +126,9 @@ public class AddFriendsOneActivity extends BaseActivity {
                 .error(R.mipmap.default_useravatar)
                 .crossFade()
                 .into(avatar);
-        Log.e("gy", "二维码：" +  MyApplication.getInstance().UserInfo.getQrCode());
+        Log.e("gy", "二维码：" + MyApplication.getInstance().UserInfo.getQrCode());
         Glide.with(this)
-                .load("http://www.52yeli.com/" + MyApplication.getInstance().UserInfo.getQrCode())
+                .load("http://115.126.100.146:8080/ZFishApp/api/qr/userQRCode.do?userId=" + MyApplication.getInstance().UserInfo.getUserId())
 //                .error(R.mipmap.default_image)
                 .crossFade()
                 .into(codeImg);

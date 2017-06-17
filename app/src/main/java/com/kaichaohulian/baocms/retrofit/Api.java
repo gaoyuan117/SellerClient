@@ -309,4 +309,16 @@ public interface Api {
     @GET("baseset/about.do")
     Observable<HttpResult<AboutBean>> getAbout();
 
+    //删除邀请
+    @GET("invite/delInvite.do")
+    Observable<HttpResult<CommonEntity>> delInvite(@Query("userId") int id, @Query("inviteId") String inviteId);
+
+    //获取用二维码
+    @GET("qr/userQRCode.do")
+    Observable<HttpResult<CommonEntity>> userQRCode(@Query("userId") int id);
+
+    //是否有新的消息
+    @GET("users/getNewInfo.do")
+    Observable<HttpResult<CommonEntity>> newInfo(@Query("userId") int id);
+
 }

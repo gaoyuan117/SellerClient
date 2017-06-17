@@ -5,7 +5,7 @@ package com.kaichaohulian.baocms.http;
  * Created by ljl on 2016/12/11.
  */
 public class Url {
-    public static final String BASE_URL = "http://115.126.100.146:8080/ZFishApp/api/"; // 服务器地址
+    public static final String BASE_URL = "http://39.108.98.255/ZFishApp/api/"; // 服务器地址
 
     public static final String WX_APP_ID = "wx21f81eacea211f9a";
     public static final String WX_APP_SECRET = "67ac3d7906877044a4a873f712883194";

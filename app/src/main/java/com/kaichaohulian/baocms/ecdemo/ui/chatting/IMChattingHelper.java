@@ -903,6 +903,7 @@ public class IMChattingHelper implements OnChatReceiveListener,
         if (IMessageSqlManager.updateIMessageDownload(message) <= 0) {
             return;
         }
+
         if (mOnMessageReportCallback != null) {
             mOnMessageReportCallback.onMessageReport(null, message);
         }

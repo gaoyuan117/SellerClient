@@ -227,6 +227,7 @@ public class YuntxNotifyReceiver extends ECNotifyReceiver {
                 case OPTION_SUB_NORMAL:
                     ECMessage message = intent.getParcelableExtra(EXTRA_MESSAGE);
                     IMChattingHelper.getInstance().OnReceivedMessage(message);
+
                     break;
                 case OPTION_SUB_GROUP:
                     ECGroupNoticeMessage notice = intent.getParcelableExtra(EXTRA_MESSAGE);

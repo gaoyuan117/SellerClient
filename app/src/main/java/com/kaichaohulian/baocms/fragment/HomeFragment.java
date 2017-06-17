@@ -261,19 +261,26 @@ public class HomeFragment extends BaseEcFragment implements CCPListAdapter.OnLis
                 String info = SharedPrefsUtil.getValue(context, conversation.getSessionId(), null);
                 String nick;
 
-                if (info != null) {
-                    String[] data = info.split("-x-");
-                    nick = data[1];
 
-                    if (conversation.getSessionId().startsWith("g") && data.length == 3) {
+                String s = MyApplication.getInstance().contactMap.get(conversation.getSessionId());
+                if (!TextUtils.isEmpty(s) && !s.equals("null")) {
+                    nick = s;
+                } else {
+                    if (info != null) {
+                        String[] data = info.split("-x-");
                         nick = data[1];
-                        CCPAppManager.startGroupChattingAction(getActivity(), conversation.getSessionId(),
-                                nick, Integer.parseInt(data[2]), false);
-                        return;
-                    }
 
-                } else
-                    nick = conversation.getUsername();
+                        if (conversation.getSessionId().startsWith("g") && data.length == 3) {
+                            nick = data[1];
+                            CCPAppManager.startGroupChattingAction(getActivity(), conversation.getSessionId(),
+                                    nick, Integer.parseInt(data[2]), false);
+                            return;
+                        }
+
+                    } else
+                        nick = conversation.getUsername();
+                }
+
                 conversation.getContactId();
                 CCPAppManager.startChattingAction(getActivity(), conversation.getSessionId(), nick);
             }
