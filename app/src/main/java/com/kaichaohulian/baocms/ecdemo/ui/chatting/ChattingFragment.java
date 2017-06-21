@@ -294,15 +294,6 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
     private OnChattingAttachListener mAttachListener;
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.chatting_activity;
-    }
-
-    public ECMessage getTopMsg() {
-        return mChattingAdapter.getItem(0);
-    }
-
-    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
@@ -312,14 +303,6 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
                     + " must implement OnChattingAttachListener");
         }
     }
-
-    private ChattingActivity getChattingActivity() {
-        if (getActivity() instanceof ChattingActivity) {
-            return (ChattingActivity) getActivity();
-        }
-        throw new RuntimeException(getActivity().toString() + " must implement OnChattingAttachListener");
-    }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -339,7 +322,6 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
         contentView.setLayoutParams(layoutParams);
         return contentView;
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -370,20 +352,45 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
         registerReceiver(new String[]{IMessageSqlManager.ACTION_GROUP_DEL, IMChattingHelper.INTENT_ACTION_CHAT_USER_STATE, IMChattingHelper.INTENT_ACTION_CHAT_EDITTEXT_FOUCU});
     }
 
-    private void queryUIMessage() {
-        mListView.post(new Runnable() {
+    @Override
+    public void onResume() {
+        super.onResume();
+        mChattingFooter.switchChattingPanel(SmileyPanel.APP_PANEL_NAME_DEFAULT);
+        mChattingFooter.initSmileyPanel();
+        IMChattingHelper.setOnMessageReportCallback(this);
+        if (mCustomerService) {
+            CustomerServiceHelper.addCustomerServiceListener(this);
+        }
+        // 将所有的未读消息设置为已读
+        setChattingSessionRead();
+        mChattingAdapter.onResume();
+        try {
+            ECPreferences.savePreference(ECPreferenceSettings.SETTINGS_AT, "", true);
+        } catch (InvalidClassException e) {
+        }
+        checkPreviewImage();
+        setChattingContactId(mRecipients);
+        ECNotificationManager.getInstance().forceCancelNotification();
 
-            @Override
-            public void run() {
-                if (mChattingAdapter.getCount() < 18) {
-                    mECPullDownView.setIsCloseTopAllowRefersh(true);
-                    mECPullDownView.setTopViewInitialize(false);
-                }
-                mListView.clearFocus();
-                mChattingAdapter.notifyChange();
-                mListView.setSelection(mChattingAdapter.getCount());
-            }
-        });
+        initSettings(mRecipients);
+        //TODO 2017-03-12解决建群UI显示异常问题,问题原因：DB中joined状态异常
+        boolean joinState = GroupSqlManager.getJoinState(mRecipients);
+//        if (isPeerChat() && !joinState) {
+//        if (isPeerChat()) {
+//            getTopBarView().setTopBarToStatus(1, R.drawable.topbar_back_bt, -1, mUsername, mOnClickListener);
+//            mChattingFooter.setVisibility(View.GONE);
+//            return;
+//        }
+        mChattingFooter.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        handleSendUserStateMessage("0");
+        stopPlayVoice();
+        setChattingContactId("");
+
     }
 
     @Override
@@ -441,6 +448,39 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
         System.gc();
 
 
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.chatting_activity;
+    }
+
+    public ECMessage getTopMsg() {
+        return mChattingAdapter.getItem(0);
+    }
+
+    private ChattingActivity getChattingActivity() {
+        if (getActivity() instanceof ChattingActivity) {
+            return (ChattingActivity) getActivity();
+        }
+        throw new RuntimeException(getActivity().toString() + " must implement OnChattingAttachListener");
+    }
+
+
+    private void queryUIMessage() {
+        mListView.post(new Runnable() {
+
+            @Override
+            public void run() {
+                if (mChattingAdapter.getCount() < 18) {
+                    mECPullDownView.setIsCloseTopAllowRefersh(true);
+                    mECPullDownView.setTopViewInitialize(false);
+                }
+                mListView.clearFocus();
+                mChattingAdapter.notifyChange();
+                mListView.setSelection(mChattingAdapter.getCount());
+            }
+        });
     }
 
     /**
@@ -731,38 +771,6 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
         if (!isViewMode) hideMsgLayoutMask();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        mChattingFooter.switchChattingPanel(SmileyPanel.APP_PANEL_NAME_DEFAULT);
-        mChattingFooter.initSmileyPanel();
-        IMChattingHelper.setOnMessageReportCallback(this);
-        if (mCustomerService) {
-            CustomerServiceHelper.addCustomerServiceListener(this);
-        }
-        // 将所有的未读消息设置为已读
-        setChattingSessionRead();
-        mChattingAdapter.onResume();
-        try {
-            ECPreferences.savePreference(ECPreferenceSettings.SETTINGS_AT, "", true);
-        } catch (InvalidClassException e) {
-        }
-        checkPreviewImage();
-        setChattingContactId(mRecipients);
-        ECNotificationManager.getInstance().forceCancelNotification();
-
-        initSettings(mRecipients);
-        //TODO 2017-03-12解决建群UI显示异常问题,问题原因：DB中joined状态异常
-        boolean joinState = GroupSqlManager.getJoinState(mRecipients);
-//        if (isPeerChat() && !joinState) {
-//        if (isPeerChat()) {
-//            getTopBarView().setTopBarToStatus(1, R.drawable.topbar_back_bt, -1, mUsername, mOnClickListener);
-//            mChattingFooter.setVisibility(View.GONE);
-//            return;
-//        }
-        mChattingFooter.setVisibility(View.VISIBLE);
-    }
-
     /**
      * @param mRecipients
      */
@@ -829,15 +837,6 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
                     }
             );
         }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        handleSendUserStateMessage("0");
-        stopPlayVoice();
-        setChattingContactId("");
-
     }
 
     /**
@@ -2830,6 +2829,7 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
                             } else {
                                 ToastUtil.showMessage("撤回失败" + error.errorCode);
                             }
+                            Log.d(TAG, "message:" + message);
                         }
                     });
                 }

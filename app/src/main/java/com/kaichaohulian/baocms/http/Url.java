@@ -6,7 +6,7 @@ package com.kaichaohulian.baocms.http;
  */
 public class Url {
     public static final String BASE_URL = "http://47.94.229.40/ZFishApp/api/"; // 服务器地址
-    public static final String QimgUrl= Url.BASE_URL+"qr/userQRCode.do?"+"userId=";
+    public static final String QimgUrl = Url.BASE_URL + "qr/userQRCode.do?" + "userId=";
     public static final String WX_APP_ID = "wx21f81eacea211f9a";
     public static final String WX_APP_SECRET = "67ac3d7906877044a4a873f712883194";
     //    public static final String WX_PARTNER_ID = "1289850701"; // 商户号
@@ -80,23 +80,23 @@ public class Url {
     //其他群发
     public static final String SendAdviertOfOther = BASE_URL + "adviertisement/getUser.do";
     //获取支付金额
-    public static final String GetAdvertParm=BASE_URL+"adviertisement/getAdvertParm.do";
+    public static final String GetAdvertParm = BASE_URL + "adviertisement/getAdvertParm.do";
 
     /****************
      * **邀请相关*****
      **************/
     //发起邀请
-    public static final String SendInvite=BASE_URL+"invite/release.do";
+    public static final String SendInvite = BASE_URL + "invite/release.do";
     //获取我发起的邀请
     public static final String getMyInvite = BASE_URL + "invite/getMyInvite.do";
     //获取我参与的邀请
     public static final String GetMyJoinInvite = BASE_URL + "invite/getInvite.do";
     //邀请详情(发布人)
-    public static final String GetInviteDetailForHost=BASE_URL+"invite/getInviteDetail.do";
+    public static final String GetInviteDetailForHost = BASE_URL + "invite/getInviteDetail.do";
     //邀请详情(受邀人)
-    public static final String GetInviteDetailForReciver=BASE_URL+"invite/getInviteDetailAndUser.do";
+    public static final String GetInviteDetailForReciver = BASE_URL + "invite/getInviteDetailAndUser.do";
     //见面确认
-    public static final String GetSureMeet=BASE_URL+"invite/sureMeet.do";
+    public static final String GetSureMeet = BASE_URL + "invite/sureMeet.do";
 
 
     //获取客服列表
@@ -342,6 +342,8 @@ public class Url {
     public static final String setUplable = BASE_URL + "lables/setUplable.do";
     //保存收藏
     public static final String saveCollections = BASE_URL + "imageManager/saveCollections.do";
+    //删除收藏
+    public static final String deleteCollections = BASE_URL + "imageManager/delCollections.do";
     //仍一个漂流瓶
     public static final String stillBottle = BASE_URL + "driftbottle/stillBottle.do";
     //2、	回应漂流瓶

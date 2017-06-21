@@ -62,7 +62,7 @@
                 android:layout_alignBottom="@id/iv_avatar"
                 android:layout_marginLeft="16dp"
                 android:layout_toRightOf="@id/iv_avatar"
-                android:text="帐号:"
+                android:text="ID:"
                 android:textColor="#AAAAAA"
                 android:textSize="14sp" />
         </RelativeLayout>

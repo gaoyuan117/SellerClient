@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -274,10 +275,17 @@ public class ContactListFragment extends BaseFragment {
                             contract.setThermalSignatrue(jsonObject.getString("thermalSignatrue"));
                             contract.setUsername(jsonObject.getString("username"));
                             contract.setRemark(jsonObject.optString("remark"));
-                            if (Character.isDigit(contract.getUsername().charAt(0))) {
+                            String name="";
+                            if(contract.getRemark().equals("null")){
+                                name=contract.getUsername();
+                            }else{
+                                name=contract.getRemark();
+                            }
+                            Log.d("ContactListFragment", "name.charAt(0):" + name.charAt(0));
+                            if (Character.isDigit(name.charAt(0))) {
                                 contract.setHeader("#");
                             } else {
-                                contract.setHeader(ChineseToEnglish.getInstance().getSelling(contract.getUsername()).trim().substring(0, 1));
+                                contract.setHeader(ChineseToEnglish.getInstance().getSelling(name).trim().substring(0, 1));
                                 char header = contract.getHeader().toLowerCase().charAt(0);
                                 if (header < 'a' || header > 'z') {
                                     contract.setHeader("#");

@@ -48,15 +48,18 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public class MyBankCardListActivity extends BaseActivity {
-    private int del;
+public class MyBankCardListActivity extends BaseActivity implements AdapterView.OnItemLongClickListener {
     private ListView listView;
     private List<BankCardEntity> data;
     private MyBankCardListAdapter adapter;
     public static final int ADD_BANKCARD_REQUEST = 1000;
+    private View SignPassword;
     private PasswordEdittext paywordEdt;
     private PopupWindow PopSignPassword;
-    private View SignPassword;
+    private int del;
+    //    private PasswordEdittext paywordEdt;
+//    private PopupWindow PopSignPassword;
+//    private View SignPassword;
     @Override
     public void setContent() {
         setContentView(R.layout.my_bank_card_list);
@@ -72,9 +75,9 @@ public class MyBankCardListActivity extends BaseActivity {
     @Override
     public void initView() {
         listView = getId(R.id.my_bankcard_list);
-        if(getIntent().getBooleanExtra("IsChoose",false)){
+        if (getIntent().getBooleanExtra("IsChoose", false)) {
             setCenterTitle("选择银行卡");
-        }else{
+        } else {
             setCenterTitle("我的银行卡");
             setIm1_view(R.mipmap.add_part).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,153 +92,121 @@ public class MyBankCardListActivity extends BaseActivity {
     @Override
     public void initEvent() {
         listView.setAdapter(adapter);
-        if(getIntent().getBooleanExtra("IsChoose",false)){
+        if (getIntent().getBooleanExtra("IsChoose", false)) {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent intent=new Intent();
-                    intent.putExtra("bankcard",data.get(i));
-                    setResult(RESULT_OK,intent);
+                    Intent intent = new Intent();
+                    intent.putExtra("bankcard", data.get(i));
+                    setResult(RESULT_OK, intent);
                     finish();
                 }
             });
-        }else{
-            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-
-
-                @Override
-                public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                    new AlertDialog.Builder(MyBankCardListActivity.this)
-                            .setMessage("是否删除？")
-                            .setPositiveButton(R.string.ok,
-                                    new DialogInterface.OnClickListener() {
-
-                                        @Override
-                                        public void onClick(DialogInterface dialog,
-                                                            int which) {
-                                            ShowPayWord();
-                                            del = i;
-                                            dialog.dismiss();
-
-                                        }
-                                    })
-                            .setNegativeButton(R.string.cancel,
-                                    new DialogInterface.OnClickListener() {
-
-                                        @Override
-                                        public void onClick(DialogInterface dialog,
-                                                            int which) {
-                                            dialog.dismiss();
-
-                                        }
-                                    }).setCancelable(false).show();
-                    return false;
-                }
-            });
-        }
-
-    }
-    private void ShowPayWord() {
-        if(MyApplication.getInstance().UserInfo.getPayPassword()==null){
-            Toast.makeText(this, "请到设置-设置支付密码页面设置支付密码", Toast.LENGTH_SHORT).show();return;
-        }
-        if (SignPassword == null) {
-            SignPassword = View.inflate(this, R.layout.sign_paypassword, null);
-            paywordEdt = (PasswordEdittext) SignPassword.findViewById(R.id.paypassword_edt);
-            ImageView iv = (ImageView) SignPassword.findViewById(R.id.img_exit_signpassword);
-            iv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    PopSignPassword.dismiss();
-                }
-            });
-            paywordEdt.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-                    if (editable.length() == 6) {
-                        SignPayPassWord(editable.toString().trim());
-                    }
-                }
-            });
-        }
-        if (PopSignPassword == null) {
-            int H;
-            H = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-            SignPassword.measure(0, H);
-            H = SignPassword.getMeasuredHeight();
-            PopSignPassword = new PopupWindow(SignPassword, ViewGroup.LayoutParams.MATCH_PARENT, H);
-            PopSignPassword.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
-            PopSignPassword.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-            PopSignPassword.setTouchable(true); // 设置popupwindow可点击
-            PopSignPassword.setFocusable(true); // 获取焦点
-            ColorDrawable dw = new ColorDrawable(Color.WHITE);
-            //设置SelectPicPopupWindow弹出窗体的背景
-            PopSignPassword.setBackgroundDrawable(dw);
-            PopSignPassword.setAnimationStyle(R.style.popPassword_animation);
-            PopSignPassword.showAtLocation(findViewById(R.id.main_activity_withdraw_apply),
-                    Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-            paywordEdt.setFocusable(true);
         } else {
-            PopSignPassword.showAtLocation(findViewById(R.id.main_activity_withdraw_apply),
-                    Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-            paywordEdt.setFocusable(true);
-
+            listView.setOnItemLongClickListener(this);
         }
 
-        InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        //这里给它设置了弹出的时间，
-        imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
     }
-
-    //网络请求验证支付密码
-    private void SignPayPassWord(String payword) {
-        if (map == null) {
-            map = new HashMap<>();
-        } else {
-            map.clear();
-        }
-        map.put("id", String.valueOf(MyApplication.getInstance().UserInfo.getUserId()));
-        map.put("password", payword);
-        RetrofitClient.getInstance().createApi().verificatPassword(map)
-                .compose(RxUtils.<HttpResult>io_main())
-                .subscribe(new Observer<HttpResult>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(HttpResult value) {
-                        PopSignPassword.dismiss();
-                        if (value.errorDescription.contains("重新输入")) {
-                            Toast.makeText(getActivity(), "密码错误请重新输入", Toast.LENGTH_SHORT).show();
-                            paywordEdt.getText().clear();
-                        }else{
-                            deleteCard(del);
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
+//    private void ShowPayWord() {
+//        if(MyApplication.getInstance().UserInfo.getPayPassword()==null){
+//            Toast.makeText(this, "请到设置-设置支付密码页面设置支付密码", Toast.LENGTH_SHORT).show();return;
+//        }
+//        if (SignPassword == null) {
+//            SignPassword = View.inflate(this, R.layout.sign_paypassword, null);
+//            paywordEdt = (PasswordEdittext) SignPassword.findViewById(R.id.paypassword_edt);
+//            ImageView iv = (ImageView) SignPassword.findViewById(R.id.img_exit_signpassword);
+//            iv.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    PopSignPassword.dismiss();
+//                }
+//            });
+//            paywordEdt.addTextChangedListener(new TextWatcher() {
+//                @Override
+//                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                }
+//
+//                @Override
+//                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                }
+//
+//                @Override
+//                public void afterTextChanged(Editable editable) {
+//                    if (editable.length() == 6) {
+//                        SignPayPassWord(editable.toString().trim());
+//                    }
+//                }
+//            });
+//        }
+//        if (PopSignPassword == null) {
+//            int H;
+//            H = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+//            SignPassword.measure(0, H);
+//            H = SignPassword.getMeasuredHeight();
+//            PopSignPassword = new PopupWindow(SignPassword, ViewGroup.LayoutParams.MATCH_PARENT, H);
+//            PopSignPassword.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+//            PopSignPassword.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+//            PopSignPassword.setTouchable(true); // 设置popupwindow可点击
+//            PopSignPassword.setFocusable(true); // 获取焦点
+//            ColorDrawable dw = new ColorDrawable(Color.WHITE);
+//            //设置SelectPicPopupWindow弹出窗体的背景
+//            PopSignPassword.setBackgroundDrawable(dw);
+//            PopSignPassword.setAnimationStyle(R.style.popPassword_animation);
+//            PopSignPassword.showAtLocation(findViewById(R.id.main_activity_withdraw_apply),
+//                    Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+//            paywordEdt.setFocusable(true);
+//        } else {
+//            PopSignPassword.showAtLocation(findViewById(R.id.main_activity_withdraw_apply),
+//                    Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+//            paywordEdt.setFocusable(true);
+//
+//        }
+//
+//        InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//        //这里给它设置了弹出的时间，
+//        imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
+//    }
+//
+//    //网络请求验证支付密码
+//    private void SignPayPassWord(String payword) {
+//        if (map == null) {
+//            map = new HashMap<>();
+//        } else {
+//            map.clear();
+//        }
+//        map.put("id", String.valueOf(MyApplication.getInstance().UserInfo.getUserId()));
+//        map.put("password", payword);
+//        RetrofitClient.getInstance().createApi().verificatPassword(map)
+//                .compose(RxUtils.<HttpResult>io_main())
+//                .subscribe(new Observer<HttpResult>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(HttpResult value) {
+//                        PopSignPassword.dismiss();
+//                        if (value.errorDescription.contains("重新输入")) {
+//                            Toast.makeText(getActivity(), "密码错误请重新输入", Toast.LENGTH_SHORT).show();
+//                            paywordEdt.getText().clear();
+//                        }else{
+//                            deleteCard(del);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
+//                });
+//    }
 
     public void deleteCard(int i) {
         RequestParams params = new RequestParams();
@@ -246,7 +217,8 @@ public class MyBankCardListActivity extends BaseActivity {
                 try {
                     DBLog.e("删除银行卡：", response.toString());
                     if (response.getInt("code") == 0) {
-                        finish();
+                        data.remove(del);
+                        adapter.notifyDataSetChanged();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -373,4 +345,141 @@ public class MyBankCardListActivity extends BaseActivity {
         });
     }
 
+    //显示支付密码的验证框
+    private void ShowPayWord() {
+        try{
+            if(MyApplication.getInstance().UserInfo.getPayPassword()==null){
+                Toast.makeText(this, "请到设置-设置支付密码页面设置支付密码", Toast.LENGTH_SHORT).show();return;
+            }
+            if (SignPassword == null) {
+                SignPassword = View.inflate(this, R.layout.sign_paypassword, null);
+                paywordEdt = (PasswordEdittext) SignPassword.findViewById(R.id.paypassword_edt);
+                ImageView iv = (ImageView) SignPassword.findViewById(R.id.img_exit_signpassword);
+                iv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        PopSignPassword.dismiss();
+                    }
+                });
+                paywordEdt.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+                        if (editable.length() == 6) {
+                            SignPayPassWord(editable.toString().trim());
+                        }
+                    }
+                });
+            }
+            if (PopSignPassword == null) {
+                int H;
+                H = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+                SignPassword.measure(0, H);
+                H = SignPassword.getMeasuredHeight();
+                PopSignPassword = new PopupWindow(SignPassword, ViewGroup.LayoutParams.MATCH_PARENT, H);
+                PopSignPassword.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+                PopSignPassword.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                PopSignPassword.setTouchable(true); // 设置popupwindow可点击
+                PopSignPassword.setFocusable(true); // 获取焦点
+                ColorDrawable dw = new ColorDrawable(Color.WHITE);
+                //设置SelectPicPopupWindow弹出窗体的背景
+                PopSignPassword.setBackgroundDrawable(dw);
+                PopSignPassword.setAnimationStyle(R.style.popPassword_animation);
+                PopSignPassword.showAtLocation(findViewById(R.id.bankcarklist),
+                        Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                paywordEdt.setFocusable(true);
+                paywordEdt.requestFocus();
+            } else {
+                PopSignPassword.showAtLocation(findViewById(R.id.bankcarklist),
+                        Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                paywordEdt.setFocusable(true);
+                paywordEdt.requestFocus();
+
+            }
+
+            InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            //这里给它设置了弹出的时间，
+            imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //网络请求验证支付密码
+    private void SignPayPassWord(String payword) {
+        try{
+            if (map == null) {
+                map = new HashMap<>();
+            } else {
+                map.clear();
+            }
+            map.put("id", String.valueOf(MyApplication.getInstance().UserInfo.getUserId()));
+            map.put("password", payword);
+            RetrofitClient.getInstance().createApi().verificatPassword(map)
+                    .compose(RxUtils.<HttpResult>io_main())
+                    .subscribe(new Observer<HttpResult>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(HttpResult value) {
+                            PopSignPassword.dismiss();
+                            if (value.errorDescription.contains("重新输入")) {
+                                Toast.makeText(getActivity(), "密码错误请重新输入", Toast.LENGTH_SHORT).show();
+                                paywordEdt.getText().clear();
+                            }else{
+                                deleteCard(del);
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+        new AlertDialog.Builder(MyBankCardListActivity.this)
+                .setMessage("是否删除？")
+                .setPositiveButton(R.string.ok,
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                dialog.dismiss();
+                                ShowPayWord();
+                                del=i;
+                            }
+                        })
+                .setNegativeButton(R.string.cancel,
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                dialog.dismiss();
+                            }
+                        }).setCancelable(true).create().show();
+        return false;
+    }
 }

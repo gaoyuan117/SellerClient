@@ -119,7 +119,7 @@ public class FriendDetailActivity extends BaseActivity implements OnClickListene
             }
             String accountNumber = mUserInfo.getPhoneNumber();
             if (!TextUtils.isEmpty(accountNumber) && !"null".equals(accountNumber)) {
-                tv_fxid.setText("帐号:" + mUserInfo.getPhoneNumber());
+                tv_fxid.setText("ID:" + mUserInfo.getUserId());
             } else {
                 searchUser(mUserInfo.getUserId());
             }

@@ -2,59 +2,68 @@ package com.kaichaohulian.baocms.entity;
 
 public class CollectionEntity {
 
-    String headIcon;
-    String userName;
-    String date;
-    String bigPicture;
-    String content;
-    String wordType;
 
-    public String getHeadIcon() {
-        return headIcon;
+    /**
+     * id : 66
+     * username : jamlee
+     * avatar : http://oez2a4f3v.bkt.clouddn.com/FnZ5TbZIVZ7PPfsuU4LHm6izTGsL
+     * type : wordType
+     * images : 体验一下
+     * createTime : 2017-06-21 22:55:10
+     */
+
+    private int id;
+    private String username;
+    private String avatar;
+    private String type;
+    private String images;
+    private String createTime;
+
+    public int getId() {
+        return id;
     }
 
-    public void setHeadIcon(String headIcon) {
-        this.headIcon = headIcon;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getDate() {
-        return date;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public String getBigPicture() {
-        return bigPicture;
+    public String getType() {
+        return type;
     }
 
-    public void setBigPicture(String bigPicture) {
-        this.bigPicture = bigPicture;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getContent() {
-        return content;
+    public String getImages() {
+        return images;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setImages(String images) {
+        this.images = images;
     }
 
-    public String getWordType() {
-        return wordType;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setWordType(String wordType) {
-        this.wordType = wordType;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
-
 }

@@ -45,12 +45,28 @@ public class ChattingActivity extends ECFragmentActivity implements ChattingFrag
     private MyReceiver myReceiver;
 
     @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        LogUtil.d(TAG, "chatting ui dispatch key event :" + event);
-        if (mChattingFragment != null && mChattingFragment.onKeyDown(event.getKeyCode(), event)) {
-            return true;
+    protected void onCreate(Bundle savedInstanceState) {
+        LogUtil.d(TAG, "onCreate");
+        super.onCreate(null);
+        getWindow().setFormat(PixelFormat.TRANSPARENT);
+        registEventBus();
+        myReceiver = new MyReceiver();
+        String recipients = getIntent().getStringExtra(ChattingFragment.RECIPIENTS);
+        if (recipients == null) {
+            finish();
+            LogUtil.e(TAG, "recipients is null !!");
+            return;
         }
-        return super.dispatchKeyEvent(event);
+        setContentView(R.layout.chattingui_activity_container);
+        mChattingFragment = new ChattingFragment();
+        Bundle bundle = getIntent().getExtras();
+        bundle.putBoolean(ChattingFragment.FROM_CHATTING_ACTIVITY, true);
+        mChattingFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().add(R.id.ccp_root_view, mChattingFragment).commit();
+        onActivityCreate();
+        if (isChatToSelf(recipients) || isPeerChat(recipients)) {
+            AppPanelControl.setShowVoipCall(false);
+        }
     }
 
     @Override
@@ -73,6 +89,21 @@ public class ChattingActivity extends ECFragmentActivity implements ChattingFrag
         unregisterReceiver(myReceiver);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unRegistEventBus();
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        LogUtil.d(TAG, "chatting ui dispatch key event :" + event);
+        if (mChattingFragment != null && mChattingFragment.onKeyDown(event.getKeyCode(), event)) {
+            return true;
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
     public class MyReceiver extends BroadcastReceiver {
         // 可用Intent的getAction()区分接收到的不同广播
         @Override
@@ -83,37 +114,6 @@ public class ChattingActivity extends ECFragmentActivity implements ChattingFrag
             if (intent.getAction().equals(SDKCoreHelper.ACTION_KICK_OFF)
                     || intent.getAction().equals("com.kaichaohulian.baocms.removemember"))
                 finish();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unRegistEventBus();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        LogUtil.d(TAG, "onCreate");
-        super.onCreate(null);
-        getWindow().setFormat(PixelFormat.TRANSPARENT);
-        registEventBus();
-        myReceiver = new MyReceiver();
-        String recipients = getIntent().getStringExtra(ChattingFragment.RECIPIENTS);
-        if (recipients == null) {
-            finish();
-            LogUtil.e(TAG, "recipients is null !!");
-            return;
-        }
-        setContentView(R.layout.chattingui_activity_container);
-        mChattingFragment = new ChattingFragment();
-        Bundle bundle = getIntent().getExtras();
-        bundle.putBoolean(ChattingFragment.FROM_CHATTING_ACTIVITY, true);
-        mChattingFragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().add(R.id.ccp_root_view, mChattingFragment).commit();
-        onActivityCreate();
-        if (isChatToSelf(recipients) || isPeerChat(recipients)) {
-            AppPanelControl.setShowVoipCall(false);
         }
     }
 

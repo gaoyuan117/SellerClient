@@ -64,28 +64,28 @@ public class CollectionListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        String wordType = data.get(position).getWordType();
+        String wordType = data.get(position).getType();
         if ("wordType".equals(wordType)) {
             viewHolder.content.setVisibility(View.VISIBLE);
             viewHolder.bigPicture.setVisibility(View.GONE);
-            if (!StringUtils.isEmpty(data.get(position).getContent())) {
-                viewHolder.content.setText(data.get(position).getContent());
+            if (!StringUtils.isEmpty(data.get(position).getImages())) {
+                viewHolder.content.setText(data.get(position).getImages());
             }
         } else if ("pageType".equals(wordType)) {
             viewHolder.content.setVisibility(View.GONE);
             viewHolder.bigPicture.setVisibility(View.VISIBLE);
-            if (!StringUtils.isEmpty(data.get(position).getBigPicture())) {
-                Glide.with(context).load(data.get(position).getBigPicture()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).into(viewHolder.bigPicture);
+            if (!StringUtils.isEmpty(data.get(position).getAvatar())) {
+                Glide.with(context).load(data.get(position).getAvatar()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).into(viewHolder.bigPicture);
             }
         } else if ("vodeoType".equals(wordType)) {
             viewHolder.content.setVisibility(View.GONE);
             viewHolder.bigPicture.setVisibility(View.VISIBLE);
         }
 
-        viewHolder.userName.setText(data.get(position).getUserName());
-        viewHolder.date.setText(data.get(position).getDate());
-        if (!StringUtils.isEmpty(data.get(position).getHeadIcon())) {
-            Glide.with(context).load(data.get(position).getHeadIcon()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).into(viewHolder.headIcon);
+        viewHolder.userName.setText(data.get(position).getUsername());
+        viewHolder.date.setText(data.get(position).getCreateTime());
+        if (!StringUtils.isEmpty(data.get(position).getAvatar())) {
+            Glide.with(context).load(data.get(position).getAvatar()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).into(viewHolder.headIcon);
         }
 
         return convertView;

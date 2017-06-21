@@ -79,6 +79,9 @@ public interface Api {
                                                        @Query("password") String PayWord,
                                                        @Query("code") String Code
     );
+    @FormUrlEncoded
+    @POST(Url.deleteCollections)
+    Observable<HttpResult<CommonEntity>> DeleteCollections(@FieldMap Map<String,String> map);
 
     //修改支付密码
     @GET(Url.ChangePayWord)

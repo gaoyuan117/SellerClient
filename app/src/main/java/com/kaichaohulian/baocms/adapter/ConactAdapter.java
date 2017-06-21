@@ -67,7 +67,6 @@ public class ConactAdapter extends ArrayAdapter<ContactFriendsEntity> implements
         // 设置nick，demo里不涉及到完整user，用username代替nick显示
 
         String header = user.getHeader();
-
         String remark = user.getRemark();
         String usernick = "";
         if (!TextUtils.isEmpty(remark) && !remark.equals("null")) {

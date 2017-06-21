@@ -112,7 +112,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="NLn6UbtYBOO4pSlfc1bu0ljjYfsptndq" />
+            android:value="9qlEUC8Ub4IW2gdh5McFZ3D9t1bMZ35l" />
 
         <activity android:name=".SplashActivity">
             <intent-filter>

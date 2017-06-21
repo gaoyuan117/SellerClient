@@ -1,5 +1,7 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -33,7 +35,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
-public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.OnItemLongClickListener {
 
 
     @BindView(R.id.tv_adver_notify_info)
@@ -74,7 +76,6 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
         mAdapter = new AdverAdapter(R.layout.item_adver, mList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
-
         mRecyclerView.addItemDecoration(new RecyclerViewDivider(
                 this, LinearLayoutManager.VERTICAL, 10, ContextCompat.getColor(this, R.color.bg_color_gray)));
     }
@@ -82,6 +83,7 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
     @Override
     public void initEvent() {
         mAdapter.setOnItemClickListener(this);
+//        mAdapter.setOnItemLongClickListener(this);
         refreshLayout.setOnRefreshListener(this);
     }
 
@@ -132,5 +134,31 @@ public class AdverActivity extends BaseActivity implements BaseQuickAdapter.OnIt
     @Override
     public void onRefresh() {
         getAdverList(1);
+    }
+
+    @Override
+    public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+        new AlertDialog.Builder(getActivity())
+                .setMessage("是否删除？")
+                .setPositiveButton(R.string.ok,
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                dialog.dismiss();
+
+                            }
+                        })
+                .setNegativeButton(R.string.cancel,
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {dialog.dismiss();
+
+                            }
+                        }).show();
+        return false;
     }
 }
