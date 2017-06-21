@@ -134,21 +134,28 @@
             android:textSize="@dimen/text_14" />
 
 
-        <EditText
+        <TextView
             android:id="@+id/tv_job_otheradvert"
             android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/excuseme"
             android:background="@null"
             android:enabled="false"
             android:focusable="false"
             android:gravity="right|center_vertical"
-            android:hint="选择职业"
+            android:hint="不限"
             android:textColor="@color/zy_text_gray"
             android:textSize="14sp" />
 
+        <ImageView
+            android:id="@+id/excuseme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/right_arrow" />
 
     </RelativeLayout>
 
@@ -176,22 +183,31 @@
             android:textColor="@color/dark"
             android:textSize="@dimen/text_14" />
 
-        <EditText
+        <TextView
             android:id="@+id/tv_hobby_otheradvert"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:gravity="right|center_vertical"
-            android:hint="选择爱好"
-            android:enabled="false"
-            android:focusable="false"
-            android:textColor="@color/zy_text_gray"
-            android:textSize="14sp"
+            android:layout_height="match_parent"
             android:layout_alignBaseline="@+id/tv_other_hoby"
             android:layout_alignBottom="@+id/tv_other_hoby"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/excuse"
+            android:background="@null"
+            android:enabled="false"
+            android:focusable="false"
+            android:gravity="right|center_vertical"
+            android:text="不限"
+            android:textColor="@color/zy_text_gray"
+            android:textSize="14sp" />
 
+        <ImageView
+            android:id="@+id/excuse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/right_arrow" />
     </RelativeLayout>
 
     <View
@@ -243,8 +259,6 @@
         android:layout_height="@dimen/ProFileFragment_SmallLine"
         android:layout_marginLeft="@dimen/discover_icon_marginparentleft"
         android:background="@color/line" />
-
-
 
 
     <LinearLayout

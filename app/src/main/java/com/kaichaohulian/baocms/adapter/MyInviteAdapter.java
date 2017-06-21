@@ -64,7 +64,6 @@ public class MyInviteAdapter extends BaseQuickAdapter<MyInviteBean, BaseViewHold
             } else {
                 tvUserState.setVisibility(View.GONE);
             }
-
             helper.setText(R.id.tv_item_my_invite_name, item.getNickName());
             helper.setText(R.id.tv_item_my_invite_content, item.getTitle());
             helper.setText(R.id.tv_item_my_invite_time, item.getCreatedTime() + "");

@@ -62,7 +62,8 @@ public class ContactListFragment extends BaseFragment {
 
     private ConactAdapter adapter;
     private List<ContactFriendsEntity> contactList;
-    private RelativeLayout re_newfriends, GroupChat, Label, Shopping, searchFriend;
+    private RelativeLayout re_newfriends, GroupChat, Label, Shopping;
+//            searchFriend;
     private ListView listView;
     private boolean hidden;
     private Sidebar sidebar;
@@ -91,7 +92,7 @@ public class ContactListFragment extends BaseFragment {
         listView = getId(R.id.listHaoYou);
         infalter = LayoutInflater.from(getActivity());
         View headView = infalter.inflate(R.layout.item_contact_list_header, null);
-        searchFriend = (RelativeLayout) headView.findViewById(R.id.rl_contactlist_search);
+//        searchFriend = (RelativeLayout) headView.findViewById(R.id.rl_contactlist_search);
         chat = (ImageView) headView.findViewById(R.id.img_chat);
         listView.addHeaderView(headView);
         View footerView = infalter.inflate(R.layout.item_contact_list_footer, null);
@@ -182,12 +183,12 @@ public class ContactListFragment extends BaseFragment {
                 ActivityUtil.next(getActivity(), BusinessActivity.class);
             }
         });
-        searchFriend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityUtil.next(getActivity(), MyFriendsSearchActivity.class);
-            }
-        });
+//        searchFriend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ActivityUtil.next(getActivity(), MyFriendsSearchActivity.class);
+//            }
+//        });
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.kaichaohulian.baocms.R;
@@ -23,11 +24,16 @@ import com.kaichaohulian.baocms.ecdemo.storage.ConversationSqlManager;
 import com.kaichaohulian.baocms.ecdemo.storage.IMessageSqlManager;
 import com.kaichaohulian.baocms.ecdemo.ui.SDKCoreHelper;
 import com.kaichaohulian.baocms.entity.BaseEntity;
+import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.entity.GroupDetail;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.event.FinishEvent;
+import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.http.HttpUtil;
 import com.kaichaohulian.baocms.http.Url;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
 import com.kaichaohulian.baocms.utils.DBLog;
 import com.kaichaohulian.baocms.utils.StringUtils;
 import com.kaichaohulian.baocms.view.MyGridView;
@@ -44,6 +50,8 @@ import com.yuntongxun.ecsdk.im.ECGroupOption;
 
 import org.apache.http.Header;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import de.greenrobot.event.EventBus;
 
@@ -576,12 +584,12 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
                     if (data == null) {
                         return;
                     }
-                    edtGongGao = data.getStringExtra("name");
+                    edtGongGao = data.getStringExtra("result");
                     noticeContext.setText(edtGongGao);
                     updateGongGao();
                     break;
                 case NICK_NAME_EDIT_CODE:
-                    String name = data.getStringExtra("name");
+                    String name = data.getStringExtra("result");
                     tv_myname.setText(name);
                     updateMemberNickName(name);
                     break;
@@ -657,34 +665,49 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
         if (StringUtils.isEmpty(GroupId)) {
             return;
         }
-        RequestParams params = new RequestParams();
-        params.put("id", MyApplication.getInstance().UserInfo.getUserId());
-        params.put("groupId", GroupId);
-        params.put("name", edtName);
-        params.put("messageNo", messageNo);
-        params.put("topmessage", topmessage);
-        params.put("saveMail", saveMail);
-        params.put("displayName", displayName);
-        HttpUtil.post(Url.updateName, params, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                try {
-                    DBLog.e("修改详情", response.toString());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFinish() {
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                showToastMsg("请求服务器失败");
-                DBLog.e("tag", statusCode + ":" + responseString);
-            }
-        });
+        HashMap<String,String> map=new HashMap<>();
+        map.put("groupId",GroupId);
+        map.put("name",edtName);
+//        map.put("messageNo",messageNo);
+//        map.put("topmessage",topmessage);
+//        map.put("saveMail",saveMail);
+//        map.put("displayName",displayName);
+        RetrofitClient.getInstance().createApi().UpdateGroup(map)
+                .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(CommonEntity commonEntity) {
+                        Toast.makeText(GroupChatDetailActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                    }
+                });
+//        RequestParams params = new RequestParams();
+//        params.put("id", MyApplication.getInstance().UserInfo.getUserId());
+//        params.put("groupId", GroupId);
+//        params.put("name", edtName);
+//        params.put("messageNo", messageNo);
+//        params.put("topmessage", topmessage);
+//        params.put("saveMail", saveMail);
+//        params.put("displayName", displayName);
+//        HttpUtil.post(Url.updateName, params, new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                try {
+//                    DBLog.e("修改详情", response.toString());
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+//                showToastMsg("请求服务器失败");
+//                DBLog.e("tag", statusCode + ":" + responseString);
+//            }
+//        });
     }
 
     private void setUpNickName(int isShowNickName) {

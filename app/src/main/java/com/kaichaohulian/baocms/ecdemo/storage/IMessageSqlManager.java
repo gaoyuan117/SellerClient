@@ -550,7 +550,7 @@ public class IMessageSqlManager extends AbstractSQLManager {
 //        while (true) {
         ArrayList<ECMessage> iMessageList = IMessageSqlManager.queryIMessageList(sessionId, 1000, null);
         if (iMessageList != null && !iMessageList.isEmpty()) {
-            for (int i = 0; i < iMessageList.size() - 1; i++) {
+            for (int i = 0; i < iMessageList.size()-1; i++) {
                 ECMessage message = iMessageList.get(i);
                 delSingleMsg(message.getMsgId());
             }

@@ -180,7 +180,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/discover_text_marginparentleft"
+            android:layout_marginLeft="55dp"
             android:text="附近的人"
             android:textColor="@color/dark"
             android:textSize="@dimen/discover_text" />

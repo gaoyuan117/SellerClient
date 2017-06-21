@@ -164,24 +164,15 @@ public class InvitedetailActivity extends BaseActivity {
                 adapter.setLayoutIds(R.layout.item_inviteinfo);
                 grid_DetailInvitePeopleNum.setAdapter(adapter);
                 break;
-            case 1:
-                //已见面，进行中
-                llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
-                //设置状态
-                tv_DetailState.setText(inviteDetailEntity.activeStatus);
-                //参与者列表
-                adapter = new InviteDetailGridAdapter(getActivity(), inviteDetailEntity.list);
-                adapter.setLayoutIds(R.layout.item_inviteinfo);
-                grid_DetailInvitePeopleNum.setAdapter(adapter);
-                break;
             case 2:
                 //完成
                 llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
-                tv_DetailState.setText(inviteDetailEntity.activeStatus);
+                tv_DetailState.setText("活动已完成");
                 adapter2 = new InviteDetailGrid2Adapter(getActivity(), inviteDetailEntity.list, null);
                 adapter2.setLayoutIds(R.layout.item_inviteinfo2);
                 grid_DetailInvitePeopleNum.setAdapter(adapter);
                 break;
+            case 3:
             case 4:
                 //失效退款
                 llInviteIds.setVisibility(View.GONE);
@@ -192,25 +183,30 @@ public class InvitedetailActivity extends BaseActivity {
         //设置发布人名字
         tv_DetailUserName.setText("发起人： " + inviteDetailEntity.invite.nickName);
         //设置发布人头像
-        Glide.with(getActivity()).load(inviteDetailEntity.invite.avatar).into(img_DetailAvatar);
+        Glide.with(getActivity()).load(inviteDetailEntity.invite.avatar).error(R.mipmap.default_useravatar).into(img_DetailAvatar);
         //设置发布人id
-        tv_DetailUserId.setText(inviteDetailEntity.invite.userId + "");
+        tv_DetailUserId.setText("ID:"+inviteDetailEntity.invite.userId + "");
         //设置邀请主题
         tv_DetailTheme.setText(inviteDetailEntity.invite.title);
         //设置收件人人数
-        tv_DetailReciverNum.setText(inviteDetailEntity.invite.userNum + "位收件人");
+        Log.d("InvitedetailActivity", "inviteDetailEntity.invite.userNum:" + inviteDetailEntity.invite.userNum);
+        tv_DetailReciverNum.setText((int)((double)inviteDetailEntity.invite.userNum)+ "位收件人");
         //设置邀请金额
-        tv_DetailInviteMoney.setText(inviteDetailEntity.invite.inviteMoney + "");
+        double i=(double)inviteDetailEntity.invite.inviteMoney;
+        if(i==0.0){
+            tv_DetailInviteMoney.setText("0");
+        }else{
+            tv_DetailInviteMoney.setText((int)i+"");
+        }
         //设置邀请地址
         tv_DetailInviteAddress.setText(inviteDetailEntity.invite.inviteAddress);
         //设置邀请时间
         String time = inviteDetailEntity.invite.invateTime.substring(0, inviteDetailEntity.invite.invateTime.length() - 3);
         tv_DetailInviteTime.setText(time);
         //设置响应时间
-        String applytime = inviteDetailEntity.invite.applyTime;
-        tv_DetailInviteReponseTime.setText(applytime+"小时");
+        tv_DetailInviteReponseTime.setText(inviteDetailEntity.invite.applyTime);
         //设置邀请人数
-        tv_DetailInviteNum.setText(inviteDetailEntity.invite.userNum + "");
+        tv_DetailInviteNum.setText((int)((double)inviteDetailEntity.invite.userNum) + "");
         //设置受邀人的名字
         String names = inviteDetailEntity.invite.inviteUsers;
         try {
@@ -240,12 +236,6 @@ public class InvitedetailActivity extends BaseActivity {
                     llInviteIds.setVisibility(View.GONE);
                     llInviteDetailStateIsGoing.setVisibility(View.VISIBLE);
                     break;
-                case 1:
-                    //已见面，进行中
-                    llInviteIds.setVisibility(View.GONE);
-                    llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
-
-                    break;
                 case 2:
                     //完成
                     llInviteIds.setVisibility(View.VISIBLE);
@@ -256,6 +246,7 @@ public class InvitedetailActivity extends BaseActivity {
                     grid_DetailInvitePeopleNum.setAdapter(adapter2);
                     tv_DetailState.setText("活动已完成");
                     break;
+                case 3:
                 case 4:
                     //失效退款
                     llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
@@ -264,16 +255,16 @@ public class InvitedetailActivity extends BaseActivity {
                     break;
             }
             tv_DetailUserName.setText("发起人： " + inviteReciverEntity.user.username);
-            Glide.with(getActivity()).load(inviteReciverEntity.user.avator).into(img_DetailAvatar);
-            tv_DetailUserId.setText(inviteReciverEntity.user.user_id + "");
+            Glide.with(getActivity()).load(inviteReciverEntity.user.avator).error(R.mipmap.default_useravatar).into(img_DetailAvatar);
+            tv_DetailUserId.setText("ID:"+inviteReciverEntity.user.user_id + "");
             tv_DetailTheme.setText(inviteReciverEntity.dto.title);
 //            tv_DetailReciverNum.setVisibility(View.GONE);
-            tv_DetailInviteNum.setText(inviteReciverEntity.dto.userNum + "");
-            tv_DetailInviteMoney.setText(inviteReciverEntity.dto.inviteMoney + "");
+            tv_DetailInviteNum.setText((int)((double)inviteReciverEntity.dto.userNum) + "");
+            tv_DetailInviteMoney.setText((double)inviteReciverEntity.dto.inviteMoney + "");
             String time = inviteReciverEntity.dto.invateTime.substring(0, inviteReciverEntity.dto.invateTime.length() - 3);
             tv_DetailInviteTime.setText(time);
             tv_DetailInviteAddress.setText(inviteReciverEntity.dto.inviteAddress);
-            tv_DetailInviteReponseTime.setText(inviteReciverEntity.dto.applyTime+"小时");
+            tv_DetailInviteReponseTime.setText(inviteReciverEntity.dto.applyTime);
 
             tv_DetailRevicerNames.setVisibility(View.GONE);
             if (llInviteIds.getVisibility() == View.VISIBLE) {

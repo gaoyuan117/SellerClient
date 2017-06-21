@@ -54,11 +54,15 @@ public class DownloadService extends Service {
     }
 
     private void startDownload(String path) {
-        dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-        DownloadManager.Request request = new DownloadManager.Request(
-                Uri.parse(path));
-        request.setMimeType("application/vnd.android.package-archive");
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "zhongyu.apk");
-        enqueue = dm.enqueue(request);
+        try{
+            dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+            DownloadManager.Request request = new DownloadManager.Request(
+                    Uri.parse(path));
+            request.setMimeType("application/vnd.android.package-archive");
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "zhongyu.apk");
+            enqueue = dm.enqueue(request);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

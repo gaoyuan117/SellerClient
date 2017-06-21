@@ -31,6 +31,8 @@ import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,7 +50,7 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
     private TextView tv_starttime, tv_stoptime;
     private String date;
     private String selectType;
-
+    private DecimalFormat mDecimalFormat = new DecimalFormat("#.00");
 
     @Override
     public void setContent() {
@@ -191,6 +193,12 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
             return 0;
         }
 
+        public double add(double v1, double v2) {
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+            return b1.add(b2).doubleValue();
+        }
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
@@ -207,11 +215,15 @@ public class WithDrawalsHistoryActivity extends BaseActivity {
 //                title.setText(data.get(position).getBankName() + "    " + ((double) (data.get(position).getMoney())) / 100 + "元");
 //            }
                 if (data.get(position).getZfbAccount() != null || data.get(position).getWeixinAccount() != null || data.get(position).getBankName() != null) {
-                    title.setText("申请提现    " + ((double) (data.get(position).getMoney()))  + "元");
+                    Log.d("Adapter", "data.get(position).getMoney():" + data.get(position).getMoney());
+                    Log.d("Adapter", "data.get(position).getRealmoney():" + data.get(position).getRealmoney());
+                    double i =add(data.get(position).getMoney() ,data.get(position).getRealmoney());
+
+                    title.setText("申请提现    " + i+ "元");
                 }
                 TextView time = (TextView) convertView.findViewById(R.id.withdraw_time);
                 TextView status = (TextView) convertView.findViewById(R.id.status);
-                if (data.get(position).getStatus()) {
+                if (data.get(position).getStatus() != 0) {
                     status.setText("已处理");
                     status.setTextColor(Color.RED);
                 } else {

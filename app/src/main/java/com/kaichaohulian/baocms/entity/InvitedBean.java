@@ -6,34 +6,38 @@ package com.kaichaohulian.baocms.entity;
 
 public class InvitedBean {
 
+
     /**
-     * id : 2
-     * userId : 7235
-     * nickName : 未填写
-     * avatar : images/default.jpg
+     * id : 78
+     * recordId : 47
+     * userId : 7257
+     * nickName : jamlee
+     * avatar : http://oez2a4f3v.bkt.clouddn.com/FnZ5TbZIVZ7PPfsuU4LHm6izTGsL
      * phoneNumber : null
-     * title : 2123
-     * inviteMoney : 211
-     * inviteUsers :
+     * title : 啊啊啊啊啊啊
+     * inviteMoney : 0.0
+     * inviteUsers : null
      * userNum : null
-     * inviteAddress : 123123
-     * longitud : 12
-     * latitude : 12
-     * status : 1
-     * invateTime : 2017-05-08 18:44:20
-     * applyTime : 12322
-     * createdTime : 2017-05-08 18:44:24
+     * inviteAddress : 济南
+     * longitud : 116.379649
+     * latitude : 40.03908
+     * status : 0
+     * invateTime : 2017-08-19 16:36:00
+     * applyTime : 2:
+     * createdTime : 2017-06-18 16:36:50
      * userApplyStatus : 1
+     * ifRead : 1
      */
 
     private int id;
+    private int recordId;
     private int userId;
     private String nickName;
     private String avatar;
     private Object phoneNumber;
     private String title;
-    private int inviteMoney;
-    private String inviteUsers;
+    private double inviteMoney;
+    private Object inviteUsers;
     private Object userNum;
     private String inviteAddress;
     private String longitud;
@@ -45,20 +49,20 @@ public class InvitedBean {
     private int userApplyStatus;
     private int ifRead;
 
-    public int getIfRead() {
-        return ifRead;
-    }
-
-    public void setIfRead(int ifRead) {
-        this.ifRead = ifRead;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(int recordId) {
+        this.recordId = recordId;
     }
 
     public int getUserId() {
@@ -101,19 +105,19 @@ public class InvitedBean {
         this.title = title;
     }
 
-    public int getInviteMoney() {
+    public double getInviteMoney() {
         return inviteMoney;
     }
 
-    public void setInviteMoney(int inviteMoney) {
+    public void setInviteMoney(double inviteMoney) {
         this.inviteMoney = inviteMoney;
     }
 
-    public String getInviteUsers() {
+    public Object getInviteUsers() {
         return inviteUsers;
     }
 
-    public void setInviteUsers(String inviteUsers) {
+    public void setInviteUsers(Object inviteUsers) {
         this.inviteUsers = inviteUsers;
     }
 
@@ -187,5 +191,13 @@ public class InvitedBean {
 
     public void setUserApplyStatus(int userApplyStatus) {
         this.userApplyStatus = userApplyStatus;
+    }
+
+    public int getIfRead() {
+        return ifRead;
+    }
+
+    public void setIfRead(int ifRead) {
+        this.ifRead = ifRead;
     }
 }

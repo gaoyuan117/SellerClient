@@ -80,7 +80,7 @@
                 android:textColor="@color/zy_text_black"
                 android:textSize="14sp" />
 
-            <EditText
+            <TextView
                 android:layout_marginRight="16dp"
                 android:id="@+id/tv_friend_info_remark"
                 android:layout_width="wrap_content"
@@ -458,6 +458,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_friend_info_xiangce"
             android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

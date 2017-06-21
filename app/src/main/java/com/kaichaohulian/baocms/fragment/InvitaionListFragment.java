@@ -90,8 +90,11 @@ public class InvitaionListFragment extends BaseFragment {
                             @Override
                             protected void onHandleSuccess(List<MyInviteEntity> list) {
                                 dataList.addAll(list);
+                                for (MyInviteEntity entity : list) {
+                                    Log.d("InvitaionListFragment", "entity:" + entity);
+                                }
                                 adapter.notifyDataSetChanged();
-                                if (list == null) {
+                                if (list == null||list.size()==0) {
                                     Toast.makeText(context, "暂无邀请", Toast.LENGTH_SHORT).show();
                                 }
                             }

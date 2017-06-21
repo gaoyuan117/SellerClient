@@ -43,9 +43,9 @@ public class AdvertOtherActivity extends BaseActivity {
     @BindView(R.id.tv_age_otheradvert)
     TextView tvAgeOtheradvert;
     @BindView(R.id.tv_job_otheradvert)
-    EditText tvJobOtheradvert;
+    TextView tvJobOtheradvert;
     @BindView(R.id.tv_hobby_otheradvert)
-    EditText tvHobbyOtheradvert;
+    TextView tvHobbyOtheradvert;
     @BindView(R.id.tv_address_otheradvert)
     TextView tvAddressOtheradvert;
 
@@ -61,8 +61,8 @@ public class AdvertOtherActivity extends BaseActivity {
     @BindView(R.id.rl_count_otheradviert)
     LinearLayout mLlCount;
     /*年龄选择器*/
-    private ArrayList<Integer> agestart;
-    private ArrayList<List<Integer>> ageend;
+    private ArrayList<String> agestart;
+    private ArrayList<List<String>> ageend;
     private OptionsPickerView AgePickView;
 
     private String sex, minage, maxage, job = "", hobby = "", address, count;
@@ -87,9 +87,10 @@ public class AdvertOtherActivity extends BaseActivity {
     public void initData() {
         agestart = new ArrayList<>();
         ageend = new ArrayList<>();
-
+        agestart.add("不限");
+        ageend.add(agestart);
         for (int i = 10; i < 70; i++) {
-            agestart.add(i);
+            agestart.add(i+"");
             ageend.add(agestart);
         }
 
@@ -111,8 +112,8 @@ public class AdvertOtherActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 address = tvAddressOtheradvert.getText().toString();
-//                job = tvJobOtheradvert.getText().toString();
-//                hobby = tvHobbyOtheradvert.getText().toString();
+                job = tvJobOtheradvert.getText().toString();
+                hobby = tvHobbyOtheradvert.getText().toString();
                 count = mEtCount.getText().toString();
 
                 if (map == null) {
@@ -177,7 +178,7 @@ public class AdvertOtherActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.rl_age_otheradviert, R.id.tv_job_otheradvert, R.id.tv_hobby_otheradvert, R.id.rl_address_otheradviert})
+    @OnClick({R.id.rl_age_otheradviert, R.id.rl_job_otheradviert, R.id.rl_hobby_otheradviert, R.id.rl_address_otheradviert})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_age_otheradviert:
@@ -185,12 +186,18 @@ public class AdvertOtherActivity extends BaseActivity {
                     AgePickView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
                         @Override
                         public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                            if (agestart.get(options1) < ageend.get(options1).get(options2)) {
-                                tvAgeOtheradvert.setText(agestart.get(options1) + "-" + ageend.get(options1).get(options2) + "岁");
+                            try{
+                                if (Integer.parseInt(agestart.get(options1)) < Integer.parseInt(ageend.get(options1).get(options2))) {
+                                    tvAgeOtheradvert.setText(agestart.get(options1) + "-" + ageend.get(options1).get(options2) + "岁");
+                                    minage = agestart.get(options1) + "";
+                                    maxage = ageend.get(options1).get(options2) + "";
+                                } else {
+                                    Toast.makeText(AdvertOtherActivity.this, "起始年龄不能大于或等于截止年龄", Toast.LENGTH_SHORT).show();
+                                }
+                            }catch (Exception e){
+                                tvAgeOtheradvert.setText("不限");
                                 minage = agestart.get(options1) + "";
                                 maxage = ageend.get(options1).get(options2) + "";
-                            } else {
-                                Toast.makeText(AdvertOtherActivity.this, "起始年龄不能大于或等于截止年龄", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }).build();
@@ -200,13 +207,13 @@ public class AdvertOtherActivity extends BaseActivity {
                     AgePickView.show();
                 }
                 break;
-            case R.id.tv_job_otheradvert:
+            case R.id.rl_job_otheradviert:
                 Intent intent = new Intent(this, PositionActivity.class);
 
                 startActivityForResult(intent, 111);
 
                 break;
-            case R.id.tv_hobby_otheradvert:
+            case R.id.rl_hobby_otheradviert:
 
                 Intent intent2 = new Intent(this, HobbyActivity.class);
 

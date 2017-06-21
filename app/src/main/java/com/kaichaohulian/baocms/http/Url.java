@@ -6,7 +6,7 @@ package com.kaichaohulian.baocms.http;
  */
 public class Url {
     public static final String BASE_URL = "http://47.94.229.40/ZFishApp/api/"; // 服务器地址
-
+    public static final String QimgUrl= Url.BASE_URL+"qr/userQRCode.do?"+"userId=";
     public static final String WX_APP_ID = "wx21f81eacea211f9a";
     public static final String WX_APP_SECRET = "67ac3d7906877044a4a873f712883194";
     //    public static final String WX_PARTNER_ID = "1289850701"; // 商户号

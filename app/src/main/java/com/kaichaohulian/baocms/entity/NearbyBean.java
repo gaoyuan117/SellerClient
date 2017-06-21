@@ -6,17 +6,19 @@ package com.kaichaohulian.baocms.entity;
 
 public class NearbyBean {
 
+
     /**
-     * userId : 7240
-     * username : 高原2号
+     * userId : 7262
+     * username : 哈哈镜
      * thermalSignatrue : null
-     * distance : 173 米以内
-     * avatar : http://oez2a4f3v.bkt.clouddn.com/Fisv14RRoy-FaAcXO7KCY1UIdSZP
-     * districtName : 山东省 济宁市 兖州市
-     * sex : 男
+     * distance : 603588 米以内
+     * avatar : images/default.jpg
+     * districtName : 山东省 青岛市 李沧区
+     * sex : null
      * industry : null
      * isFriend : 0
-     * phone : 18657217617
+     * phone : 18254215546
+     * addPay : 0.10
      */
 
     private int userId;
@@ -25,10 +27,11 @@ public class NearbyBean {
     private String distance;
     private String avatar;
     private String districtName;
-    private String sex;
+    private Object sex;
     private Object industry;
     private int isFriend;
     private String phone;
+    private String addPay;
 
     public int getUserId() {
         return userId;
@@ -78,11 +81,11 @@ public class NearbyBean {
         this.districtName = districtName;
     }
 
-    public String getSex() {
+    public Object getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Object sex) {
         this.sex = sex;
     }
 
@@ -108,5 +111,30 @@ public class NearbyBean {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddPay() {
+        return addPay;
+    }
+
+    public void setAddPay(String addPay) {
+        this.addPay = addPay;
+    }
+
+    @Override
+    public String toString() {
+        return "NearbyBean{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", thermalSignatrue=" + thermalSignatrue +
+                ", distance='" + distance + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", districtName='" + districtName + '\'' +
+                ", sex=" + sex +
+                ", industry=" + industry +
+                ", isFriend=" + isFriend +
+                ", phone='" + phone + '\'' +
+                ", addPay='" + addPay + '\'' +
+                '}';
     }
 }

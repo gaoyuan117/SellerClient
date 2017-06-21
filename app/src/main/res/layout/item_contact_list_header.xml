@@ -5,27 +5,27 @@
     android:background="@color/gray"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/rl_contactlist_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimens_10"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="10dp"
-        android:background="@mipmap/search_bg"
-        android:orientation="horizontal">
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/rl_contactlist_search"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="@dimen/dimens_10"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@mipmap/search_bg"-->
+        <!--android:orientation="horizontal">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:drawableLeft="@mipmap/search"
-            android:drawablePadding="4dp"
-            android:padding="4dp"
-            android:text="搜索"
-            android:textColor="#909090" />
-    </RelativeLayout>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:drawableLeft="@mipmap/search"-->
+            <!--android:drawablePadding="4dp"-->
+            <!--android:padding="4dp"-->
+            <!--android:text="搜索"-->
+            <!--android:textColor="#909090" />-->
+    <!--</RelativeLayout>-->
 
     <View
         android:layout_width="match_parent"

@@ -260,11 +260,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="42dp"
+            android:layout_marginLeft="30dp"
             android:drawablePadding="5dp"
             android:drawableTop="@mipmap/liaotian"
             android:text="聊天" />
-
+        <TextView
+            android:id="@+id/tv_invited_detail_tousu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:drawablePadding="5dp"
+            android:drawableTop="@mipmap/tousu"
+            android:text="投诉" />
         <View
             android:layout_width="1dp"
             android:layout_height="1dp"

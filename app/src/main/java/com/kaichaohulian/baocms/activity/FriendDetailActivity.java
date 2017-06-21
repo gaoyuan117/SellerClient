@@ -223,7 +223,7 @@ public class FriendDetailActivity extends BaseActivity implements OnClickListene
 //                if (images != null && images.size() > 0) {
                 Intent intent = new Intent(getActivity(), MyAlbumActivity.class);
                 intent.putExtra(MyAlbumActivity.IS_FRIEND, true);
-                intent.putExtra(MyAlbumActivity.FRIEND_ID, mUserInfo.getUserId() + "");
+                intent.putExtra(MyAlbumActivity.FRIEND_ID, mUserInfo.getUserId());
                 startActivity(intent);
 //                } else {
 //                    ToastUtil.showMessage("当前好友无相册");

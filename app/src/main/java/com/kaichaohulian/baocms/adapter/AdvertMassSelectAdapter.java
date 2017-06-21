@@ -120,7 +120,7 @@ public class AdvertMassSelectAdapter extends ConactAdapter implements SectionInd
             vh.nameTextview.setText(usernick);
         }
         if (!StringUtils.isEmpty(useravatar)) {
-            Glide.with(parent.getContext()).load(useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(vh.avatar);
+            Glide.with(parent.getContext()).load(useravatar).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(vh.avatar);
         } else {
             vh.avatar.setImageResource(R.mipmap.default_useravatar);
         }

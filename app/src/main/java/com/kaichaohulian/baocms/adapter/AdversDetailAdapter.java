@@ -31,7 +31,6 @@ public class AdversDetailAdapter extends BaseQuickAdapter<String, BaseViewHolder
                     .into((ImageView) helper.getView(R.id.img_item_adver_detail_pic));
         } else {
             GlideUtils.glideQiNiuImg(item, (ImageView) helper.getView(R.id.img_item_adver_detail_pic));
-
         }
     }
 }

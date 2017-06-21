@@ -6,9 +6,10 @@ package com.kaichaohulian.baocms.entity;
 
 public class MyInviteEntity {
 
+
     /**
-     * invite : {"id":1,"createdTime":"2017-05-08 18:44:24","creator":null,"isLocked":false,"lastModifiedTime":"2017-05-09 00:17:09","lastModifier":null,"timeStamp":"1494240264000","userId":1,"title":"2123","inviteMoney":211,"inviteUsers":null,"userNum":null,"inviteAddress":"123123","longitud":"12","latitude":"12","status":1,"invateTime":"2017-05-08 18:44:20","applyTime":"12322","nickName":null,"avatar":null,"ids":null}
-     * activeStatus : 进行中
+     * invite : {"id":67,"createdTime":"2017-06-17 19:50:04","creator":null,"isLocked":false,"lastModifiedTime":"2017-06-17 19:51:05","lastModifier":null,"timeStamp":"1497700204000","userId":7237,"title":"拉闸","inviteMoney":0.5,"totalMoney":4.5,"otherMoney":4.5,"inviteUsers":null,"userNum":2,"inviteAddress":"济南","longitud":"116.29536","latitude":"39.967382","status":0,"invateTime":"2017-06-18 23:57:00","applyTime":"5:30","startTime":null,"drawTime":null,"nickName":"嘻嘻","avatar":null,"phone":"18572651299","ids":null}
+     * activeStatus : 邀请成功
      */
 
     private InviteBean invite;
@@ -32,26 +33,31 @@ public class MyInviteEntity {
 
     public static class InviteBean {
         /**
-         * id : 1
-         * createdTime : 2017-05-08 18:44:24
+         * id : 67
+         * createdTime : 2017-06-17 19:50:04
          * creator : null
          * isLocked : false
-         * lastModifiedTime : 2017-05-09 00:17:09
+         * lastModifiedTime : 2017-06-17 19:51:05
          * lastModifier : null
-         * timeStamp : 1494240264000
-         * userId : 1
-         * title : 2123
-         * inviteMoney : 211
+         * timeStamp : 1497700204000
+         * userId : 7237
+         * title : 拉闸
+         * inviteMoney : 0.5
+         * totalMoney : 4.5
+         * otherMoney : 4.5
          * inviteUsers : null
-         * userNum : null
-         * inviteAddress : 123123
-         * longitud : 12
-         * latitude : 12
-         * status : 1
-         * invateTime : 2017-05-08 18:44:20
-         * applyTime : 12322
-         * nickName : null
+         * userNum : 2
+         * inviteAddress : 济南
+         * longitud : 116.29536
+         * latitude : 39.967382
+         * status : 0
+         * invateTime : 2017-06-18 23:57:00
+         * applyTime : 5:30
+         * startTime : null
+         * drawTime : null
+         * nickName : 嘻嘻
          * avatar : null
+         * phone : 18572651299
          * ids : null
          */
 
@@ -64,17 +70,22 @@ public class MyInviteEntity {
         private String timeStamp;
         private int userId;
         private String title;
-        private int inviteMoney;
+        private double inviteMoney;
+        private double totalMoney;
+        private double otherMoney;
         private Object inviteUsers;
-        private Object userNum;
+        private int userNum;
         private String inviteAddress;
         private String longitud;
         private String latitude;
         private int status;
         private String invateTime;
         private String applyTime;
-        private Object nickName;
+        private Object startTime;
+        private Object drawTime;
+        private String nickName;
         private Object avatar;
+        private String phone;
         private Object ids;
 
         public int getId() {
@@ -149,12 +160,28 @@ public class MyInviteEntity {
             this.title = title;
         }
 
-        public int getInviteMoney() {
+        public double getInviteMoney() {
             return inviteMoney;
         }
 
-        public void setInviteMoney(int inviteMoney) {
+        public void setInviteMoney(double inviteMoney) {
             this.inviteMoney = inviteMoney;
+        }
+
+        public double getTotalMoney() {
+            return totalMoney;
+        }
+
+        public void setTotalMoney(double totalMoney) {
+            this.totalMoney = totalMoney;
+        }
+
+        public double getOtherMoney() {
+            return otherMoney;
+        }
+
+        public void setOtherMoney(double otherMoney) {
+            this.otherMoney = otherMoney;
         }
 
         public Object getInviteUsers() {
@@ -165,11 +192,11 @@ public class MyInviteEntity {
             this.inviteUsers = inviteUsers;
         }
 
-        public Object getUserNum() {
+        public int getUserNum() {
             return userNum;
         }
 
-        public void setUserNum(Object userNum) {
+        public void setUserNum(int userNum) {
             this.userNum = userNum;
         }
 
@@ -221,11 +248,27 @@ public class MyInviteEntity {
             this.applyTime = applyTime;
         }
 
-        public Object getNickName() {
+        public Object getStartTime() {
+            return startTime;
+        }
+
+        public void setStartTime(Object startTime) {
+            this.startTime = startTime;
+        }
+
+        public Object getDrawTime() {
+            return drawTime;
+        }
+
+        public void setDrawTime(Object drawTime) {
+            this.drawTime = drawTime;
+        }
+
+        public String getNickName() {
             return nickName;
         }
 
-        public void setNickName(Object nickName) {
+        public void setNickName(String nickName) {
             this.nickName = nickName;
         }
 
@@ -235,6 +278,14 @@ public class MyInviteEntity {
 
         public void setAvatar(Object avatar) {
             this.avatar = avatar;
+        }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public void setPhone(String phone) {
+            this.phone = phone;
         }
 
         public Object getIds() {

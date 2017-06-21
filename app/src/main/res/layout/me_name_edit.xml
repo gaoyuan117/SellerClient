@@ -14,7 +14,8 @@
         android:background="@color/white"
         android:paddingLeft="@dimen/dimens_16"
         android:layout_marginTop="15dp"
-        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:hint="请输入您的名字"
         android:maxLength="28" />
 
     <Button

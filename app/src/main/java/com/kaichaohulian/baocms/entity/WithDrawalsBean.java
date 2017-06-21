@@ -6,133 +6,177 @@ package com.kaichaohulian.baocms.entity;
 
 public class WithDrawalsBean {
 
+    /**
+     * cashId : 1378
+     * userId : 7257
+     * userName : 拉闸？
+     * phone : 18572651299
+     * money : 5.43
+     * realmoney : 0.17
+     * addtime : 2017-06-19 20:16:06
+     * status : 0
+     * account : null
+     * bankName : null
+     * bankNum : null
+     * bankBranch : null
+     * bankRealname : null
+     * weixinAccount : null
+     * zfbAccount : 12509857588
+     * reason : null
+     * cashType : null
+     */
+
     private int cashId;
-
     private int userId;
-
-    private int money;
-
+    private String userName;
+    private String phone;
+    private double money;
+    private double realmoney;
     private String addtime;
-
-    private boolean status;
-
-    private String account;
-
-    private String bankName;
-
-    private String bankNum;
-
-    private String bankBranch;
-
-    private String bankRealname;
-
-    private String weixinAccount;
-
+    private int status;
+    private Object account;
+    private Object bankName;
+    private Object bankNum;
+    private Object bankBranch;
+    private Object bankRealname;
+    private Object weixinAccount;
     private String zfbAccount;
+    private Object reason;
+    private Object cashType;
 
-    private String reason;
+    public int getCashId() {
+        return cashId;
+    }
 
     public void setCashId(int cashId) {
         this.cashId = cashId;
     }
 
-    public int getCashId() {
-        return this.cashId;
+    public int getUserId() {
+        return userId;
     }
 
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public int getUserId() {
-        return this.userId;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setMoney(int money) {
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
         this.money = money;
     }
 
-    public int getMoney() {
-        return this.money;
+    public double getRealmoney() {
+        return realmoney;
+    }
+
+    public void setRealmoney(double realmoney) {
+        this.realmoney = realmoney;
+    }
+
+    public String getAddtime() {
+        return addtime;
     }
 
     public void setAddtime(String addtime) {
         this.addtime = addtime;
     }
 
-    public String getAddtime() {
-        return this.addtime;
+    public int getStatus() {
+        return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public boolean getStatus() {
-        return this.status;
+    public Object getAccount() {
+        return account;
     }
 
-    public void setAccount(String account) {
+    public void setAccount(Object account) {
         this.account = account;
     }
 
-    public String getAccount() {
-        return this.account;
+    public Object getBankName() {
+        return bankName;
     }
 
-    public void setBankName(String bankName) {
+    public void setBankName(Object bankName) {
         this.bankName = bankName;
     }
 
-    public String getBankName() {
-        return this.bankName;
+    public Object getBankNum() {
+        return bankNum;
     }
 
-    public void setBankNum(String bankNum) {
+    public void setBankNum(Object bankNum) {
         this.bankNum = bankNum;
     }
 
-    public String getBankNum() {
-        return this.bankNum;
+    public Object getBankBranch() {
+        return bankBranch;
     }
 
-    public void setBankBranch(String bankBranch) {
+    public void setBankBranch(Object bankBranch) {
         this.bankBranch = bankBranch;
     }
 
-    public String getBankBranch() {
-        return this.bankBranch;
+    public Object getBankRealname() {
+        return bankRealname;
     }
 
-    public void setBankRealname(String bankRealname) {
+    public void setBankRealname(Object bankRealname) {
         this.bankRealname = bankRealname;
     }
 
-    public String getBankRealname() {
-        return this.bankRealname;
+    public Object getWeixinAccount() {
+        return weixinAccount;
     }
 
-    public void setWeixinAccount(String weixinAccount) {
+    public void setWeixinAccount(Object weixinAccount) {
         this.weixinAccount = weixinAccount;
     }
 
-    public String getWeixinAccount() {
-        return this.weixinAccount;
+    public String getZfbAccount() {
+        return zfbAccount;
     }
 
     public void setZfbAccount(String zfbAccount) {
         this.zfbAccount = zfbAccount;
     }
 
-    public String getZfbAccount() {
-        return this.zfbAccount;
+    public Object getReason() {
+        return reason;
     }
 
-    public void setReason(String reason) {
+    public void setReason(Object reason) {
         this.reason = reason;
     }
 
-    public String getReason() {
-        return this.reason;
+    public Object getCashType() {
+        return cashType;
+    }
+
+    public void setCashType(Object cashType) {
+        this.cashType = cashType;
     }
 }

@@ -83,7 +83,7 @@ public class ChenYuanAdapter extends BaseAdapter {
             } else {
                 GroupDetail.DataObject.Members Item = getItem(position);
                 if (Item != null) {
-                    Glide.with(parent.getContext()).load(Item.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).into(ImageView);
+                    Glide.with(parent.getContext()).load(Item.avatar).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).into(ImageView);
                     if (mDisplayName == 1) {
                         if (StringUtils.isEmpty(Item.nameInGroup)) {
                             TextView.setText("未命名");
@@ -103,7 +103,7 @@ public class ChenYuanAdapter extends BaseAdapter {
 
             GroupDetail.DataObject.Members Item = getItem(position);
             if (Item != null) {
-                Glide.with(parent.getContext()).load(Item.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).into(ImageView);
+                Glide.with(parent.getContext()).load(Item.avatar).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).into(ImageView);
                 if (mDisplayName == 1) {
                     if (StringUtils.isEmpty(Item.nameInGroup)) {
                         TextView.setText("未命名");

@@ -115,7 +115,7 @@ public class ProFileFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        checkVersion();
+//        checkVersion();
     }
 
     @Override
@@ -161,6 +161,9 @@ public class ProFileFragment extends BaseFragment {
             //相册
             case R.id.me_relativelayout_album:
                 ActivityUtil.next(getActivity(), MyAlbumActivity.class);
+//                Intent intent = new Intent(getActivity(), MyAlbumActivity.class);
+//                intent.putExtra(MyAlbumActivity.FRIEND_ID,MyApplication.getInstance().UserInfo.getId());
+//                startActivity(intent);
                 break;
             //钱包
             case R.id.me_relativelayout_pocket:
@@ -221,6 +224,7 @@ public class ProFileFragment extends BaseFragment {
                 intent.putExtra("path", path);
 //                intent.putExtra("path", "http://d.koudai.com/com.koudai.weishop/1000f/weishop_1000f.apk");
                 getActivity().startService(intent);
+                me_version.setVisibility(View.GONE);
                 dialog.dismiss();
             }
         });
@@ -252,6 +256,9 @@ public class ProFileFragment extends BaseFragment {
                     protected void onHandleSuccess(VersionBean versionBean) {
                         if (!versionBean.getAndroidVersion().equals(getVersion())) {
                             openRedPackageDialog("115.126.100.146:8080/ZFishApp/" + versionBean.getAndroidPath());
+                            me_version.setVisibility(View.VISIBLE);
+                        }else{
+                            Toast.makeText(getActivity(), "当前已经是最新版本", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

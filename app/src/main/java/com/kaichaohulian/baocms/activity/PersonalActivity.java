@@ -212,7 +212,7 @@ public class PersonalActivity extends BaseActivity {
             } else {
                 personalAddress.setText(userinfo.getDistrictId());
             }
-            String l = Url.BASE_URL + MyApplication.getInstance().UserInfo.getQrCode();
+            String l = Url.QimgUrl+MyApplication.getInstance().UserInfo.getUserId();
             Log.e(TAG, "initView: " + l);
 ////        Glide.with(getActivity()).load(l).error(R.mipmap.qrcode).diskCacheStrategy(DiskCacheStrategy.ALL).into(imQrCode);
             showUserAvator(imQrCode, l, R.mipmap.qrcode);

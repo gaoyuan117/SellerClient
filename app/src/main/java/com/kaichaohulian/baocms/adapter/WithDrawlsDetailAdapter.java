@@ -60,9 +60,13 @@ public class WithDrawlsDetailAdapter extends BaseAdapter {
         }
 
         WithDrawMsgEntity bean = mList.get(position);
-        if (bean.getStatus() == 0) {
+        if (bean.getStatus() == 2) {
             viewHolder.status.setText("提现失败");
-        } else {
+        } else if (bean.getStatus() == 1) {
+            viewHolder.status.setText("提现成功");
+        } else if (bean.getStatus() == 0) {
+            viewHolder.status.setText("提现处理中");
+        } else{
             viewHolder.status.setText("提现成功");
         }
 

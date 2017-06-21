@@ -1,6 +1,7 @@
 package com.kaichaohulian.baocms.activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -42,7 +43,7 @@ public class MyAlbumActivity extends BaseActivity {
     public TextView name;
     public ImageView create;
     private boolean mIsFriend;
-    private String mFriendId;
+    private int mFriendId;
     private int index = 1;
     private boolean firstLoad = true;
 
@@ -55,7 +56,16 @@ public class MyAlbumActivity extends BaseActivity {
     @Override
     public void initData() {
         List = new ArrayList<>();
-
+        String url="";
+        mIsFriend = getIntent().getBooleanExtra(IS_FRIEND, false);
+        try{
+            mFriendId = getIntent().getIntExtra(FRIEND_ID,0);
+        }catch (ClassCastException e){
+            url=getIntent().getStringExtra(FRIEND_ID);
+        }
+        if(mFriendId==0){
+            mFriendId=MyApplication.getInstance().UserInfo.getUserId();
+        }
         addHttpData();
     }
 
@@ -63,9 +73,6 @@ public class MyAlbumActivity extends BaseActivity {
     @Override
     public void initView() {
         setCenterTitle("相册");
-        mIsFriend = getIntent().getBooleanExtra(IS_FRIEND, false);
-        mFriendId = getIntent().getStringExtra(FRIEND_ID);
-
     }
 
     @Override
@@ -100,14 +107,19 @@ public class MyAlbumActivity extends BaseActivity {
             Glide.with(getActivity()).load(ablumEntity.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).error(R.mipmap.default_useravatar).into(head);
 //            Glide.with(getActivity()).load(ablumEntity.backAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(bg);
             listView.addHeaderView(headView);
-            adapter = new MyAlbumAdapter(MyAlbumActivity.this, List);
+            if(getIntent().getStringExtra("excuseMe")!=null){
+                adapter = new MyAlbumAdapter(MyAlbumActivity.this, List,false);
+            }else{
+                adapter = new MyAlbumAdapter(MyAlbumActivity.this, List,true);
+            }
             listView.setAdapter(adapter);
         }
         adapter.notifyDataSetChanged();
     }
 
     public void addHttpData() {
-        RetrofitClient.getInstance().createApi().GetUserPhoto(MyApplication.getInstance().UserInfo.getUserId(), index + "")
+
+        RetrofitClient.getInstance().createApi().GetUserPhoto(mFriendId, index + "")
                 .compose(RxUtils.<HttpResult<AblumEntity>>io_main())
                 .subscribe(new BaseObjObserver<AblumEntity>(getActivity(), "获取中...") {
                     @Override

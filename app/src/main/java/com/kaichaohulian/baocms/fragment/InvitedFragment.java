@@ -161,11 +161,10 @@ public class InvitedFragment extends BaseFragment implements BaseQuickAdapter.On
         if (ifRead == 0) {
             mList.get(position).setIfRead(1);
         }
-        if (mList.get(position).getUserApplyStatus() == 0) {
+        if (mList.get(position).getStatus() ==0) {
             Intent intent = new Intent(getActivity(), DiscoverInvitedDetailActivity.class);
             intent.putExtra("inviteId", mList.get(position).getId() + "");
             startActivity(intent);
-
         } else {
             Intent intent = new Intent(getActivity(), InvitedetailActivity.class);
             intent.putExtra("inviteId", mList.get(position).getId());

@@ -29,6 +29,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 
 public class DiscoverInvitedDetailActivity extends BaseActivity implements View.OnClickListener {
 
@@ -61,7 +63,8 @@ public class DiscoverInvitedDetailActivity extends BaseActivity implements View.
     ImageView tvInvitedDetailAgree;
     @BindView(R.id.activity_adver_detail)
     RelativeLayout activityAdverDetail;
-
+    @BindView(R.id.tv_invited_detail_tousu)
+    TextView tousu;
     private InviteReciverEntity mEntity;
 
     private String inviteId,type;
@@ -96,6 +99,7 @@ public class DiscoverInvitedDetailActivity extends BaseActivity implements View.
         tvInvitedDetailChat.setOnClickListener(this);
         tvInvitedDetailAgree.setOnClickListener(this);
         tvInvitedDetailRefuse.setOnClickListener(this);
+        tousu.setOnClickListener(this);
     }
 
     private void loadDetail() {
@@ -116,7 +120,7 @@ public class DiscoverInvitedDetailActivity extends BaseActivity implements View.
             tvAdverDetailTime.setText(mEntity.user.createdTime);
             Glide.with(MyApplication.getInstance())
                     .load(mEntity.user.avator)
-                    .error(R.mipmap.default_image)
+                    .error(R.mipmap.default_useravatar)
                     .crossFade()
                     .into(imgInvitedDetailAvatar);
             imgInvitedDetailName.setText("发起人：" + mEntity.user.username);
@@ -137,6 +141,16 @@ public class DiscoverInvitedDetailActivity extends BaseActivity implements View.
         switch (v.getId()) {
             case R.id.tv_invited_detail_chat:
                 toChat();
+                break;
+            case R.id.tv_invited_detail_tousu:
+                Observable.just(1)
+                        .compose(RxUtils.<Integer>io_main())
+                        .subscribe(new Consumer<Integer>() {
+                            @Override
+                            public void accept(Integer integer) throws Exception {
+                                startActivity(new Intent(getActivity(), OnlineServiceActivity.class));
+                            }
+                        });
                 break;
             case R.id.tv_invited_detail_refuse:
                 acceptOrRefuse(2);

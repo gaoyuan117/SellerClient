@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.kaichaohulian.baocms.R;
@@ -77,7 +78,7 @@ public class FriendInfoActivity extends BaseActivity {
     @BindView(R.id.tv_friend_info_fuyue)
     TextView mFriendInfoFuyue;
     @BindView(R.id.tv_friend_info_remark)
-    EditText mRemark;
+    TextView mRemark;
     @BindView(R.id.img_friend_info_sex)
     ImageView mFriendInfoSex;
     @BindView(R.id.tv_friend_info_shaungyue)
@@ -183,7 +184,7 @@ public class FriendInfoActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.rl_friend_info, R.id.ll_friend_info_bz, R.id.bt_friend_info_add})
+    @OnClick({R.id.rl_friend_info, R.id.ll_friend_info_bz, R.id.bt_friend_info_add,R.id.ll_friend_info_xiangce})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_friend_info:
@@ -202,6 +203,20 @@ public class FriendInfoActivity extends BaseActivity {
                     intent.putExtra("add_money", addFriendMoney);
                     intent.putExtra("type", addType);
                     startActivity(intent);
+                }
+                break;
+            case R.id.ll_friend_info_xiangce:
+                try{
+                    if (mUserInfoBean == null) {
+                        Toast.makeText(this, "好友不存在", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Intent intent = new Intent(getActivity(), MyAlbumActivity.class);
+                    intent.putExtra("excuseMe","excuse");
+                    intent.putExtra(MyAlbumActivity.FRIEND_ID, mUserInfoBean.getId());
+                    startActivity(intent);
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
                 break;
         }
@@ -303,7 +318,7 @@ public class FriendInfoActivity extends BaseActivity {
 
         mFriendInfoName.setText(userInfoBean.getUsername());
         mFriendInfoSex.setImageResource(userInfoBean.getSex() == 0 ? R.mipmap.boy : R.mipmap.gir);
-        mFriendInfoId.setText(userInfoBean.getId() + "");
+        mFriendInfoId.setText("ID:"+userInfoBean.getId() + "");
         mFriendInfoAge.setText(userInfoBean.getAge() == null ? "未知" : (userInfoBean.getAge() + "").replace(".0", ""));
         mFriendInfoJob.setText(userInfoBean.getJob() == null ? "未知" : userInfoBean.getJob() + "");
         mFriendInfoHobby.setText(userInfoBean.getHobby() == null ? "未知" : userInfoBean.getHobby() + "");

@@ -322,4 +322,7 @@ public interface Api {
     @GET("users/getNewInfo.do")
     Observable<HttpResult<NewInfoBean>> newInfo(@Query("userId") int id);
 
+    //是否有新的消息
+    @POST(Url.updateName)
+    Observable<HttpResult<CommonEntity>> UpdateGroup(@FieldMap Map<String,String> map);
 }

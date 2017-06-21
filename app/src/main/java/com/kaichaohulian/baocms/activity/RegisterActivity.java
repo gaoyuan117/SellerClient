@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -91,7 +92,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 
     private void register() {
         String code = et_code.getText().toString();
-        String pwd = et_pwd.getText().toString();
+        final String pwd = et_pwd.getText().toString();
         if (TextUtils.isEmpty(code)) {
             ToastUtil.showMessage("请输入验证码");
             return;
@@ -112,7 +113,13 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
                     DBLog.e("注册:", response.toString());
                     if (response.getInt("code") == 0) {
                         AppManager.getAppManager().finishAllActivity();
-                        ActivityUtil.next(getActivity(), LoginActivity.class);
+                        Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                        intent.putExtra("id",phone);
+                        intent.putExtra("password",pwd);
+                        intent.putExtra("isfirst",true);
+                        startActivity(intent);
+                        finish();
+//                        ActivityUtil.next(getActivity(), LoginActivity.class);
                     }
                     showToastMsg(response.getString("errorDescription"));
                 } catch (Exception e) {

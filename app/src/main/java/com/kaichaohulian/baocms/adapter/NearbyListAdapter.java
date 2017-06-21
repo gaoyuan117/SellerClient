@@ -24,15 +24,23 @@ public class NearbyListAdapter extends BaseQuickAdapter<NearbyBean, BaseViewHold
 
     @Override
     protected void convert(BaseViewHolder helper, NearbyBean item) {
-        helper.setText(R.id.tv_item_nearby_name, item.getUsername())
-                .setText(R.id.tv_item_nearby_distance, item.getDistrictName() == null ? item.getDistance() : item.getDistance() + "-" + item.getDistrictName());
-        ImageView sex = helper.getView(R.id.img_item_nearby_sex);
-        sex.setImageResource(item.getSex().equals("男") ? R.mipmap.boy : R.mipmap.gir);
-
-        Glide.with(MyApplication.getInstance())
-                .load(item.getAvatar())
-                .error(R.mipmap.default_useravatar)
-                .crossFade()
-                .into((ImageView) helper.getView(R.id.img_item_nearby_avatar));
+        try{
+            helper.setText(R.id.tv_item_nearby_name, item.getUsername())
+                    .setText(R.id.tv_item_nearby_distance, item.getDistrictName() == null ? item.getDistance() : item.getDistance() + "-" + item.getDistrictName());
+            ImageView sex = helper.getView(R.id.img_item_nearby_sex);
+            if(item!=null){
+                Glide.with(MyApplication.getInstance())
+                        .load(item.getAvatar())
+                        .error(R.mipmap.default_useravatar)
+                        .crossFade()
+                        .into((ImageView) helper.getView(R.id.img_item_nearby_avatar));
+                if(item.getSex()==null){
+                    item.setSex("男");
+                }
+                sex.setImageResource(item.getSex().equals("男") ? R.mipmap.boy : R.mipmap.gir);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

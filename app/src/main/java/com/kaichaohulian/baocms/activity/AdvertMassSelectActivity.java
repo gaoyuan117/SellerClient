@@ -83,16 +83,17 @@ public class AdvertMassSelectActivity extends BaseActivity {
                         Toast.makeText(AdvertMassSelectActivity.this, "请选择要群发的好友", Toast.LENGTH_SHORT).show();
                         return;
                     }
-
                     for (int i = 0; i < list.size(); i++) {
                         buffer.append(list.get(i).getId() + ",");
                         buffer1.append(list.get(i).getUsername() + " ");
                     }
+                    String ids=buffer.toString();
+                    ids=ids.substring(0,ids.length()-1);
                     Intent intent = new Intent();
-                    intent.putExtra("ids", buffer.toString());
-                    intent.putExtra("nums", buffer1.toString());
-
-                    Log.e("gy", "ids：" + buffer.toString());
+                    intent.putExtra("ids", ids);
+                    intent.putExtra("names", buffer1.toString());
+                    intent.putExtra("num", list.size());
+                    Log.e("gy", "ids：" + ids);
                     Log.e("gy", "nums：" + buffer1.toString());
                     setResult(RESULT_OK, intent);
                     finish();

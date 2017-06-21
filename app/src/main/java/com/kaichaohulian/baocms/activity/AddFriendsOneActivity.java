@@ -17,6 +17,7 @@ import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.ecdemo.ui.contact.ContactSelectListActivity;
+import com.kaichaohulian.baocms.http.Url;
 import com.kaichaohulian.baocms.util.GlideUtils;
 import com.kaichaohulian.baocms.view.zxing.activity.CaptureActivity;
 
@@ -126,9 +127,8 @@ public class AddFriendsOneActivity extends BaseActivity {
                 .error(R.mipmap.default_useravatar)
                 .crossFade()
                 .into(avatar);
-        Log.e("gy", "二维码：" + MyApplication.getInstance().UserInfo.getQrCode());
         Glide.with(this)
-                .load("http://115.126.100.146:8080/ZFishApp/api/qr/userQRCode.do?userId=" + MyApplication.getInstance().UserInfo.getUserId())
+                .load(Url.QimgUrl+MyApplication.getInstance().UserInfo.getUserId())
 //                .error(R.mipmap.default_image)
                 .crossFade()
                 .into(codeImg);

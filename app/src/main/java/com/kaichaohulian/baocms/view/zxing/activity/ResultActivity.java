@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
@@ -61,7 +62,7 @@ public class ResultActivity extends BaseActivity {
             mResultImage.setLayoutParams(lps);
 
             String result = extras.getString("result");
-
+            Log.d("ResultActivity", result);
             try {
                 JSONObject json = new JSONObject(result);
                 switch (json.getString("type")) {

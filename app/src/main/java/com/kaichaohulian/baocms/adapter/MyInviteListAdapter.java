@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.adapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -42,23 +43,26 @@ public class MyInviteListAdapter extends BaseListAdapter {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        MyInviteEntity entity = (MyInviteEntity) getItem(position);
-        holder.titleInvite.setText(entity.getInvite().getTitle());
-        holder.adressInvite.setText(entity.getInvite().getInviteAddress());
-        String time = entity.getInvite().getInvateTime().substring(0, entity.getInvite().getInvateTime().length() - 3);
-        holder.timeInvite.setText(time);
-        switch (entity.getInvite().getStatus()){
-            case 0:
-            case 1:
-                holder.statusInvite.setText("进行中");
-                break;
-            case 2:
-                holder.statusInvite.setText("已完成");
-                break;
-            case 3:
-                holder.statusInvite.setText("已失效");
-                break;
-        }
+
+            MyInviteEntity entity = (MyInviteEntity) getItem(position);
+            holder.titleInvite.setText(entity.getInvite().getTitle());
+            holder.adressInvite.setText(entity.getInvite().getInviteAddress());
+            String time=entity.getInvite().getInvateTime();
+            time = entity.getInvite().getInvateTime().substring(0, entity.getInvite().getInvateTime().length() - 3);
+            holder.timeInvite.setText(time);
+            switch (entity.getInvite().getStatus()){
+                case 0:
+                case 1:
+                    holder.statusInvite.setText("进行中");
+                    break;
+                case 2:
+                    holder.statusInvite.setText("已完成");
+                    break;
+                case 3:
+                    holder.statusInvite.setText("已失效");
+                    break;
+            }
+
         return view;
     }
 

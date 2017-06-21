@@ -1,6 +1,7 @@
 package com.kaichaohulian.baocms.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -16,6 +17,8 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.activity.InvitedetailActivity;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseListAdapter;
+import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingActivity;
+import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingFragment;
 import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.entity.InviteDetailEntity;
 import com.kaichaohulian.baocms.http.HttpResult;
@@ -65,12 +68,13 @@ public class InviteDetailGridAdapter extends BaseListAdapter {
 
     private void DataBind(ViewHolder1 vh1, int i) {
         try {
-            InviteDetailEntity.ListBean entity = (InviteDetailEntity.ListBean) getItem(i);
+            final InviteDetailEntity.ListBean entity = (InviteDetailEntity.ListBean) getItem(i);
             if (entity.user_id == 0) {
                 data.remove(i);
                 notifyDataSetChanged();
             }
             vh1.name.setText(entity.username + "");
+
             switch (entity.inviteStatus) {
                 case 2:
                     vh1.state.setText("已拒绝");
@@ -84,9 +88,20 @@ public class InviteDetailGridAdapter extends BaseListAdapter {
                     vh1.state.setText("已发送邀请");
                     break;
             }
+            vh1.chat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, ChattingActivity.class);
+                    intent.putExtra(ChattingFragment.RECIPIENTS, entity.phoneNumber);
+                    intent.putExtra(ChattingFragment.CONTACT_USER, entity.username);
+                    intent.putExtra("user_id", entity.user_id);
+                    intent.putExtra(ChattingFragment.CUSTOMER_SERVICE, false);
+                    context.startActivity(intent);
+                }
+            });
             Log.e("gy", "哈哈：" + entity.avator);
             String avator = entity.avator;
-            Glide.with(MyApplication.getInstance()).load(avator).into(vh1.avatar);
+            Glide.with(MyApplication.getInstance()).load(avator).error(R.mipmap.default_useravatar).into(vh1.avatar);
             String date = this.format.format(entity.createdTime);
             vh1.time.setText(date+"");
         } catch (Exception e) {

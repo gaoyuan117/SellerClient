@@ -72,49 +72,61 @@ public class NearbyListActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void initView() {
-        new TitleUtils(this).setTitle("附近的人")
-                .showRight()
-                .setRightListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        openBottomPopWindow();
-                    }
-                });
-        mList = new ArrayList<>();
-        mAdapter = new NearbyListAdapter(R.layout.item_neayby_list, mList);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mAdapter);
+        try{
+            new TitleUtils(this).setTitle("附近的人")
+                    .showRight()
+                    .setRightListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            openBottomPopWindow();
+                        }
+                    });
+            mList = new ArrayList<>();
+            mAdapter = new NearbyListAdapter(R.layout.item_neayby_list, mList);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            mRecyclerView.setAdapter(mAdapter);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void initEvent() {
-        getNearUser(1, 2);
-        mAdapter.setOnItemClickListener(this);
-        refreshLayout.setOnRefreshListener(this);
+        try{
+            getNearUser(1, 2);
+            mAdapter.setOnItemClickListener(this);
+            refreshLayout.setOnRefreshListener(this);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void openBottomPopWindow() {
-        View view = View.inflate(this, R.layout.pop_nearby_list, null);
-        popLayout = (LinearLayout) view.findViewById(R.id.ll_pop_near_out);
-        tvGirl = (TextView) view.findViewById(R.id.ll_pop_near_girl);
-        tvBoy = (TextView) view.findViewById(R.id.ll_pop_near_boy);
-        tvAll = (TextView) view.findViewById(R.id.ll_pop_near_all);
-        tvGreet = (TextView) view.findViewById(R.id.ll_pop_near_greet);
-        tvClear = (TextView) view.findViewById(R.id.ll_pop_near_clear);
-        tvCancel = (TextView) view.findViewById(R.id.ll_pop_near_cancel);
+        try{
+            View view = View.inflate(this, R.layout.pop_nearby_list, null);
+            popLayout = (LinearLayout) view.findViewById(R.id.ll_pop_near_out);
+            tvGirl = (TextView) view.findViewById(R.id.ll_pop_near_girl);
+            tvBoy = (TextView) view.findViewById(R.id.ll_pop_near_boy);
+            tvAll = (TextView) view.findViewById(R.id.ll_pop_near_all);
+            tvGreet = (TextView) view.findViewById(R.id.ll_pop_near_greet);
+            tvClear = (TextView) view.findViewById(R.id.ll_pop_near_clear);
+            tvCancel = (TextView) view.findViewById(R.id.ll_pop_near_cancel);
 
-        popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        popupWindow.setTouchable(true);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.showAtLocation(linearLayout, Gravity.BOTTOM, 0, 0);
+            popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            popupWindow.setTouchable(true);
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.showAtLocation(linearLayout, Gravity.BOTTOM, 0, 0);
 
-        popLayout.setOnClickListener(this);
-        tvAll.setOnClickListener(this);
-        tvBoy.setOnClickListener(this);
-        tvCancel.setOnClickListener(this);
-        tvClear.setOnClickListener(this);
-        tvGirl.setOnClickListener(this);
-        tvGreet.setOnClickListener(this);
+            popLayout.setOnClickListener(this);
+            tvAll.setOnClickListener(this);
+            tvBoy.setOnClickListener(this);
+            tvCancel.setOnClickListener(this);
+            tvClear.setOnClickListener(this);
+            tvGirl.setOnClickListener(this);
+            tvGreet.setOnClickListener(this);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -157,6 +169,9 @@ public class NearbyListActivity extends BaseActivity implements View.OnClickList
                 .subscribe(new BaseListObserver<NearbyBean>(this, "加载中", refreshLayout) {
                     @Override
                     protected void onHandleSuccess(List<NearbyBean> list) {
+                        for (NearbyBean nearbyBean : list) {
+                            Log.d("NearbyListActivity", nearbyBean.toString());
+                        }
                         mList.clear();
                         mList.addAll(list);
                         mAdapter.notifyDataSetChanged();

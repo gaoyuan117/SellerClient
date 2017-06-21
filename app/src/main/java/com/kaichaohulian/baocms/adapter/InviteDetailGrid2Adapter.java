@@ -87,7 +87,7 @@ public class InviteDetailGrid2Adapter extends BaseListAdapter {
     private void DataBindForObj(final InviteReciverEntity.UserBean data, ViewHolder vh) {
         try {
             vh.name.setText(data.username);
-            Glide.with(context).load(data.avator).into(vh.avatar);
+            Glide.with(context).load(data.avator).error(R.mipmap.default_useravatar).into(vh.avatar);
             vh.btnInviteComplaint.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -145,13 +145,29 @@ public class InviteDetailGrid2Adapter extends BaseListAdapter {
             vh.btnInviteComplaint.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //TODO 客服界面
+                    Observable.just(1)
+                            .compose(RxUtils.<Integer>io_main())
+                            .subscribe(new Consumer<Integer>() {
+                                @Override
+                                public void accept(Integer integer) throws Exception {
+                                    context.startActivity(new Intent(context, OnlineServiceActivity.class));
+                                }
+                            });
                 }
             });
             vh.btnInviteEvaluate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //TODO 评价界面
+                    Observable.just(1)
+                            .compose(RxUtils.<Integer>io_main())
+                            .subscribe(new Consumer<Integer>() {
+                                @Override
+                                public void accept(Integer integer) throws Exception {
+                                    Intent intent = new Intent(context, EvaluateActivity.class);
+                                    intent.putExtra("id", entity.user_id + "");
+                                    context.startActivity(intent);
+                                }
+                            });
                 }
             });
             vh.chat.setOnClickListener(new View.OnClickListener() {

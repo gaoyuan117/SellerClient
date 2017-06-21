@@ -14,6 +14,7 @@ import com.kaichaohulian.baocms.R;
 import com.kaichaohulian.baocms.adapter.AdversDetailAdapter;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.circledemo.widgets.DivItemDecoration;
 import com.kaichaohulian.baocms.entity.AdversDetailBean;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
@@ -40,7 +41,6 @@ public class AdverDetailActivity extends BaseActivity {
     private List<String> mList;
     private ImageView headAvatar;
     private TextView tvTitle, tvContent, tvId, tvName;
-
     private String adverId;
 
     @Override
@@ -93,7 +93,7 @@ public class AdverDetailActivity extends BaseActivity {
         tvTime.setText(adversDetailBean.getAdvert().getCreatedTime());
         Glide.with(MyApplication.getInstance())
                 .load(adversDetailBean.getAdvert().getAvter())
-                .error(R.mipmap.default_image)
+                .error(R.mipmap.default_useravatar)
                 .crossFade()
                 .into(headAvatar);
         tvName.setText(adversDetailBean.getAdvert().getUserName() + "");

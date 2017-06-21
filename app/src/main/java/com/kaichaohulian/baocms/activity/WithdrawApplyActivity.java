@@ -241,6 +241,9 @@ public class WithdrawApplyActivity extends BaseActivity {
 
     //显示支付密码的验证框
     private void ShowPayWord() {
+        if(MyApplication.getInstance().UserInfo.getPayPassword()==null){
+            Toast.makeText(this, "请到设置-设置支付密码页面设置支付密码", Toast.LENGTH_SHORT).show();return;
+        }
         if (SignPassword == null) {
             SignPassword = View.inflate(this, R.layout.sign_paypassword, null);
             paywordEdt = (PasswordEdittext) SignPassword.findViewById(R.id.paypassword_edt);

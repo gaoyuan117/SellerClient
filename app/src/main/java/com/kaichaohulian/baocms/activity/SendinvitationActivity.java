@@ -49,17 +49,17 @@ public class SendinvitationActivity extends BaseActivity {
     TextView tvResponsetime;
     @BindView(R.id.tv_send_invite_nums)
     TextView tvNums;
-
     SimpleDateFormat AllTtmeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     SimpleDateFormat DayTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
-
+    private long dangqianshijian;
+    private boolean seleTime=false;
     private TimePickerView timePickerView;
     private TimePickerView ReponseTimePickerView;
     private final int SELECT_ID = 100;
     private String ids;
     private String InviteTime, ApplyTime;
     private String hour = "", min = "";
+    private int num;
 
     @Override
     public void setContent() {
@@ -100,12 +100,9 @@ public class SendinvitationActivity extends BaseActivity {
                 SendInvite(view);
             }
         });
-
         TvInvitiontime.setText(DayTimeFormat.format(Calendar.getInstance().getTime()));
-        InviteTime = AllTtmeFormat.format(Calendar.getInstance().getTime());
-//        tvResponsetime.setText(DayTimeFormat.format(Calendar.getInstance().getTime().getTime() + 600000));
+        InviteTime = DayTimeFormat.format(Calendar.getInstance().getTime());
         edtActaddress.setHint(MyApplication.getInstance().BDLocation.getAddrStr());
-
     }
 
     private void SendInvite(final View view) {
@@ -122,18 +119,30 @@ public class SendinvitationActivity extends BaseActivity {
             map.put("ids", ids);
         }
         map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
-        if (edtInvitiontitle.getText().toString().equals(""))
+        if (edtInvitiontitle.getText().toString().equals("")) {
+            Toast.makeText(this, "请输入邀请的标题", Toast.LENGTH_SHORT).show();
             return;
+        }
         map.put("title", edtInvitiontitle.getText().toString().trim());
         if (edtInvitionPay.getText().toString().equals("")) {
-            map.put("inviteMoney", 200 + "");
+            Toast.makeText(this, "请输入邀请金额", Toast.LENGTH_SHORT).show();
+            return;
         } else {
             map.put("inviteMoney", edtInvitionPay.getText().toString());
         }
         if (edtSendInvitionNum.getText().toString().equals("")) {
-            map.put("userNum", 10 + "");
+            Toast.makeText(this, "请输入要邀请的人数", Toast.LENGTH_SHORT).show();
+            return;
         } else {
+            if (Integer.parseInt(edtSendInvitionNum.getText().toString().trim()) > num) {
+                Toast.makeText(this, "输入人数大于选择人数", Toast.LENGTH_SHORT).show();
+                return;
+            }
             map.put("userNum", edtSendInvitionNum.getText().toString().trim());
+        }
+        if(!seleTime){
+            Toast.makeText(this, "请选择见面时间", Toast.LENGTH_SHORT).show();
+            return;
         }
         if (edtActaddress.getText().toString().equals("")) {
             map.put("inviteAddress", edtActaddress.getHint().toString());
@@ -161,7 +170,7 @@ public class SendinvitationActivity extends BaseActivity {
 
                     @Override
                     protected void onHandleError(int code, String msg) {
-                        Toast.makeText(SendinvitationActivity.this, "发布失败，请稍后再试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SendinvitationActivity.this, msg, Toast.LENGTH_SHORT).show();
                         view.setClickable(true);
                     }
                 });
@@ -178,16 +187,27 @@ public class SendinvitationActivity extends BaseActivity {
         if (requestCode == SELECT_ID && resultCode == RESULT_OK) {
             String ids = data.getStringExtra("ids");
 //            String replace = ids.replace("," + MyApplication.getInstance().UserInfo.getUserId(), "");
-            String nums = data.getStringExtra("nums");
-            tvNums.setText(nums);
+            String names = data.getStringExtra("names");
+            num = data.getIntExtra("num", 0);
+            tvNums.setText(names);
             this.ids = ids;
         }
 
         if (requestCode == 110 && resultCode == 110) {
             hour = data.getStringExtra("hour");
             min = data.getStringExtra("min");
+
+            if (min.equals("")) {
+                tvResponsetime.setText(hour + "小时");
+                min="0";
+            } else if (hour.equals("")) {
+                tvResponsetime.setText(min + "分");
+                hour="0";
+            } else {
+                tvResponsetime.setText(hour + "小时" + min + "分");
+            }
             Log.e("gy", "响应时间：" + hour + "小时" + min + "分");
-            tvResponsetime.setText(hour + "小时" + min + "分");
+
         }
     }
 
@@ -206,21 +226,23 @@ public class SendinvitationActivity extends BaseActivity {
                     timePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
                         @Override
                         public void onTimeSelect(Date date, View v) {
+                            seleTime=true;
                             TvInvitiontime.setText(DayTimeFormat.format(date));
-
-                            InviteTime = AllTtmeFormat.format(date);
+                            InviteTime = DayTimeFormat.format(date);
                         }
                     }).setType(TimePickerView.Type.YEAR_MONTH_DAY_HOUR_MIN)
                             .setDate(Calendar.getInstance())
                             .build();
                     timePickerView.show();
-
                 } else {
                     timePickerView.show();
                 }
                 break;
             case R.id.rl_responsetime:
                 startActivityForResult(new Intent(this, TimeActivity.class), 110);
+                break;
+            case R.id.rl_InvitionPay:
+                edtInvitionPay.requestFocus();
                 break;
         }
     }

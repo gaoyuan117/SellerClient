@@ -37,17 +37,18 @@ import butterknife.ButterKnife;
  */
 
 public class MyAlbumAdapter extends BaseListAdapter {
+    private boolean needAdd;
 
-
-    public MyAlbumAdapter(Context context, @Nullable List data) {
+    public MyAlbumAdapter(Context context, @Nullable List data,boolean needAdd) {
         super(context, data);
+        this.needAdd=needAdd;
     }
 
     @Override
     public int getCount() {
-        if (data == null) {
-            return 1;
-        } else {
+        if(!needAdd){
+            return data.size() == 0 ? 1 : data.size();
+        }else{
             return data.size() == 0 ? 1 : data.size() + 1;
         }
     }
@@ -122,10 +123,14 @@ public class MyAlbumAdapter extends BaseListAdapter {
 
     @Override
     public Object getItem(int i) {
-        if (i >= 1) {
-            return super.getItem(i - 1);
-        } else {
-            return null;
+        if(needAdd){
+            if(i==0){
+                return null;
+            }else{
+                return data.get(i-1);
+            }
+        }else{
+            return data.get(i);
         }
     }
 
@@ -133,7 +138,7 @@ public class MyAlbumAdapter extends BaseListAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder vh;
         if (view == null) {
-            if (position == 0) {
+            if (position == 0&&needAdd) {
                 view = View.inflate(context, R.layout.item_myalbum_listhead, null);
             } else {
                 view = View.inflate(context, R.layout.item_myalbum_list, null);
@@ -143,7 +148,7 @@ public class MyAlbumAdapter extends BaseListAdapter {
         } else {
             vh = (ViewHolder) view.getTag();
         }
-        if (position == 0) {
+        if (position == 0&&needAdd) {
             vh.textContext.setText("");
             vh.time.setText("今天");
             ImageView img = (ImageView) view.findViewById(R.id.img_myablum);
@@ -157,9 +162,7 @@ public class MyAlbumAdapter extends BaseListAdapter {
                 }
             });
             img.setVisibility(View.VISIBLE);
-
         } else {
-
             try {
                 AblumEntity.ExperiencesBean data = (AblumEntity.ExperiencesBean) getItem(position);
                 String Time = data.createdTime;
@@ -216,7 +219,6 @@ public class MyAlbumAdapter extends BaseListAdapter {
     public class ViewHolder {
         @BindView(R.id.time)
         TextView time;
-
         @BindView(R.id.text_context)
         TextView textContext;
 

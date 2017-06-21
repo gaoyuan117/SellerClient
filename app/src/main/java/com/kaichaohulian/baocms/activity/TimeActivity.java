@@ -36,7 +36,11 @@ public class TimeActivity extends BaseActivity {
                 String min = etTimeM.getText().toString();
                 Intent intent = new Intent();
                 intent.putExtra("hour", hour);
-                intent.putExtra("min", min);
+                if(min==""){
+
+                }else{
+                    intent.putExtra("min", min);
+                }
                 setResult(110, intent);
                 finish();
             }

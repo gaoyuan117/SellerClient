@@ -2,6 +2,7 @@ package com.kaichaohulian.baocms.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kaichaohulian.baocms.MainActivity;
 import com.kaichaohulian.baocms.R;
@@ -64,6 +66,9 @@ public class LoginActivity extends BaseEcActivity {
     private DataHelper mDataHelper;
     ECInitParams.LoginAuthType mLoginAuthType = ECInitParams.LoginAuthType.NORMAL_AUTH;
     private ECProgressDialog mPostingdialog;
+    private String phone;
+    private String password;
+    private boolean isfirst;
 
 //    @Override
 //    public void setContent() {
@@ -118,8 +123,8 @@ public class LoginActivity extends BaseEcActivity {
             @Override
             public void onClick(View v) {
                 ShowDialog.showDialog(getActivity(), "登录中...", false, null);
-                final String phone = et_usertel.getText().toString().trim();
-                final String password = et_password.getText().toString().trim();
+                phone = et_usertel.getText().toString().trim();
+                password = et_password.getText().toString().trim();
                 RequestParams params = new RequestParams();
                 params.put("phoneNumber", phone);
                 params.put("password", password);
@@ -132,7 +137,7 @@ public class LoginActivity extends BaseEcActivity {
                             DBLog.e("登录：", response.toString());
                             if (response.getInt("code") == 0) {
                                 getUserInfo(phone);
-                            }else{
+                            } else {
                                 showToastMsg(response.getString("errorDescription"));
                             }
                         } catch (Exception e) {
@@ -157,6 +162,17 @@ public class LoginActivity extends BaseEcActivity {
             }
 
         });
+        phone = getIntent().getStringExtra("id");
+        password = getIntent().getStringExtra("password");
+        isfirst = getIntent().getBooleanExtra("isfirst", false);
+        if (isfirst && phone != null && password != null) {
+            et_usertel.setText(phone);
+            et_password.setText(password);
+            Toast.makeText(this, "第一次登录请您完善个人信息", Toast.LENGTH_SHORT).show();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+                btn_login.callOnClick();
+            }
+        }
     }
 
     @Override

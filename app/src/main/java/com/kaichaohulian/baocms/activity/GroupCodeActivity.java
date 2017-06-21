@@ -49,6 +49,7 @@ public class GroupCodeActivity extends BaseActivity {
         imgTwoCode = getId(R.id.two_code);
         txtName = getId(R.id.name_text);
         txtName.setText(name);
+        Log.d("GroupCodeActivity", Url.BASE_URL + "qr/groupQRCode.do?groupId=" + groupId);
         Glide.with(getActivity()).load(Url.BASE_URL + "qr/groupQRCode.do?groupId=" + groupId).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgTwoCode);
     }
 
