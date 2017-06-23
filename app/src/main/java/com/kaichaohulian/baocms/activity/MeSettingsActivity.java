@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
@@ -26,15 +27,19 @@ import java.io.InvalidClassException;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MeSettingsActivity extends BaseEcActivity {
 
     TextView tvAdd;
+    @BindView(R.id.setting_set_paypassword)
+    RelativeLayout layout;
 
     @Override
     public void initData() {
+
     }
 
     @Override
@@ -44,7 +49,15 @@ public class MeSettingsActivity extends BaseEcActivity {
         setCenterTitle("设置");
 
         registerReceiver(new String[]{SDKCoreHelper.ACTION_LOGOUT});
-
+        try {
+            if (MyApplication.getInstance().UserInfo.getisFirstLogin()) {
+                layout.setVisibility(View.VISIBLE);
+            } else {
+                layout.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

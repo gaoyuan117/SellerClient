@@ -22,6 +22,7 @@ import com.kaichaohulian.baocms.entity.MyInviteEntity;
 import com.kaichaohulian.baocms.entity.NearbyBean;
 import com.kaichaohulian.baocms.entity.NewInfoBean;
 import com.kaichaohulian.baocms.entity.OnlineServiceEntity;
+import com.kaichaohulian.baocms.entity.PositionEntity;
 import com.kaichaohulian.baocms.entity.QiNiuConfigEntity;
 import com.kaichaohulian.baocms.entity.UserInfo;
 import com.kaichaohulian.baocms.entity.UserInfoBean;
@@ -226,6 +227,10 @@ public interface Api {
     @GET("imageManager/getImages.do")
     Observable<UserPhotoBean> userPhotoInfo(@QueryMap Map<String, String> map);
 
+    //获取用户相册信息
+    @GET(Url.deleteAlbum)
+    Observable<HttpResult<CommonEntity>> deleteAlbum(@Query("id") int userId,@Query("photoId") int albumId);
+
     //用户失去网络状态或者退出时候清除用户当前位置信息
     @GET("business/clearLocations.do")
     Observable<HttpResult<CommonEntity>> clearLocation(@Query("id") int id);
@@ -328,4 +333,7 @@ public interface Api {
     //是否有新的消息
     @POST(Url.updateName)
     Observable<HttpResult<CommonEntity>> UpdateGroup(@FieldMap Map<String,String> map);
+
+    @GET(Url.All_LABEL)
+    Observable<HttpArray<PositionEntity>> getall(@Query("type") int type);
 }

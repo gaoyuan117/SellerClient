@@ -69,6 +69,7 @@ public class LoginActivity extends BaseEcActivity {
     private String phone;
     private String password;
     private boolean isfirst;
+    private int ifFirstTime;
 
 //    @Override
 //    public void setContent() {
@@ -136,6 +137,7 @@ public class LoginActivity extends BaseEcActivity {
                         try {
                             DBLog.e("登录：", response.toString());
                             if (response.getInt("code") == 0) {
+                                ifFirstTime = response.optInt("ifFirstTime", 1);
                                 getUserInfo(phone);
                             } else {
                                 showToastMsg(response.getString("errorDescription"));
@@ -240,8 +242,12 @@ public class LoginActivity extends BaseEcActivity {
 //                        UserInfo.setAge(response.getInt("age"));
                         UserInfo.setJob(response.getString("job"));
                         UserInfo.setHobby(response.getString("hobby"));
-
 //                      UserInfo.setImages(response.getString("images"));
+                        if(ifFirstTime==1){
+                            UserInfo.setIsFirstLogin(false);
+                        }else{
+                            UserInfo.setIsFirstLogin(true);
+                        }
                         MyApplication.getInstance().UserInfo = UserInfo;
                         mDataHelper.SaveUserInfo(UserInfo);
                         SPUtils.put(getActivity(), "Login_UserId", UserInfo.getUserId() + "");

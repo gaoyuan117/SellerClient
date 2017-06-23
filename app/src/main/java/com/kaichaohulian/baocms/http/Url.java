@@ -358,5 +358,6 @@ public class Url {
     public static final String getOrdersMessage = BASE_URL + "orders/getOrdersMessage.do";
     //2、手机充值推送详情
     public static final String getRechargeMessage = BASE_URL + "orders/getRechargeMessage.do";
-
+    //删除相册
+    public static final String deleteAlbum=BASE_URL+"photoCircle/delete.do";
 }

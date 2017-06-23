@@ -177,7 +177,7 @@ public class InvitedetailActivity extends BaseActivity {
                 //失效退款
                 llInviteIds.setVisibility(View.GONE);
                 llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
-                tv_DetailState.setText("已退款\n" + inviteDetailEntity.invite.createdTime + "\n退款金额：￥" + inviteDetailEntity.invite.inviteMoney);
+                tv_DetailState.setText("已退款\n" + inviteDetailEntity.invite.invateTime + "\n退款金额：￥" + inviteDetailEntity.invite.inviteMoney);
                 break;
         }
         //设置发布人名字
@@ -240,7 +240,7 @@ public class InvitedetailActivity extends BaseActivity {
                     //完成
                     llInviteIds.setVisibility(View.VISIBLE);
                     llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
-                    findViewById(R.id.ll_invite_detail_shoujian).setVisibility(View.GONE);
+//                    findViewById(R.id.ll_invite_detail_shoujian).setVisibility(View.GONE);
                     adapter2 = new InviteDetailGrid2Adapter(getActivity(), null, inviteReciverEntity.user);
                     adapter2.setLayoutIds(R.layout.item_inviteinfo2);
                     grid_DetailInvitePeopleNum.setAdapter(adapter2);
@@ -252,6 +252,7 @@ public class InvitedetailActivity extends BaseActivity {
                     llInviteDetailStateNoGoing.setVisibility(View.VISIBLE);
                     tv_DetailState.setText("活动已失效");
                     llInviteIds.setVisibility(View.GONE);
+
                     break;
             }
             tv_DetailUserName.setText("发起人： " + inviteReciverEntity.user.username);
@@ -265,7 +266,7 @@ public class InvitedetailActivity extends BaseActivity {
             tv_DetailInviteTime.setText(time);
             tv_DetailInviteAddress.setText(inviteReciverEntity.dto.inviteAddress);
             tv_DetailInviteReponseTime.setText(inviteReciverEntity.dto.applyTime);
-
+            findViewById(R.id.ll_invite_detail_shoujian).setVisibility(View.GONE);
             tv_DetailRevicerNames.setVisibility(View.GONE);
             if (llInviteIds.getVisibility() == View.VISIBLE) {
                 tv_DetailInviteJoinNum.setText("发起人");

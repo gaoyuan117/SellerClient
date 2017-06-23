@@ -1,5 +1,6 @@
 package com.kaichaohulian.baocms;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -7,15 +8,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.activity.PositionActivity;
 import com.kaichaohulian.baocms.adapter.EvaluateAdapter;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.LableBean;
+import com.kaichaohulian.baocms.entity.PositionEntity;
 import com.kaichaohulian.baocms.http.HttpArray;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseListObserver;
@@ -58,11 +63,10 @@ public class HobbyActivity extends BaseActivity implements AdapterView.OnItemCli
         tvEva = (TextView) findViewById(R.id.tv_hobby_eva);
         mList = new ArrayList<>();
         list = new ArrayList<>();
-        loadLable();
         stringBuffer = new StringBuffer();
         mAdapter = new EvaluateAdapter(mList, this);
         mGridView.setAdapter(mAdapter);
-
+        LoadData();
         mGridView.setOnItemClickListener(this);
         mGridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
         tvEva.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +88,19 @@ public class HobbyActivity extends BaseActivity implements AdapterView.OnItemCli
 
     }
 
+    private void LoadData(){
+        RetrofitClient.getInstance().createApi().getall(2)
+                .compose(RxUtils.<HttpArray<PositionEntity>>io_main())
+                .subscribe(new BaseListObserver<PositionEntity>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(List<PositionEntity> l) {
+                        for (int i = 0; i < l.size(); i++) {
+                            mList.add(l.get(i).name);
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }
+                });
+    }
 
     @Override
     public void initEvent() {
@@ -112,12 +129,4 @@ public class HobbyActivity extends BaseActivity implements AdapterView.OnItemCli
         stringBuffer.setLength(0);
     }
 
-    private void loadLable() {
-        mList.add("健身");
-        mList.add("K歌");
-        mList.add("看书");
-        mList.add("旅游");
-        mList.add("游戏");
-        mList.add("其他");
-    }
 }

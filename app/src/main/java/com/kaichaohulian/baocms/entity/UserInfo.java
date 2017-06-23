@@ -35,7 +35,6 @@ public class UserInfo implements Serializable {
     public static final String HOBBY="hobby";
     public static final String AGE="age";
     public static final String JOB="job";
-
     private int id;
     private int userId;
     private String createdTime;
@@ -66,6 +65,15 @@ public class UserInfo implements Serializable {
     private int age;
     private String job;
     private String hobby;
+    private boolean isIsFirstLogin;
+
+    public boolean getisFirstLogin() {
+        return isIsFirstLogin;
+    }
+
+    public void setIsFirstLogin(boolean isFirstLogin) {
+        isIsFirstLogin = isFirstLogin;
+    }
 
     public String getHobby() {
         return hobby;

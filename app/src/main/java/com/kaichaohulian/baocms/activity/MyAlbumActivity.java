@@ -1,11 +1,15 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -15,6 +19,7 @@ import com.kaichaohulian.baocms.app.ActivityUtil;
 import com.kaichaohulian.baocms.app.MyApplication;
 import com.kaichaohulian.baocms.base.BaseActivity;
 import com.kaichaohulian.baocms.entity.AblumEntity;
+import com.kaichaohulian.baocms.entity.CommonEntity;
 import com.kaichaohulian.baocms.http.HttpResult;
 import com.kaichaohulian.baocms.retrofit.RetrofitClient;
 import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
@@ -30,7 +35,7 @@ import butterknife.ButterKnife;
  * 相册
  * Created by ljl on 2016/12/1 0001.
  */
-public class MyAlbumActivity extends BaseActivity {
+public class MyAlbumActivity extends BaseActivity implements AdapterView.OnItemLongClickListener {
     public static final String IS_FRIEND = "IS_FRIEND";
     public static final String FRIEND_ID = "FRIEND_ID";
     @BindView(R.id.listView)
@@ -56,17 +61,20 @@ public class MyAlbumActivity extends BaseActivity {
     @Override
     public void initData() {
         List = new ArrayList<>();
-        String url="";
+        String url = "";
         mIsFriend = getIntent().getBooleanExtra(IS_FRIEND, false);
-        try{
-            mFriendId = getIntent().getIntExtra(FRIEND_ID,0);
-        }catch (ClassCastException e){
-            url=getIntent().getStringExtra(FRIEND_ID);
+        try {
+            mFriendId = getIntent().getIntExtra(FRIEND_ID, 0);
+        } catch (ClassCastException e) {
+            url = getIntent().getStringExtra(FRIEND_ID);
         }
-        if(mFriendId==0){
-            mFriendId=MyApplication.getInstance().UserInfo.getUserId();
+        if (mFriendId == 0) {
+            mFriendId = MyApplication.getInstance().UserInfo.getUserId();
         }
         addHttpData();
+        if (mFriendId == MyApplication.getInstance().UserInfo.getUserId()) {
+            listView.setOnItemLongClickListener(this);
+        }
     }
 
 
@@ -107,10 +115,10 @@ public class MyAlbumActivity extends BaseActivity {
             Glide.with(getActivity()).load(ablumEntity.avatar).diskCacheStrategy(DiskCacheStrategy.ALL).error(R.mipmap.default_useravatar).into(head);
 //            Glide.with(getActivity()).load(ablumEntity.backAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.mipmap.album_bg).into(bg);
             listView.addHeaderView(headView);
-            if(getIntent().getStringExtra("excuseMe")!=null){
-                adapter = new MyAlbumAdapter(MyAlbumActivity.this, List,false);
-            }else{
-                adapter = new MyAlbumAdapter(MyAlbumActivity.this, List,true);
+            if (getIntent().getStringExtra("excuseMe") != null) {
+                adapter = new MyAlbumAdapter(MyAlbumActivity.this, List, false);
+            } else {
+                adapter = new MyAlbumAdapter(MyAlbumActivity.this, List, true);
             }
             listView.setAdapter(adapter);
         }
@@ -131,4 +139,45 @@ public class MyAlbumActivity extends BaseActivity {
 
     }
 
+    private void deleteAlbum(final int i) {
+        RetrofitClient.getInstance().createApi().deleteAlbum(mFriendId, List.get(i).id)
+                .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(CommonEntity commonEntity) {
+                        List.remove(i);
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(MyAlbumActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+        Log.d("MyAlbumActivity",adapter.getCount()+"");
+        if (i != 1) {
+            new AlertDialog.Builder(getActivity())
+                    .setMessage("是否删除？")
+                    .setPositiveButton(R.string.ok,
+                            new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    dialog.dismiss();
+                                    deleteAlbum(i - 2);
+                                }
+                            })
+                    .setNegativeButton(R.string.cancel,
+                            new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    dialog.dismiss();
+                                }
+                            }).setCancelable(true).create().show();
+        }
+        return false;
+    }
 }

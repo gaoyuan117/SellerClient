@@ -1,12 +1,28 @@
 package com.kaichaohulian.baocms.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.kaichaohulian.baocms.R;
+import com.kaichaohulian.baocms.adapter.MyAlbumAdapter;
 import com.kaichaohulian.baocms.base.BaseActivity;
+import com.kaichaohulian.baocms.entity.PositionEntity;
+import com.kaichaohulian.baocms.http.HttpArray;
+import com.kaichaohulian.baocms.http.HttpResult;
+import com.kaichaohulian.baocms.retrofit.RetrofitClient;
+import com.kaichaohulian.baocms.rxjava.BaseListObserver;
+import com.kaichaohulian.baocms.rxjava.BaseObjObserver;
+import com.kaichaohulian.baocms.rxjava.RxUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,34 +31,14 @@ import butterknife.OnClick;
 /**
  * 职业
  */
-public class PositionActivity extends BaseActivity {
+public class PositionActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
-    @BindView(R.id.tv_position_it)
-    TextView tvPositionIt;
-    @BindView(R.id.tv_position_zz)
-    TextView tvPositionZz;
-    @BindView(R.id.tv_position_yl)
-    TextView tvPositionYl;
-    @BindView(R.id.tv_position_jr)
-    TextView tvPositionJr;
-    @BindView(R.id.tv_position_sy)
-    TextView tvPositionSy;
-    @BindView(R.id.tv_position_wh)
-    TextView tvPositionWh;
-    @BindView(R.id.tv_position_ys)
-    TextView tvPositionYs;
-    @BindView(R.id.tv_position_fl)
-    TextView tvPositionFl;
-    @BindView(R.id.tv_position_jy)
-    TextView tvPositionJy;
-    @BindView(R.id.tv_position_xz)
-    TextView tvPositionXz;
-    @BindView(R.id.tv_position_xs)
-    TextView tvPositionXs;
-    @BindView(R.id.tv_position_other)
-    TextView tvPositionOther;
 
     private String position;
+    @BindView(R.id.position_list)
+    ListView mListView;
+    private ArrayList<PositionEntity> data;
+    private Adapter adapter;
 
     @Override
     public void setContent() {
@@ -57,7 +53,23 @@ public class PositionActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        data = new ArrayList<>();
+        adapter = new Adapter(this, data);
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(this);
+        loadData();
+    }
 
+    private void loadData() {
+        RetrofitClient.getInstance().createApi().getall(3)
+                .compose(RxUtils.<HttpArray<PositionEntity>>io_main())
+                .subscribe(new BaseListObserver<PositionEntity>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(List<PositionEntity> list) {
+                        data.addAll(list);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     @Override
@@ -65,51 +77,68 @@ public class PositionActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tv_position_it, R.id.tv_position_zz, R.id.tv_position_yl, R.id.tv_position_jr, R.id.tv_position_sy, R.id.tv_position_wh, R.id.tv_position_ys, R.id.tv_position_fl, R.id.tv_position_jy, R.id.tv_position_xz, R.id.tv_position_xs, R.id.tv_position_other})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_position_it:
-                position = tvPositionIt.getText().toString();
-                break;
-            case R.id.tv_position_zz:
-                position = tvPositionZz.getText().toString();
-                break;
-            case R.id.tv_position_yl:
-                position = tvPositionYl.getText().toString();
-                break;
-            case R.id.tv_position_jr:
-                position = tvPositionJr.getText().toString();
-                break;
-            case R.id.tv_position_sy:
-                position = tvPositionSy.getText().toString();
-                break;
-            case R.id.tv_position_wh:
-                position = tvPositionWh.getText().toString();
-                break;
-            case R.id.tv_position_ys:
-                position = tvPositionYs.getText().toString();
-                break;
-            case R.id.tv_position_fl:
-                position = tvPositionFl.getText().toString();
-                break;
-            case R.id.tv_position_jy:
-                position = tvPositionJy.getText().toString();
-                break;
-            case R.id.tv_position_xz:
-                position = tvPositionXz.getText().toString();
-                break;
-            case R.id.tv_position_xs:
-                position = tvPositionXs.getText().toString();
-                break;
-            case R.id.tv_position_other:
-                position = "默认";
-                break;
-
-        }
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent();
-        intent.putExtra("result", position);
+        intent.putExtra("result", data.get(i).name);
         setResult(RESULT_OK, intent);
-
         finish();
     }
+
+
+    class Adapter extends BaseAdapter {
+        private Context context;
+        private List<PositionEntity> list;
+
+        public Adapter(Context context, List<PositionEntity> list) {
+            this.context = context;
+            this.list = list;
+        }
+
+        @Override
+        public int getCount() {
+            return list == null ? 0 : list.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return list.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            try{
+                ViewHolder vh;
+                if (view == null) {
+                    view = View.inflate(context, R.layout.item_positionlist, null);
+                    vh = new ViewHolder(view);
+                    view.setTag(vh);
+                } else {
+                    vh = (ViewHolder) view.getTag();
+                }
+                PositionEntity entity = (PositionEntity) getItem(i);
+                vh.tv.setText(entity.name);
+                vh.title.setText(entity.remark);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return view;
+
+        }
+
+        class ViewHolder {
+            TextView tv, title;
+
+            public ViewHolder(View view) {
+                tv = (TextView) view.findViewById(R.id.tv_position);
+                title = (TextView) tv.findViewById(R.id.title_position);
+            }
+        }
+    }
+
 }
