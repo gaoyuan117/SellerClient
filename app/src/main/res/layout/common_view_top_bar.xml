@@ -58,7 +58,6 @@
 
             <com.kaichaohulian.baocms.ecdemo.ui.chatting.base.EmojiconTextView
                 android:id="@+id/btn_middle"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -73,7 +72,6 @@
 
             <TextView
                 android:id="@+id/btn_middle_sub"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

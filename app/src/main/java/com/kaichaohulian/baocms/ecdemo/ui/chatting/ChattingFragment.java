@@ -780,7 +780,8 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
             if (ecGroup != null) {
                 setActionBarTitle(mUsername != null ? mUsername : ecGroup.getName());
 //                setActionBarTitle(ecGroup.getName() != null ? ecGroup.getName() : ecGroup.getGroupId());
-                SpannableString charSequence = setNewMessageMute(!ecGroup.isNotice());
+
+                SpannableString charSequence = setNewMessageMute(false);
                 if (charSequence != null) {
                     getTopBarView().setTitle(charSequence);
                 }
@@ -889,9 +890,9 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
         // If there's no data (because the user didn't select a picture and
         // just hit BACK, for example), there's nothing to do.
 
-        if(requestCode==111&&resultCode==111){
+        if (requestCode == 111 && resultCode == 111) {
             ContactFriendsEntity data1 = (ContactFriendsEntity) data.getSerializableExtra("data");
-            handleSendIDCardMessage(data1.getUsername(),data1.getAvatar(),data1.getPhoneNumber(),data1.getId());
+            handleSendIDCardMessage(data1.getUsername(), data1.getAvatar(), data1.getId() + "", data1.getId());
 
         }
 
@@ -1261,8 +1262,8 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("n", name);
-            jsonObject.put("a",avatar);
-            jsonObject.put("m", phone);
+            jsonObject.put("a", avatar);
+            jsonObject.put("m", "ID:" + phone);
             jsonObject.put("u", userId);
             jsonObject.put("txt_msgType", "cardtype");
             text = jsonObject.toString();
@@ -1926,7 +1927,6 @@ public class ChattingFragment extends CCPFragment implements AbsListView.OnScrol
             Intent intent = new Intent(getActivity(), IDCardActivity.class);
             startActivityForResult(intent, 111);
         }
-
 
 
         @Override

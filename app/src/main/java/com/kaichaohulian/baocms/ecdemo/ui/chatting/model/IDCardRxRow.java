@@ -64,7 +64,7 @@ public class IDCardRxRow extends BaseChattingRow {
             Log.e("gy", "名片数据："+userData);
             try {
                 JSONObject jsonObject = new JSONObject(userData);
-                Glide.with(context).load(jsonObject.getString("a")).into(holder.avater);
+                Glide.with(context).load(jsonObject.getString("a")).placeholder(R.mipmap.default_useravatar).error(R.mipmap.default_useravatar).into(holder.avater);
                 holder.username.setText(jsonObject.getString("n"));
                 holder.phone.setText(jsonObject.getString("m"));
             } catch (JSONException e) {

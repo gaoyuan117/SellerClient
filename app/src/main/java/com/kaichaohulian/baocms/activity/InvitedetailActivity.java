@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,9 +35,10 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.iwf.photopicker.PhotoPickerActivity;
+import me.iwf.photopicker.utils.PhotoPickerIntent;
 
 public class InvitedetailActivity extends BaseActivity {
-
 
     @BindView(R.id.tv_inviteloadding)
     TextView loaddingView;
@@ -81,8 +83,11 @@ public class InvitedetailActivity extends BaseActivity {
     @BindView(R.id.ll_invite_detail_state_ids)
     LinearLayout llInviteIds;//参与人布局
 
+    InviteDetailGrid2Adapter adapter2 = null;
+
 
     private int UserId, InviteId;
+    private String toUserId;
     private boolean IsHost = false;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -107,6 +112,9 @@ public class InvitedetailActivity extends BaseActivity {
         IsHost = intent.getBooleanExtra("IsOwn", false);
         InviteId = intent.getIntExtra("inviteId", 0);
         UserId = intent.getIntExtra("UserId", 0);
+        toUserId = intent.getStringExtra("toUserId");
+
+        Log.e("gy", "toUserId：" + toUserId);
     }
 
     @Override
@@ -122,7 +130,7 @@ public class InvitedetailActivity extends BaseActivity {
         }
         if (IsHost) {
             //发布人查看
-            RetrofitClient.getInstance().createApi().GetInviteDetailForHost(UserId + "", InviteId + "")
+            RetrofitClient.getInstance().createApi().GetInviteDetailForHost(UserId + "", InviteId + "", toUserId)
                     .compose(RxUtils.<HttpResult<InviteDetailEntity>>io_main())
                     .subscribe(new BaseObjObserver<InviteDetailEntity>(getActivity()) {
                         @Override
@@ -145,6 +153,8 @@ public class InvitedetailActivity extends BaseActivity {
                         }
                     });
         }
+
+
     }
 
     //我发起的-邀请详情
@@ -158,7 +168,7 @@ public class InvitedetailActivity extends BaseActivity {
                 //见面确认按钮
                 btn_reciverOrRefuse.setVisibility(View.VISIBLE);
                 long time1 = (getTimeStamp(inviteDetailEntity.invite.invateTime) - new Date().getTime());
-                ApplyTime.setText("倒计时："+getStrTime(time1));
+                ApplyTime.setText("倒计时：" + getStrTime(time1));
                 //参与者列表
                 adapter = new InviteDetailGridAdapter(getActivity(), inviteDetailEntity.list);
                 adapter.setLayoutIds(R.layout.item_inviteinfo);
@@ -185,18 +195,16 @@ public class InvitedetailActivity extends BaseActivity {
         //设置发布人头像
         Glide.with(getActivity()).load(inviteDetailEntity.invite.avatar).error(R.mipmap.default_useravatar).into(img_DetailAvatar);
         //设置发布人id
-        tv_DetailUserId.setText("ID:"+inviteDetailEntity.invite.userId + "");
+        tv_DetailUserId.setText("ID:" + inviteDetailEntity.invite.userId + "");
         //设置邀请主题
         tv_DetailTheme.setText(inviteDetailEntity.invite.title);
-        //设置收件人人数
-        Log.d("InvitedetailActivity", "inviteDetailEntity.invite.userNum:" + inviteDetailEntity.invite.userNum);
-        tv_DetailReciverNum.setText((int)((double)inviteDetailEntity.invite.userNum)+ "位收件人");
+
         //设置邀请金额
-        double i=(double)inviteDetailEntity.invite.inviteMoney;
-        if(i==0.0){
+        double i = (double) inviteDetailEntity.invite.inviteMoney;
+        if (i == 0.0) {
             tv_DetailInviteMoney.setText("0");
-        }else{
-            tv_DetailInviteMoney.setText((int)i+"");
+        } else {
+            tv_DetailInviteMoney.setText((int) i + "");
         }
         //设置邀请地址
         tv_DetailInviteAddress.setText(inviteDetailEntity.invite.inviteAddress);
@@ -206,7 +214,7 @@ public class InvitedetailActivity extends BaseActivity {
         //设置响应时间
         tv_DetailInviteReponseTime.setText(inviteDetailEntity.invite.applyTime);
         //设置邀请人数
-        tv_DetailInviteNum.setText((int)((double)inviteDetailEntity.invite.userNum) + "");
+        tv_DetailInviteNum.setText((int) ((double) inviteDetailEntity.invite.userNum) + "");
         //设置受邀人的名字
         String names = inviteDetailEntity.invite.inviteUsers;
         try {
@@ -216,7 +224,10 @@ public class InvitedetailActivity extends BaseActivity {
             names = "";
         }
         tv_DetailRevicerNames.setText(names);
-
+        String[] split = names.split(",");
+        //设置收件人人数
+//        tv_DetailReciverNum.setText((int)((double)inviteDetailEntity.invite.userNum)+ "位收件人");
+        tv_DetailReciverNum.setText(split.length + "位收件人");
         if (IsHost && adapter != null) {
             tv_DetailInviteJoinNum.setText("参与者(" + adapter.getList().size() + ")");
         } else {
@@ -227,12 +238,12 @@ public class InvitedetailActivity extends BaseActivity {
     //邀请我的-邀请详情
     public void setDataForNoHost(InviteReciverEntity inviteReciverEntity) {
         try {
-            InviteDetailGrid2Adapter adapter2 = null;
+
             switch (inviteReciverEntity.dto.status) {
                 case 0:
                     //进行中
                     long time1 = (getTimeStamp(inviteReciverEntity.dto.invateTime) - new Date().getTime());
-                    ApplyTime.setText("倒计时："+getStrTime(time1));
+                    ApplyTime.setText("倒计时：" + getStrTime(time1));
                     llInviteIds.setVisibility(View.GONE);
                     llInviteDetailStateIsGoing.setVisibility(View.VISIBLE);
                     break;
@@ -245,6 +256,22 @@ public class InvitedetailActivity extends BaseActivity {
                     adapter2.setLayoutIds(R.layout.item_inviteinfo2);
                     grid_DetailInvitePeopleNum.setAdapter(adapter2);
                     tv_DetailState.setText("活动已完成");
+
+                    adapter2.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            if (adapter2.index != 3 && adapter2.index - 1 == position) {
+                                PhotoPickerIntent intent = new PhotoPickerIntent(InvitedetailActivity.this);
+                                intent.setPhotoCount(3);
+                                intent.setShowCamera(true);
+                                startActivityForResult(intent, 112);
+                            } else {
+                                ImagePagerActivity.ImageSize imageSize = new ImagePagerActivity.ImageSize(view.getMeasuredWidth(), view.getMeasuredHeight());
+                                ImagePagerActivity.startImagePagerActivity(getActivity(), adapter2.list, position, imageSize);
+                            }
+                        }
+                    });
+
                     break;
                 case 3:
                 case 4:
@@ -257,11 +284,11 @@ public class InvitedetailActivity extends BaseActivity {
             }
             tv_DetailUserName.setText("发起人： " + inviteReciverEntity.user.username);
             Glide.with(getActivity()).load(inviteReciverEntity.user.avator).error(R.mipmap.default_useravatar).into(img_DetailAvatar);
-            tv_DetailUserId.setText("ID:"+inviteReciverEntity.user.user_id + "");
+            tv_DetailUserId.setText("ID:" + inviteReciverEntity.user.user_id + "");
             tv_DetailTheme.setText(inviteReciverEntity.dto.title);
 //            tv_DetailReciverNum.setVisibility(View.GONE);
-            tv_DetailInviteNum.setText((int)((double)inviteReciverEntity.dto.userNum) + "");
-            tv_DetailInviteMoney.setText((double)inviteReciverEntity.dto.inviteMoney + "");
+            tv_DetailInviteNum.setText((int) ((double) inviteReciverEntity.dto.userNum) + "");
+            tv_DetailInviteMoney.setText((double) inviteReciverEntity.dto.inviteMoney + "");
             String time = inviteReciverEntity.dto.invateTime.substring(0, inviteReciverEntity.dto.invateTime.length() - 3);
             tv_DetailInviteTime.setText(time);
             tv_DetailInviteAddress.setText(inviteReciverEntity.dto.inviteAddress);
@@ -292,10 +319,15 @@ public class InvitedetailActivity extends BaseActivity {
     public String getStrTime(long cc_time) {
         Log.e("gy", "时间差：" + cc_time);
         long days = cc_time / (1000 * 60 * 60 * 24);
-        long hours = (cc_time-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
-        long minutes = (cc_time-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
+        long hours = (cc_time - days * (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+        long minutes = (cc_time - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60)) / (1000 * 60);
+        String s = hours + "小时" + minutes + "分钟";
+        if (s.startsWith("-")) {
+            return "00:00:00";
+        } else {
+            return hours + "小时" + minutes + "分钟";
+        }
 
-        return hours + "小时" + minutes + "分钟";
     }
 
     @OnClick(R.id.bt_invite_detail_sure)
@@ -314,5 +346,17 @@ public class InvitedetailActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 112) {
+            if (data != null) {
+                adapter2.list = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
+                if (adapter2.imageBaseAdapter != null) {
+                    adapter2.imageBaseAdapter.notifyDataSetChanged();
 
+                }
+            }
+        }
+    }
 }

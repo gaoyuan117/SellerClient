@@ -184,7 +184,7 @@ public class FriendInfoActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.rl_friend_info, R.id.ll_friend_info_bz, R.id.bt_friend_info_add,R.id.ll_friend_info_xiangce})
+    @OnClick({R.id.rl_friend_info, R.id.ll_friend_info_bz, R.id.bt_friend_info_add, R.id.ll_friend_info_xiangce})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_friend_info:
@@ -206,16 +206,16 @@ public class FriendInfoActivity extends BaseActivity {
                 }
                 break;
             case R.id.ll_friend_info_xiangce:
-                try{
+                try {
                     if (mUserInfoBean == null) {
                         Toast.makeText(this, "好友不存在", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     Intent intent = new Intent(getActivity(), MyAlbumActivity.class);
-                    intent.putExtra("excuseMe","excuse");
+                    intent.putExtra("excuseMe", "excuse");
                     intent.putExtra(MyAlbumActivity.FRIEND_ID, mUserInfoBean.getId());
                     startActivity(intent);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
@@ -318,7 +318,7 @@ public class FriendInfoActivity extends BaseActivity {
 
         mFriendInfoName.setText(userInfoBean.getUsername());
         mFriendInfoSex.setImageResource(userInfoBean.getSex() == 0 ? R.mipmap.boy : R.mipmap.gir);
-        mFriendInfoId.setText("ID:"+userInfoBean.getId() + "");
+        mFriendInfoId.setText("ID:" + userInfoBean.getId() + "");
         mFriendInfoAge.setText(userInfoBean.getAge() == null ? "未知" : (userInfoBean.getAge() + "").replace(".0", ""));
         mFriendInfoJob.setText(userInfoBean.getJob() == null ? "未知" : userInfoBean.getJob() + "");
         mFriendInfoHobby.setText(userInfoBean.getHobby() == null ? "未知" : userInfoBean.getHobby() + "");
@@ -375,8 +375,10 @@ public class FriendInfoActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 111 && resultCode == 111) {
+            String remark = data.getStringExtra("remark");
+            mRemark.setText(remark);
+        }
 
-        String remark = data.getStringExtra("remark");
-        mRemark.setText(remark);
     }
 }

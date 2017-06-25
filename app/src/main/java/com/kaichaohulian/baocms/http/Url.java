@@ -122,6 +122,7 @@ public class Url {
     public static final String MyAlbum = BASE_URL + "imageManager/getImages.do";
     // 发布朋友圈
     public static final String release = BASE_URL + "circleFriends/release.do";
+    public static final String complain = BASE_URL + "users/toComplain.do ";
 
 
     //钱包

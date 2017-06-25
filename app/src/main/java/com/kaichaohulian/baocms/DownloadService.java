@@ -42,7 +42,6 @@ public class DownloadService extends Service {
 
         registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         String path = intent.getStringExtra("path");
-        Log.e("gy","下载："+path);
         startDownload(path);
         return Service.START_STICKY;
     }

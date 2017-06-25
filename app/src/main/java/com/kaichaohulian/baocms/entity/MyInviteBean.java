@@ -48,6 +48,15 @@ public class MyInviteBean {
     private String createdTime;
     private int userApplyStatus;
     private int ifRead;
+    private int beUserId;
+
+    public int getBeUserId() {
+        return beUserId;
+    }
+
+    public void setBeUserId(int beUserId) {
+        this.beUserId = beUserId;
+    }
 
     public int getId() {
         return id;

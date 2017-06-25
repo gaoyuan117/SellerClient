@@ -269,7 +269,7 @@ public interface Api {
 
     //邀请详情(发布人)
     @GET(Url.GetInviteDetailForHost)
-    Observable<HttpResult<InviteDetailEntity>> GetInviteDetailForHost(@Query("userId") String UserId, @Query("inviteId") String inviteId);
+    Observable<HttpResult<InviteDetailEntity>> GetInviteDetailForHost(@Query("userId") String UserId, @Query("inviteId") String inviteId,@Query("toUserID") String toUserId);
 
     //邀请详情(受邀人)
     @GET(Url.GetInviteDetailForReciver)
@@ -295,7 +295,7 @@ public interface Api {
 
 
     @GET("lables/findAll.do")
-    Observable<HttpArray<LableBean>> loadLable();
+    Observable<HttpArray<LableBean>> loadLable( @Query("type") int type);
 
     @GET("invite/userLable.do")
     Observable<HttpResult<CommonEntity>> evaluate(@QueryMap Map<String, Object> map);
@@ -331,6 +331,7 @@ public interface Api {
     Observable<HttpResult<NewInfoBean>> newInfo(@Query("userId") int id);
 
     //是否有新的消息
+    @FormUrlEncoded
     @POST(Url.updateName)
     Observable<HttpResult<CommonEntity>> UpdateGroup(@FieldMap Map<String,String> map);
 

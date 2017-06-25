@@ -8,11 +8,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.util.TimeUtils;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kaichaohulian.baocms.activity.ChatActivity;
 import com.kaichaohulian.baocms.activity.LoginActivity;
@@ -33,6 +35,7 @@ import com.kaichaohulian.baocms.ecdemo.storage.ConversationSqlManager;
 import com.kaichaohulian.baocms.ecdemo.storage.GroupNoticeSqlManager;
 import com.kaichaohulian.baocms.ecdemo.storage.GroupSqlManager;
 import com.kaichaohulian.baocms.ecdemo.storage.IMessageSqlManager;
+import com.kaichaohulian.baocms.ecdemo.storage.OnMessageChange;
 import com.kaichaohulian.baocms.ecdemo.ui.SDKCoreHelper;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.ChattingActivity;
 import com.kaichaohulian.baocms.ecdemo.ui.chatting.CustomerServiceHelper;
@@ -44,6 +47,7 @@ import com.kaichaohulian.baocms.ecdemo.ui.group.GroupService;
 import com.kaichaohulian.baocms.ecdemo.ui.settings.SettingPersionInfoActivity;
 import com.kaichaohulian.baocms.entity.GroupEntity;
 import com.kaichaohulian.baocms.entity.MessageEntity;
+import com.kaichaohulian.baocms.entity.NewInfoBean;
 import com.kaichaohulian.baocms.entity.QiNiuConfigEntity;
 import com.kaichaohulian.baocms.fragment.ContactListFragment;
 import com.kaichaohulian.baocms.fragment.DiscoverFragment;
@@ -88,6 +92,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 
 /**
  * 主界面
@@ -100,6 +108,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
     private ContactListFragment contactlistfragment;
     private DiscoverFragment findfragment;
     private ProFileFragment profilefragment;
+    private TextView discoverNum;
 
     private ImageView[] imagebuttons;
     private TextView[] textviews;
@@ -136,7 +145,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
 //        Log.e("TRACE", "expired first : " + expireddate);
 //        Log.e("TRACE", "expired curr : " + current);
 //        Log.e("TRACE", "expired duration : " + duration);
-        startService(new Intent(this,UpdateLocationService.class));
+        startService(new Intent(this, UpdateLocationService.class));
         mDataHelper = new DataHelper(getActivity());
         myApplication = (MyApplication) getApplication();
         if (MyApplication.getInstance() != null && MyApplication.getInstance().UserInfo != null) {
@@ -181,44 +190,6 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
 
     }
 
-//    /**
-//     * 支付宝支付
-//     */
-//    private static Handler payHandler = new Handler() {
-//        @SuppressWarnings("unused")
-//        public void handleMessage(Message msg) {
-//            switch (msg.what) {
-//                case PayTreasureUtils.SDK_PAY_FLAG: {
-//                    PayResult payResult = new PayResult((String) msg.obj);
-//                    /**
-//                     * 同步返回的结果必须放置到服务端进行验证（验证的规则请看https://doc.open.alipay.com/doc2/
-//                     * detail.htm?spm=0.0.0.0.xdvAU6&treeId=59&articleId=103665&
-//                     * docType=1) 建议商户依赖异步通知
-//                     */
-//                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
-//
-//                    String resultStatus = payResult.getResultStatus();
-//                    // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
-//                    if (TextUtils.equals(resultStatus, "9000")) {
-//                        ActivityUtil.next(paymentOrderActivity, PaySuccessActivity.class);
-//                    } else {
-//                        // 判断resultStatus 为非"9000"则代表可能支付失败
-//                        // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
-//                        if (TextUtils.equals(resultStatus, "8000")) {
-//                            DBLog.showToast("支付结果确认中", paymentOrderActivity);
-//                        } else {
-//                            // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-//                            DBLog.showToast("支付失败", paymentOrderActivity);
-//                        }
-//                    }
-//                    break;
-//                }
-//                default:
-//                    break;
-//            }
-//        }
-//    };
-
     @Override
     public void initView() {
 
@@ -235,6 +206,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
 
         unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
         unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
+        discoverNum = (TextView) findViewById(R.id.unread_discover_number);
 
         homefragment = new HomeFragment(myApplication, MainActivity.this, MainActivity.this);
         contactlistfragment = new ContactListFragment(myApplication, MainActivity.this, MainActivity.this);
@@ -263,6 +235,21 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
                 .add(R.id.fragment_container, findfragment)
                 .hide(contactlistfragment).hide(profilefragment)
                 .hide(findfragment).show(homefragment).commit();
+
+        IMessageSqlManager.registerMsgObserver(new OnMessageChange() {
+            @Override
+            public void onChanged(String sessionId) {
+                if (homefragment.isVisible()) {
+                    if (unreadLabel.getVisibility() == View.VISIBLE) {
+                        unreadLabel.setVisibility(View.GONE);
+                    }
+                } else {
+                    unreadLabel.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        intervalNewInfo();
     }
 
     @Override
@@ -281,6 +268,7 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
                 index = 1;
                 iv_add.setVisibility(View.VISIBLE);
                 setCenterTitle("通讯录");
+                unreadAddressLable.setVisibility(View.GONE);
                 break;
             case R.id.re_find:
                 index = 2;
@@ -308,6 +296,40 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
         textviews[currentTabIndex].setTextColor(0xFF646464);
         textviews[index].setTextColor(0xFFfb7b12);
         currentTabIndex = index;
+    }
+
+    /**
+     * 每隔3s检查一次有没有新的消息
+     */
+    private void intervalNewInfo() {
+        Observable.interval(30000, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        newInfo();
+                    }
+                });
+    }
+
+    private void newInfo() {
+        RetrofitClient.getInstance().createApi().newInfo(MyApplication.getInstance().UserInfo.getUserId())
+                .compose(RxUtils.<HttpResult<NewInfoBean>>io_main())
+                .subscribe(new BaseObjObserver<NewInfoBean>(getActivity()) {
+                    @Override
+                    protected void onHandleSuccess(NewInfoBean newInfoBean) {
+                        if (newInfoBean.getFirendAppyStatus() == 1) {
+                            unreadAddressLable.setVisibility(View.VISIBLE);
+                        } else {
+                            unreadAddressLable.setVisibility(View.GONE);
+                        }
+
+                        if (newInfoBean.getAdvertStatus() == 1 || newInfoBean.getInviteStatus() == 1 || newInfoBean.getNearStatus() == 1) {
+                            discoverNum.setVisibility(View.VISIBLE);
+                        } else {
+                            discoverNum.setVisibility(View.GONE);
+                        }
+                    }
+                });
     }
 
     @Override
@@ -736,6 +758,13 @@ public class MainActivity extends BaseEcActivity implements HomeFragment.OnUpdat
 //        if (mLauncherUITabView != null) {
 //            mLauncherUITabView.updateMainTabUnread(count);
 //        }
+
+        if (count != 0) {
+            unreadLabel.setVisibility(View.VISIBLE);
+//            unreadLabel.setText(count + "");
+        } else {
+            unreadLabel.setVisibility(View.GONE);
+        }
     }
 
 

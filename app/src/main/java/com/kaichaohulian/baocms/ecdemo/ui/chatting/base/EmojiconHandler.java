@@ -381,8 +381,8 @@ public final class EmojiconHandler {
         sEmojisMap.put(0x1f509, R.mipmap.emoji_1f509);
         sEmojisMap.put(0x1f508, R.mipmap.emoji_1f508); // TODO (rockerhieu): review this emoji
         sEmojisMap.put(0x1f507, R.mipmap.emoji_1f507);
-        sEmojisMap.put(0x1f514, R.mipmap.emoji_1f514);
-        sEmojisMap.put(0x1f515, R.mipmap.emoji_1f515);
+//        sEmojisMap.put(0x1f514, R.mipmap.emoji_1f514);
+//        sEmojisMap.put(0x1f515, R.mipmap.emoji_1f515);
         sEmojisMap.put(0x1f4e2, R.mipmap.emoji_1f4e2);
         sEmojisMap.put(0x1f4e3, R.mipmap.emoji_1f4e3);
         sEmojisMap.put(0x23f3, R.mipmap.emoji_23f3);

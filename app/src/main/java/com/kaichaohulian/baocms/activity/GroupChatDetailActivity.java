@@ -366,7 +366,7 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
                     intent.putExtra("code", v.getTag().toString());
                     intent.putExtra("name", tv_name.getText().toString());
                     intent.putExtra("isFromGroup", true);
-                    intent.putExtra("groupId",chatGroupId);
+                    intent.putExtra("groupId", chatGroupId);
                     intent.setClass(getActivity(), GroupCodeActivity.class);
                     startActivity(intent);
                 }
@@ -377,11 +377,19 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
                 startActivityForResult(intent, NICK_NAME_EDIT_CODE);
                 break;
             case R.id.BangPaiNameLayout:
+                if(!isOwner){
+                    ToastUtil.showMessage("您不是该群群主,不能修改群名称");
+                    return;
+                }
                 intent.putExtra("mTitleName", "群聊名称");
                 intent.setClass(getActivity(), MeNameEditActivity.class);
                 startActivityForResult(intent, ME_NAME_EDIT_CODE);
                 break;
             case R.id.rl_gonggao:
+                if(!isOwner){
+                    ToastUtil.showMessage("您不是该群群主,不能设置群公告");
+                    return;
+                }
                 intent.putExtra("mTitleName", "群公告");
                 intent.setClass(getActivity(), MeNameEditActivity.class);
                 startActivityForResult(intent, ME_GONG_EDIT_CODE);
@@ -398,6 +406,7 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
                 }
                 break;
             case R.id.btn_exit_grp:
+
                 if (((Button) v).getText().toString().equals("解散群聊")) {
                     jieshanqunliao();
                 } else {
@@ -406,7 +415,6 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
                 break;
         }
     }
-
 
 
     public void jieshanqunliao() {
@@ -576,7 +584,11 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
                     if (data == null) {
                         return;
                     }
-                    edtName = data.getStringExtra("name");
+                    edtName = data.getStringExtra("result");
+                    Log.e("gy", "群名：" + edtName);
+                    if (edtName == null) {
+                        return;
+                    }
                     tv_name.setText(edtName);
                     updateMyUser();
                     break;
@@ -662,52 +674,26 @@ public class GroupChatDetailActivity extends BaseActivity implements View.OnClic
     }
 
     public void updateMyUser() {
-        if (StringUtils.isEmpty(GroupId)) {
-            return;
+        try {
+
+
+            if (TextUtils.isEmpty(GroupId)) {
+                return;
+            }
+            HashMap<String, String> map = new HashMap<>();
+            map.put("groupId", GroupId);
+            map.put("name", edtName);
+            RetrofitClient.getInstance().createApi().UpdateGroup(map)
+                    .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
+                    .subscribe(new BaseObjObserver<CommonEntity>(this) {
+                        @Override
+                        protected void onHandleSuccess(CommonEntity commonEntity) {
+                            Toast.makeText(GroupChatDetailActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        HashMap<String,String> map=new HashMap<>();
-        map.put("groupId",GroupId);
-        map.put("name",edtName);
-//        map.put("messageNo",messageNo);
-//        map.put("topmessage",topmessage);
-//        map.put("saveMail",saveMail);
-//        map.put("displayName",displayName);
-        RetrofitClient.getInstance().createApi().UpdateGroup(map)
-                .compose(RxUtils.<HttpResult<CommonEntity>>io_main())
-                .subscribe(new BaseObjObserver<CommonEntity>(getActivity()) {
-                    @Override
-                    protected void onHandleSuccess(CommonEntity commonEntity) {
-                        Toast.makeText(GroupChatDetailActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
-                    }
-                });
-//        RequestParams params = new RequestParams();
-//        params.put("id", MyApplication.getInstance().UserInfo.getUserId());
-//        params.put("groupId", GroupId);
-//        params.put("name", edtName);
-//        params.put("messageNo", messageNo);
-//        params.put("topmessage", topmessage);
-//        params.put("saveMail", saveMail);
-//        params.put("displayName", displayName);
-//        HttpUtil.post(Url.updateName, params, new JsonHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                try {
-//                    DBLog.e("修改详情", response.toString());
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-//                showToastMsg("请求服务器失败");
-//                DBLog.e("tag", statusCode + ":" + responseString);
-//            }
-//        });
     }
 
     private void setUpNickName(int isShowNickName) {

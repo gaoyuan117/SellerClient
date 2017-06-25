@@ -92,7 +92,7 @@ public class IDCardAdapter extends ConactAdapter implements SectionIndexer {
             vh.nameTextview.setText(usernick);
         }
         if (!StringUtils.isEmpty(useravatar)) {
-            Glide.with(parent.getContext()).load(useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(vh.avatar);
+            Glide.with(parent.getContext()).load(useravatar).placeholder(R.mipmap.default_useravatar).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(vh.avatar);
         } else {
             vh.avatar.setImageResource(R.mipmap.default_useravatar);
         }

@@ -105,13 +105,13 @@ public class ContactListFragment extends BaseFragment {
 
         sidebar = getId(R.id.sidebar);
         sidebar.setListView(listView);
-        tv_unread = (TextView) headView.findViewById(R.id.tv_unread);
-        if (((MainActivity) getActivity()).unreadAddressLable.getVisibility() == View.VISIBLE) {
-            tv_unread.setVisibility(View.VISIBLE);
-            tv_unread.setText(((MainActivity) getActivity()).unreadAddressLable.getText());
-        } else {
-            tv_unread.setVisibility(View.GONE);
-        }
+//        tv_unread = (TextView) headView.findViewById(R.id.tv_unread);
+//        if (((MainActivity) getActivity()).unreadAddressLable.getVisibility() == View.VISIBLE) {
+//            tv_unread.setVisibility(View.VISIBLE);
+//            tv_unread.setText(((MainActivity) getActivity()).unreadAddressLable.getText());
+//        } else {
+//            tv_unread.setVisibility(View.GONE);
+//        }
 
         tv_total = (TextView) footerView.findViewById(R.id.tv_total);
         // 设置adapter
@@ -197,7 +197,7 @@ public class ContactListFragment extends BaseFragment {
         super.onHiddenChanged(hidden);
         this.hidden = hidden;
         if (!hidden) {
-            refresh();
+//            refresh();
             newInfo();
         }
     }

@@ -135,13 +135,14 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
                     && !conversation.getContactId().equals(CCPAppManager.getClientUser().getUserId())) {
                 ECContacts contact = ContactSqlManager.getContact(conversation.getContactId());
 
-                if (contact != null && contact.getNickname() != null) {
+                if (contact != null && contact.getNickname() != null /*&& contact.getNickname().length() != 11*/) {
                     fromNickName = contact.getNickname() + ": ";
                 } else {
-                    fromNickName = conversation.getContactId() + ": ";
+                    fromNickName = "未填写" + ": ";
                 }
+                fromNickName="";
             }
-        }
+        }/**/
 
         // Android Demo 免打扰后需要显示未读条数
         if (!conversation.isNotice() && conversation.getUnreadCount() > 1) {
@@ -163,7 +164,7 @@ public class ConversationAdapter extends CCPListAdapter<Conversation> {
             return fromNickName + mContext.getString(R.string.app_location);
 
         } else if (conversation.getMsgType() == ECMessage.Type.TXT.ordinal() && conversation.getContent() != null &&
-                conversation.getContent().contains("\"txt_msgType\":\"cardtype\"")) {
+                conversation.getContent().contains("cardtype")) {
             return fromNickName + "[个人名片]";
         } else if (conversation.getMsgType() == ECMessage.Type.TXT.ordinal() && conversation.getContent() != null &&
                 conversation.getContent().contains("\"txt_msgType\":\"transfetype\"")) {

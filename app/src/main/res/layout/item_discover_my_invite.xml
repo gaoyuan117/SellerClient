@@ -8,12 +8,27 @@
     android:paddingRight="13dp"
     android:paddingTop="13dp">
 
-    <ImageView
+    <RelativeLayout
         android:id="@+id/img_item_my_invite_avatar"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/default_useravatar" />
+        android:layout_width="48dp"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/img_item_my_invite_avatar2"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/default_useravatar" />
+
+        <ImageView
+            android:id="@+id/img_item_discover_my_invite_red_chat"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/red_circle" />
+    </RelativeLayout>
+
+
 
     <TextView
         android:id="@+id/tv_item_my_invite_name"

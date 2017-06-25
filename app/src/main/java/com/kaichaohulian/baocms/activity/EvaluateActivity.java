@@ -116,7 +116,7 @@ public class EvaluateActivity extends BaseActivity implements AdapterView.OnItem
     }
 
     private void loadLable() {
-        RetrofitClient.getInstance().createApi().loadLable().compose(RxUtils.<HttpArray<LableBean>>io_main())
+        RetrofitClient.getInstance().createApi().loadLable(1).compose(RxUtils.<HttpArray<LableBean>>io_main())
                 .subscribe(new BaseListObserver<LableBean>(this, "") {
                     @Override
                     protected void onHandleSuccess(List<LableBean> list) {

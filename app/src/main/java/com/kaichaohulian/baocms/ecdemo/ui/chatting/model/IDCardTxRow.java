@@ -64,7 +64,7 @@ public class IDCardTxRow extends BaseChattingRow {
 			String msgTextString =textBody.getMessage();
 			try {
 				JSONObject jsonObject=new JSONObject(msgTextString);
-				Glide.with(context).load(jsonObject.getString("a")).into(holder.avater);
+				Glide.with(context).load(jsonObject.getString("a")).placeholder(R.mipmap.default_useravatar).error(R.mipmap.default_useravatar).into(holder.avater);
 				holder.username.setText(jsonObject.getString("n"));
 				holder.phone.setText(jsonObject.getString("m"));
 			} catch (JSONException e) {

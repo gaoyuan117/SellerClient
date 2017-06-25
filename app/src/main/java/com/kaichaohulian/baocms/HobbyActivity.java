@@ -95,7 +95,7 @@ public class HobbyActivity extends BaseActivity implements AdapterView.OnItemCli
                     @Override
                     protected void onHandleSuccess(List<PositionEntity> l) {
                         for (int i = 0; i < l.size(); i++) {
-                            mList.add(l.get(i).name);
+                            mList.add(l.get(i).getName());
                         }
                         mAdapter.notifyDataSetChanged();
                     }

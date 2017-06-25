@@ -87,6 +87,7 @@ public class ProFileFragment extends BaseFragment {
         super.onResume();
         SharedPrefsUtil.putValue(getActivity(), MyApplication.getInstance().UserInfo.getPhoneNumber(), MyApplication.getInstance().UserInfo.getAvatar() + "-x-" + MyApplication.getInstance().UserInfo.getUsername());
         SharedPrefsUtil.putValue(getActivity(), MyApplication.getInstance().UserInfo.getUserId() + "", MyApplication.getInstance().UserInfo.getAvatar() + "-x-" + MyApplication.getInstance().UserInfo.getUsername());
+
     }
 
     @Override
@@ -115,8 +116,11 @@ public class ProFileFragment extends BaseFragment {
 
     @Override
     public void initData() {
-//        checkVersion();
+        checkVersion();
+
     }
+
+
 
     @Override
     public void onHiddenChanged(boolean hidden) {
@@ -255,9 +259,10 @@ public class ProFileFragment extends BaseFragment {
                     @Override
                     protected void onHandleSuccess(VersionBean versionBean) {
                         if (!versionBean.getAndroidVersion().equals(getVersion())) {
-                            openRedPackageDialog("115.126.100.146:8080/ZFishApp/" + versionBean.getAndroidPath());
+                            openRedPackageDialog("http://47.94.229.40/ZFishApp/"+ versionBean.getAndroidPath());
                             me_version.setVisibility(View.VISIBLE);
                         }else{
+                            me_version.setVisibility(View.GONE);
                             Toast.makeText(getActivity(), "当前已经是最新版本", Toast.LENGTH_SHORT).show();
                         }
                     }

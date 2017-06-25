@@ -80,7 +80,7 @@ public class PositionActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent();
-        intent.putExtra("result", data.get(i).name);
+        intent.putExtra("result", data.get(i).getName());
         setResult(RESULT_OK, intent);
         finish();
     }
@@ -122,8 +122,8 @@ public class PositionActivity extends BaseActivity implements AdapterView.OnItem
                     vh = (ViewHolder) view.getTag();
                 }
                 PositionEntity entity = (PositionEntity) getItem(i);
-                vh.tv.setText(entity.name);
-                vh.title.setText(entity.remark);
+                vh.tv.setText(entity.getName());
+                vh.title.setText(entity.getRemark());
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -136,7 +136,7 @@ public class PositionActivity extends BaseActivity implements AdapterView.OnItem
 
             public ViewHolder(View view) {
                 tv = (TextView) view.findViewById(R.id.tv_position);
-                title = (TextView) tv.findViewById(R.id.title_position);
+                title = (TextView) view.findViewById(R.id.title_position);
             }
         }
     }

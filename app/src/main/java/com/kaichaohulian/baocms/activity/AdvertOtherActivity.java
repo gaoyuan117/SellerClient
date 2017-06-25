@@ -128,10 +128,10 @@ public class AdvertOtherActivity extends BaseActivity {
                     map.put("ageStart", minage);
                     map.put("ageEnd", maxage);
                 }
-                if (!TextUtils.isEmpty(job)) {
+                if (!TextUtils.isEmpty(job)&&!job.equals("不限")) {
                     map.put("job", job);
                 }
-                if (!TextUtils.isEmpty(hobby)) {
+                if (!TextUtils.isEmpty(hobby)&&!hobby.equals("不限")) {
                     map.put("hobby", hobby);
                 }
                 if (address != null && !address.equals("地区")) {

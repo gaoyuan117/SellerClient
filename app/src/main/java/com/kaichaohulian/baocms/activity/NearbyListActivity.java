@@ -160,6 +160,7 @@ public class NearbyListActivity extends BaseActivity implements View.OnClickList
     private void getNearUser(int page, int sex) {
         Map<String, String> map = new HashMap<>();
         map.put("id", MyApplication.getInstance().UserInfo.getUserId() + "");
+        map.put("userId", MyApplication.getInstance().UserInfo.getUserId() + "");
         map.put("longitud", MyApplication.lng);
         map.put("latitude", MyApplication.lat);
         map.put("page", page + "");

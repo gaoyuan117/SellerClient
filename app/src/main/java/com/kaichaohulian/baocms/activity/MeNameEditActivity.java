@@ -75,7 +75,7 @@ public class MeNameEditActivity extends BaseActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!(TextUtils.isEmpty(editTextName.getText()))) {
+                if (!(TextUtils.isEmpty(editTextName.getText().toString()))) {
                     String txt = editTextName.getText().toString();
                     Intent intent = new Intent();
                     intent.putExtra("result", txt);

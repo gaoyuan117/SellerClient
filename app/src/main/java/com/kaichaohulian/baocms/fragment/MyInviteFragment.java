@@ -92,7 +92,7 @@ public class MyInviteFragment extends BaseFragment implements BaseQuickAdapter.O
         map.put("page", page);
         RetrofitClient.getInstance().createApi().getMyDiscoverInvite(map)
                 .compose(RxUtils.<HttpArray<MyInviteBean>>io_main())
-                .subscribe(new BaseListObserver<MyInviteBean>(getActivity(),refreshLayout) {
+                .subscribe(new BaseListObserver<MyInviteBean>(getActivity(), refreshLayout) {
                     @Override
                     protected void onHandleSuccess(List<MyInviteBean> list) {
                         if (list == null) {
@@ -114,11 +114,19 @@ public class MyInviteFragment extends BaseFragment implements BaseQuickAdapter.O
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        int ifRead = mList.get(position).getIfRead();
+        if (ifRead == 0) {
+            mList.get(position).setIfRead(1);
+        }
+
         Intent intent = new Intent(getActivity(), InvitedetailActivity.class);
         intent.putExtra("inviteId", mList.get(position).getId());
-        intent.putExtra("IsOwn",true);
-        intent.putExtra("UserId",MyApplication.getInstance().UserInfo.getUserId());
+        intent.putExtra("IsOwn", true);
+        intent.putExtra("UserId", MyApplication.getInstance().UserInfo.getUserId());
+        intent.putExtra("toUserId",mList.get(position).getBeUserId()+"");
         startActivity(intent);
+
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

@@ -152,7 +152,6 @@
                     android:layout_gravity="right|center"
                     android:gravity="right"
                     android:paddingRight="@dimen/SmallerPadding"
-                    android:src="@mipmap/chat_mute_notify_normal"
                     android:visibility="gone"/>
             </LinearLayout>
         </LinearLayout>

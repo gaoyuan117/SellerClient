@@ -35,7 +35,7 @@ public class MyInviteAdapter extends BaseQuickAdapter<MyInviteBean, BaseViewHold
             Glide.with(MyApplication.getInstance())
                     .load(item.getAvatar())
                     .error(R.mipmap.default_useravatar)
-                    .into((ImageView) helper.getView(R.id.img_item_my_invite_avatar));
+                    .into((ImageView) helper.getView(R.id.img_item_my_invite_avatar2));
 
             int status = item.getStatus();
             int userApplyStatus = item.getUserApplyStatus();
@@ -51,6 +51,14 @@ public class MyInviteAdapter extends BaseQuickAdapter<MyInviteBean, BaseViewHold
                 tvState.setText("已失效");
             } else if (status == 0) {
                 tvState.setText("等待接受");
+            }
+
+            ImageView redImg = helper.getView(R.id.img_item_discover_my_invite_red_chat);
+
+            if (item.getIfRead() == 0) {
+                redImg.setVisibility(View.VISIBLE);
+            } else {
+                redImg.setVisibility(View.GONE);
             }
 
             if (userApplyStatus == 1) {

@@ -102,10 +102,10 @@ public class ConactAdapter extends ArrayAdapter<ContactFriendsEntity> implements
         if (!StringUtils.isEmpty(useravatar)) {
             switch (res) {
                 case R.layout.item_contact_list:
-                    Glide.with(parent.getContext()).load(useravatar).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_avatar);
+                    Glide.with(parent.getContext()).load(useravatar).placeholder(R.mipmap.default_useravatar).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_avatar);
                     break;
                 case R.layout.item_shopping_list:
-                    Glide.with(parent.getContext()).load(useravatar).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).transform(new GlideCircleTransform(parent.getContext())).into(iv_avatar);
+                    Glide.with(parent.getContext()).load(useravatar).placeholder(R.mipmap.default_useravatar).error(R.mipmap.default_useravatar).diskCacheStrategy(DiskCacheStrategy.ALL).transform(new GlideCircleTransform(parent.getContext())).into(iv_avatar);
                     break;
             }
         } else {

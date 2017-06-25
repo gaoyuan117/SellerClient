@@ -6,6 +6,7 @@ package com.kaichaohulian.baocms.adapter;
  */
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +21,13 @@ import com.kaichaohulian.baocms.entity.GroupEntity;
 import java.util.List;
 
 
-public class GroupChatAdapter extends android.widget.BaseAdapter{
+public class GroupChatAdapter extends android.widget.BaseAdapter {
     private Context mContext;
     private LayoutInflater inflater;
 
     private List<GroupEntity> List;
 
-    public GroupChatAdapter(Context mContext, List<GroupEntity> List){
+    public GroupChatAdapter(Context mContext, List<GroupEntity> List) {
         this.mContext = mContext;
         inflater = LayoutInflater.from(mContext);
         this.List = List;
@@ -39,9 +40,9 @@ public class GroupChatAdapter extends android.widget.BaseAdapter{
 
     @Override
     public GroupEntity getItem(int position) {
-        try{
+        try {
             return List.get(position);
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -66,9 +67,9 @@ public class GroupChatAdapter extends android.widget.BaseAdapter{
         GroupEntity GroupEntity = getItem(position);
         List<String> avatar = GroupEntity.getAvatar();
         ViewHolder viewHolder = null;
-        if(convertView == null){
+        if (convertView == null) {
             viewHolder = new ViewHolder();
-            switch (avatar.size()){
+            switch (avatar.size()) {
                 case 1:
                     convertView = inflater.inflate(R.layout.item_conversation_group1, null, false);
                     viewHolder.iv_avatar1 = (ImageView) convertView.findViewById(R.id.iv_avatar1);
@@ -131,13 +132,14 @@ public class GroupChatAdapter extends android.widget.BaseAdapter{
         viewHolder = (ViewHolder) convertView.getTag();
 
         viewHolder.tv_name.setText(GroupEntity.getName());
+        Log.e("gy", "群组吗：" + GroupEntity.getName());
         viewHolder.tv_time.setVisibility(View.GONE);
         viewHolder.tv_content.setVisibility(View.GONE);
         viewHolder.tv_unread.setVisibility(View.GONE);
         return convertView;
     }
 
-    public class ViewHolder{
+    public class ViewHolder {
 
         TextView tv_name;
         TextView tv_content;
